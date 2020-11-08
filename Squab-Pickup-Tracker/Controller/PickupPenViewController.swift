@@ -115,10 +115,10 @@ extension PickupPenViewController: UICollectionViewDelegate {
 //MARK: - SelectionViewControllerDelegate
 
 extension PickupPenViewController: SelectionViewControllerDelegate {
-    func didUpdateNestContents(pen: String, nest: String, nestContents: String) {
+    func didUpdateNestContents(pen: String, nest: String, nestContents: String, color: UIColor) {
         
         pigeonData.pen[pen]?.nest[nest]?.contents = nestContents
-        pigeonData.pen[pen]?.nest[nest]?.color = UIColor(named: K.color.cellEntered)
+        pigeonData.pen[pen]?.nest[nest]?.color = color
 
         
         

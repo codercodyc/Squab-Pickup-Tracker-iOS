@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SelectionViewControllerDelegate {
-    func didUpdateNestContents(pen: String, nest: String, nestContents: String)
+    func didUpdateNestContents(pen: String, nest: String, nestContents: String, color: UIColor)
 }
 
 class SelectionViewController: UIViewController {
@@ -19,9 +19,9 @@ class SelectionViewController: UIViewController {
     @IBOutlet weak var penLabel: UILabel!
     @IBOutlet weak var contentsCollectionView: UICollectionView!
     
-    let nestContents = ["A", "AA", "B", "BB", "C", "CC", "D", "DD", "X", "XX", "Y", "YY", "E", "EE", "1 Squab", "2 Squab"]
+    let nestContents = ["E", "EE", "A", "AA", "B", "BB", "C", "CC", "D", "DD", "X", "XX", "Y", "YY", "1 Squab", "2 Squab"]
     
-    let nestContentDictionary: [String: String] = [
+    let nestContentColors: [String: String] = [
         "E" : K.color.inventoryColor,
         "EE" : K.color.inventoryColor,
         "A" : K.color.inventoryColor,
@@ -53,6 +53,7 @@ class SelectionViewController: UIViewController {
         contentsCollectionView.dataSource = self
         contentsCollectionView.layer.backgroundColor = .none
         
+        contentsCollectionView.reloadData()
 
         // Do any additional setup after loading the view.
     }
@@ -71,12 +72,15 @@ extension SelectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let contents = nestContents[indexPath.row]
+        let color = UIColor(named: nestContentColors[contents]!)
         var cell = UICollectionViewCell()
         if let tempCell = contentsCollectionView.dequeueReusableCell(withReuseIdentifier: K.ContentsCellIdentifier, for: indexPath) as? ContentsCell {
             tempCell.updateContentsLabel(contents)
+            tempCell.backgroundColor = color
             tempCell.layer.cornerRadius = 10
             cell = tempCell
         }
+        
         
         return cell
     }
@@ -88,8 +92,8 @@ extension SelectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = contentsCollectionView.cellForItem(at: indexPath) as? ContentsCell {
             //print(cell.contentsLabel.text!)
-            if let contents = cell.contentsLabel.text, let currentPen = penLabel.text, let currentNest = nestLabel.text {
-                self.delegate?.didUpdateNestContents(pen: currentPen, nest: currentNest, nestContents: contents)
+            if let contents = cell.contentsLabel.text, let currentPen = penLabel.text, let currentNest = nestLabel.text, let currentColor = cell.backgroundColor {
+                self.delegate?.didUpdateNestContents(pen: currentPen, nest: currentNest, nestContents: contents, color: currentColor)
             }
             
                 

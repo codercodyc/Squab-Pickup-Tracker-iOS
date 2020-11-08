@@ -169,7 +169,7 @@
             <objects>
                 <viewController id="pFg-z0-jdm" customClass="SelectionViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Di1-ZX-Gdh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mu3-ka-f9f">
@@ -244,12 +244,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" name="cellColor"/>
                                             <constraints>
                                                 <constraint firstItem="Gkf-T4-CNv" firstAttribute="centerY" secondItem="x0t-b9-Qht" secondAttribute="centerY" id="bNI-fe-6N6"/>
                                                 <constraint firstItem="Gkf-T4-CNv" firstAttribute="centerX" secondItem="x0t-b9-Qht" secondAttribute="centerX" id="clq-54-1d9"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" name="cellColor"/>
                                         <size key="customSize" width="130" height="50"/>
                                         <connections>
                                             <outlet property="contentsLabel" destination="Gkf-T4-CNv" id="gGI-sj-TUV"/>
