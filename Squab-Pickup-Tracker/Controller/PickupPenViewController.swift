@@ -19,6 +19,8 @@ class PickupPenViewController: UIViewController {
     var nestInfo = NestData(pen: "", nest: "")
     var currentPen = ""
     
+    var cellToReload: IndexPath = .init()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +32,8 @@ class PickupPenViewController: UIViewController {
         penCollectionView.reloadData()
         
         
-        
     }
+    
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -87,6 +89,7 @@ extension PickupPenViewController: UICollectionViewDelegate {
         if let cell = penCollectionView.cellForItem(at: indexPath) as? nestCell {
             nestInfo.nest = cell.nestLabel.text ?? ""
             nestInfo.pen = penLabel.text ?? ""
+            cellToReload = indexPath
             
                 self.performSegue(withIdentifier: K.segue.segueToSelectionIdentifier, sender: self)
             }
@@ -106,8 +109,12 @@ extension PickupPenViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         penCollectionView.reloadItems(at: [indexPath])
+        
     }
        
+    
+
+    
         
 }
 
@@ -119,26 +126,12 @@ extension PickupPenViewController: SelectionViewControllerDelegate {
         
         pigeonData.pen[pen]?.nest[nest]?.contents = nestContents
         pigeonData.pen[pen]?.nest[nest]?.color = color
-
         
-        
-        
-//        for currentPen in 0...pigeonData.pen.count - 1 {
-//            if pigeonData.pen[currentPen].id == pen {
-//                print(pigeonData.pen[currentPen].id)
-//                for currentNest in 0...pigeonData.pen[currentPen].nest.count - 1 {
-//                    if pigeonData.pen[currentPen].nest[currentNest].id == nest {
-//                        print(pigeonData.pen[currentPen].nest[currentNest].id)
-//                        pigeonData.pen[currentPen].nest[currentNest].contents = nestContents
-//                        pigeonData.pen[currentPen].nest[currentNest].color = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-//
-//                    }
-//                }
-//            }
-//        }
+        UIView.animate(withDuration: 2) {
+            self.penCollectionView.reloadItems(at: [self.cellToReload])
 
-        penCollectionView.reloadData()
-
+        }
+        
 
     }
 }
