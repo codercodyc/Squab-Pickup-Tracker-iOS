@@ -60,13 +60,19 @@ extension PickupPenViewController: UICollectionViewDataSource {
         var cell = UICollectionViewCell()
         
         let currentNest = nestNames[indexPath.row]
-        if let contents = pigeonData.pen[currentPen]?.nest[currentNest]?.contents, let color = pigeonData.pen[currentPen]?.nest[currentNest]?.color {
+        if let contents = pigeonData.pen[currentPen]?.nest[currentNest]?.contents, let color = pigeonData.pen[currentPen]?.nest[currentNest]?.color, let borderCondition = pigeonData.pen[currentPen]?.nest[currentNest]?.isMostRecent {
             
             
             if let tempCell = penCollectionView.dequeueReusableCell(withReuseIdentifier: K.nestCellIdentifier, for: indexPath) as? nestCell {
                 tempCell.updateNestLabel(currentNest)
                 tempCell.updateContentsLabel(contents)
                 tempCell.backgroundColor = color
+                if borderCondition {
+                    tempCell.layer.borderWidth = 3
+                } else {
+                    tempCell.layer.borderWidth = 0
+                }
+                
                 
                 tempCell.layer.cornerRadius = 5
                 cell = tempCell
@@ -86,10 +92,19 @@ extension PickupPenViewController: UICollectionViewDataSource {
 
 extension PickupPenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let previousCell = penCollectionView.cellForItem(at: cellToReload) as? nestCell {
+            let previousNest = previousCell.nestLabel.text!
+            pigeonData.pen[currentPen]?.nest[previousNest]?.isMostRecent = false
+            penCollectionView.reloadItems(at: [cellToReload])
+        }
+        
         if let cell = penCollectionView.cellForItem(at: indexPath) as? nestCell {
             nestInfo.nest = cell.nestLabel.text ?? ""
             nestInfo.pen = penLabel.text ?? ""
             cellToReload = indexPath
+            
+            
+            
             
                 self.performSegue(withIdentifier: K.segue.segueToSelectionIdentifier, sender: self)
             }
@@ -124,16 +139,27 @@ extension PickupPenViewController: UICollectionViewDelegate {
 extension PickupPenViewController: SelectionViewControllerDelegate {
     func didUpdateNestContents(pen: String, nest: String, nestContents: String, color: UIColor) {
         
+
+
         pigeonData.pen[pen]?.nest[nest]?.contents = nestContents
-        pigeonData.pen[pen]?.nest[nest]?.color = color
+        penCollectionView.reloadItems(at: [cellToReload])
         
-        UIView.animate(withDuration: 2) {
+        pigeonData.pen[pen]?.nest[nest]?.color = color
+        pigeonData.pen[pen]?.nest[nest]?.isMostRecent = true
+        
+//        for currentNest in pigeonData.pen[pen]?.nest.count {
+//            currentNest.issele
+//        }
+        
+        UIView.animate(withDuration: 1.5) {
             self.penCollectionView.reloadItems(at: [self.cellToReload])
 
         }
         
-
+        penCollectionView.reloadData()
     }
+    
+    
 }
 
 
