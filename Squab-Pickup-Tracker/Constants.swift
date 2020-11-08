@@ -22,6 +22,7 @@ struct K {
         static let inventoryColor = "inventoryColor"
         static let deadColor = "deadColor"
         static let squabColor = "squabColor"
+        static let highlightColor = "highlightColor"
     }
     
     

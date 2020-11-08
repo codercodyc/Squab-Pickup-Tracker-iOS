@@ -101,4 +101,17 @@ extension SelectionViewController: UICollectionViewDelegate {
         
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        contentsCollectionView.cellForItem(at: indexPath)?.backgroundColor = UIColor(named: K.color.highlightColor)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        contentsCollectionView.reloadItems(at: [indexPath])
+    }
 }
