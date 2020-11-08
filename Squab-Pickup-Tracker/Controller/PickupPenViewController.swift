@@ -151,7 +151,7 @@ extension PickupPenViewController: SelectionViewControllerDelegate {
 //            currentNest.issele
 //        }
         
-        UIView.animate(withDuration: 1.5) {
+        UIView.animate(withDuration: 0.75) {
             self.penCollectionView.reloadItems(at: [self.cellToReload])
 
         }
