@@ -126,7 +126,7 @@
                                         <color key="backgroundColor" name="cellColor"/>
                                         <size key="customSize" width="100" height="70"/>
                                         <connections>
-                                            <outlet property="penLabel" destination="7ee-ty-9qe" id="Io1-2x-qTl"/>
+                                            <outlet property="nestLabel" destination="7ee-ty-9qe" id="Io1-2x-qTl"/>
                                             <outlet property="statusLabel" destination="4af-QC-0ZP" id="ZYQ-CS-qb3"/>
                                         </connections>
                                     </collectionViewCell>
@@ -169,7 +169,7 @@
             <objects>
                 <viewController id="pFg-z0-jdm" customClass="SelectionViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Di1-ZX-Gdh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mu3-ka-f9f">

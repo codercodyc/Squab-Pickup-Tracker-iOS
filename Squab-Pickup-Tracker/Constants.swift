@@ -18,6 +18,7 @@ struct K {
     
     struct color {
         static let cellDefault = "cellColor"
+        static let cellEntered = "ContentsEntered"
     }
     
     
