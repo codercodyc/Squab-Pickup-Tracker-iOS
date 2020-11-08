@@ -21,6 +21,25 @@ class SelectionViewController: UIViewController {
     
     let nestContents = ["A", "AA", "B", "BB", "C", "CC", "D", "DD", "X", "XX", "Y", "YY", "E", "EE", "1 Squab", "2 Squab"]
     
+    let nestContentDictionary: [String: String] = [
+        "E" : K.color.inventoryColor,
+        "EE" : K.color.inventoryColor,
+        "A" : K.color.inventoryColor,
+        "AA" : K.color.inventoryColor,
+        "B" : K.color.inventoryColor,
+        "BB" : K.color.inventoryColor,
+        "C" : K.color.inventoryColor,
+        "CC" : K.color.inventoryColor,
+        "D" : K.color.inventoryColor,
+        "DD" : K.color.inventoryColor,
+        "X" : K.color.deadColor,
+        "XX" : K.color.deadColor,
+        "Y" : K.color.deadColor,
+        "YY" : K.color.deadColor,
+        "1 Squab" : K.color.squabColor,
+        "2 Squab"  : K.color.squabColor
+    ]
+    
     var nest: String?
     var pen: String?
     

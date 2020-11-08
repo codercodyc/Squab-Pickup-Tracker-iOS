@@ -19,6 +19,9 @@ struct K {
     struct color {
         static let cellDefault = "cellColor"
         static let cellEntered = "ContentsEntered"
+        static let inventoryColor = "inventoryColor"
+        static let deadColor = "deadColor"
+        static let squabColor = "squabColor"
     }
     
     
