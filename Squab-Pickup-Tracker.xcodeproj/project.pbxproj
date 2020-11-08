@@ -1,0 +1,624 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C3A5BF9A2557BC8B0085D440 /* ContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BF992557BC8B0085D440 /* ContentsCell.swift */; };
+		C3A5BF9F2557C3A10085D440 /* PigeonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BF9E2557C3A10085D440 /* PigeonData.swift */; };
+		C3A5BFA42557C60A0085D440 /* PigeonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BFA32557C60A0085D440 /* PigeonManager.swift */; };
+		C3BE0EF625577D61006A8FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */; };
+		C3BE0EF825577D61006A8FE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0EF725577D61006A8FE1 /* SceneDelegate.swift */; };
+		C3BE0EFA25577D61006A8FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0EF925577D61006A8FE1 /* ViewController.swift */; };
+		C3BE0EFD25577D61006A8FE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3BE0EFB25577D61006A8FE1 /* Main.storyboard */; };
+		C3BE0EFF25577D61006A8FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3BE0EFE25577D61006A8FE1 /* Assets.xcassets */; };
+		C3BE0F0225577D61006A8FE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3BE0F0025577D61006A8FE1 /* LaunchScreen.storyboard */; };
+		C3BE0F35255780B4006A8FE1 /* nestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0F34255780B4006A8FE1 /* nestCell.swift */; };
+		C3BE0F3D2557836A006A8FE1 /* PickupPenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0F3C2557836A006A8FE1 /* PickupPenViewController.swift */; };
+		C3BE0F42255787B6006A8FE1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0F41255787B6006A8FE1 /* Constants.swift */; };
+		C3BE0F5025579338006A8FE1 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0F4F25579338006A8FE1 /* SelectionViewController.swift */; };
+		C3BE0F552557A495006A8FE1 /* NestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0F542557A495006A8FE1 /* NestData.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C3BE0F0925577D62006A8FE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3BE0EEA25577D61006A8FE1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3BE0EF125577D61006A8FE1;
+			remoteInfo = "Squab-Pickup-Tracker";
+		};
+		C3BE0F1425577D62006A8FE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3BE0EEA25577D61006A8FE1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3BE0EF125577D61006A8FE1;
+			remoteInfo = "Squab-Pickup-Tracker";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C3A5BF992557BC8B0085D440 /* ContentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCell.swift; sourceTree = "<group>"; };
+		C3A5BF9E2557C3A10085D440 /* PigeonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigeonData.swift; sourceTree = "<group>"; };
+		C3A5BFA32557C60A0085D440 /* PigeonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigeonManager.swift; sourceTree = "<group>"; };
+		C3BE0EF225577D61006A8FE1 /* Squab-Pickup-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Squab-Pickup-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C3BE0EF725577D61006A8FE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C3BE0EF925577D61006A8FE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C3BE0EFC25577D61006A8FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C3BE0EFE25577D61006A8FE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C3BE0F0125577D61006A8FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C3BE0F0325577D61006A8FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3BE0F0825577D62006A8FE1 /* Squab-Pickup-TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Squab-Pickup-TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BE0F1325577D62006A8FE1 /* Squab-Pickup-TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Squab-Pickup-TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BE0F34255780B4006A8FE1 /* nestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nestCell.swift; sourceTree = "<group>"; };
+		C3BE0F3C2557836A006A8FE1 /* PickupPenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPenViewController.swift; sourceTree = "<group>"; };
+		C3BE0F41255787B6006A8FE1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C3BE0F4F25579338006A8FE1 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
+		C3BE0F542557A495006A8FE1 /* NestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestData.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C3BE0EEF25577D61006A8FE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3BE0F0525577D62006A8FE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3BE0F1025577D62006A8FE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C3BE0EE925577D61006A8FE1 = {
+			isa = PBXGroup;
+			children = (
+				C3BE0EF425577D61006A8FE1 /* Squab-Pickup-Tracker */,
+				C3BE0EF325577D61006A8FE1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C3BE0EF325577D61006A8FE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C3BE0EF225577D61006A8FE1 /* Squab-Pickup-Tracker.app */,
+				C3BE0F0825577D62006A8FE1 /* Squab-Pickup-TrackerTests.xctest */,
+				C3BE0F1325577D62006A8FE1 /* Squab-Pickup-TrackerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C3BE0EF425577D61006A8FE1 /* Squab-Pickup-Tracker */ = {
+			isa = PBXGroup;
+			children = (
+				C3BE0F2B25577D83006A8FE1 /* Model */,
+				C3BE0F2C25577DA1006A8FE1 /* View */,
+				C3BE0F2D25577DA8006A8FE1 /* Controller */,
+				C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */,
+				C3BE0EF725577D61006A8FE1 /* SceneDelegate.swift */,
+				C3BE0EFE25577D61006A8FE1 /* Assets.xcassets */,
+				C3BE0F0025577D61006A8FE1 /* LaunchScreen.storyboard */,
+				C3BE0F0325577D61006A8FE1 /* Info.plist */,
+				C3BE0F41255787B6006A8FE1 /* Constants.swift */,
+			);
+			path = "Squab-Pickup-Tracker";
+			sourceTree = "<group>";
+		};
+		C3BE0F2B25577D83006A8FE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3BE0F542557A495006A8FE1 /* NestData.swift */,
+				C3A5BF9E2557C3A10085D440 /* PigeonData.swift */,
+				C3A5BFA32557C60A0085D440 /* PigeonManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C3BE0F2C25577DA1006A8FE1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3BE0EFB25577D61006A8FE1 /* Main.storyboard */,
+				C3BE0F34255780B4006A8FE1 /* nestCell.swift */,
+				C3A5BF992557BC8B0085D440 /* ContentsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C3BE0F2D25577DA8006A8FE1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C3BE0EF925577D61006A8FE1 /* ViewController.swift */,
+				C3BE0F3C2557836A006A8FE1 /* PickupPenViewController.swift */,
+				C3BE0F4F25579338006A8FE1 /* SelectionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C3BE0EF125577D61006A8FE1 /* Squab-Pickup-Tracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3BE0F1C25577D62006A8FE1 /* Build configuration list for PBXNativeTarget "Squab-Pickup-Tracker" */;
+			buildPhases = (
+				C3BE0EEE25577D61006A8FE1 /* Sources */,
+				C3BE0EEF25577D61006A8FE1 /* Frameworks */,
+				C3BE0EF025577D61006A8FE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Squab-Pickup-Tracker";
+			productName = "Squab-Pickup-Tracker";
+			productReference = C3BE0EF225577D61006A8FE1 /* Squab-Pickup-Tracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C3BE0F0725577D62006A8FE1 /* Squab-Pickup-TrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3BE0F1F25577D62006A8FE1 /* Build configuration list for PBXNativeTarget "Squab-Pickup-TrackerTests" */;
+			buildPhases = (
+				C3BE0F0425577D62006A8FE1 /* Sources */,
+				C3BE0F0525577D62006A8FE1 /* Frameworks */,
+				C3BE0F0625577D62006A8FE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3BE0F0A25577D62006A8FE1 /* PBXTargetDependency */,
+			);
+			name = "Squab-Pickup-TrackerTests";
+			productName = "Squab-Pickup-TrackerTests";
+			productReference = C3BE0F0825577D62006A8FE1 /* Squab-Pickup-TrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C3BE0F1225577D62006A8FE1 /* Squab-Pickup-TrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3BE0F2225577D62006A8FE1 /* Build configuration list for PBXNativeTarget "Squab-Pickup-TrackerUITests" */;
+			buildPhases = (
+				C3BE0F0F25577D62006A8FE1 /* Sources */,
+				C3BE0F1025577D62006A8FE1 /* Frameworks */,
+				C3BE0F1125577D62006A8FE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3BE0F1525577D62006A8FE1 /* PBXTargetDependency */,
+			);
+			name = "Squab-Pickup-TrackerUITests";
+			productName = "Squab-Pickup-TrackerUITests";
+			productReference = C3BE0F1325577D62006A8FE1 /* Squab-Pickup-TrackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C3BE0EEA25577D61006A8FE1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					C3BE0EF125577D61006A8FE1 = {
+						CreatedOnToolsVersion = 12.1;
+					};
+					C3BE0F0725577D62006A8FE1 = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = C3BE0EF125577D61006A8FE1;
+					};
+					C3BE0F1225577D62006A8FE1 = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = C3BE0EF125577D61006A8FE1;
+					};
+				};
+			};
+			buildConfigurationList = C3BE0EED25577D61006A8FE1 /* Build configuration list for PBXProject "Squab-Pickup-Tracker" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C3BE0EE925577D61006A8FE1;
+			productRefGroup = C3BE0EF325577D61006A8FE1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C3BE0EF125577D61006A8FE1 /* Squab-Pickup-Tracker */,
+				C3BE0F0725577D62006A8FE1 /* Squab-Pickup-TrackerTests */,
+				C3BE0F1225577D62006A8FE1 /* Squab-Pickup-TrackerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C3BE0EF025577D61006A8FE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3BE0F0225577D61006A8FE1 /* LaunchScreen.storyboard in Resources */,
+				C3BE0EFF25577D61006A8FE1 /* Assets.xcassets in Resources */,
+				C3BE0EFD25577D61006A8FE1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3BE0F0625577D62006A8FE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3BE0F1125577D62006A8FE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C3BE0EEE25577D61006A8FE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3BE0F3D2557836A006A8FE1 /* PickupPenViewController.swift in Sources */,
+				C3BE0F42255787B6006A8FE1 /* Constants.swift in Sources */,
+				C3A5BF9A2557BC8B0085D440 /* ContentsCell.swift in Sources */,
+				C3A5BF9F2557C3A10085D440 /* PigeonData.swift in Sources */,
+				C3BE0EFA25577D61006A8FE1 /* ViewController.swift in Sources */,
+				C3BE0EF625577D61006A8FE1 /* AppDelegate.swift in Sources */,
+				C3BE0F35255780B4006A8FE1 /* nestCell.swift in Sources */,
+				C3BE0F552557A495006A8FE1 /* NestData.swift in Sources */,
+				C3A5BFA42557C60A0085D440 /* PigeonManager.swift in Sources */,
+				C3BE0EF825577D61006A8FE1 /* SceneDelegate.swift in Sources */,
+				C3BE0F5025579338006A8FE1 /* SelectionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3BE0F0425577D62006A8FE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3BE0F0F25577D62006A8FE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C3BE0F0A25577D62006A8FE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3BE0EF125577D61006A8FE1 /* Squab-Pickup-Tracker */;
+			targetProxy = C3BE0F0925577D62006A8FE1 /* PBXContainerItemProxy */;
+		};
+		C3BE0F1525577D62006A8FE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3BE0EF125577D61006A8FE1 /* Squab-Pickup-Tracker */;
+			targetProxy = C3BE0F1425577D62006A8FE1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C3BE0EFB25577D61006A8FE1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3BE0EFC25577D61006A8FE1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C3BE0F0025577D61006A8FE1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3BE0F0125577D61006A8FE1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C3BE0F1A25577D62006A8FE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C3BE0F1B25577D62006A8FE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C3BE0F1D25577D62006A8FE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 46BJFDCKMQ;
+				INFOPLIST_FILE = "Squab-Pickup-Tracker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codercody.Squab-Pickup-Tracker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C3BE0F1E25577D62006A8FE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 46BJFDCKMQ;
+				INFOPLIST_FILE = "Squab-Pickup-Tracker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codercody.Squab-Pickup-Tracker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C3BE0F2025577D62006A8FE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Squab-Pickup-TrackerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codercody.Squab-Pickup-TrackerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Squab-Pickup-Tracker.app/Squab-Pickup-Tracker";
+			};
+			name = Debug;
+		};
+		C3BE0F2125577D62006A8FE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Squab-Pickup-TrackerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codercody.Squab-Pickup-TrackerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Squab-Pickup-Tracker.app/Squab-Pickup-Tracker";
+			};
+			name = Release;
+		};
+		C3BE0F2325577D62006A8FE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Squab-Pickup-TrackerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codercody.Squab-Pickup-TrackerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Squab-Pickup-Tracker";
+			};
+			name = Debug;
+		};
+		C3BE0F2425577D62006A8FE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Squab-Pickup-TrackerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codercody.Squab-Pickup-TrackerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Squab-Pickup-Tracker";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C3BE0EED25577D61006A8FE1 /* Build configuration list for PBXProject "Squab-Pickup-Tracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3BE0F1A25577D62006A8FE1 /* Debug */,
+				C3BE0F1B25577D62006A8FE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3BE0F1C25577D62006A8FE1 /* Build configuration list for PBXNativeTarget "Squab-Pickup-Tracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3BE0F1D25577D62006A8FE1 /* Debug */,
+				C3BE0F1E25577D62006A8FE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3BE0F1F25577D62006A8FE1 /* Build configuration list for PBXNativeTarget "Squab-Pickup-TrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3BE0F2025577D62006A8FE1 /* Debug */,
+				C3BE0F2125577D62006A8FE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3BE0F2225577D62006A8FE1 /* Build configuration list for PBXNativeTarget "Squab-Pickup-TrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3BE0F2325577D62006A8FE1 /* Debug */,
+				C3BE0F2425577D62006A8FE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C3BE0EEA25577D61006A8FE1 /* Project object */;
+}
