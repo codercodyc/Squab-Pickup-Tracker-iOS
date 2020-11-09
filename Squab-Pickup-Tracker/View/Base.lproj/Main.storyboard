@@ -151,7 +151,12 @@
                                 <state key="normal" title="Next Pen"/>
                                 <connections>
                                     <action selector="didPressNextPen:" destination="8Oa-ts-I5e" eventType="touchUpInside" id="88x-7c-3Pt"/>
-                                    <segue destination="Xk7-ow-Aes" kind="presentation" identifier="segueToPenSelector" id="eiM-Vg-Os7"/>
+                                    <segue destination="Xk7-ow-Aes" kind="popoverPresentation" identifier="segueToPenSelector" popoverAnchorView="9ck-HI-2PV" id="eiM-Vg-Os7">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                        <popoverPassthroughViews>
+                                            <stackView reference="bbH-2v-2Nr"/>
+                                        </popoverPassthroughViews>
+                                    </segue>
                                 </connections>
                             </button>
                         </subviews>
@@ -189,28 +194,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s3b-Td-8mN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s3b-Td-8mN">
                                 <rect key="frame" x="0.0" y="50" width="414" height="688"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PenCell" id="UYR-zW-SbK" customClass="PenCell" customModule="Squab_Pickup_Tracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UYR-zW-SbK" id="xuV-z6-jMs">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="7fx-Jm-v5c">
-                                                    <rect key="frame" x="30" y="-1" width="114" height="45.5"/>
+                                                    <rect key="frame" x="30" y="0.0" width="114" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pen #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amN-DW-hI8">
-                                                            <rect key="frame" x="0.0" y="0.0" width="64" height="45.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="64" height="45"/>
                                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="25"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="401" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqC-CB-vhu">
-                                                            <rect key="frame" x="67" y="0.0" width="47" height="45.5"/>
+                                                            <rect key="frame" x="67" y="0.0" width="47" height="45"/>
                                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
