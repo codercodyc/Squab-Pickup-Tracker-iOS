@@ -19,7 +19,7 @@ class SelectionViewController: UIViewController {
     @IBOutlet weak var penLabel: UILabel!
     @IBOutlet weak var contentsCollectionView: UICollectionView!
     
-    let nestContents = ["E", "EE", "A", "AA", "B", "BB", "C", "CC", "D", "DD", "X", "XX", "Y", "YY", "1 Squab", "2 Squab"]
+    let nestContents = ["" ,"Clear", "E", "EE", "A", "AA", "B", "BB", "C", "CC", "D", "DD", "X", "XX", "Y", "YY", "1 Squab", "2 Squab"]
     
     let nestContentColors: [String: String] = [
         "E" : K.color.inventoryColor,
@@ -37,7 +37,9 @@ class SelectionViewController: UIViewController {
         "Y" : K.color.deadColor,
         "YY" : K.color.deadColor,
         "1 Squab" : K.color.squabColor,
-        "2 Squab"  : K.color.squabColor
+        "2 Squab"  : K.color.squabColor,
+        "Clear" : K.color.cellDefault,
+        "" : "none"
     ]
     
     var nest: String?
@@ -59,6 +61,7 @@ class SelectionViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+                
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -91,8 +94,10 @@ extension SelectionViewController: UICollectionViewDataSource {
 extension SelectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = contentsCollectionView.cellForItem(at: indexPath) as? ContentsCell {
-            //print(cell.contentsLabel.text!)
-            if let contents = cell.contentsLabel.text, let currentPen = penLabel.text, let currentNest = nestLabel.text, let currentColor = cell.backgroundColor {
+            if var contents = cell.contentsLabel.text, let currentPen = penLabel.text, let currentNest = nestLabel.text, let currentColor = cell.backgroundColor {
+                if contents == "Clear" {
+                   contents = ""
+                }
                 self.delegate?.didUpdateNestContents(pen: currentPen, nest: currentNest, nestContents: contents, color: currentColor)
             }
             

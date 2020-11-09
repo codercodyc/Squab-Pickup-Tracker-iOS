@@ -174,7 +174,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mu3-ka-f9f">
                                 <rect key="frame" x="0.0" y="742" width="414" height="100"/>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <color key="backgroundColor" name="backgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="TYf-io-Ewn"/>
                                 </constraints>
@@ -222,23 +222,23 @@
                                 </constraints>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JQN-fW-Uq7">
-                                <rect key="frame" x="45" y="110" width="324" height="622"/>
+                                <rect key="frame" x="45" y="95" width="324" height="637"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="10" id="3p0-zZ-LaV">
-                                    <size key="itemSize" width="130" height="50"/>
+                                    <size key="itemSize" width="130" height="43"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ContentsCell" id="274-cw-7iS" customClass="ContentsCell" customModule="Squab_Pickup_Tracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="130" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="x0t-b9-Qht">
-                                            <rect key="frame" x="0.0" y="0.0" width="130" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkf-T4-CNv">
-                                                    <rect key="frame" x="23.5" y="10" width="83" height="30"/>
+                                                    <rect key="frame" x="23.5" y="6.5" width="83" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -250,7 +250,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" name="cellColor"/>
-                                        <size key="customSize" width="130" height="50"/>
+                                        <size key="customSize" width="130" height="43"/>
                                         <connections>
                                             <outlet property="contentsLabel" destination="Gkf-T4-CNv" id="gGI-sj-TUV"/>
                                         </connections>
@@ -263,7 +263,7 @@
                         <constraints>
                             <constraint firstItem="JQN-fW-Uq7" firstAttribute="leading" secondItem="FiP-ON-Psi" secondAttribute="leading" constant="45" id="689-8U-1Vh"/>
                             <constraint firstItem="wsa-j2-ae9" firstAttribute="top" secondItem="FiP-ON-Psi" secondAttribute="top" constant="30" id="6wr-kA-Syc"/>
-                            <constraint firstItem="JQN-fW-Uq7" firstAttribute="top" secondItem="wsa-j2-ae9" secondAttribute="bottom" constant="40" id="BrX-gr-mWc"/>
+                            <constraint firstItem="JQN-fW-Uq7" firstAttribute="top" secondItem="wsa-j2-ae9" secondAttribute="bottom" constant="25" id="BrX-gr-mWc"/>
                             <constraint firstItem="wsa-j2-ae9" firstAttribute="centerX" secondItem="Di1-ZX-Gdh" secondAttribute="centerX" id="Ge0-G8-5YB"/>
                             <constraint firstItem="mu3-ka-f9f" firstAttribute="leading" secondItem="FiP-ON-Psi" secondAttribute="leading" id="Lhb-ai-fe1"/>
                             <constraint firstItem="mu3-ka-f9f" firstAttribute="top" secondItem="JQN-fW-Uq7" secondAttribute="bottom" constant="10" id="NwM-6h-oee"/>
