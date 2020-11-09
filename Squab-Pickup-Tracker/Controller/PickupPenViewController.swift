@@ -7,11 +7,19 @@
 
 import UIKit
 
+protocol PickupPenViewControllerDelegate {
+    func didGoToChangePenPage(data: PigeonData)
+    
+    
+}
+
+
 class PickupPenViewController: UIViewController {
 
     @IBOutlet weak var penCollectionView: UICollectionView!
     @IBOutlet weak var penLabel: UILabel!
     
+    var delegate: PickupPenViewControllerDelegate?
     
     let pigeonData = PigeonData()
     
@@ -25,6 +33,7 @@ class PickupPenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         currentPen = penLabel.text ?? ""
         penCollectionView.delegate = self
         penCollectionView.backgroundColor = .none
@@ -34,7 +43,12 @@ class PickupPenViewController: UIViewController {
         
     }
     
+    @IBAction func didPressNextPen(_ sender: UIButton) {
+        self.delegate?.didGoToChangePenPage(data: pigeonData)
 
+    }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.segue.segueToSelectionIdentifier {
@@ -42,8 +56,13 @@ class PickupPenViewController: UIViewController {
             destinationVC.delegate = self
             destinationVC.nest = nestInfo.nest
             destinationVC.pen = nestInfo.pen
+        } else if segue.identifier == K.segue.segueToPenSelectorIdentifier {
+            let destinationVC = segue.destination as! PenSelectorViewController
+            destinationVC.delegate = self
         }
     }
+    
+    
     
 
 }
@@ -52,8 +71,9 @@ class PickupPenViewController: UIViewController {
 
 extension PickupPenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return pigeonData.pen[0].nest.count
-        return pigeonData.pen["401"]?.nest.count ?? 0
+        
+        
+        return pigeonData.pen[currentPen]?.nest.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -164,5 +184,20 @@ extension PickupPenViewController: SelectionViewControllerDelegate {
 
 
 
+//MARK: - PenSelectorViewControllerDelegate
 
+extension PickupPenViewController: PenSelectorViewControllerDelegate {
+    func didSelectPen(sender: PenSelectorViewController, pen: String) {
+        penLabel.text = pen
+        currentPen = penLabel.text!
+        penCollectionView.reloadData()
+    }
+    
+    
+    
+       
+    
+    
+    
+}
 

@@ -8,7 +8,7 @@
 import UIKit
 
 class PigeonData {
-    var pen: [String: Pen] = ["401" : Pen()]
+    var pen: [String: Pen] = ["401" : Pen(),"402" : Pen(),"403" : Pen(),"404" : Pen(),]
     
     
 }

@@ -10,9 +10,11 @@ import Foundation
 struct K {
     static let nestCellIdentifier = "nestCell"
     static let ContentsCellIdentifier = "ContentsCell"
+    static let tableCellIdentifier = "PenCell"
     
     struct segue {
         static let segueToSelectionIdentifier = "toSelectionViewController"
+        static let segueToPenSelectorIdentifier = "segueToPenSelector"
     }
     
     
