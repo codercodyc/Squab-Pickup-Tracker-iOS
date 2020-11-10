@@ -118,17 +118,53 @@ class PickupPenViewController: UIViewController {
     
     @IBAction func penLongPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
-            print("began")
             
-            let viewFrame = CGRect(x: 50, y: 100, width: view.frame.width - 50, height: 300)
+            let popupView = UIVisualEffectView.init(frame: view.bounds)
+            popupView.effect = UIBlurEffect(style: .regular)
+            popupView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
+            
+            
+            
+            
+            
+
+            let viewFrame = CGRect(x: 30, y: 150, width: view.frame.width - 30 * 2, height: 500)
+
             let newView = UIView(frame: viewFrame)
-            self.view.addSubview(newView)
+            newView.backgroundColor = UIColor(named: K.color.highlightColor)
+            newView.layer.cornerRadius = 30
+            
+            popupView.contentView.addSubview(newView)
+            
+            let dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 75, height: 40))
+            dismissButton.setTitle("Dismiss", for: .normal)
+            dismissButton.center = newView.center
+        
+            dismissButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+            
+            newView.addSubview(dismissButton)
+             
+
+
+
+            self.view.addSubview(popupView)
+            
+            
+            
+            
+            
             
             
         }
         
     }
+    
+    
+    
+   @objc func buttonPressed(_ sender: UIButton!) {
+    sender.superview?.superview?.superview?.isHidden = true
+   }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -137,7 +173,7 @@ class PickupPenViewController: UIViewController {
             destinationVC.delegate = self
             destinationVC.nest = nestInfo.nest
             destinationVC.pen = nestInfo.pen
-        }
+        } 
     }
     
 
