@@ -13,6 +13,8 @@ class PickupPenViewController: UIViewController {
     @IBOutlet weak var penLabel: UILabel!
     @IBOutlet weak var nextPenButton: UIButton!
     @IBOutlet weak var previousPenButton: UIButton!
+    @IBOutlet weak var penView: UIView!
+    @IBOutlet weak var penStackViewLeadingConstraint: NSLayoutConstraint!
     
     
     var pigeonData = PigeonData()
@@ -37,6 +39,8 @@ class PickupPenViewController: UIViewController {
         penCollectionView.dataSource = self
         penCollectionView.reloadData()
         
+        penView.clipsToBounds = true
+        
         
     }
     
@@ -46,7 +50,9 @@ class PickupPenViewController: UIViewController {
             currentPenIndex += 1
             penLabel.text = pigeonData.penNames[currentPenIndex]
             currentPen = penLabel.text!
+            
             penCollectionView.reloadData()
+            animatePenNameChange(changeDirection: "Next")
         }
     
         
@@ -60,6 +66,20 @@ class PickupPenViewController: UIViewController {
             penCollectionView.reloadData()
         }
         
+    }
+    
+    func animatePenNameChange(changeDirection: String) {
+        if changeDirection == "Next" {
+            
+            penStackViewLeadingConstraint.constant = -150
+            
+            UIView.animate(withDuration: 1.0) {
+                self.penView.layoutIfNeeded()
+                
+            }
+            
+            
+        }
     }
     
     

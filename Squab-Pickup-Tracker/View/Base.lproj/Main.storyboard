@@ -85,7 +85,7 @@
                                         <rect key="frame" x="47" y="0.0" width="290" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CHu-tE-eWp">
-                                                <rect key="frame" x="73" y="1" width="144.5" height="48"/>
+                                                <rect key="frame" x="72" y="1" width="144.5" height="48"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lzx-7P-POZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="64" height="48"/>
@@ -103,9 +103,9 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="CHu-tE-eWp" firstAttribute="top" secondItem="T0y-Gf-7nw" secondAttribute="top" constant="1" id="1Bu-aB-HBl"/>
+                                            <constraint firstItem="CHu-tE-eWp" firstAttribute="leading" secondItem="T0y-Gf-7nw" secondAttribute="leading" constant="72" id="4uI-kQ-N94"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Ac3-Bs-5XC"/>
-                                            <constraint firstItem="CHu-tE-eWp" firstAttribute="centerX" secondItem="T0y-Gf-7nw" secondAttribute="centerX" id="caC-n1-wJa"/>
-                                            <constraint firstItem="CHu-tE-eWp" firstAttribute="centerY" secondItem="T0y-Gf-7nw" secondAttribute="centerY" id="vT4-By-irW"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEI-es-jZr">
@@ -196,6 +196,8 @@
                         <outlet property="nextPenButton" destination="pEI-es-jZr" id="tP8-Hm-T2E"/>
                         <outlet property="penCollectionView" destination="DWk-fP-Oph" id="IoY-DI-TuP"/>
                         <outlet property="penLabel" destination="ZAY-gp-zLq" id="zyO-LG-Cvy"/>
+                        <outlet property="penStackViewLeadingConstraint" destination="4uI-kQ-N94" id="WYd-nF-uVO"/>
+                        <outlet property="penView" destination="T0y-Gf-7nw" id="RiT-Xo-wTZ"/>
                         <outlet property="previousPenButton" destination="Qlp-gg-TNn" id="hca-OE-I7e"/>
                         <segue destination="pFg-z0-jdm" kind="presentation" identifier="toSelectionViewController" modalTransitionStyle="crossDissolve" id="fOI-gx-nob"/>
                     </connections>
