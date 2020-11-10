@@ -40,7 +40,7 @@ class PickupPenViewController: UIViewController {
         penCollectionView.dataSource = self
         penCollectionView.reloadData()
         
-        //penView.clipsToBounds = true
+        penView.clipsToBounds = true
         
         
     }
@@ -49,8 +49,8 @@ class PickupPenViewController: UIViewController {
     @IBAction func nextPenPressed(_ sender: UIButton) {
         if currentPenIndex + 1 < pigeonData.penNames.count {
             currentPenIndex += 1
-            penLabel.text = pigeonData.penNames[currentPenIndex]
-            currentPen = penLabel.text!
+//            penLabel.text = pigeonData.penNames[currentPenIndex]
+//            currentPen = penLabel.text!
             
             //penCollectionView.reloadData()
             animatePenNameChange(changeDirection: "Next")
@@ -62,9 +62,10 @@ class PickupPenViewController: UIViewController {
     @IBAction func previousPenPressed(_ sender: UIButton) {
         if currentPenIndex - 1 >= 0 {
             currentPenIndex -= 1
-            penLabel.text = pigeonData.penNames[currentPenIndex]
-            currentPen = penLabel.text!
-            penCollectionView.reloadData()
+//            penLabel.text = pigeonData.penNames[currentPenIndex]
+//            currentPen = penLabel.text!
+            //penCollectionView.reloadData()
+            animatePenNameChange(changeDirection: "Previous")
         }
         
     }
@@ -72,35 +73,43 @@ class PickupPenViewController: UIViewController {
     
     
     func animatePenNameChange(changeDirection: String) {
+        var direction = CGFloat(0)
+        
         if changeDirection == "Next" {
-            
-            let animationTime = 0.75
-            
-            let penViewWidth = penView.frame.width
-            
+            direction = CGFloat(1)
+        } else if changeDirection == "Previous" {
+            direction = CGFloat(-1)
+        }
+        
+        let animationTime = 0.5
+        
+        let penViewWidth = penView.frame.width
+        
 
-            let initialConstant = penStackViewCenterX.constant
-            let width = penStackView.frame.width
-            let moveDistance = penViewWidth / 2 + width / 2 + 5
+        let initialConstant = penStackViewCenterX.constant
+        let width = penStackView.frame.width
+        let moveDistance = (penViewWidth / 2 + width / 2 + 5) * direction
 
-            penStackViewCenterX.constant -= moveDistance
+        penStackViewCenterX.constant -= moveDistance
+
+        
+        UIView.animate(withDuration: animationTime) {
+            self.penView.layoutIfNeeded()
+            self.penCollectionView.alpha = 0.25
+            
+        } completion: { (done) in
+            self.penLabel.text = self.pigeonData.penNames[self.currentPenIndex]
+            self.currentPen = self.penLabel.text!
+            self.penCollectionView.reloadData()
+            self.penStackViewCenterX.constant += moveDistance * 2
+            self.penView.layoutIfNeeded()
+            self.penStackViewCenterX.constant = initialConstant
+            self.penCollectionView.alpha = 1
 
             
             UIView.animate(withDuration: animationTime) {
                 self.penView.layoutIfNeeded()
-                
-            } completion: { (done) in
-                self.penCollectionView.reloadData()
-                self.penStackViewCenterX.constant += moveDistance * 2
-                self.penView.layoutIfNeeded()
-                self.penStackViewCenterX.constant = initialConstant
-                
-                UIView.animate(withDuration: animationTime) {
-                    self.penView.layoutIfNeeded()
-                }
             }
-            
-            
         }
     }
     

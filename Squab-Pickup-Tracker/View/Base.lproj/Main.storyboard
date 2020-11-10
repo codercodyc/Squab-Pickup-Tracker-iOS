@@ -100,10 +100,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" name="deadColor"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" name="ContentsEntered"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Ac3-Bs-5XC"/>
                                             <constraint firstItem="CHu-tE-eWp" firstAttribute="centerX" secondItem="T0y-Gf-7nw" secondAttribute="centerX" id="C7h-z3-ZGt"/>
@@ -332,17 +330,11 @@
     <resources>
         <image name="arrow.left.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
-        <namedColor name="ContentsEntered">
-            <color red="0.45100000500679016" green="0.99299997091293335" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="backgroundColor">
             <color white="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="cellColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </namedColor>
-        <namedColor name="deadColor">
-            <color red="1" green="0.49300000071525574" blue="0.47400000691413879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="squabColor">
             <color red="0.46200001239776611" green="0.83799999952316284" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
