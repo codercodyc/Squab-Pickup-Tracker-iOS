@@ -13,9 +13,7 @@ struct PigeonData {
     var penNames: [String] {
         return Array(pen.keys.sorted())
     }
-    var currentPen: String {
-        return penNames[0]
-    }
+  
     
     
 }
@@ -44,6 +42,10 @@ struct Pen {
                                  "7C" : Nest(),
                                  "7D" : Nest()
     ]
+    
+    var nestNames: [String] {
+        return nest.keys.sorted()
+    }
     
     
 }
