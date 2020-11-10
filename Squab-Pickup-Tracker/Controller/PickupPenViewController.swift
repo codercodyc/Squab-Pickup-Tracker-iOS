@@ -14,7 +14,8 @@ class PickupPenViewController: UIViewController {
     @IBOutlet weak var nextPenButton: UIButton!
     @IBOutlet weak var previousPenButton: UIButton!
     @IBOutlet weak var penView: UIView!
-    @IBOutlet weak var penStackViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var penStackViewCenterX: NSLayoutConstraint!
+    @IBOutlet weak var penStackView: UIStackView!
     
     
     var pigeonData = PigeonData()
@@ -39,7 +40,7 @@ class PickupPenViewController: UIViewController {
         penCollectionView.dataSource = self
         penCollectionView.reloadData()
         
-        penView.clipsToBounds = true
+        //penView.clipsToBounds = true
         
         
     }
@@ -51,7 +52,7 @@ class PickupPenViewController: UIViewController {
             penLabel.text = pigeonData.penNames[currentPenIndex]
             currentPen = penLabel.text!
             
-            penCollectionView.reloadData()
+            //penCollectionView.reloadData()
             animatePenNameChange(changeDirection: "Next")
         }
     
@@ -68,14 +69,35 @@ class PickupPenViewController: UIViewController {
         
     }
     
+    
+    
     func animatePenNameChange(changeDirection: String) {
         if changeDirection == "Next" {
             
-            penStackViewLeadingConstraint.constant = -150
+            let animationTime = 0.75
             
-            UIView.animate(withDuration: 1.0) {
+            let penViewWidth = penView.frame.width
+            
+
+            let initialConstant = penStackViewCenterX.constant
+            let width = penStackView.frame.width
+            let moveDistance = penViewWidth / 2 + width / 2 + 5
+
+            penStackViewCenterX.constant -= moveDistance
+
+            
+            UIView.animate(withDuration: animationTime) {
                 self.penView.layoutIfNeeded()
                 
+            } completion: { (done) in
+                self.penCollectionView.reloadData()
+                self.penStackViewCenterX.constant += moveDistance * 2
+                self.penView.layoutIfNeeded()
+                self.penStackViewCenterX.constant = initialConstant
+                
+                UIView.animate(withDuration: animationTime) {
+                    self.penView.layoutIfNeeded()
+                }
             }
             
             
