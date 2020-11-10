@@ -100,6 +100,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="3wP-QV-bkz" appends="YES" id="fC9-kT-wiv"/>
+                                                </connections>
                                             </stackView>
                                         </subviews>
                                         <constraints>
@@ -204,6 +208,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJc-XU-Z8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.69999999999999996" id="3wP-QV-bkz">
+                    <connections>
+                        <action selector="penLongPressed:" destination="8Oa-ts-I5e" id="Eza-ej-DtO"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="653.62318840579712" y="131.91964285714286"/>
         </scene>

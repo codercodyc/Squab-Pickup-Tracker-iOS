@@ -45,6 +45,9 @@ class PickupPenViewController: UIViewController {
         
     }
     
+  
+    
+    
 
     @IBAction func nextPenPressed(_ sender: UIButton) {
         if currentPenIndex + 1 < pigeonData.penNames.count {
@@ -111,6 +114,20 @@ class PickupPenViewController: UIViewController {
                 self.penView.layoutIfNeeded()
             }
         }
+    }
+    
+    @IBAction func penLongPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            print("began")
+            
+            let viewFrame = CGRect(x: 50, y: 100, width: view.frame.width - 50, height: 300)
+            
+            let newView = UIView(frame: viewFrame)
+            self.view.addSubview(newView)
+            
+            
+        }
+        
     }
     
     
