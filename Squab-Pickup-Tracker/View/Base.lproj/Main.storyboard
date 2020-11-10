@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -65,21 +66,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbH-2v-2Nr">
-                                <rect key="frame" x="120.5" y="64" width="173" height="48"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="bbH-2v-2Nr">
+                                <rect key="frame" x="15" y="64" width="384" height="48"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pen #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lzx-7P-POZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="102.5" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="401" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAY-gp-zLq">
-                                        <rect key="frame" x="102.5" y="0.0" width="70.5" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qlp-gg-TNn">
+                                        <rect key="frame" x="0.0" y="0.0" width="47" height="48"/>
+                                        <color key="tintColor" name="squabColor"/>
+                                        <state key="normal">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                            <imageReference key="image" image="arrow.left.circle.fill" catalog="system" symbolScale="default"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="previousPenPressed:" destination="8Oa-ts-I5e" eventType="touchUpInside" id="FX3-Qq-6m7"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CHu-tE-eWp">
+                                        <rect key="frame" x="120" y="0.0" width="144.5" height="48"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lzx-7P-POZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="64" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="401" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAY-gp-zLq">
+                                                <rect key="frame" x="74" y="0.0" width="70.5" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEI-es-jZr">
+                                        <rect key="frame" x="337" y="0.0" width="47" height="48"/>
+                                        <color key="tintColor" name="squabColor"/>
+                                        <state key="normal">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                            <imageReference key="image" image="arrow.right.circle.fill" catalog="system" symbolScale="default"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextPenPressed:" destination="8Oa-ts-I5e" eventType="touchUpInside" id="nNE-zv-9S1"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DWk-fP-Oph">
@@ -132,37 +162,31 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUE-23-uGX">
-                                <rect key="frame" x="27" y="54" width="34" height="30"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="A5e-eW-PhI"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xVu-bu-2Zc"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
-                            <constraint firstItem="sUE-23-uGX" firstAttribute="leading" secondItem="xVu-bu-2Zc" secondAttribute="leading" constant="27" id="5bD-lu-z0Q"/>
                             <constraint firstItem="bbH-2v-2Nr" firstAttribute="top" secondItem="xVu-bu-2Zc" secondAttribute="top" constant="20" id="CHh-Y4-pfB"/>
                             <constraint firstItem="DWk-fP-Oph" firstAttribute="top" secondItem="bbH-2v-2Nr" secondAttribute="bottom" constant="10" id="FzW-R4-HXY"/>
+                            <constraint firstItem="bbH-2v-2Nr" firstAttribute="leading" secondItem="xVu-bu-2Zc" secondAttribute="leading" constant="15" id="JRQ-EZ-Hg4"/>
                             <constraint firstItem="xVu-bu-2Zc" firstAttribute="trailing" secondItem="DWk-fP-Oph" secondAttribute="trailing" constant="20" id="faH-Yp-Epx"/>
                             <constraint firstItem="bbH-2v-2Nr" firstAttribute="centerX" secondItem="olV-Al-Puf" secondAttribute="centerX" id="ocE-Sa-94d"/>
                             <constraint firstAttribute="bottom" secondItem="DWk-fP-Oph" secondAttribute="bottom" id="yXt-fa-YSn"/>
                             <constraint firstItem="DWk-fP-Oph" firstAttribute="leading" secondItem="xVu-bu-2Zc" secondAttribute="leading" constant="20" id="zSf-yi-DFq"/>
-                            <constraint firstItem="sUE-23-uGX" firstAttribute="top" secondItem="xVu-bu-2Zc" secondAttribute="top" constant="10" id="zye-ET-JZr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZIu-Qa-9cS"/>
                     <connections>
+                        <outlet property="nextPenButton" destination="pEI-es-jZr" id="tP8-Hm-T2E"/>
                         <outlet property="penCollectionView" destination="DWk-fP-Oph" id="IoY-DI-TuP"/>
                         <outlet property="penLabel" destination="ZAY-gp-zLq" id="zyO-LG-Cvy"/>
+                        <outlet property="previousPenButton" destination="Qlp-gg-TNn" id="hca-OE-I7e"/>
                         <segue destination="pFg-z0-jdm" kind="presentation" identifier="toSelectionViewController" modalTransitionStyle="crossDissolve" id="fOI-gx-nob"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJc-XU-Z8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="655" y="132"/>
+            <point key="canvasLocation" x="653.62318840579712" y="131.91964285714286"/>
         </scene>
         <!--Selection View Controller-->
         <scene sceneID="oNb-Zh-Dfv">
@@ -285,11 +309,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="backgroundColor">
             <color white="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="cellColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="squabColor">
+            <color red="0.46200001239776611" green="0.83799999952316284" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -11,13 +11,17 @@ class PickupPenViewController: UIViewController {
 
     @IBOutlet weak var penCollectionView: UICollectionView!
     @IBOutlet weak var penLabel: UILabel!
+    @IBOutlet weak var nextPenButton: UIButton!
+    @IBOutlet weak var previousPenButton: UIButton!
     
     
-    let pigeonData = PigeonData()
+    var pigeonData = PigeonData()
     
     let nestNames = ["1A", "1B", "1C","2A","2B","2C","3A","3B","3C","4A","4B","4C","5A","5B","5C","6A","6B","6C","7A","7B","7C","7D"]
     var nestInfo = NestData(pen: "", nest: "")
     var currentPen = ""
+    var currentPenIndex = 1
+    
     
     var cellToReload: IndexPath = .init()
     
@@ -25,6 +29,8 @@ class PickupPenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        penLabel.text = pigeonData.penNames[currentPenIndex]
         currentPen = penLabel.text ?? ""
         penCollectionView.delegate = self
         penCollectionView.backgroundColor = .none
@@ -35,6 +41,27 @@ class PickupPenViewController: UIViewController {
     }
     
 
+    @IBAction func nextPenPressed(_ sender: UIButton) {
+        if currentPenIndex + 1 < pigeonData.penNames.count {
+            currentPenIndex += 1
+            penLabel.text = pigeonData.penNames[currentPenIndex]
+            currentPen = penLabel.text!
+            penCollectionView.reloadData()
+        }
+    
+        
+    }
+    
+    @IBAction func previousPenPressed(_ sender: UIButton) {
+        if currentPenIndex - 1 >= 0 {
+            currentPenIndex -= 1
+            penLabel.text = pigeonData.penNames[currentPenIndex]
+            currentPen = penLabel.text!
+            penCollectionView.reloadData()
+        }
+        
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.segue.segueToSelectionIdentifier {
@@ -52,8 +79,8 @@ class PickupPenViewController: UIViewController {
 
 extension PickupPenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return pigeonData.pen[0].nest.count
-        return pigeonData.pen["401"]?.nest.count ?? 0
+        return pigeonData.pen[currentPen]?.nest.count ?? 0
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

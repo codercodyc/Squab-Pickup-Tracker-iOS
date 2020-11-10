@@ -7,8 +7,15 @@
 
 import UIKit
 
-class PigeonData {
-    var pen: [String: Pen] = ["401" : Pen()]
+struct PigeonData {
+    var pen: [String: Pen] = ["401" : Pen(), "402" : Pen(), "403" : Pen(), "404" : Pen()]
+    
+    var penNames: [String] {
+        return Array(pen.keys.sorted())
+    }
+    var currentPen: String {
+        return penNames[0]
+    }
     
     
 }
