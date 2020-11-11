@@ -58,6 +58,76 @@
             </objects>
             <point key="canvasLocation" x="-261" y="139"/>
         </scene>
+        <!--Pen Popup View Controller-->
+        <scene sceneID="dZb-6W-4nR">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="JtT-N8-Rg8" customClass="PenPopupViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wcb-GG-Exx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-j0-I7q">
+                                <rect key="frame" x="30" y="144" width="354" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Ugg-gr-K7U"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="penListCell" rowHeight="50" id="gUd-Xq-8Bl" customClass="PenListCell" customModule="Squab_Pickup_Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="354" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gUd-Xq-8Bl" id="L6Y-aM-7cQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-0g-swd">
+                                                    <rect key="frame" x="30" y="10" width="91" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-56-APe">
+                                                            <rect key="frame" x="0.0" y="0.0" width="41" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="401" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsu-zt-jx1">
+                                                            <rect key="frame" x="49" y="0.0" width="42" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eEj-0g-swd" firstAttribute="leading" secondItem="L6Y-aM-7cQ" secondAttribute="leading" constant="30" id="6Ke-tp-gq9"/>
+                                                <constraint firstItem="eEj-0g-swd" firstAttribute="centerY" secondItem="L6Y-aM-7cQ" secondAttribute="centerY" id="aS1-IV-zzT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <connections>
+                                            <outlet property="penLabel" destination="gsu-zt-jx1" id="oGc-M2-kuN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CtS-ER-jH8"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GIz-j0-I7q" firstAttribute="leading" secondItem="CtS-ER-jH8" secondAttribute="leading" constant="30" id="ALv-gl-AiA"/>
+                            <constraint firstItem="GIz-j0-I7q" firstAttribute="top" secondItem="CtS-ER-jH8" secondAttribute="top" constant="100" id="ZBQ-bX-EWQ"/>
+                            <constraint firstItem="GIz-j0-I7q" firstAttribute="centerX" secondItem="wcb-GG-Exx" secondAttribute="centerX" id="mHo-no-mqE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="penListTableView" destination="GIz-j0-I7q" id="yES-t0-a7l"/>
+                        <outlet property="penTableViewHeight" destination="Ugg-gr-K7U" id="M7F-4W-zPI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qnF-CX-UVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1368" y="-550"/>
+        </scene>
         <!--Pickup Pen View Controller-->
         <scene sceneID="tTX-sO-fcc">
             <objects>
@@ -205,7 +275,7 @@
                         <outlet property="penView" destination="T0y-Gf-7nw" id="RiT-Xo-wTZ"/>
                         <outlet property="previousPenButton" destination="Qlp-gg-TNn" id="hca-OE-I7e"/>
                         <segue destination="pFg-z0-jdm" kind="presentation" identifier="toSelectionViewController" modalTransitionStyle="crossDissolve" id="fOI-gx-nob"/>
-                        <segue destination="Inp-Yu-ONp" kind="presentation" identifier="toPopup" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="QST-EN-TH1"/>
+                        <segue destination="JtT-N8-Rg8" kind="presentation" identifier="toPenPopup" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="Bfg-5S-BDS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJc-XU-Z8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -216,62 +286,6 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="653.62318840579712" y="131.91964285714286"/>
-        </scene>
-        <!--Pen Selector View Controller-->
-        <scene sceneID="W69-LO-c9m">
-            <objects>
-                <viewController id="Inp-Yu-ONp" customClass="PenSelectorViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="U8Q-FR-ZYE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HHf-Do-cqP">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3Ug-Tg-6P4">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <visualEffectView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FNm-do-wvh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Buu-u4-zGX">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="regular"/>
-                                            </vibrancyEffect>
-                                        </visualEffectView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="FNm-do-wvh" secondAttribute="trailing" id="4EU-f1-kzF"/>
-                                        <constraint firstAttribute="bottom" secondItem="FNm-do-wvh" secondAttribute="bottom" id="F3C-jT-Js1"/>
-                                        <constraint firstItem="FNm-do-wvh" firstAttribute="leading" secondItem="3Ug-Tg-6P4" secondAttribute="leading" id="K02-iL-zup"/>
-                                        <constraint firstItem="FNm-do-wvh" firstAttribute="top" secondItem="3Ug-Tg-6P4" secondAttribute="top" id="S4C-yT-o1d"/>
-                                    </constraints>
-                                </view>
-                                <blurEffect style="regular"/>
-                            </visualEffectView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REw-tZ-jRa">
-                                <rect key="frame" x="25" y="194" width="364" height="568"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="iLB-lk-bXG"/>
-                        <constraints>
-                            <constraint firstItem="REw-tZ-jRa" firstAttribute="centerX" secondItem="U8Q-FR-ZYE" secondAttribute="centerX" id="0IN-aT-EE1"/>
-                            <constraint firstItem="HHf-Do-cqP" firstAttribute="leading" secondItem="U8Q-FR-ZYE" secondAttribute="leading" id="6bh-AW-KZE"/>
-                            <constraint firstItem="iLB-lk-bXG" firstAttribute="bottom" secondItem="REw-tZ-jRa" secondAttribute="bottom" constant="100" id="GBo-dv-Eoe"/>
-                            <constraint firstAttribute="trailing" secondItem="HHf-Do-cqP" secondAttribute="trailing" id="Gpi-SU-sxa"/>
-                            <constraint firstItem="REw-tZ-jRa" firstAttribute="leading" secondItem="iLB-lk-bXG" secondAttribute="leading" constant="25" id="Ou1-gy-n9l"/>
-                            <constraint firstItem="HHf-Do-cqP" firstAttribute="top" secondItem="U8Q-FR-ZYE" secondAttribute="top" id="fdl-B3-hn8"/>
-                            <constraint firstItem="REw-tZ-jRa" firstAttribute="top" secondItem="iLB-lk-bXG" secondAttribute="top" constant="150" id="idj-Rn-y8t"/>
-                            <constraint firstAttribute="bottom" secondItem="HHf-Do-cqP" secondAttribute="bottom" id="ra5-2a-m0M"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9AT-F6-L0u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1567" y="-506"/>
         </scene>
         <!--Selection View Controller-->
         <scene sceneID="oNb-Zh-Dfv">
@@ -410,6 +424,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

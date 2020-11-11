@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol PickupPenViewControllerDelegate {
+    func passPigeonData(data: PigeonData)
+}
+
 class PickupPenViewController: UIViewController {
+    
+    var delegate: PickupPenViewControllerDelegate?
 
     @IBOutlet weak var penCollectionView: UICollectionView!
     @IBOutlet weak var penLabel: UILabel!
@@ -119,38 +125,9 @@ class PickupPenViewController: UIViewController {
     @IBAction func penLongPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
             
-            let popupView = UIVisualEffectView.init(frame: view.bounds)
-            popupView.effect = UIBlurEffect(style: .regular)
-            popupView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-            
-            
-            
-            
-            
 
-            let viewFrame = CGRect(x: 30, y: 150, width: view.frame.width - 30 * 2, height: 500)
-
-            let newView = UIView(frame: viewFrame)
-            newView.backgroundColor = UIColor(named: K.color.highlightColor)
-            newView.layer.cornerRadius = 30
             
-            popupView.contentView.addSubview(newView)
-            
-            let dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 75, height: 40))
-            dismissButton.setTitle("Dismiss", for: .normal)
-            dismissButton.center = newView.center
-        
-            dismissButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-            
-            newView.addSubview(dismissButton)
-             
-
-
-
-            self.view.addSubview(popupView)
-            
-            
+            self.performSegue(withIdentifier: K.segue.segueToPenPopupIdentifier, sender: self)
             
             
             
@@ -162,9 +139,7 @@ class PickupPenViewController: UIViewController {
     
     
     
-   @objc func buttonPressed(_ sender: UIButton!) {
-    sender.superview?.superview?.superview?.isHidden = true
-   }
+  
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -173,7 +148,12 @@ class PickupPenViewController: UIViewController {
             destinationVC.delegate = self
             destinationVC.nest = nestInfo.nest
             destinationVC.pen = nestInfo.pen
-        } 
+        } else if segue.identifier == K.segue.segueToPenPopupIdentifier {
+            let destinationVC = segue.destination as! PenPopupViewController
+            destinationVC.delegate = self
+            self.delegate?.passPigeonData(data: pigeonData)
+        }
+        
     }
     
 
@@ -294,6 +274,16 @@ extension PickupPenViewController: SelectionViewControllerDelegate {
 }
 
 
+extension PickupPenViewController: PenPopupViewControllerDelegate {
+    func didSelectPen(pen: String) {
+        currentPen = pen
+        penLabel.text = pen
+        currentPenIndex = pigeonData.penNames.firstIndex(of: pen)!
+        penCollectionView.reloadData()
+    }
+    
+    
+}
 
 
 
