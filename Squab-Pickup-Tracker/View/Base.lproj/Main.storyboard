@@ -205,6 +205,9 @@
                         <outlet property="penView" destination="T0y-Gf-7nw" id="RiT-Xo-wTZ"/>
                         <outlet property="previousPenButton" destination="Qlp-gg-TNn" id="hca-OE-I7e"/>
                         <segue destination="pFg-z0-jdm" kind="presentation" identifier="toSelectionViewController" modalTransitionStyle="crossDissolve" id="fOI-gx-nob"/>
+                        <segue destination="ngz-1a-rPX" kind="popoverPresentation" identifier="showPopover" popoverAnchorView="ZAY-gp-zLq" id="WXr-Sd-5lF">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJc-XU-Z8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -215,6 +218,36 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="653.62318840579712" y="131.91964285714286"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="pF0-2d-kCt">
+            <objects>
+                <viewController id="ngz-1a-rPX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UOK-Db-ldb">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ha!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OkB-9w-qDW">
+                                <rect key="frame" x="67" y="23" width="66.5" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GB6-nO-qAl"/>
+                        <color key="backgroundColor" name="ContentsEntered"/>
+                        <constraints>
+                            <constraint firstItem="OkB-9w-qDW" firstAttribute="centerY" secondItem="UOK-Db-ldb" secondAttribute="centerY" id="9q5-8F-vQV"/>
+                            <constraint firstItem="OkB-9w-qDW" firstAttribute="centerX" secondItem="UOK-Db-ldb" secondAttribute="centerX" id="Lqy-bz-QpX"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="100"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="100"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NAs-Wu-Zqu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1290" y="-404"/>
         </scene>
         <!--Selection View Controller-->
         <scene sceneID="oNb-Zh-Dfv">
@@ -339,6 +372,9 @@
     <resources>
         <image name="arrow.left.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="ContentsEntered">
+            <color red="0.45100000500679016" green="0.99299997091293335" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="backgroundColor">
             <color white="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>

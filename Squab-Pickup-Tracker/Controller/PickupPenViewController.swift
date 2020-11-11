@@ -118,13 +118,8 @@ class PickupPenViewController: UIViewController {
     
     @IBAction func penLongPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
-            print("began")
             
-            let viewFrame = CGRect(x: 50, y: 100, width: view.frame.width - 50, height: 300)
-            
-            let newView = UIView(frame: viewFrame)
-            self.view.addSubview(newView)
-            
+            self.performSegue(withIdentifier: "showPopover", sender: self)
             
         }
         
@@ -137,6 +132,9 @@ class PickupPenViewController: UIViewController {
             destinationVC.delegate = self
             destinationVC.nest = nestInfo.nest
             destinationVC.pen = nestInfo.pen
+        } else if segue.identifier == "showPopover" {
+            let destinationVC = segue.destination
+            destinationVC.popoverPresentationController?.delegate = self
         }
     }
     
@@ -258,6 +256,11 @@ extension PickupPenViewController: SelectionViewControllerDelegate {
 }
 
 
+extension PickupPenViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+}
 
 
 
