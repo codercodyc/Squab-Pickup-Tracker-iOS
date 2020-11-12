@@ -30,7 +30,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="DASHBOARD"/>
                                 <connections>
-                                    <segue destination="6bn-2C-MZc" kind="show" identifier="toDashboard" id="CEp-dB-LKh"/>
+                                    <segue destination="kJs-Fm-uZP" kind="show" identifier="toDashboard" id="lQA-Jg-UM1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-wf-ytH">
@@ -79,7 +79,7 @@
         <!--Dashboard View Controller-->
         <scene sceneID="u6q-tf-Zva">
             <objects>
-                <viewController id="6bn-2C-MZc" customClass="DashboardViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dashboardMain" id="6bn-2C-MZc" customClass="DashboardViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="usc-o9-x3S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,7 +109,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rtv-tt-zZd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1665" y="-325"/>
+            <point key="canvasLocation" x="1388" y="-458"/>
+        </scene>
+        <!--Dashboard Page View Controller-->
+        <scene sceneID="lQU-vP-J9a">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="kJs-Fm-uZP" customClass="DashboardPageViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="4qh-QR-tR2"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I3F-wD-qdo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2543" y="-358"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lVi-6x-smE">
+            <objects>
+                <viewController storyboardIdentifier="orange" id="U9a-r3-JDZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vqV-K4-Q7t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hOT-AC-MAb"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DcF-pH-L0s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3304" y="-529"/>
         </scene>
         <!--Pen Popup View Controller-->
         <scene sceneID="dZb-6W-4nR">
@@ -501,6 +526,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

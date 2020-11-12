@@ -14,12 +14,16 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
-    let urlString = "https://dkcpigeons.tk/dashapp/"
     
+    
+    var urlString = "https://dkcpigeons.tk/dashapp/"
+    
+   
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     
         title = "Dashboard"
         
