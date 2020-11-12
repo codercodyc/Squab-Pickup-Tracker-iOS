@@ -257,7 +257,7 @@
                                 </constraints>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DWk-fP-Oph">
-                                <rect key="frame" x="20" y="168" width="374" height="728"/>
+                                <rect key="frame" x="0.0" y="168" width="414" height="694"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wPI-Bi-E4w">
                                     <size key="itemSize" width="100" height="70"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -313,10 +313,10 @@
                             <constraint firstItem="bbH-2v-2Nr" firstAttribute="top" secondItem="xVu-bu-2Zc" secondAttribute="top" constant="20" id="CHh-Y4-pfB"/>
                             <constraint firstItem="DWk-fP-Oph" firstAttribute="top" secondItem="bbH-2v-2Nr" secondAttribute="bottom" constant="10" id="FzW-R4-HXY"/>
                             <constraint firstItem="bbH-2v-2Nr" firstAttribute="leading" secondItem="xVu-bu-2Zc" secondAttribute="leading" constant="15" id="JRQ-EZ-Hg4"/>
-                            <constraint firstItem="xVu-bu-2Zc" firstAttribute="trailing" secondItem="DWk-fP-Oph" secondAttribute="trailing" constant="20" id="faH-Yp-Epx"/>
+                            <constraint firstItem="xVu-bu-2Zc" firstAttribute="trailing" secondItem="DWk-fP-Oph" secondAttribute="trailing" id="faH-Yp-Epx"/>
                             <constraint firstItem="bbH-2v-2Nr" firstAttribute="centerX" secondItem="olV-Al-Puf" secondAttribute="centerX" id="ocE-Sa-94d"/>
-                            <constraint firstAttribute="bottom" secondItem="DWk-fP-Oph" secondAttribute="bottom" id="yXt-fa-YSn"/>
-                            <constraint firstItem="DWk-fP-Oph" firstAttribute="leading" secondItem="xVu-bu-2Zc" secondAttribute="leading" constant="20" id="zSf-yi-DFq"/>
+                            <constraint firstItem="xVu-bu-2Zc" firstAttribute="bottom" secondItem="DWk-fP-Oph" secondAttribute="bottom" id="yXt-fa-YSn"/>
+                            <constraint firstItem="DWk-fP-Oph" firstAttribute="leading" secondItem="xVu-bu-2Zc" secondAttribute="leading" id="zSf-yi-DFq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZIu-Qa-9cS"/>

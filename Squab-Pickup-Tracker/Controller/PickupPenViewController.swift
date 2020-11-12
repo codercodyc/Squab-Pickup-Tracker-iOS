@@ -31,6 +31,8 @@ class PickupPenViewController: UIViewController {
     var currentPen = ""
     var currentPenIndex = 1
     
+    let cellPaddingH = CGFloat(15)
+    let cellPaddingV = CGFloat(15)
     
     var cellToReload: IndexPath = .init()
     
@@ -160,6 +162,13 @@ class PickupPenViewController: UIViewController {
         
     }
     
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        penCollectionView.reloadData()
+    }
+    
+
+    
 
 }
 
@@ -246,6 +255,30 @@ extension PickupPenViewController: UICollectionViewDelegate {
 
     
         
+}
+
+
+extension PickupPenViewController: UICollectionViewDelegateFlowLayout {
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = CGFloat((penCollectionView.frame.width - cellPaddingH * 4) / 3)
+        let cellHeight = CGFloat((penCollectionView.frame.height - cellPaddingV * 9) / 8)
+        
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+ 
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: cellPaddingV, left: cellPaddingH, bottom: cellPaddingV, right: cellPaddingH)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellPaddingV
+    }
+    
 }
 
 
