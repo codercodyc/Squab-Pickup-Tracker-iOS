@@ -151,6 +151,7 @@ class PickupPenViewController: UIViewController {
         } else if segue.identifier == K.segue.segueToPenPopupIdentifier {
             let destinationVC = segue.destination as! PenPopupViewController
             destinationVC.delegate = self
+            destinationVC.popoverPresentationController?.delegate = self
             self.delegate?.passPigeonData(data: pigeonData)
         }
         

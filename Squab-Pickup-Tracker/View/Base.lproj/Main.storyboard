@@ -61,9 +61,9 @@
         <!--Pen Popup View Controller-->
         <scene sceneID="dZb-6W-4nR">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="JtT-N8-Rg8" customClass="PenPopupViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="JtT-N8-Rg8" customClass="PenPopupViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wcb-GG-Exx">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-j0-I7q">
@@ -112,14 +112,16 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CtS-ER-jH8"/>
+                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                         <constraints>
                             <constraint firstItem="GIz-j0-I7q" firstAttribute="leading" secondItem="CtS-ER-jH8" secondAttribute="leading" constant="30" id="ALv-gl-AiA"/>
                             <constraint firstItem="GIz-j0-I7q" firstAttribute="top" secondItem="CtS-ER-jH8" secondAttribute="top" constant="100" id="ZBQ-bX-EWQ"/>
                             <constraint firstItem="GIz-j0-I7q" firstAttribute="centerX" secondItem="wcb-GG-Exx" secondAttribute="centerX" id="mHo-no-mqE"/>
                         </constraints>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="300"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="300" height="400"/>
+                    <size key="freeformSize" width="300" height="300"/>
                     <connections>
                         <outlet property="penListTableView" destination="GIz-j0-I7q" id="yES-t0-a7l"/>
                         <outlet property="penTableViewHeight" destination="Ugg-gr-K7U" id="M7F-4W-zPI"/>
@@ -428,6 +430,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
