@@ -78,11 +78,11 @@
 		C3BE0EF425577D61006A8FE1 /* Squab-Pickup-Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */,
+				C3BE0EF725577D61006A8FE1 /* SceneDelegate.swift */,
 				C3BE0F2B25577D83006A8FE1 /* Model */,
 				C3BE0F2C25577DA1006A8FE1 /* View */,
 				C3BE0F2D25577DA8006A8FE1 /* Controller */,
-				C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */,
-				C3BE0EF725577D61006A8FE1 /* SceneDelegate.swift */,
 				C3BE0EFE25577D61006A8FE1 /* Assets.xcassets */,
 				C3BE0F0025577D61006A8FE1 /* LaunchScreen.storyboard */,
 				C3BE0F0325577D61006A8FE1 /* Info.plist */,

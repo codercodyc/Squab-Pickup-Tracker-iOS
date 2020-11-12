@@ -17,10 +17,12 @@ class DashboardViewController: UIViewController {
     let urlString = "https://dkcpigeons.tk/dashapp/"
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         title = "Dashboard"
+        
         
         //Call dashboard website
         
@@ -34,6 +36,9 @@ class DashboardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
     }
+    
+    
+    
     
     
     

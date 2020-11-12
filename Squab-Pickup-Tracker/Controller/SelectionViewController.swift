@@ -50,6 +50,8 @@ class SelectionViewController: UIViewController {
         nestLabel.text = nest
         penLabel.text = pen
         
+
+        
         
         contentsCollectionView.delegate = self
         contentsCollectionView.dataSource = self
