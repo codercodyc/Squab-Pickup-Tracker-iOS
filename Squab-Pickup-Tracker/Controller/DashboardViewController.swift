@@ -20,10 +20,9 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        navigationController?.title = "Dashboard"
+        title = "Dashboard"
+        
         //Call dashboard website
-        
-        
         
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
