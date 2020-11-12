@@ -63,21 +63,21 @@
             <objects>
                 <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="JtT-N8-Rg8" customClass="PenPopupViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wcb-GG-Exx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-j0-I7q">
-                                <rect key="frame" x="30" y="144" width="354" height="100"/>
+                                <rect key="frame" x="30" y="144" width="240" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Ugg-gr-K7U"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="penListCell" rowHeight="50" id="gUd-Xq-8Bl" customClass="PenListCell" customModule="Squab_Pickup_Tracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="354" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="240" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gUd-Xq-8Bl" id="L6Y-aM-7cQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-0g-swd">
@@ -112,16 +112,18 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CtS-ER-jH8"/>
-                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="GIz-j0-I7q" firstAttribute="leading" secondItem="CtS-ER-jH8" secondAttribute="leading" constant="30" id="ALv-gl-AiA"/>
                             <constraint firstItem="GIz-j0-I7q" firstAttribute="top" secondItem="CtS-ER-jH8" secondAttribute="top" constant="100" id="ZBQ-bX-EWQ"/>
                             <constraint firstItem="GIz-j0-I7q" firstAttribute="centerX" secondItem="wcb-GG-Exx" secondAttribute="centerX" id="mHo-no-mqE"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="400"/>
                     <connections>
                         <outlet property="penListTableView" destination="GIz-j0-I7q" id="yES-t0-a7l"/>
                         <outlet property="penTableViewHeight" destination="Ugg-gr-K7U" id="M7F-4W-zPI"/>
+                        <outlet property="popupView" destination="wcb-GG-Exx" id="GYT-cM-RpX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnF-CX-UVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -275,7 +277,9 @@
                         <outlet property="penView" destination="T0y-Gf-7nw" id="RiT-Xo-wTZ"/>
                         <outlet property="previousPenButton" destination="Qlp-gg-TNn" id="hca-OE-I7e"/>
                         <segue destination="pFg-z0-jdm" kind="presentation" identifier="toSelectionViewController" modalTransitionStyle="crossDissolve" id="fOI-gx-nob"/>
-                        <segue destination="JtT-N8-Rg8" kind="presentation" identifier="toPenPopup" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="Bfg-5S-BDS"/>
+                        <segue destination="JtT-N8-Rg8" kind="popoverPresentation" identifier="toPenPopup" popoverAnchorView="ZAY-gp-zLq" id="Bfg-5S-BDS">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJc-XU-Z8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

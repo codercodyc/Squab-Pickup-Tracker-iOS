@@ -286,4 +286,11 @@ extension PickupPenViewController: PenPopupViewControllerDelegate {
 }
 
 
+extension PickupPenViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+}
+
+
 

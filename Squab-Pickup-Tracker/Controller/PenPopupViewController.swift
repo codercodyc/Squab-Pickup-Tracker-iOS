@@ -17,6 +17,7 @@ class PenPopupViewController: UIViewController {
 
     @IBOutlet weak var penListTableView: UITableView!
     @IBOutlet weak var penTableViewHeight: NSLayoutConstraint!
+    @IBOutlet var popupView: UIView!
     
     var delegate: PenPopupViewControllerDelegate?
     
@@ -34,11 +35,11 @@ class PenPopupViewController: UIViewController {
         penListTableView.backgroundColor = UIColor.clear
         penListTableView.layer.cornerRadius = 15
         
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.frame
-        
-        self.view.insertSubview(blurEffectView, at: 0)
+//        let blurEffect = UIBlurEffect(style: .regular)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.frame
+//
+//        self.view.insertSubview(blurEffectView, at: 0)
         
 //        penListTableView.backgroundView = blurEffectView
 //        penListTableView.separatorEffect = UIVibrancyEffect(blurEffect: blurEffect)
