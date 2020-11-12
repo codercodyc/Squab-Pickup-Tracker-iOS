@@ -16,7 +16,6 @@ protocol PenPopupViewControllerDelegate {
 class PenPopupViewController: UIViewController {
 
     @IBOutlet weak var penListTableView: UITableView!
-    @IBOutlet weak var penTableViewHeight: NSLayoutConstraint!
     @IBOutlet var popupView: UIView!
     
     var delegate: PenPopupViewControllerDelegate?
@@ -26,31 +25,28 @@ class PenPopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //preferredContentSize = CGSize(width: 250, height: 100)
         
-        
-
         
         penListTableView.delegate = self
         penListTableView.dataSource = self
-        penListTableView.backgroundColor = UIColor.clear
-        penListTableView.layer.cornerRadius = 15
+        penListTableView.backgroundColor = #colorLiteral(red: 0, green: 0.8078431373, blue: 0.7882352941, alpha: 1)
+        //penListTableView.layer.cornerRadius = 15
         
-//        let blurEffect = UIBlurEffect(style: .regular)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.frame
-//
-//        self.view.insertSubview(blurEffectView, at: 0)
-        
-//        penListTableView.backgroundView = blurEffectView
-//        penListTableView.separatorEffect = UIVibrancyEffect(blurEffect: blurEffect)
+
         
         penListTableView.reloadData()
-        if pigeonData.penNames.count <= 12 {
+        
+        let totalTableHeight = pigeonData.penNames.count * 50
+        
+        if totalTableHeight <= 12 * 50 {
             
-            penTableViewHeight.constant = CGFloat(50 * pigeonData.penNames.count)
+            preferredContentSize = CGSize(width: 250, height: totalTableHeight)
         } else {
-            penTableViewHeight.constant = CGFloat(12 * 50)
+            preferredContentSize = CGSize(width: 250, height: 12 * 50)
         }
+        
+        penListTableView.frame = view.bounds
         
     }
     
