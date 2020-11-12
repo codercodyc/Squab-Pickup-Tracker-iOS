@@ -15,6 +15,7 @@ struct K {
     struct segue {
         static let segueToSelectionIdentifier = "toSelectionViewController"
         static let segueToPenPopupIdentifier = "toPenPopup"
+        static let dashboard = "toDashboard"
     }
     
     

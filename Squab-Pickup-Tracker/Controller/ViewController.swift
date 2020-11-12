@@ -7,10 +7,17 @@
 
 import UIKit
 
+//protocol ViewControllerDelegate {
+//    func loadURLRequest(urlRequest: URLRequest)
+//}
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var pickupButton: UIButton!
     @IBOutlet weak var dashboardButton: UIButton!
+    
+//    var delegate: ViewControllerDelegate
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +34,20 @@ class ViewController: UIViewController {
         pickupButton.layer.shadowOffset = .init(width: 0, height: 4)
         pickupButton.layer.shadowRadius = 10
         
+        
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
     
-   
     
-
+   
+   
+  
+    
+    
 }
 
 

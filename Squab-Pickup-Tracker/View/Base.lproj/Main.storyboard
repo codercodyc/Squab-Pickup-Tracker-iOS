@@ -29,6 +29,9 @@
                                 <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="30"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="DASHBOARD"/>
+                                <connections>
+                                    <segue destination="6bn-2C-MZc" kind="show" identifier="toDashboard" id="CEp-dB-LKh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-wf-ytH">
                                 <rect key="frame" x="82" y="712" width="250" height="50"/>
@@ -72,6 +75,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="647.82608695652175" y="138.61607142857142"/>
+        </scene>
+        <!--Dashboard View Controller-->
+        <scene sceneID="u6q-tf-Zva">
+            <objects>
+                <viewController id="6bn-2C-MZc" customClass="DashboardViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="usc-o9-x3S">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIq-uD-Aru">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uRz-Ay-93Y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MIq-uD-Aru" firstAttribute="top" secondItem="usc-o9-x3S" secondAttribute="top" id="Trj-Up-MDW"/>
+                            <constraint firstItem="MIq-uD-Aru" firstAttribute="leading" secondItem="usc-o9-x3S" secondAttribute="leading" id="XCi-r0-ZMX"/>
+                            <constraint firstAttribute="bottom" secondItem="MIq-uD-Aru" secondAttribute="bottom" id="bdD-kp-L2X"/>
+                            <constraint firstAttribute="trailing" secondItem="MIq-uD-Aru" secondAttribute="trailing" id="kSo-0x-iEI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nhB-cS-kiV"/>
+                    <connections>
+                        <outlet property="webView" destination="MIq-uD-Aru" id="Wm8-Qn-LNU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rtv-tt-zZd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1665" y="-325"/>
         </scene>
         <!--Pen Popup View Controller-->
         <scene sceneID="dZb-6W-4nR">
@@ -142,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnF-CX-UVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1294" y="-344"/>
+            <point key="canvasLocation" x="2470" y="166"/>
         </scene>
         <!--Pickup Pen View Controller-->
         <scene sceneID="tTX-sO-fcc">
@@ -303,7 +341,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1563.768115942029" y="131.91964285714286"/>
+            <point key="canvasLocation" x="1796" y="625"/>
         </scene>
         <!--Selection View Controller-->
         <scene sceneID="oNb-Zh-Dfv">
@@ -422,7 +460,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wCx-m9-Kdg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2400" y="142.63392857142856"/>
+            <point key="canvasLocation" x="2630" y="635"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hwx-F8-msw">

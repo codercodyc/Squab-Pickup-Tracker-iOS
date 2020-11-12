@@ -34,6 +34,8 @@ class PickupPenViewController: UIViewController {
     
     var cellToReload: IndexPath = .init()
     
+ 
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,8 @@ class PickupPenViewController: UIViewController {
         penCollectionView.reloadData()
         
         penView.clipsToBounds = true
+        
+        
         
         
     }
