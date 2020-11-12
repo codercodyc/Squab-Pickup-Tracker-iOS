@@ -66,9 +66,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-j0-I7q">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-j0-I7q">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="penListCell" rowHeight="50" id="gUd-Xq-8Bl" customClass="PenListCell" customModule="Squab_Pickup_Tracker" customModuleProvider="target">
@@ -111,6 +110,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CtS-ER-jH8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="GIz-j0-I7q" secondAttribute="trailing" id="AgQ-Pj-JtV"/>
+                            <constraint firstItem="GIz-j0-I7q" firstAttribute="bottom" secondItem="CtS-ER-jH8" secondAttribute="bottom" id="ClU-QA-EVD"/>
+                            <constraint firstItem="GIz-j0-I7q" firstAttribute="leading" secondItem="wcb-GG-Exx" secondAttribute="leading" id="Q1K-Xn-ELp"/>
+                            <constraint firstItem="GIz-j0-I7q" firstAttribute="top" secondItem="wcb-GG-Exx" secondAttribute="top" id="it4-dk-ghS"/>
+                        </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="250" height="300"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -122,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnF-CX-UVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1366.6666666666667" y="-550.44642857142856"/>
+            <point key="canvasLocation" x="1294" y="-344"/>
         </scene>
         <!--Pickup Pen View Controller-->
         <scene sceneID="tTX-sO-fcc">

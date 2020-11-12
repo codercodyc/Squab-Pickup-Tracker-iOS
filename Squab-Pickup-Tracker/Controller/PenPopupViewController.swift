@@ -33,7 +33,14 @@ class PenPopupViewController: UIViewController {
         penListTableView.backgroundColor = #colorLiteral(red: 0, green: 0.8078431373, blue: 0.7882352941, alpha: 1)
         //penListTableView.layer.cornerRadius = 15
         
-
+        view.autoresizesSubviews = true
+        penListTableView.autoresizesSubviews = true
+        popupView.autoresizesSubviews = true
+//        view.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
+//        view.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
+//       penListTableView.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
+//       penListTableView.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
+//
         
         penListTableView.reloadData()
         
@@ -41,16 +48,18 @@ class PenPopupViewController: UIViewController {
         
         if totalTableHeight <= 12 * 50 {
             
-            preferredContentSize = CGSize(width: 250, height: totalTableHeight)
+            preferredContentSize = CGSize(width: 275, height: totalTableHeight)
         } else {
-            preferredContentSize = CGSize(width: 250, height: 12 * 50)
+            preferredContentSize = CGSize(width: 275, height: 12 * 50)
+            
         }
         
-        penListTableView.frame = view.bounds
+        //penListTableView.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
+        
+        
         
     }
     
-
 
 }
 

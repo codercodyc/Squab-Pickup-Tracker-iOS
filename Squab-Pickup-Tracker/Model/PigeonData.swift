@@ -8,7 +8,7 @@
 import UIKit
 
 struct PigeonData {
-    var pen: [String: Pen] = ["401" : Pen(), "402" : Pen(), "403" : Pen(), "404" : Pen()]
+    var pen: [String: Pen] = ["401" : Pen(), "402" : Pen(), "403" : Pen(), "404" : Pen(), "405" : Pen(), "406" : Pen(), "407" : Pen(), "408" : Pen(), "409" : Pen(), "410" : Pen(), "411" : Pen(), "412" : Pen(), "413" : Pen(), "414" : Pen(), "415" : Pen(), "416" : Pen()]
     
     var penNames: [String] {
         return Array(pen.keys.sorted())
