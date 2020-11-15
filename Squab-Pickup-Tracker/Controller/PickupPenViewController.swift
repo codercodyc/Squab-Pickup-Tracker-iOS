@@ -9,12 +9,21 @@ import UIKit
 import CoreData
 
 protocol PickupPenViewControllerDelegate {
-    func passPigeonData(data: PigeonData)
+    func passPigeonData(data: PigeonData) // remove
+    
 }
 
 class PickupPenViewController: UIViewController {
     
     var pData = [PenClass]()
+    
+    var selectedSesssion: Session? {
+        didSet {
+            loadPens()
+            print(pData.count)
+            
+        }
+    }
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -182,13 +191,21 @@ class PickupPenViewController: UIViewController {
         penCollectionView.reloadData()
     }
     
-    func loadPen() {
-        let request: NSFetchRequest<PenClass> = PenClass.fetchRequest()
+    func loadPens(with request: NSFetchRequest<PenClass> = PenClass.fetchRequest()) {
+        
+        let sessionPredicate = NSPredicate(format: "parentCategory.dateCreated == %@", selectedSesssion!.dateCreated! as CVarArg)
+                
+        
+        request.predicate = sessionPredicate
+        
+        
         do {
             pData =  try context.fetch(request)
         } catch {
             print("Error fetching context \(error)")
         }
+        
+        //penCollectionView.reloadData()
     }
     
 

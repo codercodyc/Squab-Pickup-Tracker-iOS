@@ -202,12 +202,12 @@
                                 </state>
                                 <connections>
                                     <action selector="pickupSessionPressed:" destination="ddv-Sj-maf" eventType="touchUpInside" id="PR1-EK-JTY"/>
-                                    <segue destination="8Oa-ts-I5e" kind="show" id="47f-c8-G0S"/>
+                                    <segue destination="8Oa-ts-I5e" kind="show" identifier="toPickupPens" id="47f-c8-G0S"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oOB-hW-IOK"/>
-                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.45085787770000002" green="0.98829740290000001" blue="0.83763033149999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3fa-o8-sDt" firstAttribute="centerY" secondItem="2ip-fd-une" secondAttribute="centerY" id="68c-Hr-qOb"/>
                             <constraint firstItem="3fa-o8-sDt" firstAttribute="centerX" secondItem="2ip-fd-une" secondAttribute="centerX" id="bho-R7-E1e"/>
