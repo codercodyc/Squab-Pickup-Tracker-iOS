@@ -11,6 +11,8 @@ import CoreData
 protocol PickupPenViewControllerDelegate {
     func passPigeonData(data: PigeonData) // remove
     
+    func didSelectNest(nest: NestClass)
+    
 }
 
 class PickupPenViewController: UIViewController {
@@ -53,6 +55,7 @@ class PickupPenViewController: UIViewController {
     let cellPaddingV = CGFloat(15)
     
     var cellToReload: IndexPath = .init()
+    var selectedNest: NestClass?
     
  
     
@@ -173,8 +176,10 @@ class PickupPenViewController: UIViewController {
         if segue.identifier == K.segue.segueToSelectionIdentifier {
             let destinationVC = segue.destination as! SelectionViewController
             destinationVC.delegate = self
-            destinationVC.nest = nestInfo.nest
-            destinationVC.pen = nestInfo.pen
+            destinationVC.selectedNest = selectedNest
+            //destinationVC.nest = nestInfo.nest
+            //destinationVC.pen = nestInfo.pen
+            
         } else if segue.identifier == K.segue.segueToPenPopupIdentifier {
             let destinationVC = segue.destination as! PenPopupViewController
             destinationVC.delegate = self
@@ -301,17 +306,17 @@ extension PickupPenViewController: UICollectionViewDelegate {
         }
         
         if let cell = penCollectionView.cellForItem(at: indexPath) as? nestCell {
-            nestInfo.nest = cell.nestLabel.text ?? ""
-            nestInfo.pen = penLabel.text ?? ""
+//            nestInfo.nest = cell.nestLabel.text ?? ""
+//            nestInfo.pen = penLabel.text ?? ""
             cellToReload = indexPath
             
             
             
             
-                self.performSegue(withIdentifier: K.segue.segueToSelectionIdentifier, sender: self)
             }
-        
-        
+        selectedNest = nestData[indexPath.row]
+        //self.delegate?.didSelectNest(nest: nestData[indexPath.row])
+            self.performSegue(withIdentifier: K.segue.segueToSelectionIdentifier, sender: self)
         
         }
     

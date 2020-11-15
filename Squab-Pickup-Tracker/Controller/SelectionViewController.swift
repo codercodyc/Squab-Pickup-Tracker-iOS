@@ -14,6 +14,13 @@ protocol SelectionViewControllerDelegate {
 class SelectionViewController: UIViewController {
     
     var delegate: SelectionViewControllerDelegate?
+    
+    var selectedNest: NestClass? {
+        didSet {
+            print(selectedNest?.id)
+            
+        }
+    }
 
     @IBOutlet weak var nestLabel: UILabel!
     @IBOutlet weak var penLabel: UILabel!
@@ -51,6 +58,7 @@ class SelectionViewController: UIViewController {
         penLabel.text = pen
         
 
+        
         
         
         contentsCollectionView.delegate = self
@@ -127,3 +135,15 @@ extension SelectionViewController: UICollectionViewDelegate {
         contentsCollectionView.reloadItems(at: [indexPath])
     }
 }
+
+
+//extension SelectionViewController: PickupPenViewControllerDelegate {
+//    func passPigeonData(data: PigeonData) {
+//    }
+//    
+//    func didSelectNest(nest: NestClass) {
+//        selectedNest = nest
+//    }
+//    
+//    
+//}
