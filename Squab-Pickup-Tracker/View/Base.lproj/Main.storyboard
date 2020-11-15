@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H4J-hA-zog">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -313,29 +312,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ee-ty-9qe">
-                                                    <rect key="frame" x="0.0" y="5" width="100" height="37"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="37" id="YYp-8n-uZG"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4af-QC-0ZP">
-                                                    <rect key="frame" x="0.0" y="42" width="100" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pVa-fC-uC7">
+                                                    <rect key="frame" x="0.0" y="3" width="100" height="64"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ee-ty-9qe">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4af-QC-0ZP">
+                                                            <rect key="frame" x="0.0" y="32" width="100" height="32"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7ee-ty-9qe" firstAttribute="leading" secondItem="ab2-bN-cbF" secondAttribute="leading" id="0sR-LQ-vhx"/>
-                                                <constraint firstItem="4af-QC-0ZP" firstAttribute="top" secondItem="7ee-ty-9qe" secondAttribute="bottom" id="J7U-qN-09s"/>
-                                                <constraint firstItem="7ee-ty-9qe" firstAttribute="top" secondItem="ab2-bN-cbF" secondAttribute="top" constant="5" id="Pl6-le-G7o"/>
-                                                <constraint firstItem="4af-QC-0ZP" firstAttribute="leading" secondItem="ab2-bN-cbF" secondAttribute="leading" id="jbb-hE-Ko6"/>
-                                                <constraint firstAttribute="trailing" secondItem="4af-QC-0ZP" secondAttribute="trailing" id="kom-tD-VK8"/>
-                                                <constraint firstAttribute="trailing" secondItem="7ee-ty-9qe" secondAttribute="trailing" id="xmO-el-30l"/>
+                                                <constraint firstItem="pVa-fC-uC7" firstAttribute="leading" secondItem="ab2-bN-cbF" secondAttribute="leading" id="Mi9-ux-K11"/>
+                                                <constraint firstItem="pVa-fC-uC7" firstAttribute="top" secondItem="ab2-bN-cbF" secondAttribute="top" constant="3" id="OYf-Ll-DYB"/>
+                                                <constraint firstAttribute="bottom" secondItem="pVa-fC-uC7" secondAttribute="bottom" constant="3" id="USZ-Yw-mFO"/>
+                                                <constraint firstAttribute="trailing" secondItem="pVa-fC-uC7" secondAttribute="trailing" id="Y7f-fY-gLr"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" name="cellColor"/>

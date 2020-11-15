@@ -119,6 +119,11 @@ extension SelectionViewController: UICollectionViewDelegate {
             if contents == "E" || contents == "EE" || contents == "A" || contents == "AA" || contents == "B" || contents == "BB" || contents == "C" || contents == "CC" || contents == "D" || contents == "DD" {
                 nestData[0].inventoryCode = contents
                 nestData[0].color = K.color.inventoryColor
+                
+                nestData[0].mortCode = ""
+                nestData[0].productionAmount = 0
+                nestData[0].mort2WkAmount = 0
+                nestData[0].mort4WkAmount = 0
             } else {
             
             
@@ -129,32 +134,57 @@ extension SelectionViewController: UICollectionViewDelegate {
                     nestData[0].mort2WkAmount = 0
                     nestData[0].mort4WkAmount = 0
                     nestData[0].color = K.color.cellDefault
+                
                     
                 case "X":
                     nestData[0].mortCode = contents
                     nestData[0].mort2WkAmount = 1
                     nestData[0].color = K.color.deadColor
+                    
+                    nestData[0].productionAmount = 0
+                    nestData[0].mort4WkAmount = 0
+                    nestData[0].inventoryCode = nil
                 case "XX":
                     nestData[0].mortCode = contents
                     nestData[0].mort2WkAmount = 2
                     nestData[0].color = K.color.deadColor
+                    
+                    nestData[0].productionAmount = 0
+                    nestData[0].mort4WkAmount = 0
+                    nestData[0].inventoryCode = nil
                 case "Y":
                     nestData[0].mortCode = contents
                     nestData[0].mort4WkAmount = 1
                     nestData[0].color = K.color.deadColor
+                    
+                    nestData[0].productionAmount = 0
+                    nestData[0].mort2WkAmount = 0
+                    nestData[0].inventoryCode = nil
                 case "YY":
                     nestData[0].mortCode = contents
                     nestData[0].mort4WkAmount = 2
                     nestData[0].color = K.color.deadColor
+                    
+                    nestData[0].productionAmount = 0
+                    nestData[0].mort2WkAmount = 0
+                    nestData[0].inventoryCode = nil
 
                 case "1 Squab":
                     nestData[0].productionAmount = 1
                     nestData[0].color = K.color.squabColor
+                    
+                    nestData[0].mort2WkAmount = 0
+                    nestData[0].mort4WkAmount = 0
+                    nestData[0].inventoryCode = nil
                 case "2 Squab":
                     nestData[0].productionAmount = 2
                     nestData[0].color = K.color.squabColor
+                    
+                    nestData[0].mort2WkAmount = 0
+                    nestData[0].mort4WkAmount = 0
+                    nestData[0].inventoryCode = nil
                 default:
-                    nestData[0].color = K.color.inventoryColor
+                    nestData[0].color = "red"
                 }
             }
             
