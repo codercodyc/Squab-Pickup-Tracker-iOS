@@ -4,11 +4,10 @@
         <attribute name="color" optional="YES" attributeType="String" defaultValueString="cellColor"/>
         <attribute name="dateModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
-        <attribute name="mort2WkAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="mort4WkAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mort2WkAmount" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="mort4WkAmount" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="mortCode" optional="YES" attributeType="String"/>
-        <attribute name="mortLocation" optional="YES" attributeType="String"/>
-        <attribute name="productionAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="productionAmount" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PenClass" inverseName="nests" inverseEntity="PenClass"/>
     </entity>
     <entity name="PenClass" representedClassName="PenClass" syncable="YES" codeGenerationType="class">
@@ -21,7 +20,7 @@
         <relationship name="pens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PenClass" inverseName="parentCategory" inverseEntity="PenClass"/>
     </entity>
     <elements>
-        <element name="NestClass" positionX="160.96875" positionY="-40.9296875" width="128" height="178"/>
+        <element name="NestClass" positionX="160.96875" positionY="-40.9296875" width="128" height="163"/>
         <element name="PenClass" positionX="-66.984375" positionY="-25.99609375" width="128" height="88"/>
         <element name="Session" positionX="-285.1171875" positionY="-53.8984375" width="128" height="73"/>
     </elements>

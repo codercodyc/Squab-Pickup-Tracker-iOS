@@ -21,7 +21,7 @@ class PickupPenViewController: UIViewController {
     
     var selectedSesssion: Session? {
         didSet {
-            print(selectedSesssion?.dateCreated)
+            //print(selectedSesssion?.dateCreated)
             loadPens()
             //print(penData.count)
             
@@ -64,7 +64,9 @@ class PickupPenViewController: UIViewController {
         
         
         penLabel.text = penData[currentPenIndex].id
-        currentPen = penLabel.text ?? ""
+        currentPen = penLabel.text!
+        loadNests()
+        
         penCollectionView.delegate = self
         penCollectionView.backgroundColor = .none
         penCollectionView.dataSource = self
@@ -72,9 +74,8 @@ class PickupPenViewController: UIViewController {
         
         penView.clipsToBounds = true
         
-        loadNests()
-        //print(nestData.count)
-        //print(penData.count)
+        
+        
         
         
         
@@ -205,13 +206,8 @@ class PickupPenViewController: UIViewController {
         
         let sessionPredicate = NSPredicate(format: "parentCategory.dateCreated == %@", selectedSesssion!.dateCreated! as CVarArg)
         
-        if let safePen = pen {
-            let penPredicate = NSPredicate(format: "id MATCHES %@", safePen)
-            
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [sessionPredicate, penPredicate])
-        } else {
-            request.predicate = sessionPredicate
-        }
+        
+        request.predicate = sessionPredicate
         
         
         do {
@@ -258,14 +254,20 @@ extension PickupPenViewController: UICollectionViewDataSource {
         var cell = UICollectionViewCell()
         
         if let currentNest = nestData[indexPath.row].id, let color = nestData[indexPath.row].color {
-        //if let contents = pigeonData.pen[currentPen]?.nest[currentNest]?.contents,
-        
+            let mortString = nestData[indexPath.row].mortCode ?? ""
+            var productionString = ""
+            if nestData[indexPath.row].productionAmount != 0 {
+                productionString = String(nestData[indexPath.row].productionAmount)
+            }
+            
+            let contents = "\(mortString) \(productionString)"
+            print(contents)
                //let borderCondition = pigeonData.pen[currentPen]?.nest[currentNest]?.isMostRecent {
         
             
             if let tempCell = penCollectionView.dequeueReusableCell(withReuseIdentifier: K.nestCellIdentifier, for: indexPath) as? nestCell {
                 tempCell.updateNestLabel(currentNest)
-//                tempCell.updateContentsLabel(contents)
+                tempCell.updateContentsLabel(contents)
                 tempCell.backgroundColor = UIColor(named: color)
 //                if borderCondition {
 //                    tempCell.layer.borderWidth = 3
