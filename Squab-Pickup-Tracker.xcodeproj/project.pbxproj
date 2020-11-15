@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C31298F9255CDC9C00B1F246 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31298F8255CDC9C00B1F246 /* DashboardViewController.swift */; };
+		C32B309B256065D8000C9A46 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C32B3099256065D8000C9A46 /* DataModel.xcdatamodeld */; };
 		C3A5BF9A2557BC8B0085D440 /* ContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BF992557BC8B0085D440 /* ContentsCell.swift */; };
 		C3A5BF9F2557C3A10085D440 /* PigeonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BF9E2557C3A10085D440 /* PigeonData.swift */; };
 		C3A5BFA42557C60A0085D440 /* PigeonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BFA32557C60A0085D440 /* PigeonManager.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		C31298F8255CDC9C00B1F246 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		C32B309A256065D8000C9A46 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		C3A5BF992557BC8B0085D440 /* ContentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCell.swift; sourceTree = "<group>"; };
 		C3A5BF9E2557C3A10085D440 /* PigeonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigeonData.swift; sourceTree = "<group>"; };
 		C3A5BFA32557C60A0085D440 /* PigeonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigeonManager.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				C3BE0F542557A495006A8FE1 /* NestData.swift */,
 				C3A5BF9E2557C3A10085D440 /* PigeonData.swift */,
+				C32B3099256065D8000C9A46 /* DataModel.xcdatamodeld */,
 				C3A5BFA32557C60A0085D440 /* PigeonManager.swift */,
 			);
 			path = Model;
@@ -201,6 +204,7 @@
 				C3A5BF9F2557C3A10085D440 /* PigeonData.swift in Sources */,
 				C3BE0EFA25577D61006A8FE1 /* ViewController.swift in Sources */,
 				C3E6563A255A61CC0066E36C /* PenPopupViewController.swift in Sources */,
+				C32B309B256065D8000C9A46 /* DataModel.xcdatamodeld in Sources */,
 				C3BE0EF625577D61006A8FE1 /* AppDelegate.swift in Sources */,
 				C3BE0F35255780B4006A8FE1 /* nestCell.swift in Sources */,
 				C3BE0F552557A495006A8FE1 /* NestData.swift in Sources */,
@@ -411,6 +415,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C32B3099256065D8000C9A46 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C32B309A256065D8000C9A46 /* Data.xcdatamodel */,
+			);
+			currentVersion = C32B309A256065D8000C9A46 /* Data.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C3BE0EEA25577D61006A8FE1 /* Project object */;
 }

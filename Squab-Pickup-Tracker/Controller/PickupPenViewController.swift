@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import CoreData
 
 protocol PickupPenViewControllerDelegate {
     func passPigeonData(data: PigeonData)
 }
 
 class PickupPenViewController: UIViewController {
+    
+    var pData = [PenClass]()
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var delegate: PickupPenViewControllerDelegate?
 
@@ -58,7 +63,7 @@ class PickupPenViewController: UIViewController {
     }
     
     
-    
+//MARK: - Change Pens Actions
 
     @IBAction func nextPenPressed(_ sender: UIButton) {
         if currentPenIndex + 1 < pigeonData.penNames.count {
@@ -76,9 +81,6 @@ class PickupPenViewController: UIViewController {
     @IBAction func previousPenPressed(_ sender: UIButton) {
         if currentPenIndex - 1 >= 0 {
             currentPenIndex -= 1
-//            penLabel.text = pigeonData.penNames[currentPenIndex]
-//            currentPen = penLabel.text!
-            //penCollectionView.reloadData()
             animatePenNameChange(changeDirection: "Previous")
         }
         
@@ -127,6 +129,8 @@ class PickupPenViewController: UIViewController {
         }
     }
     
+//MARK: - penLongPressed
+    
     @IBAction func penLongPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
             
@@ -143,7 +147,7 @@ class PickupPenViewController: UIViewController {
     }
     
     
-    
+   //MARK: - Prepare for Segue
   
     
     
@@ -167,7 +171,25 @@ class PickupPenViewController: UIViewController {
         penCollectionView.reloadData()
     }
     
-
+//MARK: - Save and Load methods
+    
+    func savePens() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+        penCollectionView.reloadData()
+    }
+    
+    func loadPen() {
+        let request: NSFetchRequest<PenClass> = PenClass.fetchRequest()
+        do {
+            pData =  try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
+    }
     
 
 }
@@ -257,6 +279,7 @@ extension PickupPenViewController: UICollectionViewDelegate {
         
 }
 
+//MARK: - UICollectionViewDelegateFlowLayout
 
 extension PickupPenViewController: UICollectionViewDelegateFlowLayout {
     
@@ -322,12 +345,16 @@ extension PickupPenViewController: PenPopupViewControllerDelegate {
     
 }
 
+//MARK: - UIPopoverPresentationControllerDelegate
+
 
 extension PickupPenViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
 }
+
+
 
 
 
