@@ -33,9 +33,9 @@ class DashboardViewController: UIViewController {
        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        navigationController?.isNavigationBarHidden = false
+//    }
     
     
     

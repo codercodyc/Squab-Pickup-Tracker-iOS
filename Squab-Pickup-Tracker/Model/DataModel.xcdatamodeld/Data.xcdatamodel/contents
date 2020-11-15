@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="NestClass" representedClassName="NestClass" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="mort2WkAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="mort4WkAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -13,9 +13,15 @@
     <entity name="PenClass" representedClassName="PenClass" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="String"/>
         <relationship name="nests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NestClass" inverseName="parentCategory" inverseEntity="NestClass"/>
+        <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="pens" inverseEntity="Session"/>
+    </entity>
+    <entity name="Session" representedClassName="Session" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="pens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PenClass" inverseName="parentCategory" inverseEntity="PenClass"/>
     </entity>
     <elements>
         <element name="NestClass" positionX="169.96875" positionY="-19.94140625" width="128" height="163"/>
-        <element name="PenClass" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="PenClass" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Session" positionX="-282.9609375" positionY="-15.98046875" width="128" height="73"/>
     </elements>
 </model>

@@ -44,7 +44,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="PICKUP"/>
                                 <connections>
-                                    <segue destination="8Oa-ts-I5e" kind="show" id="c1F-zf-ydC"/>
+                                    <segue destination="ddv-Sj-maf" kind="show" id="HRp-r1-lna"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pigeon Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnM-6F-k5T">
@@ -180,7 +180,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnF-CX-UVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2470" y="166"/>
+            <point key="canvasLocation" x="3061" y="198"/>
+        </scene>
+        <!--Pickup Session View Controller-->
+        <scene sceneID="RL2-3O-dgg">
+            <objects>
+                <viewController id="ddv-Sj-maf" customClass="PickupSessionViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2ip-fd-une">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fa-o8-sDt">
+                                <rect key="frame" x="50" y="423" width="314" height="50"/>
+                                <color key="backgroundColor" red="0.33330518009999999" green="0.33334910870000001" blue="0.33329021930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ykd-Zv-WMb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="20"/>
+                                <state key="normal" title="NEW PICKUP SESSSION">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pickupSessionPressed:" destination="ddv-Sj-maf" eventType="touchUpInside" id="PR1-EK-JTY"/>
+                                    <segue destination="8Oa-ts-I5e" kind="show" id="47f-c8-G0S"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oOB-hW-IOK"/>
+                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3fa-o8-sDt" firstAttribute="centerY" secondItem="2ip-fd-une" secondAttribute="centerY" id="68c-Hr-qOb"/>
+                            <constraint firstItem="3fa-o8-sDt" firstAttribute="centerX" secondItem="2ip-fd-une" secondAttribute="centerX" id="bho-R7-E1e"/>
+                            <constraint firstItem="3fa-o8-sDt" firstAttribute="leading" secondItem="oOB-hW-IOK" secondAttribute="leading" constant="50" id="f4P-zw-wgt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VJ4-0R-bn6"/>
+                    <connections>
+                        <outlet property="pickupSessionButton" destination="3fa-o8-sDt" id="C0o-bQ-gkg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fp6-cO-Dq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442" y="667"/>
         </scene>
         <!--Pickup Pen View Controller-->
         <scene sceneID="tTX-sO-fcc">
@@ -341,7 +382,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1793" y="635"/>
+            <point key="canvasLocation" x="2384" y="667"/>
         </scene>
         <!--Selection View Controller-->
         <scene sceneID="oNb-Zh-Dfv">
@@ -460,7 +501,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wCx-m9-Kdg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2630" y="635"/>
+            <point key="canvasLocation" x="3220" y="667"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hwx-F8-msw">
