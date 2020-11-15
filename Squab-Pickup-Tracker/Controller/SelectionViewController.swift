@@ -31,28 +31,7 @@ class SelectionViewController: UIViewController {
     @IBOutlet weak var penLabel: UILabel!
     @IBOutlet weak var contentsCollectionView: UICollectionView!
     
-//    let nestContents = ["" ,"Clear", "E", "EE", "A", "AA", "B", "BB", "C", "CC", "D", "DD", "X", "XX", "Y", "YY", "1 Squab", "2 Squab"]
-//
-//    let nestContentColors: [String: String] = [
-//        "E" : K.color.inventoryColor,
-//        "EE" : K.color.inventoryColor,
-//        "A" : K.color.inventoryColor,
-//        "AA" : K.color.inventoryColor,
-//        "B" : K.color.inventoryColor,
-//        "BB" : K.color.inventoryColor,
-//        "C" : K.color.inventoryColor,
-//        "CC" : K.color.inventoryColor,
-//        "D" : K.color.inventoryColor,
-//        "DD" : K.color.inventoryColor,
-//        "X" : K.color.deadColor,
-//        "XX" : K.color.deadColor,
-//        "Y" : K.color.deadColor,
-//        "YY" : K.color.deadColor,
-//        "1 Squab" : K.color.squabColor,
-//        "2 Squab"  : K.color.squabColor,
-//        "Clear" : K.color.cellDefault,
-//        "" : "none"
-//    ]
+
     
     
     override func viewDidLoad() {
@@ -188,6 +167,7 @@ extension SelectionViewController: UICollectionViewDelegate {
                 }
             }
             
+            nestData[0].border = true
             nestData[0].dateModified = Date()
             saveNest()
             
@@ -220,16 +200,7 @@ extension SelectionViewController: UICollectionViewDelegate {
 }
 
 
-//extension SelectionViewController: PickupPenViewControllerDelegate {
-//    func passPigeonData(data: PigeonData) {
-//    }
-//    
-//    func didSelectNest(nest: NestClass) {
-//        selectedNest = nest
-//    }
-//    
-//    
-//}
+
 
 //MARK: - Data Manipulation Methods
 
@@ -244,8 +215,6 @@ extension SelectionViewController {
     }
     
     func loadNest(with request: NSFetchRequest<NestClass> = NestClass.fetchRequest()) {
-
-        //request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
 
 
         let sessionPredicate = NSPredicate(format: "parentCategory.parentCategory.dateCreated == %@", selectedNest!.parentCategory!.parentCategory!.dateCreated! as CVarArg)

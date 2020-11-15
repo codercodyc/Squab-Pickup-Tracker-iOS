@@ -223,7 +223,7 @@ class PickupPenViewController: UIViewController {
         
     }
     
-    func loadNests(with request: NSFetchRequest<NestClass> = NestClass.fetchRequest()) {
+    func loadNests(with request: NSFetchRequest<NestClass> = NestClass.fetchRequest(), reload: Bool = true) {
         
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
 
@@ -240,7 +240,10 @@ class PickupPenViewController: UIViewController {
             print("Error fetching context \(error)")
         }
         
-        penCollectionView.reloadData()
+        if reload {
+            penCollectionView.reloadData()
+
+        }
     }
 
 
@@ -269,19 +272,17 @@ extension PickupPenViewController: UICollectionViewDataSource {
             let inventoryString = nestData[indexPath.row].inventoryCode ?? ""
             
             let contents = "\(mortString)\(productionString)\(inventoryString)"
-            print(contents)
-               //let borderCondition = pigeonData.pen[currentPen]?.nest[currentNest]?.isMostRecent {
         
             
             if let tempCell = penCollectionView.dequeueReusableCell(withReuseIdentifier: K.nestCellIdentifier, for: indexPath) as? nestCell {
                 tempCell.updateNestLabel(currentNest)
                 tempCell.updateContentsLabel(contents)
                 tempCell.backgroundColor = UIColor(named: color)
-//                if borderCondition {
-//                    tempCell.layer.borderWidth = 3
-//                } else {
-//                    tempCell.layer.borderWidth = 0
-//                }
+                if nestData[indexPath.row].border {
+                    tempCell.layer.borderWidth = 3
+                } else {
+                    tempCell.layer.borderWidth = 0
+                }
                 
                 
                 tempCell.layer.cornerRadius = 5
@@ -376,22 +377,14 @@ extension PickupPenViewController: SelectionViewControllerDelegate {
         
        
 
-//        pigeonData.pen[pen]?.nest[nest]?.contents = nestContents
-//        penCollectionView.reloadItems(at: [cellToReload])
-//
-//        pigeonData.pen[pen]?.nest[nest]?.color = color
-//        pigeonData.pen[pen]?.nest[nest]?.isMostRecent = true
-//
-////        for currentNest in pigeonData.pen[pen]?.nest.count {
-////            currentNest.issele
-////        }
+        
+
         
         UIView.animate(withDuration: 0.75) {
-            //self.penCollectionView.reloadItems(at: [self.cellToReload])
-            self.loadNests()
+            self.loadNests(reload: false)
+            
         }
         
-        //penCollectionView.reloadData()
     }
     
     
