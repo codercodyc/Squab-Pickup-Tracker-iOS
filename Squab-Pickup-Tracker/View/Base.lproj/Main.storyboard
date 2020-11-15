@@ -202,7 +202,6 @@
                                 </state>
                                 <connections>
                                     <action selector="pickupSessionPressed:" destination="ddv-Sj-maf" eventType="touchUpInside" id="PR1-EK-JTY"/>
-                                    <segue destination="8Oa-ts-I5e" kind="show" identifier="toPickupPens" id="47f-c8-G0S"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -217,6 +216,7 @@
                     <navigationItem key="navigationItem" id="VJ4-0R-bn6"/>
                     <connections>
                         <outlet property="pickupSessionButton" destination="3fa-o8-sDt" id="C0o-bQ-gkg"/>
+                        <segue destination="8Oa-ts-I5e" kind="show" identifier="toPickupPens" id="1xV-7S-por"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fp6-cO-Dq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

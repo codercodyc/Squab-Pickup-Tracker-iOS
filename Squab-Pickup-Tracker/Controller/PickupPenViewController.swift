@@ -15,12 +15,16 @@ protocol PickupPenViewControllerDelegate {
 
 class PickupPenViewController: UIViewController {
     
-    var pData = [PenClass]()
+    
+    var penData = [PenClass]()
+    var nestData = [NestClass]()
     
     var selectedSesssion: Session? {
         didSet {
+            print(selectedSesssion?.dateCreated)
             loadPens()
-            print(pData.count)
+            //print(penData.count)
+            
             
         }
     }
@@ -57,7 +61,9 @@ class PickupPenViewController: UIViewController {
         super.viewDidLoad()
         
         
-        penLabel.text = pigeonData.penNames[currentPenIndex]
+        
+        
+        penLabel.text = penData[currentPenIndex].id
         currentPen = penLabel.text ?? ""
         penCollectionView.delegate = self
         penCollectionView.backgroundColor = .none
@@ -65,6 +71,10 @@ class PickupPenViewController: UIViewController {
         penCollectionView.reloadData()
         
         penView.clipsToBounds = true
+        
+        loadNests()
+        //print(nestData.count)
+        //print(penData.count)
         
         
         
@@ -75,12 +85,9 @@ class PickupPenViewController: UIViewController {
 //MARK: - Change Pens Actions
 
     @IBAction func nextPenPressed(_ sender: UIButton) {
-        if currentPenIndex + 1 < pigeonData.penNames.count {
+        if currentPenIndex + 1 < penData.count {
             currentPenIndex += 1
-//            penLabel.text = pigeonData.penNames[currentPenIndex]
-//            currentPen = penLabel.text!
-            
-            //penCollectionView.reloadData()
+
             animatePenNameChange(changeDirection: "Next")
         }
     
@@ -123,7 +130,8 @@ class PickupPenViewController: UIViewController {
             self.penCollectionView.alpha = 0.25
             
         } completion: { (done) in
-            self.penLabel.text = self.pigeonData.penNames[self.currentPenIndex]
+            self.penLabel.text = self.penData[self.currentPenIndex].id
+            self.loadNests()
             self.currentPen = self.penLabel.text!
             self.penCollectionView.reloadData()
             self.penStackViewCenterX.constant += moveDistance * 2
@@ -182,7 +190,7 @@ class PickupPenViewController: UIViewController {
     
 //MARK: - Save and Load methods
     
-    func savePens() {
+    func saveData() {
         do {
             try context.save()
         } catch {
@@ -191,23 +199,48 @@ class PickupPenViewController: UIViewController {
         penCollectionView.reloadData()
     }
     
-    func loadPens(with request: NSFetchRequest<PenClass> = PenClass.fetchRequest()) {
+    func loadPens(with request: NSFetchRequest<PenClass> = PenClass.fetchRequest(), pen: String? = nil) {
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         
         let sessionPredicate = NSPredicate(format: "parentCategory.dateCreated == %@", selectedSesssion!.dateCreated! as CVarArg)
-                
         
-        request.predicate = sessionPredicate
+        if let safePen = pen {
+            let penPredicate = NSPredicate(format: "id MATCHES %@", safePen)
+            
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [sessionPredicate, penPredicate])
+        } else {
+            request.predicate = sessionPredicate
+        }
         
         
         do {
-            pData =  try context.fetch(request)
+            penData =  try context.fetch(request)
         } catch {
             print("Error fetching context \(error)")
         }
         
-        //penCollectionView.reloadData()
     }
     
+    func loadNests(with request: NSFetchRequest<NestClass> = NestClass.fetchRequest()) {
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+
+        
+        let sessionPredicate = NSPredicate(format: "parentCategory.parentCategory.dateCreated == %@", selectedSesssion!.dateCreated! as CVarArg)
+        
+        let penPredicate = NSPredicate(format: "parentCategory.id MATCHES %@", penLabel.text!)
+        
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [sessionPredicate, penPredicate])
+        
+        do {
+            nestData =  try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
+        
+    }
+
 
 }
 
@@ -215,26 +248,30 @@ class PickupPenViewController: UIViewController {
 
 extension PickupPenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pigeonData.pen[currentPen]?.nest.count ?? 0
+        //return pigeonData.pen[currentPen]?.nest.count ?? 0
+        return nestData.count
+        
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         
-        let currentNest = nestNames[indexPath.row]
-        if let contents = pigeonData.pen[currentPen]?.nest[currentNest]?.contents, let color = pigeonData.pen[currentPen]?.nest[currentNest]?.color, let borderCondition = pigeonData.pen[currentPen]?.nest[currentNest]?.isMostRecent {
-            
+        if let currentNest = nestData[indexPath.row].id, let color = nestData[indexPath.row].color {
+        //if let contents = pigeonData.pen[currentPen]?.nest[currentNest]?.contents,
+        
+               //let borderCondition = pigeonData.pen[currentPen]?.nest[currentNest]?.isMostRecent {
+        
             
             if let tempCell = penCollectionView.dequeueReusableCell(withReuseIdentifier: K.nestCellIdentifier, for: indexPath) as? nestCell {
                 tempCell.updateNestLabel(currentNest)
-                tempCell.updateContentsLabel(contents)
-                tempCell.backgroundColor = color
-                if borderCondition {
-                    tempCell.layer.borderWidth = 3
-                } else {
-                    tempCell.layer.borderWidth = 0
-                }
+//                tempCell.updateContentsLabel(contents)
+                tempCell.backgroundColor = UIColor(named: color)
+//                if borderCondition {
+//                    tempCell.layer.borderWidth = 3
+//                } else {
+//                    tempCell.layer.borderWidth = 0
+//                }
                 
                 
                 tempCell.layer.cornerRadius = 5

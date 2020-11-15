@@ -13,6 +13,7 @@ class PickupSessionViewController: UIViewController {
     var pickupSessions = [Session]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
 
     
     @IBOutlet weak var pickupSessionButton: UIButton!
@@ -43,7 +44,7 @@ class PickupSessionViewController: UIViewController {
 
     @IBAction func pickupSessionPressed(_ sender: UIButton) {
         let newSession: Session = Session(context: context)
-        newSession.dateCreated = Date()
+        newSession.dateCreated = Date.init()
         print(newSession.dateCreated!)
         
         for pen in K.penIDs {
@@ -61,6 +62,7 @@ class PickupSessionViewController: UIViewController {
         }
 
         pickupSessions.append(newSession)
+        //selectedSession = pickupSessions.last
         saveSessions()
         
         performSegue(withIdentifier: K.segue.pickupPens, sender: self)
@@ -74,6 +76,7 @@ class PickupSessionViewController: UIViewController {
             let destinationVC = segue.destination as! PickupPenViewController
             
             destinationVC.selectedSesssion = pickupSessions.last
+            //print(pickupSessions.last?.dateCreated)
         }
     }
     
