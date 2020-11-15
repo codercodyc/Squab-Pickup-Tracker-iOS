@@ -6,19 +6,24 @@
 //
 
 import UIKit
+import CoreData
 
 protocol SelectionViewControllerDelegate {
-    func didUpdateNestContents(pen: String, nest: String, nestContents: String, color: UIColor)
+    func didUpdateNestContents()
 }
 
 class SelectionViewController: UIViewController {
     
     var delegate: SelectionViewControllerDelegate?
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var nestData = [NestClass]()
+    
+    
     var selectedNest: NestClass? {
         didSet {
-            print(selectedNest?.id)
-            
+            loadNest()
         }
     }
 
@@ -26,36 +31,34 @@ class SelectionViewController: UIViewController {
     @IBOutlet weak var penLabel: UILabel!
     @IBOutlet weak var contentsCollectionView: UICollectionView!
     
-    let nestContents = ["" ,"Clear", "E", "EE", "A", "AA", "B", "BB", "C", "CC", "D", "DD", "X", "XX", "Y", "YY", "1 Squab", "2 Squab"]
+//    let nestContents = ["" ,"Clear", "E", "EE", "A", "AA", "B", "BB", "C", "CC", "D", "DD", "X", "XX", "Y", "YY", "1 Squab", "2 Squab"]
+//
+//    let nestContentColors: [String: String] = [
+//        "E" : K.color.inventoryColor,
+//        "EE" : K.color.inventoryColor,
+//        "A" : K.color.inventoryColor,
+//        "AA" : K.color.inventoryColor,
+//        "B" : K.color.inventoryColor,
+//        "BB" : K.color.inventoryColor,
+//        "C" : K.color.inventoryColor,
+//        "CC" : K.color.inventoryColor,
+//        "D" : K.color.inventoryColor,
+//        "DD" : K.color.inventoryColor,
+//        "X" : K.color.deadColor,
+//        "XX" : K.color.deadColor,
+//        "Y" : K.color.deadColor,
+//        "YY" : K.color.deadColor,
+//        "1 Squab" : K.color.squabColor,
+//        "2 Squab"  : K.color.squabColor,
+//        "Clear" : K.color.cellDefault,
+//        "" : "none"
+//    ]
     
-    let nestContentColors: [String: String] = [
-        "E" : K.color.inventoryColor,
-        "EE" : K.color.inventoryColor,
-        "A" : K.color.inventoryColor,
-        "AA" : K.color.inventoryColor,
-        "B" : K.color.inventoryColor,
-        "BB" : K.color.inventoryColor,
-        "C" : K.color.inventoryColor,
-        "CC" : K.color.inventoryColor,
-        "D" : K.color.inventoryColor,
-        "DD" : K.color.inventoryColor,
-        "X" : K.color.deadColor,
-        "XX" : K.color.deadColor,
-        "Y" : K.color.deadColor,
-        "YY" : K.color.deadColor,
-        "1 Squab" : K.color.squabColor,
-        "2 Squab"  : K.color.squabColor,
-        "Clear" : K.color.cellDefault,
-        "" : "none"
-    ]
-    
-    var nest: String?
-    var pen: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nestLabel.text = nest
-        penLabel.text = pen
+        nestLabel.text = nestData[0].id
+        penLabel.text = nestData[0].parentCategory?.id
         
 
         
@@ -80,12 +83,12 @@ class SelectionViewController: UIViewController {
 
 extension SelectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return nestContents.count
+        return K.nestContents.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let contents = nestContents[indexPath.row]
-        let color = UIColor(named: nestContentColors[contents]!)
+        let contents = K.nestContents[indexPath.row]
+        let color = UIColor(named: K.nestContentColors[contents]!)
         var cell = UICollectionViewCell()
         if let tempCell = contentsCollectionView.dequeueReusableCell(withReuseIdentifier: K.ContentsCellIdentifier, for: indexPath) as? ContentsCell {
             tempCell.updateContentsLabel(contents)
@@ -103,24 +106,74 @@ extension SelectionViewController: UICollectionViewDataSource {
 
 
     
-    
+//MARK: - UICollectionViewDelegate
+
 
 
 extension SelectionViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = contentsCollectionView.cellForItem(at: indexPath) as? ContentsCell {
-            if var contents = cell.contentsLabel.text, let currentPen = penLabel.text, let currentNest = nestLabel.text, let currentColor = cell.backgroundColor {
-                if contents == "Clear" {
-                   contents = ""
+            let contents = cell.contentsLabel.text
+            
+            if contents == "E" || contents == "EE" || contents == "A" || contents == "AA" || contents == "B" || contents == "BB" || contents == "C" || contents == "CC" || contents == "D" || contents == "DD" {
+                nestData[0].inventoryCode = contents
+                nestData[0].color = K.color.inventoryColor
+            } else {
+            
+            
+                switch contents {
+                case "Clear":
+                    nestData[0].mortCode = ""
+                    nestData[0].productionAmount = 0
+                    nestData[0].mort2WkAmount = 0
+                    nestData[0].mort4WkAmount = 0
+                    nestData[0].color = K.color.cellDefault
+                    
+                case "X":
+                    nestData[0].mortCode = contents
+                    nestData[0].mort2WkAmount = 1
+                    nestData[0].color = K.color.deadColor
+                case "XX":
+                    nestData[0].mortCode = contents
+                    nestData[0].mort2WkAmount = 2
+                    nestData[0].color = K.color.deadColor
+                case "Y":
+                    nestData[0].mortCode = contents
+                    nestData[0].mort4WkAmount = 1
+                    nestData[0].color = K.color.deadColor
+                case "YY":
+                    nestData[0].mortCode = contents
+                    nestData[0].mort4WkAmount = 2
+                    nestData[0].color = K.color.deadColor
+
+                case "1 Squab":
+                    nestData[0].productionAmount = 1
+                    nestData[0].color = K.color.squabColor
+                case "2 Squab":
+                    nestData[0].productionAmount = 2
+                    nestData[0].color = K.color.squabColor
+                default:
+                    nestData[0].color = K.color.inventoryColor
                 }
-                self.delegate?.didUpdateNestContents(pen: currentPen, nest: currentNest, nestContents: contents, color: currentColor)
             }
             
-                
+            nestData[0].dateModified = Date()
+            saveNest()
+            
+            
+            self.delegate?.didUpdateNestContents()
+            
+            
         }
+            
+                
+        
         
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return true
@@ -147,3 +200,38 @@ extension SelectionViewController: UICollectionViewDelegate {
 //    
 //    
 //}
+
+//MARK: - Data Manipulation Methods
+
+extension SelectionViewController {
+    
+    func saveNest() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
+    
+    func loadNest(with request: NSFetchRequest<NestClass> = NestClass.fetchRequest()) {
+
+        //request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+
+
+        let sessionPredicate = NSPredicate(format: "parentCategory.parentCategory.dateCreated == %@", selectedNest!.parentCategory!.parentCategory!.dateCreated! as CVarArg)
+
+        let penPredicate = NSPredicate(format: "parentCategory.id MATCHES %@", selectedNest!.parentCategory!.id!)
+        
+        let nestPredicate = NSPredicate(format: "id MATCHES %@", selectedNest!.id!)
+
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [sessionPredicate, penPredicate, nestPredicate])
+
+        do {
+            nestData =  try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
+
+    }
+    
+}

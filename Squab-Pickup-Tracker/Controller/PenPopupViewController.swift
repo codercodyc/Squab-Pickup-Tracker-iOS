@@ -96,6 +96,10 @@ extension PenPopupViewController: UITableViewDelegate {
 
 
 extension PenPopupViewController: PickupPenViewControllerDelegate {
+    func didSelectNest(nest: NestClass) {
+        
+    }
+    
     func passPigeonData(data: PigeonData) {
         pigeonData = data
     }
