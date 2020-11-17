@@ -18,10 +18,10 @@ class SelectionViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var nestData = [NestClass]()
+    var nestData = [Nest]()
     
     
-    var selectedNest: NestClass? {
+    var selectedNest: Nest? {
         didSet {
             loadNest()
         }
@@ -57,9 +57,9 @@ class SelectionViewController: UIViewController {
     }
     
     func clearBordersForCurrentPen() {
-        var nests = selectedNest?.parentCategory?.nests?.allObjects as! [NestClass]
+        var nests = selectedNest?.parentCategory?.nests?.allObjects as! [Nest]
         
-        nests = nests.map({ (nest) -> NestClass in
+        nests = nests.map({ (nest) -> Nest in
             nest.border = false
             return nest
         })
@@ -236,7 +236,7 @@ extension SelectionViewController {
         }
     }
     
-    func loadNest(with request: NSFetchRequest<NestClass> = NestClass.fetchRequest()) {
+    func loadNest(with request: NSFetchRequest<Nest> = Nest.fetchRequest()) {
 
 
         let sessionPredicate = NSPredicate(format: "parentCategory.parentCategory.dateCreated == %@", selectedNest!.parentCategory!.parentCategory!.dateCreated! as CVarArg)

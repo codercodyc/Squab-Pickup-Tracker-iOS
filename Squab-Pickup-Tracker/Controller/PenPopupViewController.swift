@@ -21,7 +21,7 @@ class PenPopupViewController: UIViewController {
     
     var delegate: PenPopupViewControllerDelegate?
     
-    var penData: [PenClass]? {
+    var penData: [Pen]? {
         didSet {
             
         }
@@ -103,7 +103,7 @@ extension PenPopupViewController: UITableViewDelegate {
 
 
 extension PenPopupViewController: PickupPenViewControllerDelegate {
-    func didSelectNest(nest: NestClass) {
+    func didSelectNest(nest: Nest) {
         
     }
     

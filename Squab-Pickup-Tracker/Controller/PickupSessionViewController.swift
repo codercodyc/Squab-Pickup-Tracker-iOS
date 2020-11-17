@@ -48,11 +48,11 @@ class PickupSessionViewController: UIViewController {
         print(newSession.dateCreated!)
         
         for pen in K.penIDs {
-            let newPen = PenClass(context: context)
+            let newPen = Pen(context: context)
             newPen.id = pen
             
             for nest in K.nestIDs {
-                let newNest = NestClass(context: context)
+                let newNest = Nest(context: context)
                 newNest.id = nest
                 newPen.addToNests(newNest)
             }

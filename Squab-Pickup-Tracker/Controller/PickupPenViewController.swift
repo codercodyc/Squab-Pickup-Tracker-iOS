@@ -10,15 +10,15 @@ import CoreData
 
 protocol PickupPenViewControllerDelegate {
     
-    func didSelectNest(nest: NestClass)
+    func didSelectNest(nest: Nest)
     
 }
 
 class PickupPenViewController: UIViewController {
     
     
-    var penData = [PenClass]()
-    var nestData = [NestClass]()
+    var penData = [Pen]()
+    var nestData = [Nest]()
     
     var selectedSesssion: Session? {
         didSet {
@@ -52,7 +52,7 @@ class PickupPenViewController: UIViewController {
     let cellPaddingV = CGFloat(15)
     
     var cellToReload: IndexPath = .init()
-    var selectedNest: NestClass?
+    var selectedNest: Nest?
     
  
     
@@ -201,7 +201,7 @@ class PickupPenViewController: UIViewController {
         penCollectionView.reloadData()
     }
     
-    func loadPens(with request: NSFetchRequest<PenClass> = PenClass.fetchRequest(), pen: String? = nil) {
+    func loadPens(with request: NSFetchRequest<Pen> = Pen.fetchRequest(), pen: String? = nil) {
         
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         
@@ -219,7 +219,7 @@ class PickupPenViewController: UIViewController {
         
     }
     
-    func loadNests(with request: NSFetchRequest<NestClass> = NestClass.fetchRequest(), reload: Bool = true) {
+    func loadNests(with request: NSFetchRequest<Nest> = Nest.fetchRequest(), reload: Bool = true) {
         
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
 
