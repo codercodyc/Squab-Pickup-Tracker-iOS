@@ -10,16 +10,23 @@ import CoreData
 
 class PickupSessionViewController: UIViewController {
     
-    var pickupSessions = [Session]()
+    var sessions = [Session]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-
+    var selectedSession = Session()
     
     @IBOutlet weak var pickupSessionButton: UIButton!
+    @IBOutlet weak var sessionTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sessionTableView.delegate = self
+        sessionTableView.dataSource = self
+        
+        sessionTableView.backgroundColor = .none
+        
         
         pickupSessionButton.layer.cornerRadius = pickupSessionButton.frame.height / 2
         pickupSessionButton.layer.shadowColor = UIColor.black.cgColor
@@ -37,6 +44,10 @@ class PickupSessionViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         //navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        sessionTableView.reloadData()
     }
     
     //MARK: - Button Actions
@@ -60,10 +71,11 @@ class PickupSessionViewController: UIViewController {
             newSession.addToPens(newPen)
             
         }
-
-        pickupSessions.append(newSession)
+        
+        sessions.insert(newSession, at: 0)
         //selectedSession = pickupSessions.last
         saveSessions()
+        selectedSession = sessions[0]
         
         performSegue(withIdentifier: K.segue.pickupPens, sender: self)
         
@@ -75,7 +87,7 @@ class PickupSessionViewController: UIViewController {
         if segue.identifier == K.segue.pickupPens {
             let destinationVC = segue.destination as! PickupPenViewController
             
-            destinationVC.selectedSesssion = pickupSessions.last
+            destinationVC.selectedSesssion = selectedSession
             //print(pickupSessions.last?.dateCreated)
         }
     }
@@ -92,14 +104,57 @@ class PickupSessionViewController: UIViewController {
     }
     
     func loadSession() {
+        let sortDescending = NSSortDescriptor(key: "dateCreated", ascending: false)
+        
         let request: NSFetchRequest<Session> = Session.fetchRequest()
+        request.sortDescriptors = [sortDescending]
         
         do {
-            pickupSessions = try context.fetch(request)
+            sessions = try context.fetch(request)
         } catch {
             print("Error fetching context \(error)")
         }
     }
     
 
+}
+
+//MARK: - UITableViewDataSource
+
+extension PickupSessionViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sessions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMM d, yyyy, h:mm a")
+
+        let date = sessions[indexPath.row].dateCreated!
+        let dateString = dateFormatter.string(from: date)
+        
+        var cell = UITableViewCell()
+        if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.sessionCell) {
+            safeCell.textLabel?.text = dateString
+            safeCell.backgroundColor = .clear
+            cell = safeCell
+        }
+        
+        return cell
+        
+    }
+    
+    
+}
+
+//MARK: - UITableViewDelegate
+
+extension PickupSessionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedSession = sessions[indexPath.row]
+        performSegue(withIdentifier: K.segue.pickupPens, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
