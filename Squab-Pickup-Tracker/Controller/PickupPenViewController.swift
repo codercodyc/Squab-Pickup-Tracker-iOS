@@ -43,10 +43,8 @@ class PickupPenViewController: UIViewController {
     @IBOutlet weak var penStackView: UIStackView!
     
     
-    var pigeonData = PigeonData()
-    
+        
     let nestNames = ["1A", "1B", "1C","2A","2B","2C","3A","3B","3C","4A","4B","4C","5A","5B","5C","6A","6B","6C","7A","7B","7C","7D"]
-    var nestInfo = NestData(pen: "", nest: "")
     var currentPen = ""
     var currentPenIndex = 1
     
@@ -175,8 +173,7 @@ class PickupPenViewController: UIViewController {
             let destinationVC = segue.destination as! SelectionViewController
             destinationVC.delegate = self
             destinationVC.selectedNest = selectedNest
-            //destinationVC.nest = nestInfo.nest
-            //destinationVC.pen = nestInfo.pen
+          
             
         } else if segue.identifier == K.segue.segueToPenPopupIdentifier {
             let destinationVC = segue.destination as! PenPopupViewController
