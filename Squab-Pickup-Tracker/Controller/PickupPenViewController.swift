@@ -74,10 +74,7 @@ class PickupPenViewController: UIViewController {
         penView.clipsToBounds = true
         
         
-        
-        
-        
-        
+  
         
     }
     
@@ -242,6 +239,10 @@ class PickupPenViewController: UIViewController {
         }
     }
 
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        penCollectionView.reloadData()
+    }
 
 }
 
@@ -274,6 +275,17 @@ extension PickupPenViewController: UICollectionViewDataSource {
                 tempCell.updateNestLabel(currentNest)
                 tempCell.updateContentsLabel(contents)
                 tempCell.backgroundColor = UIColor(named: color)
+                
+                
+                switch traitCollection.userInterfaceStyle {
+                case .light:
+                    tempCell.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                case .dark:
+                    tempCell.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                default:
+                    tempCell.layer.borderColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+                }
+                
                 if nestData[indexPath.row].border {
                     tempCell.layer.borderWidth = 3
                 } else {
