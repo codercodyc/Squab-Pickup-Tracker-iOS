@@ -14,7 +14,7 @@ class PickupSessionViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var selectedSession = Session()
+    var selectedSession: Session?
     
     @IBOutlet weak var pickupSessionButton: UIButton!
     @IBOutlet weak var sessionTableView: UITableView!
@@ -44,11 +44,11 @@ class PickupSessionViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         //navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         sessionTableView.reloadData()
     }
+    
+
+    
     
     //MARK: - Button Actions
     
@@ -86,7 +86,6 @@ class PickupSessionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.segue.pickupPens {
             let destinationVC = segue.destination as! PickupPenViewController
-            
             destinationVC.selectedSesssion = selectedSession
             //print(pickupSessions.last?.dateCreated)
         }

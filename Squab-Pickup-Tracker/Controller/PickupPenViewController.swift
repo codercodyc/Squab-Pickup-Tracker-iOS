@@ -53,6 +53,7 @@ class PickupPenViewController: UIViewController {
     
     var cellToReload: IndexPath = .init()
     var selectedNest: Nest?
+    //var barTitle: String?
     
  
     
@@ -73,6 +74,7 @@ class PickupPenViewController: UIViewController {
         
         penView.clipsToBounds = true
         
+        //navigationController?.title = barTitle
         
   
         
