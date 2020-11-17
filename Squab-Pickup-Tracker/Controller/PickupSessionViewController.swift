@@ -18,6 +18,9 @@ class PickupSessionViewController: UIViewController {
     
     @IBOutlet weak var pickupSessionButton: UIButton!
     @IBOutlet weak var sessionTableView: UITableView!
+    @IBOutlet weak var refreshDataButton: UIBarButtonItem!
+    
+    var pigeonDataManager = PigeonDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,10 @@ class PickupSessionViewController: UIViewController {
         sessionTableView.dataSource = self
         
         sessionTableView.backgroundColor = .none
+
+        pigeonDataManager.delegate = self
+        
+        navigationItem.title = "Pickup Session"
         
         
         pickupSessionButton.layer.cornerRadius = pickupSessionButton.frame.height / 2
@@ -55,7 +62,7 @@ class PickupSessionViewController: UIViewController {
 
     @IBAction func pickupSessionPressed(_ sender: UIButton) {
         let newSession: Session = Session(context: context)
-        newSession.dateCreated = Date.init()
+        newSession.dateCreated = Date()
         print(newSession.dateCreated!)
         
         for pen in K.penIDs {
@@ -72,6 +79,7 @@ class PickupSessionViewController: UIViewController {
             
         }
         
+        
         sessions.insert(newSession, at: 0)
         //selectedSession = pickupSessions.last
         saveSessions()
@@ -80,6 +88,15 @@ class PickupSessionViewController: UIViewController {
         performSegue(withIdentifier: K.segue.pickupPens, sender: self)
         
     }
+    
+    //MARK: - Refresh API Pressed
+    
+    @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
+        pigeonDataManager.downloadData()
+        
+    }
+    
+    
     
     //MARK: - Segue
     
@@ -152,8 +169,41 @@ extension PickupSessionViewController: UITableViewDataSource {
 
 extension PickupSessionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedSession = sessions[indexPath.row]
-        performSegue(withIdentifier: K.segue.pickupPens, sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let alert = UIAlertController(title: "Load Pickup Session", message: "Are you sure you want to load this pickup session?", preferredStyle: .actionSheet)
+        
+        let continueAction = UIAlertAction(title: "Continue", style: .default) { (action) in
+            self.selectedSession = self.sessions[indexPath.row]
+            self.performSegue(withIdentifier: K.segue.pickupPens, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            tableView.deselectRow(at: indexPath, animated: true)
+
+        }
+        
+       
+        
+        alert.addAction(cancelAction)
+        alert.addAction(continueAction)
+     
+        present(alert, animated: true, completion: nil)
+        
+        
     }
+}
+
+//MARK: - PigeonDataManagerDelegate
+
+extension PickupSessionViewController: PigeonDataManagerDelegate {
+    func didDownloadData(data: String?) {
+        print(data)
+    }
+    
+    func didFailWithError(error: Error) {
+        print("error")
+    }
+    
+    
 }
