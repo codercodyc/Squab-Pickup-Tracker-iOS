@@ -8,7 +8,6 @@
 import Foundation
 
 struct ProductionData: Decodable {
-    //let pens: PenProduction
     let session: String
 }
 

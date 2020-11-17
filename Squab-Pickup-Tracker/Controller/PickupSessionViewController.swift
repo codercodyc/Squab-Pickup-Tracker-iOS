@@ -54,13 +54,7 @@ class PickupSessionViewController: UIViewController {
         sessionTableView.reloadData()
     }
     
-
-    
-    
-    //MARK: - Button Actions
-    
-
-    @IBAction func pickupSessionPressed(_ sender: UIButton) {
+    func addBlankSession() -> Session {
         let newSession: Session = Session(context: context)
         newSession.dateCreated = Date()
         print(newSession.dateCreated!)
@@ -84,7 +78,40 @@ class PickupSessionViewController: UIViewController {
         //selectedSession = pickupSessions.last
         saveSessions()
         selectedSession = sessions[0]
-        
+        return newSession
+    }
+
+    
+    
+    //MARK: - Button Actions
+    
+
+    @IBAction func pickupSessionPressed(_ sender: UIButton) {
+        addBlankSession()
+//        let newSession: Session = Session(context: context)
+//        newSession.dateCreated = Date()
+//        print(newSession.dateCreated!)
+//
+//        for pen in K.penIDs {
+//            let newPen = Pen(context: context)
+//            newPen.id = pen
+//
+//            for nest in K.nestIDs {
+//                let newNest = Nest(context: context)
+//                newNest.id = nest
+//                newPen.addToNests(newNest)
+//            }
+//
+//            newSession.addToPens(newPen)
+//
+//        }
+//
+//
+//        sessions.insert(newSession, at: 0)
+//        //selectedSession = pickupSessions.last
+//        saveSessions()
+//        selectedSession = sessions[0]
+//
         performSegue(withIdentifier: K.segue.pickupPens, sender: self)
         
     }
