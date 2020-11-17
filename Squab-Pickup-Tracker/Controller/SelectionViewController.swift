@@ -42,7 +42,6 @@ class SelectionViewController: UIViewController {
 
         
         
-        
         contentsCollectionView.delegate = self
         contentsCollectionView.dataSource = self
         contentsCollectionView.layer.backgroundColor = .none
@@ -57,8 +56,24 @@ class SelectionViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func clearBordersForCurrentPen() {
+        var nests = selectedNest?.parentCategory?.nests?.allObjects as! [NestClass]
+        
+        nests = nests.map({ (nest) -> NestClass in
+            nest.border = false
+            return nest
+        })
+        
+        saveData()
+        
+        
+    }
+        
    
 }
+
+//MARK: - UICollectionViewDataSource
+
 
 extension SelectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -81,6 +96,8 @@ extension SelectionViewController: UICollectionViewDataSource {
     }
     
     
+    
+    
 }
 
 
@@ -93,6 +110,9 @@ extension SelectionViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = contentsCollectionView.cellForItem(at: indexPath) as? ContentsCell {
+            
+            clearBordersForCurrentPen()
+            
             let contents = cell.contentsLabel.text
             
             if contents == "E" || contents == "EE" || contents == "A" || contents == "AA" || contents == "B" || contents == "BB" || contents == "C" || contents == "CC" || contents == "D" || contents == "DD" {
@@ -167,9 +187,11 @@ extension SelectionViewController: UICollectionViewDelegate {
                 }
             }
             
+            
+            
             nestData[0].border = true
             nestData[0].dateModified = Date()
-            saveNest()
+            saveData()
             
             
             self.delegate?.didUpdateNestContents()
@@ -206,7 +228,7 @@ extension SelectionViewController: UICollectionViewDelegate {
 
 extension SelectionViewController {
     
-    func saveNest() {
+    func saveData() {
         do {
             try context.save()
         } catch {

@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 protocol PickupPenViewControllerDelegate {
-    func passPigeonData(data: PigeonData) // remove
     
     func didSelectNest(nest: NestClass)
     
@@ -62,7 +61,6 @@ class PickupPenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         
         
@@ -184,7 +182,8 @@ class PickupPenViewController: UIViewController {
             let destinationVC = segue.destination as! PenPopupViewController
             destinationVC.delegate = self
             destinationVC.popoverPresentationController?.delegate = self
-            self.delegate?.passPigeonData(data: pigeonData)
+            destinationVC.penData = penData
+            
         }
         
     }
@@ -303,26 +302,14 @@ extension PickupPenViewController: UICollectionViewDataSource {
 
 extension PickupPenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let previousCell = penCollectionView.cellForItem(at: cellToReload) as? nestCell {
-            let previousNest = previousCell.nestLabel.text!
-            pigeonData.pen[currentPen]?.nest[previousNest]?.isMostRecent = false
-            penCollectionView.reloadItems(at: [cellToReload])
-        }
+
         
-        if let cell = penCollectionView.cellForItem(at: indexPath) as? nestCell {
-//            nestInfo.nest = cell.nestLabel.text ?? ""
-//            nestInfo.pen = penLabel.text ?? ""
-            cellToReload = indexPath
-            
-            
-            
-            
-            }
+        cellToReload = indexPath
+        
         selectedNest = nestData[indexPath.row]
-        //self.delegate?.didSelectNest(nest: nestData[indexPath.row])
-            self.performSegue(withIdentifier: K.segue.segueToSelectionIdentifier, sender: self)
+        self.performSegue(withIdentifier: K.segue.segueToSelectionIdentifier, sender: self)
         
-        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return true
@@ -374,29 +361,37 @@ extension PickupPenViewController: UICollectionViewDelegateFlowLayout {
 
 extension PickupPenViewController: SelectionViewControllerDelegate {
     func didUpdateNestContents() {
-        
-       
-
-        
-
-        
+   
+        loadNests(reload: false)
+    
+   
         UIView.animate(withDuration: 0.75) {
-            self.loadNests(reload: false)
+            let cellIndexPaths = self.penCollectionView.indexPathsForVisibleItems
+            self.penCollectionView.reloadItems(at: cellIndexPaths)
             
         }
+        
+        
+
+        
+        
+        
         
     }
     
     
 }
 
+//MARK: - PenPopupViewControllerDelegate
+
+
 
 extension PickupPenViewController: PenPopupViewControllerDelegate {
     func didSelectPen(pen: String) {
         currentPen = pen
         penLabel.text = pen
-        currentPenIndex = pigeonData.penNames.firstIndex(of: pen)!
-        penCollectionView.reloadData()
+        currentPenIndex = K.penIDs.firstIndex(of: pen)!
+        loadNests()
     }
     
     

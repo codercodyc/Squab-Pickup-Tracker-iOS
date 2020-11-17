@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol PenPopupViewControllerDelegate {
     func didSelectPen(pen: String)
@@ -20,7 +21,13 @@ class PenPopupViewController: UIViewController {
     
     var delegate: PenPopupViewControllerDelegate?
     
-    var pigeonData = PigeonData()
+    var penData: [PenClass]? {
+        didSet {
+            
+        }
+    }
+    
+    //var pigeonData = PigeonData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +51,7 @@ class PenPopupViewController: UIViewController {
         
         penListTableView.reloadData()
         
-        let totalTableHeight = pigeonData.penNames.count * 50
+        let totalTableHeight = penData!.count * 50
         
         if totalTableHeight <= 12 * 50 {
             
@@ -65,11 +72,11 @@ class PenPopupViewController: UIViewController {
 
 extension PenPopupViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pigeonData.penNames.count
+        return penData!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentPen = pigeonData.penNames[indexPath.row]
+        let currentPen = penData![indexPath.row].id
         var cell = UITableViewCell()
         
         if let tempCell = penListTableView.dequeueReusableCell(withIdentifier: K.PenListCellIdentifier) as? PenListCell {
@@ -98,10 +105,6 @@ extension PenPopupViewController: UITableViewDelegate {
 extension PenPopupViewController: PickupPenViewControllerDelegate {
     func didSelectNest(nest: NestClass) {
         
-    }
-    
-    func passPigeonData(data: PigeonData) {
-        pigeonData = data
     }
     
     
