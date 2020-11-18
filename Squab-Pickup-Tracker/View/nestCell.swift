@@ -11,7 +11,7 @@ class nestCell: UICollectionViewCell {
     
     @IBOutlet weak var nestLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
-    
+    @IBOutlet weak var nestStackView: UIStackView!
     
     func updateNestLabel(_ pen: String) {
         nestLabel.text = pen

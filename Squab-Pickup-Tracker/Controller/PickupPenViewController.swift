@@ -41,6 +41,9 @@ class PickupPenViewController: UIViewController {
     @IBOutlet weak var penView: UIView!
     @IBOutlet weak var penStackViewCenterX: NSLayoutConstraint!
     @IBOutlet weak var penStackView: UIStackView!
+    @IBOutlet weak var cellTypeSelector: UISegmentedControl!
+    
+    
     
     
         
@@ -49,12 +52,22 @@ class PickupPenViewController: UIViewController {
     var currentPenIndex = 0
     
     let cellPaddingH = CGFloat(15)
-    let cellPaddingV = CGFloat(15)
+    var cellPaddingV = CGFloat(15)
     
     var cellToReload: IndexPath = .init()
     var selectedNest: Nest?
-    //var barTitle: String?
     
+    var cellWidthLive: CGFloat {
+        return CGFloat((penCollectionView.frame.width - cellPaddingH * 4) / 3)
+    }
+    var cellHeightLive: CGFloat {
+        return CGFloat((penCollectionView.frame.height - cellPaddingV * 9) / 8)
+    }
+    
+    var cellWidthChart: CGFloat {
+        return CGFloat(penCollectionView.frame.width - cellPaddingH * 2)
+    }
+    var cellHeightChart = CGFloat(45)
  
     
     
@@ -164,6 +177,19 @@ class PickupPenViewController: UIViewController {
         
     }
     
+    //MARK: - Chart Type Action
+    
+    @IBAction func cellTypeChanged(_ sender: UISegmentedControl) {
+        if cellTypeSelector.selectedSegmentIndex == 0 {
+            cellPaddingV = CGFloat(15)
+        } else {
+            cellPaddingV = CGFloat(5)
+        }
+        penCollectionView.reloadData()
+        
+    }
+    
+    
     
    //MARK: - Prepare for Segue
   
@@ -245,6 +271,11 @@ class PickupPenViewController: UIViewController {
 
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if cellTypeSelector.selectedSegmentIndex == 0 {
+            cellPaddingV = 15
+        } else {
+            cellPaddingV = 5
+        }
         penCollectionView.reloadData()
     }
 
@@ -279,6 +310,11 @@ extension PickupPenViewController: UICollectionViewDataSource {
                 tempCell.updateNestLabel(currentNest)
                 tempCell.updateContentsLabel(contents)
                 tempCell.backgroundColor = UIColor(named: color)
+                if cellTypeSelector.selectedSegmentIndex == 0 {
+                    tempCell.nestStackView.axis = .vertical
+                } else {
+                    tempCell.nestStackView.axis = .horizontal
+                }
                 
                 
                 switch traitCollection.userInterfaceStyle {
@@ -351,11 +387,15 @@ extension PickupPenViewController: UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = CGFloat((penCollectionView.frame.width - cellPaddingH * 4) / 3)
-        let cellHeight = CGFloat((penCollectionView.frame.height - cellPaddingV * 9) / 8)
+//        let cellWidth = CGFloat((penCollectionView.frame.width - cellPaddingH * 4) / 3)
+//        let cellHeight = CGFloat((penCollectionView.frame.height - cellPaddingV * 9) / 8)
         
-        
-        return CGSize(width: cellWidth, height: cellHeight)
+        if cellTypeSelector.selectedSegmentIndex == 1 {
+            return CGSize(width: cellWidthChart, height: cellHeightChart)
+        } else {
+            return CGSize(width: cellWidthLive, height: cellHeightLive)
+            
+        }
  
     }
     

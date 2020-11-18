@@ -384,6 +384,7 @@
                                         <size key="customSize" width="100" height="70"/>
                                         <connections>
                                             <outlet property="nestLabel" destination="7ee-ty-9qe" id="Io1-2x-qTl"/>
+                                            <outlet property="nestStackView" destination="pVa-fC-uC7" id="3tb-Ze-KGF"/>
                                             <outlet property="statusLabel" destination="4af-QC-0ZP" id="ZYQ-CS-qb3"/>
                                         </connections>
                                     </collectionViewCell>
@@ -402,8 +403,23 @@
                             <constraint firstItem="DWk-fP-Oph" firstAttribute="leading" secondItem="xVu-bu-2Zc" secondAttribute="leading" id="zSf-yi-DFq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ZIu-Qa-9cS"/>
+                    <navigationItem key="navigationItem" id="ZIu-Qa-9cS">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="THe-7i-Pwo">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7TP-DS-eGE">
+                                <rect key="frame" x="287" y="5.5" width="107" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Live"/>
+                                    <segment title="Chart"/>
+                                </segments>
+                                <connections>
+                                    <action selector="cellTypeChanged:" destination="8Oa-ts-I5e" eventType="valueChanged" id="bMy-Ub-nJJ"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="cellTypeSelector" destination="7TP-DS-eGE" id="ivH-Bt-Jre"/>
                         <outlet property="nextPenButton" destination="pEI-es-jZr" id="tP8-Hm-T2E"/>
                         <outlet property="penCollectionView" destination="DWk-fP-Oph" id="IoY-DI-TuP"/>
                         <outlet property="penLabel" destination="ZAY-gp-zLq" id="zyO-LG-Cvy"/>
