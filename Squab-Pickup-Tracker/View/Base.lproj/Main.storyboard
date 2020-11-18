@@ -241,11 +241,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VJ4-0R-bn6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="rVn-eh-rjg">
-                            <connections>
-                                <action selector="refreshPressed:" destination="ddv-Sj-maf" id="S2E-Qs-s3a"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="rVn-eh-rjg">
+                                <connections>
+                                    <action selector="refreshPressed:" destination="ddv-Sj-maf" id="S2E-Qs-s3a"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="YS3-ga-tuz">
+                                <connections>
+                                    <action selector="trashButtonPressed:" destination="ddv-Sj-maf" id="2AX-Wb-gzB"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="pickupSessionButton" destination="3fa-o8-sDt" id="C0o-bQ-gkg"/>

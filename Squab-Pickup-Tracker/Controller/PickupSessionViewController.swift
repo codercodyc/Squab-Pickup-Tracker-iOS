@@ -94,6 +94,29 @@ class PickupSessionViewController: UIViewController {
         
     }
     
+    
+    @IBAction func trashButtonPressed(_ sender: UIBarButtonItem) {
+        var sessionsToDelete = [Session]()
+        
+        let request: NSFetchRequest<Session> = Session.fetchRequest()
+        let predicate = NSPredicate(format: "wasCreated = NO")
+        request.predicate = predicate
+        
+        do {
+            sessionsToDelete =  try context.fetch(request)
+        } catch {
+            print("Error deleting context \(error)")
+        }
+        
+        for session in sessionsToDelete {
+            context.delete(session)
+        }
+        saveSessions()
+        loadSessions()
+        
+    }
+    
+    
     //MARK: - Refresh API Pressed
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
