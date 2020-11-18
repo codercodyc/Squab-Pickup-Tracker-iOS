@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol PigeonDataManagerDelegate {
     func didDownloadData(data: PigeonData?)
@@ -18,6 +19,9 @@ class PigeonDataManager {
     let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-production-1wk-array"
     
     var delegate: PigeonDataManagerDelegate?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     
     
    
@@ -40,8 +44,11 @@ class PigeonDataManager {
                 
                 if let safeData = data {
                     if let pigeonData = self.parsePigeonData(safeData) {
-                        self.delegate?.didDownloadData(data: pigeonData)
-                        addToDatabase(with: pigeonData)
+                        DispatchQueue.main.async {
+                            self.addToDatabase(with: pigeonData)
+                            self.delegate?.didDownloadData(data: pigeonData)
+                        }
+                        
                     }
                     
                 }
@@ -65,14 +72,58 @@ class PigeonDataManager {
         }
     }
     
+    //MARK: - Data Manipulation Methods
+    func saveData() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context")
+        }
+        
+    }
+    
     
     //MARK: - Add Data to Database
     
     func addToDatabase(with data: PigeonData) {
         
         
+        // do for loop over sessions
+        let newSession = Session(context: self.context)
+        //let dateFormatter = DateFormatter()
+        
+        //        dateFormatter.locale = Locale(identifier: "en_US")
+        //        dateFormatter.setLocalizedDateFormatFromTemplate("E, dd MMM YYYY hh:mm:ss zzz")
+        //        let date = dateFormatter.date(from: data.session)
+        
+        newSession.dateCreated = Date()
+        newSession.wasCreated = false
+        
+        
+        
+        for pen in data.pens {
+            let newPen = Pen(context: context)
+            newPen.id = pen.penName
+            
+            for nest in pen.nests {
+                let newNest = Nest(context: context)
+                newNest.id = nest.nestName
+                newNest.productionAmount = Int16(nest.production)
+                newNest.color = K.color.squabColor
+                newPen.addToNests(newNest)
+            }
+            newSession.addToPens(newPen)
+            
+        }
+        
+        
+        
+        
+        self.saveData()
+        
+        
         
     }
-
+    
     
 }

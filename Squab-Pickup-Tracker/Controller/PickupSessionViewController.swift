@@ -43,7 +43,7 @@ class PickupSessionViewController: UIViewController {
         
         print(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask))
         
-        loadSession()
+        loadSessions()
 
         // Do any additional setup after loading the view.
     }
@@ -124,7 +124,7 @@ class PickupSessionViewController: UIViewController {
         
     }
     
-    func loadSession() {
+    func loadSessions() {
         let sortDescending = NSSortDescriptor(key: "dateCreated", ascending: false)
         
         let request: NSFetchRequest<Session> = Session.fetchRequest()
@@ -135,6 +135,7 @@ class PickupSessionViewController: UIViewController {
         } catch {
             print("Error fetching context \(error)")
         }
+        sessionTableView.reloadData()
     }
     
 
@@ -209,6 +210,7 @@ extension PickupSessionViewController: UITableViewDelegate {
 extension PickupSessionViewController: PigeonDataManagerDelegate {
     func didDownloadData(data: PigeonData?) {
         print("downloaded data")
+        loadSessions()
         
 
     }
