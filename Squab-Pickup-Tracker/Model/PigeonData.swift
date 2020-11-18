@@ -7,18 +7,25 @@
 
 import Foundation
 
-struct PigeonData: Decodable {
-    let session: String
+struct PigeonData: Codable {
+    let sessions: [SessionData]
+    
+}
+
+struct SessionData: Codable {
+    let date: Double
     let pens: [PenData]
 }
 
 
-struct PenData: Decodable {
+struct PenData: Codable {
     let nests: [NestData]
     let penName: String
 }
 
-struct NestData: Decodable {
+struct NestData: Codable {
     let nestName: String
-    let production: Int
+    let nestProduction: Int
+    let nestInventoryCode: String
+    let nestMortalityCode: String
 }

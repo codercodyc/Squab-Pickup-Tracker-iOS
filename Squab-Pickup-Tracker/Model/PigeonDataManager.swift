@@ -16,7 +16,7 @@ protocol PigeonDataManagerDelegate {
 
 class PigeonDataManager {
     
-    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-production-1wk-array"
+    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
     
     var delegate: PigeonDataManagerDelegate?
     
@@ -100,21 +100,37 @@ class PigeonDataManager {
         newSession.wasCreated = false
         
         
-        
-        for pen in data.pens {
-            let newPen = Pen(context: context)
-            newPen.id = pen.penName
+        for session in data.sessions {
+            newSession.dateCreated = Date.init(timeIntervalSince1970: session.date)
             
-            for nest in pen.nests {
-                let newNest = Nest(context: context)
-                newNest.id = nest.nestName
-                newNest.productionAmount = Int16(nest.production)
-                newNest.color = K.color.squabColor
-                newPen.addToNests(newNest)
+            for pen in session.pens {
+                let newPen = Pen(context: context)
+                newPen.id = pen.penName
+                
+                for nest in pen.nests {
+                    let newNest = Nest(context: context)
+                    newNest.id = nest.nestName
+                    
+                    if nest.nestProduction != 0 {
+                        newNest.productionAmount = Int16(nest.nestProduction)
+                        newNest.color = K.color.squabColor
+                    } else if nest.nestInventoryCode != "" {
+                        newNest.inventoryCode = nest.nestInventoryCode
+                        newNest.color = K.color.inventoryColor
+                    } else if nest.nestMortalityCode != "" {
+                        newNest.mortCode = nest.nestMortalityCode
+                        newNest.color = K.color.deadColor
+                    }
+                    
+                    newPen.addToNests(newNest)
+                }
+                newSession.addToPens(newPen)
+                
             }
-            newSession.addToPens(newPen)
             
         }
+        
+        
         
         
         
