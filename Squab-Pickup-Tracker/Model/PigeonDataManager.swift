@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PigeonDataManagerDelegate {
-    func didDownloadData(data: ProductionData?)
+    func didDownloadData(data: PigeonData?)
     func didFailWithError(error: Error)
 }
 
@@ -18,6 +18,13 @@ class PigeonDataManager {
     let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-production-1wk-array"
     
     var delegate: PigeonDataManagerDelegate?
+    
+    
+   
+    
+    
+    
+    //MARK: - Pigeon Data API Call
     
     
     func downloadData() {
@@ -34,9 +41,9 @@ class PigeonDataManager {
                 if let safeData = data {
                     if let pigeonData = self.parsePigeonData(safeData) {
                         self.delegate?.didDownloadData(data: pigeonData)
-                        //print(pigeonData.session)
+                        addToDatabase(with: pigeonData)
                     }
-                    //perform parsing function
+                    
                 }
             }
             
@@ -47,15 +54,24 @@ class PigeonDataManager {
     
     
     
-    func parsePigeonData(_ data: Data) -> ProductionData? {
+    func parsePigeonData(_ data: Data) -> PigeonData? {
         let decoder = JSONDecoder()
         do {
-            let decodedProductionData = try decoder.decode(ProductionData.self, from: data)
+            let decodedProductionData = try decoder.decode(PigeonData.self, from: data)
             return decodedProductionData
         } catch {
             delegate?.didFailWithError(error: error)
             return nil
         }
+    }
+    
+    
+    //MARK: - Add Data to Database
+    
+    func addToDatabase(with data: PigeonData) {
+        
+        
+        
     }
 
     

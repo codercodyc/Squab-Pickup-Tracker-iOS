@@ -57,7 +57,8 @@ class PickupSessionViewController: UIViewController {
     func addBlankSession() -> Session {
         let newSession: Session = Session(context: context)
         newSession.dateCreated = Date()
-        print(newSession.dateCreated!)
+        newSession.wasCreated = true
+        //print(newSession.dateCreated!)
         
         for pen in K.penIDs {
             let newPen = Pen(context: context)
@@ -88,30 +89,7 @@ class PickupSessionViewController: UIViewController {
 
     @IBAction func pickupSessionPressed(_ sender: UIButton) {
         addBlankSession()
-//        let newSession: Session = Session(context: context)
-//        newSession.dateCreated = Date()
-//        print(newSession.dateCreated!)
-//
-//        for pen in K.penIDs {
-//            let newPen = Pen(context: context)
-//            newPen.id = pen
-//
-//            for nest in K.nestIDs {
-//                let newNest = Nest(context: context)
-//                newNest.id = nest
-//                newPen.addToNests(newNest)
-//            }
-//
-//            newSession.addToPens(newPen)
-//
-//        }
-//
-//
-//        sessions.insert(newSession, at: 0)
-//        //selectedSession = pickupSessions.last
-//        saveSessions()
-//        selectedSession = sessions[0]
-//
+        
         performSegue(withIdentifier: K.segue.pickupPens, sender: self)
         
     }
@@ -178,10 +156,15 @@ extension PickupSessionViewController: UITableViewDataSource {
         let date = sessions[indexPath.row].dateCreated!
         let dateString = dateFormatter.string(from: date)
         
+        
         var cell = UITableViewCell()
         if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.sessionCell) {
             safeCell.textLabel?.text = dateString
-            safeCell.backgroundColor = .clear
+            if sessions[indexPath.row].wasCreated {
+                safeCell.backgroundColor = .clear
+            } else {
+                safeCell.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+            }
             cell = safeCell
         }
         
@@ -224,11 +207,10 @@ extension PickupSessionViewController: UITableViewDelegate {
 //MARK: - PigeonDataManagerDelegate
 
 extension PickupSessionViewController: PigeonDataManagerDelegate {
-    func didDownloadData(data: ProductionData?) {
-        print("downloaded")
-//        print(data?.session)
-//        print(data?.pens[0].penName)
-//        print(data)
+    func didDownloadData(data: PigeonData?) {
+        print("downloaded data")
+        
+
     }
     
     func didFailWithError(error: Error) {
