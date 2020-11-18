@@ -152,7 +152,7 @@
                                                 <constraint firstItem="eEj-0g-swd" firstAttribute="centerY" secondItem="L6Y-aM-7cQ" secondAttribute="centerY" id="aS1-IV-zzT"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.80784313725490198" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.42448461059999998" green="0.97686034440000002" blue="0.83936136959999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="penLabel" destination="gsu-zt-jx1" id="oGc-M2-kuN"/>
                                         </connections>
