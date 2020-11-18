@@ -339,7 +339,7 @@
                                     <constraint firstItem="T0y-Gf-7nw" firstAttribute="top" secondItem="bbH-2v-2Nr" secondAttribute="top" id="z2u-jD-6m6"/>
                                 </constraints>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DWk-fP-Oph">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DWk-fP-Oph">
                                 <rect key="frame" x="0.0" y="168" width="414" height="694"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wPI-Bi-E4w">
                                     <size key="itemSize" width="100" height="70"/>
@@ -412,6 +412,7 @@
                                     <segment title="Live"/>
                                     <segment title="Chart"/>
                                 </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemGreenColor"/>
                                 <connections>
                                     <action selector="cellTypeChanged:" destination="8Oa-ts-I5e" eventType="valueChanged" id="bMy-Ub-nJJ"/>
                                 </connections>
@@ -600,6 +601,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
