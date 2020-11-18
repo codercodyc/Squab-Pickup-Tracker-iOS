@@ -224,12 +224,15 @@ extension PickupSessionViewController: UITableViewDelegate {
 //MARK: - PigeonDataManagerDelegate
 
 extension PickupSessionViewController: PigeonDataManagerDelegate {
-    func didDownloadData(data: String?) {
-        print(data)
+    func didDownloadData(data: ProductionData?) {
+        print("downloaded")
+//        print(data?.session)
+//        print(data?.pens[0].penName)
+//        print(data)
     }
     
     func didFailWithError(error: Error) {
-        print("error")
+        print("JSON Parsing error \(error)")
     }
     
     

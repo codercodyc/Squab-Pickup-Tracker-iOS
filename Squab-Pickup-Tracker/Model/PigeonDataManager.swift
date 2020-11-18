@@ -8,14 +8,14 @@
 import UIKit
 
 protocol PigeonDataManagerDelegate {
-    func didDownloadData(data: String?)
+    func didDownloadData(data: ProductionData?)
     func didFailWithError(error: Error)
 }
 
 
 class PigeonDataManager {
     
-    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-production-1wk"
+    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-production-1wk-array"
     
     var delegate: PigeonDataManagerDelegate?
     
@@ -34,6 +34,7 @@ class PigeonDataManager {
                 if let safeData = data {
                     if let pigeonData = self.parsePigeonData(safeData) {
                         self.delegate?.didDownloadData(data: pigeonData)
+                        //print(pigeonData.session)
                     }
                     //perform parsing function
                 }
@@ -46,12 +47,11 @@ class PigeonDataManager {
     
     
     
-    func parsePigeonData(_ data: Data) -> String? {
+    func parsePigeonData(_ data: Data) -> ProductionData? {
         let decoder = JSONDecoder()
         do {
             let decodedProductionData = try decoder.decode(ProductionData.self, from: data)
-            let currentSession = decodedProductionData.session
-            return currentSession
+            return decodedProductionData
         } catch {
             delegate?.didFailWithError(error: error)
             return nil

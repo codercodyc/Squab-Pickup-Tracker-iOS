@@ -9,11 +9,16 @@ import Foundation
 
 struct ProductionData: Decodable {
     let session: String
+    let pens: [PenData]
 }
 
 
-struct PenProduction {
-    
+struct PenData: Decodable {
+    let nests: [NestData]
+    let penName: String
 }
 
-
+struct NestData: Decodable {
+    let nestName: String
+    let production: Int
+}
