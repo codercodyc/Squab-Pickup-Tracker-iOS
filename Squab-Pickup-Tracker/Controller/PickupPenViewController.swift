@@ -182,8 +182,11 @@ class PickupPenViewController: UIViewController {
     @IBAction func cellTypeChanged(_ sender: UISegmentedControl) {
         if cellTypeSelector.selectedSegmentIndex == 0 {
             cellPaddingV = CGFloat(15)
+            sender.selectedSegmentTintColor = .systemGreen
         } else {
             cellPaddingV = CGFloat(5)
+            sender.selectedSegmentTintColor = UIColor(named: K.color.inventoryColor)
+
         }
         penCollectionView.reloadData()
         
@@ -211,6 +214,7 @@ class PickupPenViewController: UIViewController {
         } else if segue.identifier == K.segue.pickupSettings {
             let destinationVC = segue.destination as! PickupSettingsViewController
             destinationVC.delegate = self
+            destinationVC.currentSession = selectedSesssion
         }
         
     }

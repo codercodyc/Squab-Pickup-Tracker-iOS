@@ -16,6 +16,14 @@ protocol PickupSettingsViewControllerDelegate {
 class PickupSettingsViewController: UIViewController {
 
     var delegate: PickupSettingsViewControllerDelegate?
+    
+    var pigeonManager = PigeonDataManager()
+    
+    var currentSession: Session? {
+        didSet {
+            
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +32,14 @@ class PickupSettingsViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+  
+    @IBAction func submitPressed(_ sender: UIButton) {
+        	pigeonManager.exportCurrentSession(with: currentSession!)
+        
     }
-    */
+    
+    
+    
     @IBAction func exitButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true) {
             self.delegate?.didPressExit()

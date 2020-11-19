@@ -22,7 +22,11 @@ class PigeonDataManager {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-    
+    var currentSession: Session? {
+        didSet {
+            exportCurrentSession(with: currentSession!)
+        }
+    }
     
    
     
@@ -101,7 +105,7 @@ class PigeonDataManager {
         
         
         for session in data.sessions {
-            newSession.dateCreated = Date.init(timeIntervalSince1970: session.date)
+            newSession.dateCreated = Date.init(timeIntervalSince1970: session.date!)
             
             for pen in session.pens {
                 let newPen = Pen(context: context)
@@ -112,7 +116,7 @@ class PigeonDataManager {
                     newNest.id = nest.nestName
                     
                     if nest.nestProduction != 0 {
-                        newNest.productionAmount = Int16(nest.nestProduction)
+                        newNest.productionAmount = Int16(nest.nestProduction ?? 0)
                         newNest.color = K.color.squabColor
                     } else if nest.nestInventoryCode != "" {
                         newNest.inventoryCode = nest.nestInventoryCode
@@ -136,6 +140,62 @@ class PigeonDataManager {
         
         
         self.saveData()
+        
+        
+        
+    }
+    
+    //MARK: - PigeonDataFromSession
+    func pigeonDataFromSession(with session: Session) -> PigeonData {
+//        var nestData = [NestData(nestName: "", nestProduction: 0, nestInventoryCode: "", nestMortalityCode: "")]
+//        var penData = [PenData(nests: nestData, penName: "")]
+//        var sessionData = SessionData(date: 0.0, pens: penData)
+//        var pigeonData = PigeonData(sessions: [sessionData])
+//
+//
+        var nestData = [NestData]()
+        var penData = [PenData]()
+        
+        
+        
+        for pen in session.pens?.allObjects as! [Pen] {
+            for nest in pen.nests?.allObjects as! [Nest] {
+                
+                let currentNest = NestData(nestName: nest.id ?? "", nestProduction: Int(Int16(nest.productionAmount)) , nestInventoryCode: nest.inventoryCode ?? "", nestMortalityCode: nest.mortCode ?? "")
+                nestData.append(currentNest)
+            }
+            let currentPen = PenData(nests: nestData, penName: pen.id)
+            penData.append(currentPen)
+            
+        }
+        
+        let sessionData = SessionData(date: session.dateCreated?.timeIntervalSince1970, pens: penData)
+        
+        let pigeonData = PigeonData(sessions: [sessionData])
+        
+        
+        
+        
+        return pigeonData
+    }
+    
+    
+    //MARK: - Encode Data and send out
+    
+    func exportCurrentSession(with session: Session) {
+        
+        let pigeonData = pigeonDataFromSession(with: session)
+        
+        
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(pigeonData)
+            let string = String(data: data, encoding: .utf8)!
+            print(string)
+        } catch {
+            print("Error encoding pigeonData \(error)")
+        }
+        
         
         
         

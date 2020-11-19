@@ -13,19 +13,19 @@ struct PigeonData: Codable {
 }
 
 struct SessionData: Codable {
-    let date: Double
+    let date: Double?
     let pens: [PenData]
 }
 
 
 struct PenData: Codable {
     let nests: [NestData]
-    let penName: String
+    let penName: String?
 }
 
 struct NestData: Codable {
-    let nestName: String
-    let nestProduction: Int
-    let nestInventoryCode: String
-    let nestMortalityCode: String
+    let nestName: String?
+    let nestProduction: Int?
+    let nestInventoryCode: String?
+    let nestMortalityCode: String?
 }
