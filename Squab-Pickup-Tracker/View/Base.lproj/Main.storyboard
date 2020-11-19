@@ -179,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnF-CX-UVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3061" y="198"/>
+            <point key="canvasLocation" x="2986" y="535"/>
         </scene>
         <!--Pickup Session View Controller-->
         <scene sceneID="RL2-3O-dgg">
@@ -263,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fp6-cO-Dq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1440.5797101449277" y="666.96428571428567"/>
+            <point key="canvasLocation" x="1365" y="1004"/>
         </scene>
         <!--Pickup Pen View Controller-->
         <scene sceneID="tTX-sO-fcc">
@@ -404,6 +404,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZIu-Qa-9cS">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape.fill" catalog="system" id="fAS-Xf-CHa">
+                            <connections>
+                                <segue destination="9Cz-nw-gNt" kind="presentation" identifier="toPickupSettings" id="gjS-xa-aY9"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="THe-7i-Pwo">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7TP-DS-eGE">
                                 <rect key="frame" x="287" y="5.5" width="107" height="33"/>
@@ -441,7 +446,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2384" y="667"/>
+            <point key="canvasLocation" x="2307" y="1004"/>
         </scene>
         <!--Selection View Controller-->
         <scene sceneID="oNb-Zh-Dfv">
@@ -560,7 +565,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wCx-m9-Kdg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3220" y="667"/>
+            <point key="canvasLocation" x="3143" y="1004"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hwx-F8-msw">
@@ -580,10 +585,62 @@
             </objects>
             <point key="canvasLocation" x="-262.31884057971018" y="138.61607142857142"/>
         </scene>
+        <!--Pickup Settings View Controller-->
+        <scene sceneID="SfY-Up-N3m">
+            <objects>
+                <viewController id="9Cz-nw-gNt" customClass="PickupSettingsViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OqL-V1-q9X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eO-X1-nbr">
+                                <rect key="frame" x="75" y="558" width="264" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rkm-es-DFT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
+                                <state key="normal" title="Submit Session">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rh-GB-Adk">
+                                <rect key="frame" x="75" y="683" width="264" height="50"/>
+                                <color key="backgroundColor" red="0.33330518009999999" green="0.33334910870000001" blue="0.33329021930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="J9l-4y-6oN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
+                                <state key="normal" title="Exit To Menu">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="exitButtonPressed:" destination="9Cz-nw-gNt" eventType="touchUpInside" id="CW5-yK-h51"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iIW-vF-fhy"/>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstItem="5eO-X1-nbr" firstAttribute="centerX" secondItem="OqL-V1-q9X" secondAttribute="centerX" id="RYK-yH-K45"/>
+                            <constraint firstItem="4rh-GB-Adk" firstAttribute="centerX" secondItem="OqL-V1-q9X" secondAttribute="centerX" id="Uif-iE-3zM"/>
+                            <constraint firstItem="4rh-GB-Adk" firstAttribute="top" secondItem="5eO-X1-nbr" secondAttribute="bottom" constant="75" id="W8s-fK-QrP"/>
+                            <constraint firstItem="iIW-vF-fhy" firstAttribute="bottom" secondItem="5eO-X1-nbr" secondAttribute="bottom" constant="200" id="Wva-SA-FrR"/>
+                            <constraint firstItem="5eO-X1-nbr" firstAttribute="leading" secondItem="iIW-vF-fhy" secondAttribute="leading" constant="75" id="b7n-gj-SJE"/>
+                            <constraint firstItem="4rh-GB-Adk" firstAttribute="leading" secondItem="5eO-X1-nbr" secondAttribute="leading" id="i68-j2-gZq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gJs-p1-jVZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQ8-jn-cBX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2306" y="345"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.left.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <namedColor name="backgroundColor">
             <color white="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>

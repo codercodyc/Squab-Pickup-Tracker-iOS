@@ -208,6 +208,9 @@ class PickupPenViewController: UIViewController {
             destinationVC.popoverPresentationController?.delegate = self
             destinationVC.penData = penData
             
+        } else if segue.identifier == K.segue.pickupSettings {
+            let destinationVC = segue.destination as! PickupSettingsViewController
+            destinationVC.delegate = self
         }
         
     }
@@ -459,6 +462,14 @@ extension PickupPenViewController: UIPopoverPresentationControllerDelegate {
     }
 }
 
+
+//MARK: - PickupSettingsViewControllerDelegate
+
+extension PickupPenViewController: PickupSettingsViewControllerDelegate {
+    func didPressExit() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+}
 
 
 

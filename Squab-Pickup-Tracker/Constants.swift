@@ -106,6 +106,7 @@ struct K {
         static let segueToPenPopupIdentifier = "toPenPopup"
         static let dashboard = "toDashboard"
         static let pickupPens = "toPickupPens"
+        static let pickupSettings = "toPickupSettings"
     }
     
     
