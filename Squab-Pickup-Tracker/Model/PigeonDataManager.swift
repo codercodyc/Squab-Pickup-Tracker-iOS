@@ -189,12 +189,12 @@ class PigeonDataManager {
         do {
             let data = try encoder.encode(pigeonData)
             postSesion(jsonData: data)
-            let string = String(data: data, encoding: .utf8)!
-            print(string)
+            //let string = String(data: data, encoding: .utf8)!
+//            print(string)
         } catch {
-            print("Error encoding pigeonData \(error)")
+            delegate?.didFailWithError(error: error)
         }
-        delegate?.didSubmitSession()
+        
         
         
         
@@ -226,12 +226,13 @@ class PigeonDataManager {
 
 
                 if let safeData = data {
-                    print(safeData)
+                    //print(safeData)
                     if let pigeonData = self.parsePigeonData(safeData) {
-                        print("parsed data")
+                        //print("parsed data")
                         DispatchQueue.main.async {
                             self.addToDatabase(with: pigeonData)
                             self.delegate?.didDownloadData(data: pigeonData)
+                            self.delegate?.didSubmitSession()
                         }
 
                     }

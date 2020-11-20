@@ -27,6 +27,8 @@ class PickupSettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pigeonManager.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -34,8 +36,14 @@ class PickupSettingsViewController: UIViewController {
 
   
     @IBAction func submitPressed(_ sender: UIButton) {
-        	pigeonManager.encodeCurrentSession(with: currentSession!)
-        dismiss(animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            self.pigeonManager.encodeCurrentSession(with: self.currentSession!)
+            
+        }
+            
+            
+        
         
         
     }
@@ -43,10 +51,63 @@ class PickupSettingsViewController: UIViewController {
     
     
     @IBAction func exitButtonPressed(_ sender: UIButton) {
-        self.dismiss(animated: true) {
+        dismiss(animated: true) {
             self.delegate?.didPressExit()
         }
        
     }
+    
+}
+
+//MARK: - PigeonDataManagerDelegate
+
+
+extension PickupSettingsViewController: PigeonDataManagerDelegate {
+    func didDownloadData(data: PigeonData?) {
+        
+    }
+    
+    
+    func didFailWithError(error: Error) {
+        DispatchQueue.main.async {
+            
+            
+            let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                
+                
+            }
+            
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+    func didSubmitSession() {
+        DispatchQueue.main.async {
+            
+            let alert = UIAlertController(title: "Session Submitted", message: "", preferredStyle: .alert)
+            
+            
+            
+            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+                self.delegate?.didPressExit()
+                
+            }
+            
+            
+            
+            
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     
 }
