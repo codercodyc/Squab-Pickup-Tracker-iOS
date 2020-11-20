@@ -20,8 +20,11 @@ class PigeonDataManager {
 //    let LastWeekProductionUrl = "http://169.254.16:5000/api/get-prod-and-mort-1wk"
 //    let sessionPostUrl = "http://169.254.16:5000/api/demo-post"
     //Simulator
-    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
-    let sessionPostUrl = "http://127.0.0.1:5000/api/demo-post"
+//    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
+//    let sessionPostUrl = "http://127.0.0.1:5000/api/demo-post"
+    //Live Server
+    let LastWeekProductionUrl = "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
+    let sessionPostUrl = "https://dkcpigeons.tk/api/demo-post"
     
     var delegate: PigeonDataManagerDelegate?
     

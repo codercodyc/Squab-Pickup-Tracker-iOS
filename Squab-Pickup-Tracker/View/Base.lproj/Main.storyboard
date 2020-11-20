@@ -214,7 +214,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0pk-7w-i9F">
+                                                <label autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0pk-7w-i9F">
                                                     <rect key="frame" x="20" y="0.0" width="355" height="46.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
@@ -409,7 +409,7 @@
                                 <segue destination="9Cz-nw-gNt" kind="presentation" identifier="toPickupSettings" id="gjS-xa-aY9"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="THe-7i-Pwo">
+                        <barButtonItem key="rightBarButtonItem" id="THe-7i-Pwo">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7TP-DS-eGE">
                                 <rect key="frame" x="287" y="5.5" width="107" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

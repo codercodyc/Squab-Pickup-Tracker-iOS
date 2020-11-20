@@ -41,11 +41,11 @@ class PickupSessionViewController: UIViewController {
         pickupSessionButton.layer.shadowOffset = .init(width: 0, height: 4)
         pickupSessionButton.layer.shadowRadius = 10
         
-        print(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask))
+//        print(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask))
         
         loadSessions()
 
-        // Do any additional setup after loading the view.
+       
     }
     
     
@@ -54,7 +54,7 @@ class PickupSessionViewController: UIViewController {
         sessionTableView.reloadData()
     }
     
-    func addBlankSession() -> Session {
+    func addBlankSession() {
         let newSession: Session = Session(context: context)
         newSession.dateCreated = Date()
         newSession.wasCreated = true
@@ -79,7 +79,7 @@ class PickupSessionViewController: UIViewController {
         //selectedSession = pickupSessions.last
         saveSessions()
         selectedSession = sessions[0]
-        return newSession
+        
     }
 
     
@@ -204,7 +204,9 @@ extension PickupSessionViewController: UITableViewDataSource {
 extension PickupSessionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let alert = UIAlertController(title: "Load Pickup Session", message: "Are you sure you want to load this pickup session?", preferredStyle: .actionSheet)
+        let titleText = sessionTableView.cellForRow(at: indexPath)?.textLabel?.text
+        
+        let alert = UIAlertController(title: titleText, message: "Are you sure you want to load this pickup session?", preferredStyle: .alert)
         
         let continueAction = UIAlertAction(title: "Continue", style: .default) { (action) in
             self.selectedSession = self.sessions[indexPath.row]

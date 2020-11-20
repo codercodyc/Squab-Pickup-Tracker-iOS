@@ -89,8 +89,13 @@ class PickupPenViewController: UIViewController {
         
         penView.clipsToBounds = true
         
-        //navigationController?.title = barTitle
-        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMM d")
+
+        let date = selectedSesssion?.dateCreated
+        let dateString = dateFormatter.string(from: date!)
+        navigationItem.title = dateString
   
         
     }
