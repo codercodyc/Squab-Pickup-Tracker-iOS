@@ -11,6 +11,7 @@ import CoreData
 protocol PigeonDataManagerDelegate {
     func didDownloadData(data: PigeonData?)
     func didFailWithError(error: Error)
+    func didSubmitSession()
 }
 
 
@@ -147,12 +148,7 @@ class PigeonDataManager {
     
     //MARK: - PigeonDataFromSession
     func pigeonDataFromSession(with session: Session) -> PigeonData {
-//        var nestData = [NestData(nestName: "", nestProduction: 0, nestInventoryCode: "", nestMortalityCode: "")]
-//        var penData = [PenData(nests: nestData, penName: "")]
-//        var sessionData = SessionData(date: 0.0, pens: penData)
-//        var pigeonData = PigeonData(sessions: [sessionData])
-//
-//
+
         var nestData = [NestData]()
         var penData = [PenData]()
         
@@ -166,6 +162,7 @@ class PigeonDataManager {
             }
             let currentPen = PenData(nests: nestData, penName: pen.id)
             penData.append(currentPen)
+            nestData = []
             
         }
         
@@ -195,7 +192,7 @@ class PigeonDataManager {
         } catch {
             print("Error encoding pigeonData \(error)")
         }
-        
+        delegate?.didSubmitSession()
         
         
         

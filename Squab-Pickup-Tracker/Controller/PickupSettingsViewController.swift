@@ -35,6 +35,8 @@ class PickupSettingsViewController: UIViewController {
   
     @IBAction func submitPressed(_ sender: UIButton) {
         	pigeonManager.exportCurrentSession(with: currentSession!)
+        dismiss(animated: true, completion: nil)
+        
         
     }
     
