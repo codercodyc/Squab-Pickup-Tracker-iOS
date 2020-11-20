@@ -18,6 +18,7 @@ protocol PigeonDataManagerDelegate {
 class PigeonDataManager {
     
     let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
+    let sessionPostUrl = "http://127.0.0.1:5000/api/demo-post"
     
     var delegate: PigeonDataManagerDelegate?
     
@@ -25,7 +26,7 @@ class PigeonDataManager {
 
     var currentSession: Session? {
         didSet {
-            exportCurrentSession(with: currentSession!)
+            encodeCurrentSession(with: currentSession!)
         }
     }
     
@@ -179,7 +180,7 @@ class PigeonDataManager {
     
     //MARK: - Encode Data and send out
     
-    func exportCurrentSession(with session: Session) {
+    func encodeCurrentSession(with session: Session) {
         
         let pigeonData = pigeonDataFromSession(with: session)
         
@@ -187,6 +188,7 @@ class PigeonDataManager {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(pigeonData)
+            postSesion(jsonData: data)
             let string = String(data: data, encoding: .utf8)!
             print(string)
         } catch {
@@ -199,4 +201,47 @@ class PigeonDataManager {
     }
     
     
+
+//MARK: - Post Session
+    func postSesion(jsonData: Data) {
+        if let url = URL(string: sessionPostUrl) {
+            let session = URLSession.shared
+            
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+           
+            
+            
+            let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+                
+
+                if error != nil {
+                    self.delegate?.didFailWithError(error: error!)
+                    return
+                }
+
+
+                if let safeData = data {
+                    print(safeData)
+                    if let pigeonData = self.parsePigeonData(safeData) {
+                        print("parsed data")
+                        DispatchQueue.main.async {
+                            self.addToDatabase(with: pigeonData)
+                            self.delegate?.didDownloadData(data: pigeonData)
+                        }
+
+                    }
+
+                }
+
+            }
+            task.resume()
+            
+        }
+    }
+
 }
