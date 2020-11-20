@@ -410,7 +410,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="THe-7i-Pwo">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7TP-DS-eGE">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7TP-DS-eGE">
                                 <rect key="frame" x="287" y="5.5" width="107" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
@@ -623,7 +623,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iIW-vF-fhy"/>
-                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <color key="backgroundColor" red="0.33333333333333331" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5eO-X1-nbr" firstAttribute="centerX" secondItem="OqL-V1-q9X" secondAttribute="centerX" id="RYK-yH-K45"/>
                             <constraint firstItem="4rh-GB-Adk" firstAttribute="centerX" secondItem="OqL-V1-q9X" secondAttribute="centerX" id="Uif-iE-3zM"/>

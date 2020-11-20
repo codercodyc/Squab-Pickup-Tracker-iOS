@@ -16,7 +16,10 @@ protocol PigeonDataManagerDelegate {
 
 
 class PigeonDataManager {
-    
+    //Phone
+//    let LastWeekProductionUrl = "http://169.254.16:5000/api/get-prod-and-mort-1wk"
+//    let sessionPostUrl = "http://169.254.16:5000/api/demo-post"
+    //Simulator
     let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
     let sessionPostUrl = "http://127.0.0.1:5000/api/demo-post"
     
