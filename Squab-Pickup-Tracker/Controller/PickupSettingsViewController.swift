@@ -29,6 +29,8 @@ class PickupSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         pigeonManager.delegate = self
+        
+        view.layer.cornerRadius = 20
 
         // Do any additional setup after loading the view.
     }

@@ -42,6 +42,9 @@ class PickupPenViewController: UIViewController {
     @IBOutlet weak var penStackViewCenterX: NSLayoutConstraint!
     @IBOutlet weak var penStackView: UIStackView!
     @IBOutlet weak var cellTypeSelector: UISegmentedControl!
+    @IBOutlet weak var settingsView: UIView!
+    @IBOutlet weak var settingsViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var settingsViewBottomConstraint: NSLayoutConstraint!
     
     
     
@@ -70,6 +73,9 @@ class PickupPenViewController: UIViewController {
     var cellHeightChart = CGFloat(45)
  
     
+    let settingsCardHeight: CGFloat = 400
+    var settingsShown = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +102,9 @@ class PickupPenViewController: UIViewController {
         let date = selectedSesssion?.dateCreated
         let dateString = dateFormatter.string(from: date!)
         navigationItem.title = dateString
+        toggleSttingsCard()
+        
+        
   
         
     }
@@ -197,6 +206,50 @@ class PickupPenViewController: UIViewController {
         
     }
     
+    //MARK: - Settings Action
+    
+    
+    @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
+        
+        settingsShown = !settingsShown
+        
+        
+        UIView.animate(withDuration: 1) {
+            
+            
+            self.toggleSttingsCard()
+        }
+    
+        
+    }
+    
+    //MARK: - touchesBegan
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        if settingsShown == true {
+            let touch = touches.first
+            guard let location = touch?.location(in: self.view) else {return}
+            if view.frame.contains(location) {
+                print("Tapped outside view")
+            } else {
+                print("Tapped inside view")
+            }
+        }
+        
+    }
+    
+    //MARK: - ShowSettingsCard Function
+    func toggleSttingsCard() {
+        
+        if self.settingsShown == false {
+            self.settingsViewBottomConstraint.constant = -1 * self.settingsCardHeight
+        } else {
+            self.settingsViewBottomConstraint.constant = 0
+        }
+    }
     
     
    //MARK: - Prepare for Segue
@@ -216,9 +269,11 @@ class PickupPenViewController: UIViewController {
             destinationVC.popoverPresentationController?.delegate = self
             destinationVC.penData = penData
             
+        
         } else if segue.identifier == K.segue.pickupSettings {
             let destinationVC = segue.destination as! PickupSettingsViewController
             destinationVC.delegate = self
+            //destinationVC.popoverPresentationController?.delegate = self
             destinationVC.currentSession = selectedSesssion
         }
         
@@ -435,11 +490,7 @@ extension PickupPenViewController: SelectionViewControllerDelegate {
             self.penCollectionView.reloadItems(at: cellIndexPaths)
             
         }
-        
-        
 
-        
-        
         
         
     }

@@ -390,6 +390,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAP-Ol-1H2">
+                                <rect key="frame" x="0.0" y="696" width="414" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="YFl-Zw-w56"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="9Cz-nw-gNt" kind="embed" identifier="toPickupSettings" id="fhP-Px-nzD"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xVu-bu-2Zc"/>
                         <color key="backgroundColor" name="backgroundColor"/>
@@ -397,6 +406,9 @@
                             <constraint firstItem="bbH-2v-2Nr" firstAttribute="top" secondItem="xVu-bu-2Zc" secondAttribute="top" constant="20" id="CHh-Y4-pfB"/>
                             <constraint firstItem="DWk-fP-Oph" firstAttribute="top" secondItem="bbH-2v-2Nr" secondAttribute="bottom" constant="10" id="FzW-R4-HXY"/>
                             <constraint firstItem="bbH-2v-2Nr" firstAttribute="leading" secondItem="xVu-bu-2Zc" secondAttribute="leading" constant="15" id="JRQ-EZ-Hg4"/>
+                            <constraint firstItem="bAP-Ol-1H2" firstAttribute="centerX" secondItem="olV-Al-Puf" secondAttribute="centerX" id="MPL-G9-82e"/>
+                            <constraint firstAttribute="bottom" secondItem="bAP-Ol-1H2" secondAttribute="bottom" id="XAK-Fa-6yP"/>
+                            <constraint firstItem="bAP-Ol-1H2" firstAttribute="leading" secondItem="olV-Al-Puf" secondAttribute="leading" id="f6o-aQ-i69"/>
                             <constraint firstItem="xVu-bu-2Zc" firstAttribute="trailing" secondItem="DWk-fP-Oph" secondAttribute="trailing" id="faH-Yp-Epx"/>
                             <constraint firstItem="bbH-2v-2Nr" firstAttribute="centerX" secondItem="olV-Al-Puf" secondAttribute="centerX" id="ocE-Sa-94d"/>
                             <constraint firstItem="xVu-bu-2Zc" firstAttribute="bottom" secondItem="DWk-fP-Oph" secondAttribute="bottom" id="yXt-fa-YSn"/>
@@ -404,12 +416,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZIu-Qa-9cS">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape.fill" catalog="system" id="fAS-Xf-CHa">
-                            <connections>
-                                <segue destination="9Cz-nw-gNt" kind="presentation" identifier="toPickupSettings" id="gjS-xa-aY9"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" id="THe-7i-Pwo">
+                        <barButtonItem key="leftBarButtonItem" id="THe-7i-Pwo">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7TP-DS-eGE">
                                 <rect key="frame" x="287" y="5.5" width="107" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -423,6 +430,11 @@
                                 </connections>
                             </segmentedControl>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="gearshape.fill" catalog="system" id="fAS-Xf-CHa">
+                            <connections>
+                                <action selector="settingsButtonPressed:" destination="8Oa-ts-I5e" id="H63-xQ-MqS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cellTypeSelector" destination="7TP-DS-eGE" id="ivH-Bt-Jre"/>
@@ -433,6 +445,9 @@
                         <outlet property="penStackViewCenterX" destination="C7h-z3-ZGt" id="olL-Oi-vHU"/>
                         <outlet property="penView" destination="T0y-Gf-7nw" id="RiT-Xo-wTZ"/>
                         <outlet property="previousPenButton" destination="Qlp-gg-TNn" id="hca-OE-I7e"/>
+                        <outlet property="settingsView" destination="bAP-Ol-1H2" id="NpJ-2c-irQ"/>
+                        <outlet property="settingsViewBottomConstraint" destination="XAK-Fa-6yP" id="Lu9-aH-5UN"/>
+                        <outlet property="settingsViewHeight" destination="YFl-Zw-w56" id="4zd-XC-wjr"/>
                         <segue destination="pFg-z0-jdm" kind="presentation" identifier="toSelectionViewController" modalTransitionStyle="crossDissolve" id="fOI-gx-nob"/>
                         <segue destination="JtT-N8-Rg8" kind="popoverPresentation" identifier="toPenPopup" popoverAnchorView="ZAY-gp-zLq" id="Bfg-5S-BDS">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -590,54 +605,60 @@
             <objects>
                 <viewController id="9Cz-nw-gNt" customClass="PickupSettingsViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OqL-V1-q9X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eO-X1-nbr">
-                                <rect key="frame" x="75" y="558" width="264" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qvb-3z-d3w">
+                                <rect key="frame" x="0.0" y="69" width="414" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eO-X1-nbr">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="sIF-or-B9g"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
+                                        <state key="normal" title="Submit Session">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="submitPressed:" destination="9Cz-nw-gNt" eventType="touchUpInside" id="k4y-8r-xbq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rh-GB-Adk">
+                                        <rect key="frame" x="0.0" y="60" width="414" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="3tF-cs-ZsD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
+                                        <state key="normal" title="Exit To Menu">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exitButtonPressed:" destination="9Cz-nw-gNt" eventType="touchUpInside" id="CW5-yK-h51"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="rkm-es-DFT"/>
+                                    <constraint firstAttribute="height" constant="110" id="P65-HM-H6g"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
-                                <state key="normal" title="Submit Session">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="submitPressed:" destination="9Cz-nw-gNt" eventType="touchUpInside" id="k4y-8r-xbq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rh-GB-Adk">
-                                <rect key="frame" x="75" y="683" width="264" height="50"/>
-                                <color key="backgroundColor" red="0.33330518009999999" green="0.33334910870000001" blue="0.33329021930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="J9l-4y-6oN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
-                                <state key="normal" title="Exit To Menu">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="exitButtonPressed:" destination="9Cz-nw-gNt" eventType="touchUpInside" id="CW5-yK-h51"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iIW-vF-fhy"/>
-                        <color key="backgroundColor" red="0.33333333333333331" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="5eO-X1-nbr" firstAttribute="centerX" secondItem="OqL-V1-q9X" secondAttribute="centerX" id="RYK-yH-K45"/>
-                            <constraint firstItem="4rh-GB-Adk" firstAttribute="centerX" secondItem="OqL-V1-q9X" secondAttribute="centerX" id="Uif-iE-3zM"/>
-                            <constraint firstItem="4rh-GB-Adk" firstAttribute="top" secondItem="5eO-X1-nbr" secondAttribute="bottom" constant="75" id="W8s-fK-QrP"/>
-                            <constraint firstItem="iIW-vF-fhy" firstAttribute="bottom" secondItem="5eO-X1-nbr" secondAttribute="bottom" constant="200" id="Wva-SA-FrR"/>
-                            <constraint firstItem="5eO-X1-nbr" firstAttribute="leading" secondItem="iIW-vF-fhy" secondAttribute="leading" constant="75" id="b7n-gj-SJE"/>
-                            <constraint firstItem="4rh-GB-Adk" firstAttribute="leading" secondItem="5eO-X1-nbr" secondAttribute="leading" id="i68-j2-gZq"/>
+                            <constraint firstItem="iIW-vF-fhy" firstAttribute="trailing" secondItem="qvb-3z-d3w" secondAttribute="trailing" id="ISw-Ma-ONt"/>
+                            <constraint firstItem="qvb-3z-d3w" firstAttribute="leading" secondItem="iIW-vF-fhy" secondAttribute="leading" id="ZRC-OZ-aF4"/>
+                            <constraint firstItem="qvb-3z-d3w" firstAttribute="top" secondItem="iIW-vF-fhy" secondAttribute="top" constant="25" id="pGY-Z4-M9R"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gJs-p1-jVZ"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="414" height="400"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQ8-jn-cBX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2306" y="345"/>
+            <point key="canvasLocation" x="2316" y="1601"/>
         </scene>
     </scenes>
     <resources>
@@ -658,6 +679,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
