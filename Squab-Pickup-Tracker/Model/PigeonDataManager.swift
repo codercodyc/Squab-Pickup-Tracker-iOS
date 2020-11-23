@@ -18,13 +18,13 @@ protocol PigeonDataManagerDelegate {
 class PigeonDataManager {
     //Phone
 //    let LastWeekProductionUrl = "http://169.254.16:5000/api/get-prod-and-mort-1wk"
-//    let sessionPostUrl = "http://169.254.16:5000/api/demo-post"
+//    let sessionPostUrl = "http://169.254.16:5000/api/post-new-prod-and-mort-1wk "
     //Simulator
-//    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
-//    let sessionPostUrl = "http://127.0.0.1:5000/api/demo-post"
+    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
+    let sessionPostUrl = "http://127.0.0.1:5000/api/post-new-prod-and-mort-1wk"
     //Live Server
-    let LastWeekProductionUrl = "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
-    let sessionPostUrl = "https://dkcpigeons.tk/api/demo-post"
+//    let LastWeekProductionUrl = "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
+//    let sessionPostUrl = "https://dkcpigeons.tk/api/post-new-prod-and-mort-1wk "
     
     var delegate: PigeonDataManagerDelegate?
     
@@ -132,6 +132,8 @@ class PigeonDataManager {
                     } else if nest.nestMortalityCode != "" {
                         newNest.mortCode = nest.nestMortalityCode
                         newNest.color = K.color.deadColor
+                    } else if nest.nestEntryTime != nil {
+                        newNest.dateModified = Date(timeIntervalSince1970: nest.nestEntryTime!)
                     }
                     
                     newPen.addToNests(newNest)
@@ -156,6 +158,8 @@ class PigeonDataManager {
     //MARK: - PigeonDataFromSession
     func pigeonDataFromSession(with session: Session) -> PigeonData {
 
+        
+        
         var nestData = [NestData]()
         var penData = [PenData]()
         
@@ -164,7 +168,8 @@ class PigeonDataManager {
         for pen in session.pens?.allObjects as! [Pen] {
             for nest in pen.nests?.allObjects as! [Nest] {
                 
-                let currentNest = NestData(nestName: nest.id ?? "", nestProduction: Int(Int16(nest.productionAmount)) , nestInventoryCode: nest.inventoryCode ?? "", nestMortalityCode: nest.mortCode ?? "")
+                
+                let currentNest = NestData(nestEntryTime: nest.dateModified?.timeIntervalSince1970 ?? nil, nestName: nest.id ?? "", nestProduction: Int(Int16(nest.productionAmount)) , nestInventoryCode: nest.inventoryCode ?? "", nestMortalityCode: nest.mortCode ?? "")
                 nestData.append(currentNest)
             }
             let currentPen = PenData(nests: nestData, penName: pen.id)
@@ -175,7 +180,7 @@ class PigeonDataManager {
         
         let sessionData = SessionData(date: session.dateCreated?.timeIntervalSince1970, pens: penData)
         
-        let pigeonData = PigeonData(sessions: [sessionData])
+        let pigeonData = PigeonData(sessions: [sessionData], forceWrite: true)
         
         
         
@@ -192,10 +197,11 @@ class PigeonDataManager {
         
         
         let encoder = JSONEncoder()
+//        encoder.nil
         do {
             let data = try encoder.encode(pigeonData)
             postSesion(jsonData: data)
-            //let string = String(data: data, encoding: .utf8)!
+//            let string = String(data: data, encoding: .utf8)!
 //            print(string)
         } catch {
             delegate?.didFailWithError(error: error)
@@ -229,21 +235,28 @@ class PigeonDataManager {
                     self.delegate?.didFailWithError(error: error!)
                     return
                 }
-
-
-                if let safeData = data {
-                    //print(safeData)
-                    if let pigeonData = self.parsePigeonData(safeData) {
-                        //print("parsed data")
-                        DispatchQueue.main.async {
-                            self.addToDatabase(with: pigeonData)
-                            self.delegate?.didDownloadData(data: pigeonData)
-                            self.delegate?.didSubmitSession()
-                        }
-
+                if let responseData = response as? HTTPURLResponse {
+                    if responseData.statusCode == 200 {
+                        self.delegate?.didSubmitSession()
+                    } else {
+                        print(responseData.statusCode)
                     }
-
                 }
+                
+
+//                if let safeData = data {
+//                    //print(safeData)
+//                    if let pigeonData = self.parsePigeonData(safeData) {
+//                        //print("parsed data")
+//                        DispatchQueue.main.async {
+//                            //self.addToDatabase(with: pigeonData)
+                //self.delegate?.didDownloadData(data: pigeonData)
+//
+//                        }
+//
+//                    }
+//
+//                }
 
             }
             task.resume()

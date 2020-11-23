@@ -9,6 +9,7 @@ import Foundation
 
 struct PigeonData: Codable {
     let sessions: [SessionData]
+    let forceWrite: Bool?
     
 }
 
@@ -24,6 +25,7 @@ struct PenData: Codable {
 }
 
 struct NestData: Codable {
+    let nestEntryTime: Double!
     let nestName: String?
     let nestProduction: Int?
     let nestInventoryCode: String?
