@@ -471,20 +471,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mu3-ka-f9f">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="z8W-rj-ku7">
                                 <rect key="frame" x="0.0" y="742" width="414" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W13-Ia-wGY">
+                                        <rect key="frame" x="0.0" y="32" width="202" height="36"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="20"/>
+                                        <color key="tintColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Multiple Inputs">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="multipleInputsPressed:" destination="pFg-z0-jdm" eventType="touchUpInside" id="qov-Ei-EQ9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mu3-ka-f9f">
+                                        <rect key="frame" x="212" y="20.5" width="202" height="59"/>
+                                        <color key="backgroundColor" name="backgroundColor"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="40"/>
+                                        <state key="normal" title="DONE">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doneButtonPressed:" destination="pFg-z0-jdm" eventType="touchUpInside" id="K5P-Tn-YEB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" name="backgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="TYf-io-Ewn"/>
+                                    <constraint firstAttribute="height" constant="100" id="mDL-Ml-gXm"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <state key="normal" title="DONE">
-                                    <color key="titleColor" systemColor="labelColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="doneButtonPressed:" destination="pFg-z0-jdm" eventType="touchUpInside" id="K5P-Tn-YEB"/>
-                                </connections>
-                            </button>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wsa-j2-ae9">
                                 <rect key="frame" x="50" y="30" width="314" height="40"/>
                                 <subviews>
@@ -564,16 +581,17 @@
                             <constraint firstItem="wsa-j2-ae9" firstAttribute="top" secondItem="FiP-ON-Psi" secondAttribute="top" constant="30" id="6wr-kA-Syc"/>
                             <constraint firstItem="JQN-fW-Uq7" firstAttribute="top" secondItem="wsa-j2-ae9" secondAttribute="bottom" constant="25" id="BrX-gr-mWc"/>
                             <constraint firstItem="wsa-j2-ae9" firstAttribute="centerX" secondItem="Di1-ZX-Gdh" secondAttribute="centerX" id="Ge0-G8-5YB"/>
-                            <constraint firstItem="mu3-ka-f9f" firstAttribute="leading" secondItem="FiP-ON-Psi" secondAttribute="leading" id="Lhb-ai-fe1"/>
-                            <constraint firstItem="mu3-ka-f9f" firstAttribute="top" secondItem="JQN-fW-Uq7" secondAttribute="bottom" constant="10" id="NwM-6h-oee"/>
-                            <constraint firstItem="mu3-ka-f9f" firstAttribute="trailing" secondItem="FiP-ON-Psi" secondAttribute="trailing" id="VzL-Mc-aUD"/>
+                            <constraint firstItem="z8W-rj-ku7" firstAttribute="leading" secondItem="FiP-ON-Psi" secondAttribute="leading" id="Hb9-eT-Acu"/>
+                            <constraint firstAttribute="bottom" secondItem="z8W-rj-ku7" secondAttribute="bottom" id="Q7q-YV-mDY"/>
+                            <constraint firstItem="FiP-ON-Psi" firstAttribute="trailing" secondItem="z8W-rj-ku7" secondAttribute="trailing" id="Szt-UR-i7l"/>
                             <constraint firstItem="wsa-j2-ae9" firstAttribute="leading" secondItem="FiP-ON-Psi" secondAttribute="leading" constant="50" id="aBm-68-w2F"/>
                             <constraint firstItem="JQN-fW-Uq7" firstAttribute="centerX" secondItem="Di1-ZX-Gdh" secondAttribute="centerX" id="dMY-np-iey"/>
-                            <constraint firstAttribute="bottom" secondItem="mu3-ka-f9f" secondAttribute="bottom" id="yhw-i9-v6X"/>
+                            <constraint firstItem="z8W-rj-ku7" firstAttribute="top" secondItem="JQN-fW-Uq7" secondAttribute="bottom" constant="10" id="uq2-X2-hWb"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="contentsCollectionView" destination="JQN-fW-Uq7" id="x2x-lE-nkn"/>
+                        <outlet property="multipleInputsButton" destination="W13-Ia-wGY" id="Lkg-4X-WEG"/>
                         <outlet property="nestLabel" destination="PfW-j9-tdQ" id="EWO-jh-grN"/>
                         <outlet property="penLabel" destination="Ruh-UT-ExJ" id="gLj-T4-ORI"/>
                     </connections>
