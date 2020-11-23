@@ -169,7 +169,7 @@ class PigeonDataManager {
             for nest in pen.nests?.allObjects as! [Nest] {
                 
                 
-                let currentNest = NestData(nestEntryTime: nest.dateModified?.timeIntervalSince1970 ?? nil, nestName: nest.id ?? "", nestProduction: Int(Int16(nest.productionAmount)) , nestInventoryCode: nest.inventoryCode ?? "", nestMortalityCode: nest.mortCode ?? "")
+                let currentNest = NestData(nestEntryTime: nest.dateModified?.timeIntervalSince1970 ?? 0, nestName: nest.id ?? "", nestProduction: Int(Int16(nest.productionAmount)) , nestInventoryCode: nest.inventoryCode ?? "", nestMortalityCode: nest.mortCode ?? "")
                 nestData.append(currentNest)
             }
             let currentPen = PenData(nests: nestData, penName: pen.id)
