@@ -74,7 +74,10 @@ class PickupPenViewController: UIViewController {
  
     
     let settingsCardHeight: CGFloat = 400
-    var settingsShown = false
+    var settingsShown = true
+    
+    var blurView = UIVisualEffectView()
+    
     
     
     override func viewDidLoad() {
@@ -102,6 +105,19 @@ class PickupPenViewController: UIViewController {
         let date = selectedSesssion?.dateCreated
         let dateString = dateFormatter.string(from: date!)
         navigationItem.title = dateString
+        
+        
+        //create blur view beneath settings
+        blurView.frame = view.frame
+        let blurEffect = UIBlurEffect(style: .dark)
+        //let vibrancy = UIVibrancyEffect(blurEffect: blurEffect)
+        blurView.effect = blurEffect
+        //blurView.effect = vibrancy
+        view.insertSubview(blurView, belowSubview: settingsView)
+        
+            
+        
+       
         toggleSttingsCard()
         
         
@@ -211,14 +227,10 @@ class PickupPenViewController: UIViewController {
     
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
         
-        settingsShown = !settingsShown
         
         
-        UIView.animate(withDuration: 1) {
-            
-            
-            self.toggleSttingsCard()
-        }
+        
+        toggleSttingsCard()
     
         
     }
@@ -231,11 +243,11 @@ class PickupPenViewController: UIViewController {
         
         if settingsShown == true {
             let touch = touches.first
-            guard let location = touch?.location(in: self.view) else {return}
+            guard let location = touch?.location(in: settingsView) else {return}
             if view.frame.contains(location) {
-                print("Tapped outside view")
+                
             } else {
-                print("Tapped inside view")
+                toggleSttingsCard()
             }
         }
         
@@ -244,9 +256,15 @@ class PickupPenViewController: UIViewController {
     //MARK: - ShowSettingsCard Function
     func toggleSttingsCard() {
         
+        settingsShown = !settingsShown
+       
+        
+        
         if self.settingsShown == false {
+            blurView.isHidden = true
             self.settingsViewBottomConstraint.constant = -1 * self.settingsCardHeight
         } else {
+            blurView.isHidden = false
             self.settingsViewBottomConstraint.constant = 0
         }
     }

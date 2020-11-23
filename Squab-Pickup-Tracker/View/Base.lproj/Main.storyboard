@@ -418,7 +418,7 @@
                     <navigationItem key="navigationItem" id="ZIu-Qa-9cS">
                         <barButtonItem key="leftBarButtonItem" id="THe-7i-Pwo">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7TP-DS-eGE">
-                                <rect key="frame" x="287" y="5.5" width="107" height="33"/>
+                                <rect key="frame" x="20" y="5.5" width="107" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Live"/>
