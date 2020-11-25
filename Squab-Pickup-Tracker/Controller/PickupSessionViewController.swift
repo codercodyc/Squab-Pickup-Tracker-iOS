@@ -129,6 +129,7 @@ class PickupSessionViewController: UIViewController {
     }
     
     //MARK: - Delete Sessions
+    
     func deleteDownloadedSessions() {
         var sessionsToDelete = [Session]()
         
