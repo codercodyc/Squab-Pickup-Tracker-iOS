@@ -97,6 +97,14 @@ extension SelectionViewController: UICollectionViewDataSource {
             tempCell.updateContentsLabel(contents)
             tempCell.backgroundColor = color
             tempCell.layer.cornerRadius = 10
+            
+           
+            if contents == nestData[0].inventoryCode || contents == nestData[0].mortCode || contents == "\(nestData[0].productionAmount) Squab" {
+                tempCell.layer.borderWidth = 3
+            } else {
+                tempCell.layer.borderWidth = 0
+            
+            }
             cell = tempCell
         }
         
@@ -205,8 +213,12 @@ extension SelectionViewController: UICollectionViewDelegate {
             
                 
         
-        
-        self.dismiss(animated: true, completion: nil)
+        if multipleInputsButton.isSelected == false {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            loadNest()
+            contentsCollectionView.reloadItems(at: contentsCollectionView.indexPathsForVisibleItems)
+        }
     }
     
     
