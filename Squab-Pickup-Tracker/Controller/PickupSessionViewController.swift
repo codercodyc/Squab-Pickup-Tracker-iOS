@@ -28,8 +28,8 @@ class PickupSessionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        datePickerContainerView.layer.cornerRadius = 20
-        datePickerContainerView.isHidden = true
+//        datePickerContainerView.layer.cornerRadius = 20
+//        datePickerContainerView.isHidden = true
         
         sessionTableView.delegate = self
         sessionTableView.dataSource = self
@@ -102,7 +102,7 @@ class PickupSessionViewController: UIViewController {
         //
         //            self.performSegue(withIdentifier: K.segue.pickupPens, sender: self)
         
-        datePickerContainerView.isHidden = false
+//        datePickerContainerView.isHidden = false
         
     }
     

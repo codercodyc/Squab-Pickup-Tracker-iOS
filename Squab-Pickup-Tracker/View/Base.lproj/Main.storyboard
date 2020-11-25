@@ -201,6 +201,7 @@
                                 </state>
                                 <connections>
                                     <action selector="pickupSessionPressed:" destination="ddv-Sj-maf" eventType="touchUpInside" id="PR1-EK-JTY"/>
+                                    <segue destination="Ztd-MQ-LPP" kind="show" id="vqJ-rH-sy3"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T6S-d4-E2Z">
@@ -226,28 +227,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AiO-PS-8Ep">
-                                <rect key="frame" x="60" y="373" width="294" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="Qup-w4-7dw"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="Ztd-MQ-LPP" kind="embed" identifier="toDatePicker" id="HLH-sF-EvP"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oOB-hW-IOK"/>
                         <color key="backgroundColor" red="0.45085787770000002" green="0.98829740290000001" blue="0.83763033149999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="T6S-d4-E2Z" firstAttribute="leading" secondItem="oOB-hW-IOK" secondAttribute="leading" id="6pP-xc-IFs"/>
-                            <constraint firstItem="AiO-PS-8Ep" firstAttribute="leading" secondItem="oOB-hW-IOK" secondAttribute="leading" constant="60" id="9rW-Fq-OkK"/>
                             <constraint firstItem="T6S-d4-E2Z" firstAttribute="top" secondItem="oOB-hW-IOK" secondAttribute="top" constant="20" id="E3e-vi-pIj"/>
                             <constraint firstItem="T6S-d4-E2Z" firstAttribute="centerX" secondItem="2ip-fd-une" secondAttribute="centerX" id="MHK-9u-ER8"/>
                             <constraint firstItem="oOB-hW-IOK" firstAttribute="bottom" secondItem="3fa-o8-sDt" secondAttribute="bottom" constant="75" id="MgK-K0-qYO"/>
                             <constraint firstItem="3fa-o8-sDt" firstAttribute="centerX" secondItem="2ip-fd-une" secondAttribute="centerX" id="bho-R7-E1e"/>
-                            <constraint firstItem="AiO-PS-8Ep" firstAttribute="centerX" secondItem="2ip-fd-une" secondAttribute="centerX" id="evD-vV-BaB"/>
                             <constraint firstItem="3fa-o8-sDt" firstAttribute="leading" secondItem="oOB-hW-IOK" secondAttribute="leading" constant="50" id="f4P-zw-wgt"/>
-                            <constraint firstItem="AiO-PS-8Ep" firstAttribute="centerY" secondItem="2ip-fd-une" secondAttribute="centerY" id="jpC-1e-Jh1"/>
                             <constraint firstItem="3fa-o8-sDt" firstAttribute="top" secondItem="T6S-d4-E2Z" secondAttribute="bottom" constant="50" id="m6s-pO-htz"/>
                             <constraint firstItem="oOB-hW-IOK" firstAttribute="trailing" secondItem="T6S-d4-E2Z" secondAttribute="trailing" id="yhU-8L-okX"/>
                         </constraints>
@@ -267,7 +256,6 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="datePickerContainerView" destination="AiO-PS-8Ep" id="M4c-n0-iV3"/>
                         <outlet property="pickupSessionButton" destination="3fa-o8-sDt" id="C0o-bQ-gkg"/>
                         <outlet property="refreshDataButton" destination="rVn-eh-rjg" id="sZS-0g-YNV"/>
                         <outlet property="sessionTableView" destination="T6S-d4-E2Z" id="nps-Gg-Tbm"/>
@@ -696,56 +684,78 @@
             <objects>
                 <viewController id="Ztd-MQ-LPP" customClass="DatePickerViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YcZ-FT-vrM">
-                        <rect key="frame" x="0.0" y="0.0" width="294" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="54u-Z6-c76">
-                                <rect key="frame" x="82" y="15" width="130" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="jWM-mn-atJ"/>
-                                </constraints>
-                            </datePicker>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IZg-Qx-cjd">
-                                <rect key="frame" x="16" y="75" width="262" height="75"/>
+                                <rect key="frame" x="20" y="797" width="374" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDZ-f3-olX">
-                                        <rect key="frame" x="0.0" y="14" width="126" height="47"/>
+                                        <rect key="frame" x="0.0" y="14" width="182" height="47"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
                                         <state key="normal" title="CANCEL">
-                                            <color key="titleColor" name="deadColor"/>
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="Ztd-MQ-LPP" eventType="touchUpInside" id="gdG-vn-UgZ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YrH-Ym-ZM2">
-                                        <rect key="frame" x="136" y="14" width="126" height="47"/>
+                                        <rect key="frame" x="192" y="14" width="182" height="47"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
                                         <state key="normal" title="CREATE">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="createPressed:" destination="Ztd-MQ-LPP" eventType="touchUpInside" id="ll1-ea-5Rz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="dq5-qn-bnn"/>
                                 </constraints>
                             </stackView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-Vl-5od">
+                                <rect key="frame" x="5" y="248" width="404" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="62F-FJ-JSc"/>
+                                </constraints>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Pickup Session" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsB-hi-fxi">
+                                <rect key="frame" x="45" y="138" width="324" height="35"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="7zv-Vl-5od" firstAttribute="leading" secondItem="YcZ-FT-vrM" secondAttribute="leading" constant="5" id="3fr-93-XHD"/>
+                            <constraint firstAttribute="trailing" secondItem="7zv-Vl-5od" secondAttribute="trailing" constant="5" id="9DB-Nn-ciu"/>
+                            <constraint firstItem="gsB-hi-fxi" firstAttribute="leading" secondItem="YcZ-FT-vrM" secondAttribute="leadingMargin" constant="25" id="9Z6-vN-Jk8"/>
                             <constraint firstItem="IZg-Qx-cjd" firstAttribute="centerX" secondItem="YcZ-FT-vrM" secondAttribute="centerX" id="Dbo-E3-HgE"/>
-                            <constraint firstItem="IZg-Qx-cjd" firstAttribute="top" secondItem="54u-Z6-c76" secondAttribute="bottom" constant="10" id="Ew3-TF-1qS"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="IZg-Qx-cjd" secondAttribute="bottom" id="HQa-El-DPW"/>
-                            <constraint firstItem="54u-Z6-c76" firstAttribute="centerX" secondItem="YcZ-FT-vrM" secondAttribute="centerX" id="HZJ-Gz-REo"/>
+                            <constraint firstItem="gsB-hi-fxi" firstAttribute="centerX" secondItem="YcZ-FT-vrM" secondAttribute="centerX" id="J7c-xH-0bT"/>
                             <constraint firstItem="IZg-Qx-cjd" firstAttribute="leading" secondItem="YcZ-FT-vrM" secondAttribute="leadingMargin" id="SNl-OV-UJg"/>
                             <constraint firstItem="IZg-Qx-cjd" firstAttribute="centerX" secondItem="YcZ-FT-vrM" secondAttribute="centerX" id="VcR-d8-ohc"/>
-                            <constraint firstItem="54u-Z6-c76" firstAttribute="leading" secondItem="YcZ-FT-vrM" secondAttribute="leading" constant="82" id="mQt-Ps-bbI"/>
-                            <constraint firstItem="54u-Z6-c76" firstAttribute="top" secondItem="YcZ-FT-vrM" secondAttribute="top" constant="15" id="xfs-pP-WMZ"/>
+                            <constraint firstItem="gsB-hi-fxi" firstAttribute="top" secondItem="YcZ-FT-vrM" secondAttribute="topMargin" constant="50" id="iVb-M6-oty"/>
+                            <constraint firstItem="7zv-Vl-5od" firstAttribute="top" secondItem="gsB-hi-fxi" secondAttribute="bottom" constant="75" id="rTp-Qu-toY"/>
+                            <constraint firstItem="IZg-Qx-cjd" firstAttribute="bottom" secondItem="YcZ-FT-vrM" secondAttribute="bottomMargin" constant="10" id="yTQ-lf-UXf"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Efp-z2-Kxn"/>
+                    <connections>
+                        <outlet property="datePicker" destination="7zv-Vl-5od" id="7KY-CG-5BV"/>
+                        <segue destination="8Oa-ts-I5e" kind="show" identifier="toPickupPens" id="9Bt-y9-aeE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uG4-Nn-zS9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1253.6231884057972" y="1584.375"/>
+            <point key="canvasLocation" x="1213" y="1756"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="9Bt-y9-aeE"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.left.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
@@ -755,9 +765,6 @@
         </namedColor>
         <namedColor name="cellColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </namedColor>
-        <namedColor name="deadColor">
-            <color red="1" green="0.49300000071525574" blue="0.47400000691413879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="squabColor">
             <color red="0.46200001239776611" green="0.83799999952316284" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
