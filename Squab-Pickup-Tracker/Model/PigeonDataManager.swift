@@ -221,6 +221,7 @@ class PigeonDataManager {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue(Keys.ApiKey, forHTTPHeaderField: "ApiKey")
             request.httpBody = jsonData
            
             
