@@ -181,9 +181,7 @@ class PigeonDataManager {
         let sessionData = SessionData(date: session.dateCreated?.timeIntervalSince1970, pens: penData)
         
         let pigeonData = PigeonData(sessions: [sessionData], forceWrite: true)
-        
-        
-        
+
         
         return pigeonData
     }

@@ -19,11 +19,17 @@ class PickupSessionViewController: UIViewController {
     @IBOutlet weak var pickupSessionButton: UIButton!
     @IBOutlet weak var sessionTableView: UITableView!
     @IBOutlet weak var refreshDataButton: UIBarButtonItem!
+    @IBOutlet weak var datePickerContainerView: UIView!
     
     var pigeonDataManager = PigeonDataManager()
     
+    var datePicker: UIDatePicker = UIDatePicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datePickerContainerView.layer.cornerRadius = 20
+        datePickerContainerView.isHidden = true
         
         sessionTableView.delegate = self
         sessionTableView.dataSource = self
@@ -81,6 +87,9 @@ class PickupSessionViewController: UIViewController {
         selectedSession = sessions[0]
         
     }
+    
+    
+   
 
     
     
@@ -88,9 +97,12 @@ class PickupSessionViewController: UIViewController {
     
 
     @IBAction func pickupSessionPressed(_ sender: UIButton) {
-        addBlankSession()
+       
+        //            self.addBlankSession()
+        //
+        //            self.performSegue(withIdentifier: K.segue.pickupPens, sender: self)
         
-        performSegue(withIdentifier: K.segue.pickupPens, sender: self)
+        datePickerContainerView.isHidden = false
         
     }
     
