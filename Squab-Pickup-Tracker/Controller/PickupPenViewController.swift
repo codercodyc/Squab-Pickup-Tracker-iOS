@@ -545,7 +545,7 @@ extension PickupPenViewController: UIPopoverPresentationControllerDelegate {
 
 extension PickupPenViewController: PickupSettingsViewControllerDelegate {
     func didPressExit() {
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: false)
     }
 
     

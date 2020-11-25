@@ -39,13 +39,24 @@ class PickupSettingsViewController: UIViewController {
   
     @IBAction func submitPressed(_ sender: UIButton) {
         
-        DispatchQueue.main.async {
-            self.pigeonManager.encodeCurrentSession(with: self.currentSession!)
+        let alert = UIAlertController(title: "Do you want to Submit this Session?", message: "", preferredStyle: .alert)
+        
+        let submit = UIAlertAction(title: "Yes", style: .default) { (action) in
+            DispatchQueue.main.async {
+                self.pigeonManager.encodeCurrentSession(with: self.currentSession!)
+                
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "No", style: .destructive) { (action) in
             
         }
-            
-            
         
+        alert.addAction(submit)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
+ 
         
         
     }

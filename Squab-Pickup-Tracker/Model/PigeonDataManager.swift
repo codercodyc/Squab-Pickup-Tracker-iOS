@@ -48,7 +48,11 @@ class PigeonDataManager {
 
             let session = URLSession(configuration: .default)
             
-            let task = session.dataTask(with: url) { (data, response, error) in
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
+            
+            let task = session.dataTask(with: request) { (data, response, error) in
                 if error != nil {
                     self.delegate?.didFailWithError(error: error!)
                     return
@@ -221,7 +225,7 @@ class PigeonDataManager {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue(Keys.ApiKey, forHTTPHeaderField: "ApiKey")
+            request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
             request.httpBody = jsonData
            
             

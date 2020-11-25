@@ -246,19 +246,47 @@ extension PickupSessionViewController: UITableViewDelegate {
 
 extension PickupSessionViewController: PigeonDataManagerDelegate {
     func didDownloadData(data: PigeonData?) {
-        print("downloaded data")
         loadSessions()
-        
+        DispatchQueue.main.async {
+            
+            let alert = UIAlertController(title: "Sessions Downloaded", message: "", preferredStyle: .alert)
+    
+            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                
+            }
+            
+            
+            
+            
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
 
     }
     
+
     func didFailWithError(error: Error) {
-        print("JSON Parsing error \(error)")
+        DispatchQueue.main.async {
+            
+            
+            let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                
+                
+            }
+            
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     
+    
     func didSubmitSession() {
-        print("Submitted Session")
+        
     }
     
     
