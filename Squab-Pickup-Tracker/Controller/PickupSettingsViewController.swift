@@ -32,7 +32,6 @@ class PickupSettingsViewController: UIViewController {
         
         view.layer.cornerRadius = 20
 
-        // Do any additional setup after loading the view.
     }
     
 

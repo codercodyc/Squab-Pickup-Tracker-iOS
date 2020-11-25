@@ -108,6 +108,28 @@ class PickupSessionViewController: UIViewController {
     
     
     @IBAction func trashButtonPressed(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Do you want to Delete ALL Downloaded Sessions?", message: "", preferredStyle: .alert)
+        
+        let submit = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+        }
+        
+        let cancel = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            self.deleteDownloadedSessions()
+        }
+        
+        alert.addAction(submit)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        
+        
+        
+    }
+    
+    //MARK: - Delete Sessions
+    func deleteDownloadedSessions() {
         var sessionsToDelete = [Session]()
         
         let request: NSFetchRequest<Session> = Session.fetchRequest()
@@ -125,7 +147,6 @@ class PickupSessionViewController: UIViewController {
         }
         saveSessions()
         loadSessions()
-        
     }
     
     
