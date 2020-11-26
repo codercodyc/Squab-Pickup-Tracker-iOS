@@ -51,8 +51,8 @@ class PickupSettingsViewController: UIViewController {
             
         }
         
-        alert.addAction(submit)
         alert.addAction(cancel)
+        alert.addAction(submit)
         
         self.present(alert, animated: true, completion: nil)
  

@@ -170,8 +170,8 @@ class PickupPenViewController: UIViewController {
 
 
         let width = penStackView.frame.width
-        let moveDistance = (penView.frame.width / 2 + width / 2 + 5)
-        penStackViewCenterX.constant = moveDistance * direction
+        let moveDistance = (penView.frame.width / 2 + width / 2 + 5) * direction
+        penStackViewCenterX.constant = moveDistance
 
         
         UIView.animate(withDuration: animationTime) {
@@ -183,7 +183,7 @@ class PickupPenViewController: UIViewController {
             self.loadNests()
             self.currentPen = self.penLabel.text!
             self.penCollectionView.reloadData()
-            self.penStackViewCenterX.constant = moveDistance * direction * -1
+            self.penStackViewCenterX.constant = moveDistance * -1
             self.penView.layoutIfNeeded()
             self.penStackViewCenterX.constant = CGFloat(0)
             self.penCollectionView.alpha = 1
