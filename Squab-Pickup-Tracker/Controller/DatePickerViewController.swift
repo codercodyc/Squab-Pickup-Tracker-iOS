@@ -24,7 +24,7 @@ class DatePickerViewController: UIViewController {
     
 
     @IBAction func cancelPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func createPressed(_ sender: UIButton) {

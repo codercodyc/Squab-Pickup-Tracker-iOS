@@ -32,6 +32,17 @@ class SelectionViewController: UIViewController {
     @IBOutlet weak var contentsCollectionView: UICollectionView!
     @IBOutlet weak var multipleInputsButton: UIButton!
     
+    
+    let cellPaddingW = CGFloat(20)
+    let cellPaddingH = CGFloat(10)
+
+    
+    var cellWidth: CGFloat {
+        return (contentsCollectionView.frame.width - cellPaddingW) / 2
+    }
+    var cellHeight: CGFloat {
+        return (contentsCollectionView.frame.height - cellPaddingH * 8) / 9
+    }
 
     
     
@@ -54,7 +65,7 @@ class SelectionViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
                 
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     
     func clearBordersForCurrentPen() {
@@ -214,7 +225,7 @@ extension SelectionViewController: UICollectionViewDelegate {
                 
         
         if multipleInputsButton.isSelected == false {
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: false, completion: nil)
         } else {
             loadNest()
             contentsCollectionView.reloadItems(at: contentsCollectionView.indexPathsForVisibleItems)
@@ -237,6 +248,27 @@ extension SelectionViewController: UICollectionViewDelegate {
     }
 }
 
+
+
+//MARK: - UICollectionViewFlowLayoutDelegate
+
+extension SelectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellPaddingH
+    }
+    
+}
 
 
 

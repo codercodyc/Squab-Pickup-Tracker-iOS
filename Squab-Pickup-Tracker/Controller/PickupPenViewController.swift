@@ -188,6 +188,8 @@ class PickupPenViewController: UIViewController {
                 self.penView.layoutIfNeeded()
             }
         }
+        
+        penCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
     
 //MARK: - penLongPressed
@@ -503,7 +505,7 @@ extension PickupPenViewController: SelectionViewControllerDelegate {
         loadNests(reload: false)
     
    
-        UIView.animate(withDuration: 0.75) {
+        UIView.animate(withDuration: 0.4) {
             let cellIndexPaths = self.penCollectionView.indexPathsForVisibleItems
             self.penCollectionView.reloadItems(at: cellIndexPaths)
             
