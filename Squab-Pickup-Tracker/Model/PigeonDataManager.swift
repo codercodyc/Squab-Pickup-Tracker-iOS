@@ -20,11 +20,11 @@ class PigeonDataManager {
 //    let LastWeekProductionUrl = "http://169.254.16:5000/api/get-prod-and-mort-1wk"
 //    let sessionPostUrl = "http://169.254.16:5000/api/post-new-prod-and-mort-1wk"
     //Simulator
-//    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
-//    let sessionPostUrl = "http://127.0.0.1:5000/api/post-new-prod-and-mort-1wk"
+    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
+    let sessionPostUrl = "http://127.0.0.1:5000/api/post-new-prod-and-mort-1wk"
     //Live Server
-    let LastWeekProductionUrl = "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
-    let sessionPostUrl = "https://dkcpigeons.tk/api/post-new-prod-and-mort-1wk"
+//    let LastWeekProductionUrl = "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
+//    let sessionPostUrl = "https://dkcpigeons.tk/api/post-new-prod-and-mort-1wk"
     
     var delegate: PigeonDataManagerDelegate?
     
@@ -182,7 +182,26 @@ class PigeonDataManager {
             
         }
         
-        let sessionData = SessionData(date: session.dateCreated?.timeIntervalSince1970, pens: penData)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+//        dateFormatter.timeZone = TimeZone(abbreviation: "PT")
+        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
+        let date = session.dateCreated
+        var dateString = dateFormatter.string(from: date!)
+        dateString = "\(dateString)"
+        
+//        let newFormatter = DateFormatter()
+//        newFormatter.locale = Locale(identifier: "en_US")
+//        newFormatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy'T'HH:mm:ssZ")
+        
+        let newDate = dateFormatter.date(from: dateString)
+        let newDateDouble = newDate?.timeIntervalSince1970
+        print(dateString)
+        print(newDateDouble)
+        
+        
+        let sessionData = SessionData(date: newDateDouble, pens: penData)
         
         let pigeonData = PigeonData(sessions: [sessionData], forceWrite: true)
 
