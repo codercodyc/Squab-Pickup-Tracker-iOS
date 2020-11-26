@@ -78,10 +78,13 @@ class PickupPenViewController: UIViewController {
     
     var blurView = UIVisualEffectView()
     
+
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         if penData.count >= 20 {
             currentPenIndex = 20
@@ -129,20 +132,23 @@ class PickupPenViewController: UIViewController {
 //MARK: - Change Pens Actions
 
     @IBAction func nextPenPressed(_ sender: UIButton) {
-        if currentPenIndex + 1 < penData.count {
-            currentPenIndex += 1
 
-            animatePenNameChange(changeDirection: "Next")
-        }
+            if self.currentPenIndex + 1 < self.penData.count {
+                self.currentPenIndex += 1
+                
+                self.animatePenNameChange(changeDirection: "Next")
+            }
+
     
         
     }
     
     @IBAction func previousPenPressed(_ sender: UIButton) {
-        if currentPenIndex - 1 >= 0 {
-            currentPenIndex -= 1
-            animatePenNameChange(changeDirection: "Previous")
-        }
+
+            if self.currentPenIndex - 1 >= 0 {
+                self.currentPenIndex -= 1
+                self.animatePenNameChange(changeDirection: "Previous")
+            }
         
     }
     
@@ -150,6 +156,7 @@ class PickupPenViewController: UIViewController {
     
     func animatePenNameChange(changeDirection: String) {
         var direction = CGFloat(0)
+
         
         if changeDirection == "Next" {
             direction = CGFloat(1)
@@ -157,16 +164,14 @@ class PickupPenViewController: UIViewController {
             direction = CGFloat(-1)
         }
         
-        let animationTime = 0.5
+        let animationTime: Double = 0.25
         
-        let penViewWidth = penView.frame.width
         
 
-        let initialConstant = penStackViewCenterX.constant
+
         let width = penStackView.frame.width
-        let moveDistance = (penViewWidth / 2 + width / 2 + 5) * direction
-
-        penStackViewCenterX.constant -= moveDistance
+        let moveDistance = (penView.frame.width / 2 + width / 2 + 5)
+        penStackViewCenterX.constant = moveDistance * direction
 
         
         UIView.animate(withDuration: animationTime) {
@@ -178,9 +183,9 @@ class PickupPenViewController: UIViewController {
             self.loadNests()
             self.currentPen = self.penLabel.text!
             self.penCollectionView.reloadData()
-            self.penStackViewCenterX.constant += moveDistance * 2
+            self.penStackViewCenterX.constant = moveDistance * direction * -1
             self.penView.layoutIfNeeded()
-            self.penStackViewCenterX.constant = initialConstant
+            self.penStackViewCenterX.constant = CGFloat(0)
             self.penCollectionView.alpha = 1
 
             
@@ -188,6 +193,8 @@ class PickupPenViewController: UIViewController {
                 self.penView.layoutIfNeeded()
             }
         }
+        
+        
         
         penCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }

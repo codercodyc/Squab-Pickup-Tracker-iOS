@@ -188,8 +188,7 @@ class PigeonDataManager {
 //        dateFormatter.timeZone = TimeZone(abbreviation: "PT")
         dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
         let date = session.dateCreated
-        var dateString = dateFormatter.string(from: date!)
-        dateString = "\(dateString)"
+        let dateString = dateFormatter.string(from: date!)
         
 //        let newFormatter = DateFormatter()
 //        newFormatter.locale = Locale(identifier: "en_US")
@@ -197,8 +196,8 @@ class PigeonDataManager {
         
         let newDate = dateFormatter.date(from: dateString)
         let newDateDouble = newDate?.timeIntervalSince1970
-        print(dateString)
-        print(newDateDouble)
+//        print(dateString)
+//        print(newDateDouble)
         
         
         let sessionData = SessionData(date: newDateDouble, pens: penData)
