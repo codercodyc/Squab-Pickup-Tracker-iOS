@@ -23,7 +23,6 @@ class DashboardViewController: UIViewController {
     
         title = "Dashboard"
         
-        
         //Call dashboard website
         
         if let url = URL(string: urlString) {

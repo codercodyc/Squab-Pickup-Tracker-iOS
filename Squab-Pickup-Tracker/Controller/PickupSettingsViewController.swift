@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol PickupSettingsViewControllerDelegate {
     func didPressExit()
@@ -17,6 +18,8 @@ class PickupSettingsViewController: UIViewController {
 
     var delegate: PickupSettingsViewControllerDelegate?
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     var pigeonManager = PigeonDataManager()
     
     var currentSession: Session? {
@@ -69,6 +72,17 @@ class PickupSettingsViewController: UIViewController {
        
     }
     
+    //MARK: - Data manipulation methods
+
+    func saveData() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context")
+        }
+        
+    }
+    
 }
 
 //MARK: - PigeonDataManagerDelegate
@@ -105,9 +119,15 @@ extension PickupSettingsViewController: PigeonDataManagerDelegate {
             let alert = UIAlertController(title: "Session Submitted", message: "", preferredStyle: .alert)
             
             
+            self.currentSession?.wasSubmitted = true
+            self.saveData()
+            
             
             let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                
+                
                 self.dismiss(animated: true, completion: nil)
+                
                 self.delegate?.didPressExit()
                 
             }
@@ -123,3 +143,5 @@ extension PickupSettingsViewController: PigeonDataManagerDelegate {
     
     
 }
+
+

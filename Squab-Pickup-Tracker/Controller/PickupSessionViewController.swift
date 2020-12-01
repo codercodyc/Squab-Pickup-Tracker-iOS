@@ -28,6 +28,7 @@ class PickupSessionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
 //        datePickerContainerView.layer.cornerRadius = 20
 //        datePickerContainerView.isHidden = true
         
@@ -47,7 +48,7 @@ class PickupSessionViewController: UIViewController {
         pickupSessionButton.layer.shadowOffset = .init(width: 0, height: 4)
         pickupSessionButton.layer.shadowRadius = 10
         
-//        print(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask))
+        print(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask))
         
         loadSessions()
 
@@ -218,10 +219,12 @@ extension PickupSessionViewController: UITableViewDataSource {
         var cell = UITableViewCell()
         if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.sessionCell) {
             safeCell.textLabel?.text = dateString
-            if sessions[indexPath.row].wasCreated {
-                safeCell.backgroundColor = .clear
-            } else {
+            if sessions[indexPath.row].wasSubmitted {
+                safeCell.backgroundColor = #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)
+            } else if sessions[indexPath.row].wasCreated == false {
                 safeCell.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+            } else {
+                safeCell.backgroundColor = .clear
             }
             cell = safeCell
         }
@@ -308,7 +311,6 @@ extension PickupSessionViewController: PigeonDataManagerDelegate {
     
     
     func didSubmitSession() {
-        
     }
     
     

@@ -16,13 +16,15 @@
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="pens" inverseEntity="Session"/>
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES" codeGenerationType="class">
+        <attribute name="baseWeek" optional="YES" attributeType="String"/>
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="wasCreated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="wasSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="pens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pen" inverseName="parentCategory" inverseEntity="Pen"/>
     </entity>
     <elements>
         <element name="Nest" positionX="160.96875" positionY="-40.9296875" width="128" height="163"/>
         <element name="Pen" positionX="-66.984375" positionY="-25.99609375" width="128" height="88"/>
-        <element name="Session" positionX="-285.1171875" positionY="-53.8984375" width="128" height="88"/>
+        <element name="Session" positionX="-285.1171875" positionY="-53.8984375" width="128" height="118"/>
     </elements>
 </model>

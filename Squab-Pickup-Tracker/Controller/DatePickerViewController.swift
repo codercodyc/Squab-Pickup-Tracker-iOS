@@ -65,7 +65,6 @@ class DatePickerViewController: UIViewController {
         let newSession: Session = Session(context: context)
         newSession.dateCreated = date
         newSession.wasCreated = true
-        //print(newSession.dateCreated!)
         
         for pen in K.penIDs {
             let newPen = Pen(context: context)
@@ -80,6 +79,14 @@ class DatePickerViewController: UIViewController {
             newSession.addToPens(newPen)
             
         }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-w"
+//        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-w")
+        newSession.baseWeek = dateFormatter.string(from: newSession.dateCreated!)
+//        print(newSession.baseWeek!)
+        
         
         selectedSession = newSession
         
