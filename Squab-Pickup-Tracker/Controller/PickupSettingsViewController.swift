@@ -41,25 +41,40 @@ class PickupSettingsViewController: UIViewController {
   
     @IBAction func submitPressed(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "Do you want to Submit this Session?", message: "", preferredStyle: .alert)
-        
-        let submit = UIAlertAction(title: "Yes", style: .default) { (action) in
-            DispatchQueue.main.async {
-                self.pigeonManager.encodeCurrentSession(with: self.currentSession!)
+        if currentSession?.wasSubmitted == true {
+            
+            let alert = UIAlertController(title: "Session has already been submitted", message: "", preferredStyle: .alert)
+            
+            let submit = UIAlertAction(title: "Ok", style: .cancel) { (action) in
                 
             }
-        }
-        
-        let cancel = UIAlertAction(title: "No", style: .destructive) { (action) in
             
-        }
+            
+            alert.addAction(submit)
+            
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            
         
-        alert.addAction(cancel)
-        alert.addAction(submit)
-        
-        self.present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Do you want to Submit this Session?", message: "", preferredStyle: .alert)
+            
+            let submit = UIAlertAction(title: "Yes", style: .default) { (action) in
+                DispatchQueue.main.async {
+                    self.pigeonManager.encodeCurrentSession(with: self.currentSession!)
+                    
+                }
+            }
+            
+            let cancel = UIAlertAction(title: "No", style: .destructive) { (action) in
+                
+            }
+            
+            alert.addAction(cancel)
+            alert.addAction(submit)
+            
+            self.present(alert, animated: true, completion: nil)
  
-        
+        }
         
     }
     
@@ -116,12 +131,12 @@ extension PickupSettingsViewController: PigeonDataManagerDelegate {
     func didSubmitSession() {
         DispatchQueue.main.async {
             
-            let alert = UIAlertController(title: "Session Submitted", message: "", preferredStyle: .alert)
             
-            
+            // update session submission
             self.currentSession?.wasSubmitted = true
             self.saveData()
             
+            let alert = UIAlertController(title: "Session Submitted", message: "", preferredStyle: .alert)
             
             let action = UIAlertAction(title: "Ok", style: .default) { (action) in
                 

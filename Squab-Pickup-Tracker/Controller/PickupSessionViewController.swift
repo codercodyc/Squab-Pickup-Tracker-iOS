@@ -219,7 +219,9 @@ extension PickupSessionViewController: UITableViewDataSource {
         var cell = UITableViewCell()
         if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.sessionCell) {
             safeCell.textLabel?.text = dateString
-            if sessions[indexPath.row].wasSubmitted {
+            if sessions[indexPath.row].wasSubmitted && sessions[indexPath.row].wasCreated == false {
+                safeCell.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+            } else if sessions[indexPath.row].wasSubmitted {
                 safeCell.backgroundColor = #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)
             } else if sessions[indexPath.row].wasCreated == false {
                 safeCell.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
