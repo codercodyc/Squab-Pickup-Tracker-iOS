@@ -152,7 +152,7 @@
                                 </constraints>
                             </stackView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3s-IF-M6N">
-                                <rect key="frame" x="20" y="158" width="374" height="655"/>
+                                <rect key="frame" x="0.0" y="158" width="414" height="655"/>
                                 <connections>
                                     <segue destination="L3j-HP-gva" kind="embed" id="U8j-Ix-Te5"/>
                                 </connections>
@@ -161,13 +161,13 @@
                         <viewLayoutGuide key="safeArea" id="eNY-16-Yrh"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
-                            <constraint firstItem="o3s-IF-M6N" firstAttribute="leading" secondItem="eNY-16-Yrh" secondAttribute="leading" constant="20" id="57U-Nl-ibY"/>
+                            <constraint firstItem="o3s-IF-M6N" firstAttribute="centerX" secondItem="m8X-HI-dKB" secondAttribute="centerX" id="0NM-uE-h2Z"/>
+                            <constraint firstItem="o3s-IF-M6N" firstAttribute="leading" secondItem="eNY-16-Yrh" secondAttribute="leading" id="57U-Nl-ibY"/>
                             <constraint firstItem="dIb-ER-3ze" firstAttribute="leading" secondItem="eNY-16-Yrh" secondAttribute="leading" constant="20" id="7fN-Py-1qL"/>
                             <constraint firstItem="eNY-16-Yrh" firstAttribute="trailing" secondItem="dIb-ER-3ze" secondAttribute="trailing" constant="20" id="N2e-t3-jnf"/>
                             <constraint firstItem="o3s-IF-M6N" firstAttribute="top" secondItem="dIb-ER-3ze" secondAttribute="bottom" constant="10" id="PeI-4L-S17"/>
                             <constraint firstItem="dIb-ER-3ze" firstAttribute="top" secondItem="eNY-16-Yrh" secondAttribute="top" constant="10" id="QKT-2H-tGd"/>
                             <constraint firstItem="eNY-16-Yrh" firstAttribute="bottom" secondItem="o3s-IF-M6N" secondAttribute="bottom" id="rgx-Te-Ga2"/>
-                            <constraint firstItem="eNY-16-Yrh" firstAttribute="trailing" secondItem="o3s-IF-M6N" secondAttribute="trailing" constant="20" id="v4d-c9-m05"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Cull" image="nosign" catalog="system" selectedImage="nosign" id="ND3-Qc-Hh1"/>
@@ -186,14 +186,72 @@
                     <view key="view" contentMode="scaleToFill" id="rJg-kw-mTq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="dFA-2G-I00">
+                                <rect key="frame" x="20" y="103" width="374" height="118"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="X1L-gN-rTU">
+                                        <rect key="frame" x="10" y="0.0" width="354" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="nu9-QO-P5C"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="Move Pair"/>
+                                            <segment title="New Pair"/>
+                                            <segment title="Cull Pair"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H24-SM-FuP">
+                                        <rect key="frame" x="0.0" y="52" width="374" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="IfA-VU-jRt"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tBM-2u-N7x">
+                                        <rect key="frame" x="10" y="65" width="354" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XS3-Ej-EXa">
+                                                <rect key="frame" x="0.0" y="10" width="40.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="jdS-JQ-xNY">
+                                                <rect key="frame" x="60.5" y="0.0" width="293.5" height="40"/>
+                                            </datePicker>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="44d-bN-1nK"/>
+                                        </constraints>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r01-Fh-zRq">
+                                        <rect key="frame" x="0.0" y="117" width="374" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="XGA-cV-qgV"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tBM-2u-N7x" firstAttribute="leading" secondItem="dFA-2G-I00" secondAttribute="leading" constant="10" id="TLh-8s-E2X"/>
+                                    <constraint firstItem="X1L-gN-rTU" firstAttribute="leading" secondItem="dFA-2G-I00" secondAttribute="leading" constant="10" id="pjY-ws-etk"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="pIv-w5-mi7"/>
                         <color key="backgroundColor" name="backgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dFA-2G-I00" firstAttribute="leading" secondItem="pIv-w5-mi7" secondAttribute="leading" constant="20" id="H0R-5n-muF"/>
+                            <constraint firstItem="dFA-2G-I00" firstAttribute="centerX" secondItem="rJg-kw-mTq" secondAttribute="centerX" id="M03-Pv-JaD"/>
+                            <constraint firstItem="dFA-2G-I00" firstAttribute="top" secondItem="pIv-w5-mi7" secondAttribute="top" constant="15" id="chH-ua-N70"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Move" image="arrow.left.arrow.right.circle" catalog="system" selectedImage="arrow.left.arrow.right.circle" id="nWl-sx-ZC2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxc-Cl-zIG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2609" y="-1108"/>
+            <point key="canvasLocation" x="2608.6956521739135" y="-1108.2589285714284"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="SJr-VO-gQS">
@@ -857,24 +915,24 @@
             </objects>
             <point key="canvasLocation" x="1213" y="1756"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Move Cull Table View Controller-->
         <scene sceneID="85Z-fn-Ibf">
             <objects>
-                <tableViewController id="L3j-HP-gva" sceneMemberID="viewController">
+                <tableViewController id="L3j-HP-gva" customClass="MoveCullTableViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Wu3-6n-S6O">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="655"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="655"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="QJZ-Gm-xGP">
-                                <rect key="frame" x="0.0" y="28" width="374" height="52.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoveCullCell" id="QJZ-Gm-xGP" customClass="MoveCullTableViewCell" customModule="Squab_Pickup_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="52.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QJZ-Gm-xGP" id="kQN-zZ-cVu">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="52.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="52.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nN6-8r-5La">
-                                            <rect key="frame" x="10" y="5" width="323" height="42.5"/>
+                                            <rect key="frame" x="10" y="5" width="363" height="42.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TMo-Gj-r9s">
                                                     <rect key="frame" x="0.0" y="0.0" width="74.5" height="42.5"/>
@@ -905,13 +963,13 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11/24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89v-TD-xKa">
-                                                    <rect key="frame" x="131" y="0.0" width="40" height="42.5"/>
+                                                    <rect key="frame" x="151" y="0.0" width="40" height="42.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Be Culled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PG-Yr-OXN">
-                                                    <rect key="frame" x="227.5" y="0.0" width="95.5" height="42.5"/>
+                                                    <rect key="frame" x="267.5" y="0.0" width="95.5" height="42.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -926,6 +984,12 @@
                                         <constraint firstAttribute="trailing" secondItem="nN6-8r-5La" secondAttribute="trailing" constant="10" id="PqT-xX-0EN"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="date" destination="89v-TD-xKa" id="0ig-Pg-k3v"/>
+                                    <outlet property="pairId" destination="ODG-WO-Mig" id="zZa-Hi-g5Q"/>
+                                    <outlet property="penNest" destination="40d-QB-fFY" id="NX6-QB-04g"/>
+                                    <outlet property="transferType" destination="5PG-Yr-OXN" id="cUN-1E-ZhK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -936,7 +1000,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pjH-QQ-qrl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3523" y="-595"/>
+            <point key="canvasLocation" x="3704" y="-561"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

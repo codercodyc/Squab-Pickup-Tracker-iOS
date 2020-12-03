@@ -15,13 +15,13 @@ class CullViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Cull Pairs"
+        tabBarController?.title = "Cull Pairs"
+        
 
         // Do any additional setup after loading the view.
     }
     
 
     
-
 }
 

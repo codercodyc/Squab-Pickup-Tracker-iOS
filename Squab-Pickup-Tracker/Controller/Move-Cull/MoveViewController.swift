@@ -11,8 +11,8 @@ class MoveViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.title = "Transfer Pairs"
 
-        // Do any additional setup after loading the view.
     }
     
 
