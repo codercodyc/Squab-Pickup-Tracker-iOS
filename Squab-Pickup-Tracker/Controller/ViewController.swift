@@ -22,11 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        dashboardButton.layer.cornerRadius = dashboardButton.frame.height / 2
-        dashboardButton.layer.shadowColor = UIColor.black.cgColor
-        dashboardButton.layer.shadowOpacity = 0.5
-        dashboardButton.layer.shadowOffset = .init(width: 0, height: 4)
-        dashboardButton.layer.shadowRadius = 10
+        				
         
         pickupButton.layer.cornerRadius = pickupButton.frame.height / 2
         pickupButton.layer.shadowColor = UIColor.black.cgColor
