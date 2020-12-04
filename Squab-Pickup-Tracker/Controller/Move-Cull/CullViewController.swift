@@ -9,6 +9,7 @@ import UIKit
 
 class CullViewController: UIViewController {
 
+    @IBOutlet weak var selectionView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     
@@ -16,8 +17,10 @@ class CullViewController: UIViewController {
         super.viewDidLoad()
         
         tabBarController?.title = "Cull Pairs"
-        
+        selectionView.setShadow()
+        selectionView.setRadius(with: 15)
 
+        
         // Do any additional setup after loading the view.
     }
     

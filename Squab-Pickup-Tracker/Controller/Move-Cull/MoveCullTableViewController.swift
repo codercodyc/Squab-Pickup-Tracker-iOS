@@ -21,10 +21,7 @@ class MoveCullTableViewController: UITableViewController {
     }
     
     func averageData(data: [Double]) -> [Double] {
-//        var sum: Double = 0
-//        for item in data {
-//            sum += item
-//        }
+        
         var averages: [Double] = []
         for i in 0..<data.count {
             if i == 0 {

@@ -31,6 +31,7 @@
 		C3E8D5AD2563A9B600440448 /* PigeonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E8D5AC2563A9B600440448 /* PigeonData.swift */; };
 		C3E8D5B92565FD0500440448 /* PickupSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E8D5B82565FD0500440448 /* PickupSettingsViewController.swift */; };
 		C3EB8E34257AB520009D7B24 /* UIButton+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB8E33257AB520009D7B24 /* UIButton+Shadow.swift */; };
+		C3EB8E38257AE3A5009D7B24 /* UIView+Shadow+Radius.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB8E37257AE3A5009D7B24 /* UIView+Shadow+Radius.swift */; };
 		C3F4DB9F2578B5ED00084F73 /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DB9E2578B5ED00084F73 /* MoveViewController.swift */; };
 		C3F4DBA22578B5FA00084F73 /* CullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DBA12578B5FA00084F73 /* CullViewController.swift */; };
 		C3F4DBA825795E6300084F73 /* MoveCullTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DBA725795E6300084F73 /* MoveCullTableViewController.swift */; };
@@ -67,6 +68,7 @@
 		C3E8D5AC2563A9B600440448 /* PigeonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigeonData.swift; sourceTree = "<group>"; };
 		C3E8D5B82565FD0500440448 /* PickupSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSettingsViewController.swift; sourceTree = "<group>"; };
 		C3EB8E33257AB520009D7B24 /* UIButton+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Shadow.swift"; sourceTree = "<group>"; };
+		C3EB8E37257AE3A5009D7B24 /* UIView+Shadow+Radius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow+Radius.swift"; sourceTree = "<group>"; };
 		C3F4DB9E2578B5ED00084F73 /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
 		C3F4DBA12578B5FA00084F73 /* CullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CullViewController.swift; sourceTree = "<group>"; };
 		C3F4DBA725795E6300084F73 /* MoveCullTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCullTableViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				C3EB8E33257AB520009D7B24 /* UIButton+Shadow.swift */,
+				C3EB8E37257AE3A5009D7B24 /* UIView+Shadow+Radius.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				C3E8D5B92565FD0500440448 /* PickupSettingsViewController.swift in Sources */,
 				C3BE0EF825577D61006A8FE1 /* SceneDelegate.swift in Sources */,
 				C3BE0F5025579338006A8FE1 /* SelectionViewController.swift in Sources */,
+				C3EB8E38257AE3A5009D7B24 /* UIView+Shadow+Radius.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
