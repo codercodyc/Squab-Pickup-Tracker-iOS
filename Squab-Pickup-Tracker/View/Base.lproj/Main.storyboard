@@ -24,7 +24,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKM-v9-UjM">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.333293438" green="0.33335629109999998" blue="0.33328947419999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="mV8-8k-es6"/>
                                         </constraints>
@@ -84,6 +84,7 @@
                     <navigationItem key="navigationItem" id="Agg-zL-h5E"/>
                     <connections>
                         <outlet property="dashboardButton" destination="LKM-v9-UjM" id="nQW-De-tTg"/>
+                        <outlet property="moveCullButton" destination="C8Y-df-tbO" id="4as-LY-dcm"/>
                         <outlet property="pickupButton" destination="wkO-wf-ytH" id="BAk-Oj-prh"/>
                     </connections>
                 </viewController>

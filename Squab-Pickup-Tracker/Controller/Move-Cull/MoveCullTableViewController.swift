@@ -10,8 +10,6 @@ import Charts
 
 class MoveCullTableViewController: UITableViewController {
     
-//    //Temporary Chart Data
-//    let pairData: [Double] = [3,0,2,2,2,0,2,0,1,2,3,0,0,0]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +20,25 @@ class MoveCullTableViewController: UITableViewController {
         
     }
     
-    func sumData(data: [Double]) -> Double {
-        var sum: Double = 0
-        for item in data {
-            sum += item
+    func averageData(data: [Double]) -> [Double] {
+//        var sum: Double = 0
+//        for item in data {
+//            sum += item
+//        }
+        var averages: [Double] = []
+        for i in 0..<data.count {
+            if i == 0 {
+                let newAvg = (data[i] + data[i+1]) / 2
+                averages.append(newAvg)
+            } else if i == data.count - 1{
+                let newAvg = (data[i] + data[i-1]) / 2
+                averages.append(newAvg)
+            } else {
+                let newAvg = (data[i-1] + data[i] + data[i+1]) / 3
+                averages.append(newAvg)
+            }
         }
-        return sum
+        return averages
     }
 
     // MARK: - Table view data source
@@ -46,25 +57,23 @@ class MoveCullTableViewController: UITableViewController {
         if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.ProductionByWeekCellIdentifier, for: indexPath) as? ProductionByPairTableViewCell {
             safeCell.penNestLabel.text = "40\(indexPath.row)-\(indexPath.row + 1)A"
             var randomData: [Double] = []
-//            var totals: [Double] = []
             for _ in 0...11 {
                 let number = Double(Int.random(in: 0...2))
                 randomData.append(number)
-//
-//                let newTotal = sumData(data: randomData)
-//                totals.append(newTotal)
+
             }
+            let runningAvg: [Double] = averageData(data: randomData)
             
             var lineChartEntry = [ChartDataEntry]()
-//            var totalsEntry = [ChartDataEntry]()
+            var avgEntry = [ChartDataEntry]()
             
             
             for i in 0..<randomData.count {
                 let value = ChartDataEntry(x: Double(i), y: randomData[i])
                 lineChartEntry.append(value)
                 
-//                let total = ChartDataEntry(x: Double(i), y: totals[i])
-//                totalsEntry.append(total)
+                let average = ChartDataEntry(x: Double(i), y: runningAvg[i])
+                avgEntry.append(average)
             }
             
             
@@ -72,26 +81,39 @@ class MoveCullTableViewController: UITableViewController {
             line1.colors = [#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)]
             line1.drawFilledEnabled = true
             line1.circleRadius = 4.5
+            line1.circleHoleRadius = line1.circleRadius / 1.5
             line1.drawValuesEnabled = false
+            line1.mode = .horizontalBezier
             
             let gradientColors = [UIColor.blue.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
-            let colorLocations:[CGFloat] = [0.75, 0.0] // Positioning of the gradient
+            let colorLocations:[CGFloat] = [0.9, 0.0] // Positioning of the gradient
             let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object
             line1.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
             line1.drawFilledEnabled = true // Draw the Gradient
             
-//            let line2 = LineChartDataSet(entries: totalsEntry)
-//            line2.colors = [NSUIColor.red]
-//            line2.circleRadius = 2
-//            line2.drawValuesEnabled = false
+            let line2 = LineChartDataSet(entries: avgEntry)
+            line2.colors = [NSUIColor.red]
+            line2.drawCirclesEnabled = false
+            line2.drawValuesEnabled = false
+            line2.mode = .horizontalBezier
+            line2.drawFilledEnabled = true
+//            line2.fillColor = .red
+//            line2.fillAlpha = 0.25
             
-            let data = LineChartData(dataSets: [line1])
+            let gradientColors2 = [UIColor.red.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
+            let colorLocations2:[CGFloat] = [0.9, 0.0] // Positioning of the gradient
+            let gradient2 = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors2, locations: colorLocations2) // Gradient Object
+            line2.fill = Fill.fillWithLinearGradient(gradient2!, angle: 90.0) // Set the Gradient
+            line2.drawFilledEnabled = true // Draw the Gradient
+            
+            let data = LineChartData(dataSets: [line2, line1])
             safeCell.chart.data = data
             
             safeCell.chart.isUserInteractionEnabled = false
             
             
-            safeCell.chart.animate(xAxisDuration: 1.0)
+//            safeCell.chart.animate(xAxisDuration: 1.0)
+            safeCell.chart.animate(yAxisDuration: 1.0)
             
             
             safeCell.chart.legend.enabled = false

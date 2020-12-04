@@ -7,28 +7,21 @@
 
 import UIKit
 
-//protocol ViewControllerDelegate {
-//    func loadURLRequest(urlRequest: URLRequest)
-//}
+
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var pickupButton: UIButton!
     @IBOutlet weak var dashboardButton: UIButton!
-    
-//    var delegate: ViewControllerDelegate
+    @IBOutlet weak var moveCullButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        				
-        
-        pickupButton.layer.cornerRadius = pickupButton.frame.height / 2
-        pickupButton.layer.shadowColor = UIColor.black.cgColor
-        pickupButton.layer.shadowOpacity = 0.5
-        pickupButton.layer.shadowOffset = .init(width: 0, height: 4)
-        pickupButton.layer.shadowRadius = 10
+        dashboardButton.makeMainButton()
+        pickupButton.makeMainButton()
+        moveCullButton.makeMainButton()
         
         
         

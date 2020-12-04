@@ -41,12 +41,8 @@ class PickupSessionViewController: UIViewController {
         
         navigationItem.title = "Pickup Session"
         
+        pickupSessionButton.makeMainButton()
         
-        pickupSessionButton.layer.cornerRadius = pickupSessionButton.frame.height / 2
-        pickupSessionButton.layer.shadowColor = UIColor.black.cgColor
-        pickupSessionButton.layer.shadowOpacity = 0.5
-        pickupSessionButton.layer.shadowOffset = .init(width: 0, height: 4)
-        pickupSessionButton.layer.shadowRadius = 10
         
         print(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask))
         
