@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,8 @@
 		C304489B256EF85B00176E29 /* env.swift in Sources */ = {isa = PBXBuildFile; fileRef = C304489A256EF85B00176E29 /* env.swift */; };
 		C31298F9255CDC9C00B1F246 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31298F8255CDC9C00B1F246 /* DashboardViewController.swift */; };
 		C32B309B256065D8000C9A46 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C32B3099256065D8000C9A46 /* DataModel.xcdatamodeld */; };
+		C357BFF32579AD2500CFE814 /* ProductionByPairTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BFF12579AD2500CFE814 /* ProductionByPairTableViewCell.swift */; };
+		C357BFF42579AD2500CFE814 /* ProductionByPairTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C357BFF22579AD2500CFE814 /* ProductionByPairTableViewCell.xib */; };
 		C3A2BD792560E3310084E66A /* PickupSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */; };
 		C3A5BF9A2557BC8B0085D440 /* ContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BF992557BC8B0085D440 /* ContentsCell.swift */; };
 		C3BE0EF625577D61006A8FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */; };
@@ -32,13 +34,18 @@
 		C3F4DBA22578B5FA00084F73 /* CullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DBA12578B5FA00084F73 /* CullViewController.swift */; };
 		C3F4DBA825795E6300084F73 /* MoveCullTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DBA725795E6300084F73 /* MoveCullTableViewController.swift */; };
 		C3F4DBAB2579600000084F73 /* MoveCullTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DBAA2579600000084F73 /* MoveCullTableViewCell.swift */; };
+		D422A58363482BD123A101D1 /* Pods_Squab_Pickup_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B48BA7F5E79AE3F439B89D /* Pods_Squab_Pickup_Tracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57EDDA76CCC4E22241D2EDAE /* Pods-Squab-Pickup-Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Squab-Pickup-Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Squab-Pickup-Tracker/Pods-Squab-Pickup-Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		8ADFCED0502E15131B7B0AE5 /* Pods-Squab-Pickup-Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Squab-Pickup-Tracker.release.xcconfig"; path = "Target Support Files/Pods-Squab-Pickup-Tracker/Pods-Squab-Pickup-Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		C3044896256EE26200176E29 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		C304489A256EF85B00176E29 /* env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = env.swift; sourceTree = "<group>"; };
 		C31298F8255CDC9C00B1F246 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		C32B309A256065D8000C9A46 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		C357BFF12579AD2500CFE814 /* ProductionByPairTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionByPairTableViewCell.swift; sourceTree = "<group>"; };
+		C357BFF22579AD2500CFE814 /* ProductionByPairTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductionByPairTableViewCell.xib; sourceTree = "<group>"; };
 		C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSessionViewController.swift; sourceTree = "<group>"; };
 		C3A5BF992557BC8B0085D440 /* ContentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCell.swift; sourceTree = "<group>"; };
 		C3BE0EF225577D61006A8FE1 /* Squab-Pickup-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Squab-Pickup-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +69,7 @@
 		C3F4DBA12578B5FA00084F73 /* CullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CullViewController.swift; sourceTree = "<group>"; };
 		C3F4DBA725795E6300084F73 /* MoveCullTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCullTableViewController.swift; sourceTree = "<group>"; };
 		C3F4DBAA2579600000084F73 /* MoveCullTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCullTableViewCell.swift; sourceTree = "<group>"; };
+		F7B48BA7F5E79AE3F439B89D /* Pods_Squab_Pickup_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Squab_Pickup_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,17 +77,50 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D422A58363482BD123A101D1 /* Pods_Squab_Pickup_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		393D13714B926ADCD7F0782F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7B48BA7F5E79AE3F439B89D /* Pods_Squab_Pickup_Tracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		810FF941E97DEF8669364A81 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57EDDA76CCC4E22241D2EDAE /* Pods-Squab-Pickup-Tracker.debug.xcconfig */,
+				8ADFCED0502E15131B7B0AE5 /* Pods-Squab-Pickup-Tracker.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C357BFF62579B07400CFE814 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C357BFF12579AD2500CFE814 /* ProductionByPairTableViewCell.swift */,
+				C357BFF22579AD2500CFE814 /* ProductionByPairTableViewCell.xib */,
+				C3BE0F34255780B4006A8FE1 /* nestCell.swift */,
+				C3A5BF992557BC8B0085D440 /* ContentsCell.swift */,
+				C3E6563C255A648A0066E36C /* PenListCell.swift */,
+				C3F4DBAA2579600000084F73 /* MoveCullTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		C3BE0EE925577D61006A8FE1 = {
 			isa = PBXGroup;
 			children = (
 				C3BE0EF425577D61006A8FE1 /* Squab-Pickup-Tracker */,
 				C3BE0EF325577D61006A8FE1 /* Products */,
+				810FF941E97DEF8669364A81 /* Pods */,
+				393D13714B926ADCD7F0782F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,10 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				C3BE0EFB25577D61006A8FE1 /* Main.storyboard */,
-				C3BE0F34255780B4006A8FE1 /* nestCell.swift */,
-				C3A5BF992557BC8B0085D440 /* ContentsCell.swift */,
-				C3E6563C255A648A0066E36C /* PenListCell.swift */,
-				C3F4DBAA2579600000084F73 /* MoveCullTableViewCell.swift */,
+				C357BFF62579B07400CFE814 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3BE0F1C25577D62006A8FE1 /* Build configuration list for PBXNativeTarget "Squab-Pickup-Tracker" */;
 			buildPhases = (
+				CA763FAAF26630EAE60BB9C9 /* [CP] Check Pods Manifest.lock */,
 				C3BE0EEE25577D61006A8FE1 /* Sources */,
 				C3BE0EEF25577D61006A8FE1 /* Frameworks */,
 				C3BE0EF025577D61006A8FE1 /* Resources */,
+				3668D9088B56992B3019A058 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -230,12 +270,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3BE0F0225577D61006A8FE1 /* LaunchScreen.storyboard in Resources */,
+				C357BFF42579AD2500CFE814 /* ProductionByPairTableViewCell.xib in Resources */,
 				C3BE0EFF25577D61006A8FE1 /* Assets.xcassets in Resources */,
 				C3BE0EFD25577D61006A8FE1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3668D9088B56992B3019A058 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Squab-Pickup-Tracker/Pods-Squab-Pickup-Tracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Squab-Pickup-Tracker/Pods-Squab-Pickup-Tracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Squab-Pickup-Tracker/Pods-Squab-Pickup-Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA763FAAF26630EAE60BB9C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Squab-Pickup-Tracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C3BE0EEE25577D61006A8FE1 /* Sources */ = {
@@ -249,6 +332,7 @@
 				C3E8D5AA2563A3FF00440448 /* PigeonDataManager.swift in Sources */,
 				C3BE0F42255787B6006A8FE1 /* Constants.swift in Sources */,
 				C3F4DBAB2579600000084F73 /* MoveCullTableViewCell.swift in Sources */,
+				C357BFF32579AD2500CFE814 /* ProductionByPairTableViewCell.swift in Sources */,
 				C304489B256EF85B00176E29 /* env.swift in Sources */,
 				C3A5BF9A2557BC8B0085D440 /* ContentsCell.swift in Sources */,
 				C3BE0EFA25577D61006A8FE1 /* ViewController.swift in Sources */,
@@ -407,6 +491,7 @@
 		};
 		C3BE0F1D25577D62006A8FE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57EDDA76CCC4E22241D2EDAE /* Pods-Squab-Pickup-Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -427,6 +512,7 @@
 		};
 		C3BE0F1E25577D62006A8FE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8ADFCED0502E15131B7B0AE5 /* Pods-Squab-Pickup-Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

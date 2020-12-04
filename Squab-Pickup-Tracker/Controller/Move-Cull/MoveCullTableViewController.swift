@@ -6,14 +6,23 @@
 //
 
 import UIKit
+import Charts
 
 class MoveCullTableViewController: UITableViewController {
+    
+//    //Temporary Chart Data
+//    let pairData: [Double] = [3,0,2,2,2,0,2,0,1,2,3,0,0,0]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.backgroundColor = .clear
+        tableView.register(UINib(nibName: K.ProductionCellNibName, bundle: nil), forCellReuseIdentifier: K.ProductionByWeekCellIdentifier)
 
+        
+    }
+    
+    func updateGraph() {
         
     }
 
@@ -24,12 +33,55 @@ class MoveCullTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.MoveCullCellIdentifier, for: indexPath)
+        var cell = UITableViewCell()
+        if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.ProductionByWeekCellIdentifier, for: indexPath) as? ProductionByPairTableViewCell {
+            safeCell.penNestLabel.text = "40\(indexPath.row)-\(indexPath.row + 1)A"
+            var randomData: [Double] = []
+            for i in 0...11 {
+                let number = Double(Int.random(in: 0...4))
+                randomData.append(number)
+            }
+            
+            var lineChartEntry = [ChartDataEntry]()
+            
+            for i in 0..<randomData.count {
+                let value = ChartDataEntry(x: Double(i), y: randomData[i])
+                lineChartEntry.append(value)
+            }
+            
+            let line1 = LineChartDataSet(entries: lineChartEntry)
+            line1.colors = [NSUIColor.blue]
+            line1.drawFilledEnabled = true
+//            line1.drawCircleHoleEnabled = false
+            line1.circleRadius = 5
+            line1.drawValuesEnabled = false
+            
+            let data = LineChartData(dataSet: line1)
+            safeCell.chart.data = data
+            
+            safeCell.chart.isUserInteractionEnabled = false
+            
+            safeCell.chart.legend.enabled = false
+//            safeCell.chart.leftAxis.drawLabelsEnabled = false
+//            safeCell.chart.leftAxis.drawZeroLineEnabled = true
+            safeCell.chart.leftAxis.granularity = 1
+            safeCell.chart.rightAxis.granularity = 1
+            safeCell.chart.leftAxis.axisMinimum = 0
+            safeCell.chart.rightAxis.axisMinimum = 0
+            safeCell.chart.rightAxis.drawLabelsEnabled = false
+            safeCell.chart.rightAxis.drawGridLinesEnabled = false
+            safeCell.chart.rightAxis.drawAxisLineEnabled = false
+            safeCell.chart.xAxis.drawLabelsEnabled = false
+            safeCell.chart.xAxis.drawAxisLineEnabled = false
+            safeCell.chart.xAxis.drawGridLinesEnabled = false
+            
+            cell = safeCell
+        }
 
         return cell
     }
