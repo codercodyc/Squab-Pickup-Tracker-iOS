@@ -10,7 +10,6 @@ import Charts
 
 class ProductionCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var sixMonthButton: UIButton!
     @IBOutlet weak var penNestLabel: UILabel!
     @IBOutlet weak var productionTotalLabel: UILabel!

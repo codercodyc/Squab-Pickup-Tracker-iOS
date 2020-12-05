@@ -15,6 +15,7 @@ class CullCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         collectionView.backgroundColor = .clear
+        collectionViewLayout.collectionView?.delegate = self
     }
 
     /*
@@ -48,8 +49,8 @@ class CullCollectionViewController: UICollectionViewController {
         
         if let safeCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.ProductionCullCell, for: indexPath) as? ProductionCollectionViewCell {
             
-            safeCell.cellView.setShadow()
-            safeCell.cellView.setRadius(with: 15)
+//            safeCell.cellView.setShadow()
+//            safeCell.cellView.setRadius(with: 15)
             
             cell = safeCell
         }
@@ -94,9 +95,9 @@ class CullCollectionViewController: UICollectionViewController {
 
 }
 //
-//extension CullCollectionViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let size = CGSize(width: CGFloat(414), height: view.frame.height)
-//        return size
-//    }
-//}
+extension CullCollectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 50, height: 50)
+    }
+}
