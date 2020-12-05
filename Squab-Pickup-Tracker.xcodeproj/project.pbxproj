@@ -25,6 +25,7 @@
 		C3BE0F3D2557836A006A8FE1 /* PickupPenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0F3C2557836A006A8FE1 /* PickupPenViewController.swift */; };
 		C3BE0F42255787B6006A8FE1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0F41255787B6006A8FE1 /* Constants.swift */; };
 		C3BE0F5025579338006A8FE1 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0F4F25579338006A8FE1 /* SelectionViewController.swift */; };
+		C3C2123F257B5A2400EBAFE6 /* CullCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C2123E257B5A2400EBAFE6 /* CullCollectionViewCell.swift */; };
 		C3E6563A255A61CC0066E36C /* PenPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E65639255A61CC0066E36C /* PenPopupViewController.swift */; };
 		C3E6563D255A648A0066E36C /* PenListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E6563C255A648A0066E36C /* PenListCell.swift */; };
 		C3E8D5AA2563A3FF00440448 /* PigeonDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E8D5A92563A3FF00440448 /* PigeonDataManager.swift */; };
@@ -64,6 +65,7 @@
 		C3BE0F3C2557836A006A8FE1 /* PickupPenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPenViewController.swift; sourceTree = "<group>"; };
 		C3BE0F41255787B6006A8FE1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C3BE0F4F25579338006A8FE1 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
+		C3C2123E257B5A2400EBAFE6 /* CullCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CullCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3E65639255A61CC0066E36C /* PenPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenPopupViewController.swift; sourceTree = "<group>"; };
 		C3E6563C255A648A0066E36C /* PenListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenListCell.swift; sourceTree = "<group>"; };
 		C3E8D5A92563A3FF00440448 /* PigeonDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigeonDataManager.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				C3E6563C255A648A0066E36C /* PenListCell.swift */,
 				C3F4DBAA2579600000084F73 /* MoveCullTableViewCell.swift */,
 				C3EB8E3A257AEDBC009D7B24 /* ProductionCollectionViewCell.swift */,
+				C3C2123E257B5A2400EBAFE6 /* CullCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				C3BE0EFA25577D61006A8FE1 /* ViewController.swift in Sources */,
 				C3E8D5AD2563A9B600440448 /* PigeonData.swift in Sources */,
 				C3E6563A255A61CC0066E36C /* PenPopupViewController.swift in Sources */,
+				C3C2123F257B5A2400EBAFE6 /* CullCollectionViewCell.swift in Sources */,
 				C3F4DBA825795E6300084F73 /* MoveCullTableViewController.swift in Sources */,
 				C32B309B256065D8000C9A46 /* DataModel.xcdatamodeld in Sources */,
 				C3EB8E3E257AEE38009D7B24 /* CullCollectionViewController.swift in Sources */,

@@ -39,12 +39,15 @@ class CullCollectionViewController: UICollectionViewController {
         
         var cell = UICollectionViewCell()
         
-        let safeCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.cullCellIdentifier, for: indexPath)
+        if let safeCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.cullCellIdentifier, for: indexPath) as? CullCollectionViewCell {
             
-            
-            
+            safeCell.mainView.setRadius(with: 15)
+            safeCell.setShadow()
             
             cell = safeCell
+        }
+  
+            
         
             
 //            safeCell.mainView.setShadow()
