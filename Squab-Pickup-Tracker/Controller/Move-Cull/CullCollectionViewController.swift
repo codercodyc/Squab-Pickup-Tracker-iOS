@@ -46,22 +46,7 @@ class CullCollectionViewController: UICollectionViewController {
             
             cell = safeCell
         }
-  
-            
         
-            
-//            safeCell.mainView.setShadow()
-//            safeCell.mainView.setRadius(with: 15)
-        
-            
-//            safeCell.cellView.setShadow()
-//            safeCell.cellView.setRadius(with: 15)
-            
-        
-        
-    
-        // Configure the cell
-    
         return cell
     }
     
@@ -79,20 +64,10 @@ extension CullCollectionViewController: UICollectionViewDelegateFlowLayout {
         print(view.frame.width)
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: cellInsetV, left: cellInsetH, bottom: cellInsetV, right: cellInsetH)
-//    }
-    
-    
-    
+   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(0)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return CGFloat(0)
-//    }
     
     
 }

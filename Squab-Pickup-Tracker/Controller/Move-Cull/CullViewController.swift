@@ -16,12 +16,16 @@ class CullViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBarController?.title = "Cull Pairs"
         selectionView.setShadow()
         selectionView.setRadius(with: 15)
 
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.title = "Cull Pairs"
+
     }
     
 

@@ -207,8 +207,8 @@
 			children = (
 				C3F4DB9E2578B5ED00084F73 /* MoveViewController.swift */,
 				C3F4DBA12578B5FA00084F73 /* CullViewController.swift */,
-				C3F4DBA725795E6300084F73 /* MoveCullTableViewController.swift */,
 				C3EB8E3D257AEE38009D7B24 /* CullCollectionViewController.swift */,
+				C3F4DBA725795E6300084F73 /* MoveCullTableViewController.swift */,
 			);
 			path = "Move-Cull";
 			sourceTree = "<group>";

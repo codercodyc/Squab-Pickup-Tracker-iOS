@@ -250,38 +250,40 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9JC-bN-QPA">
-                                                    <rect key="frame" x="90" y="64" width="200" height="35"/>
+                                                    <rect key="frame" x="90" y="64" width="200" height="45"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOb-oo-ZHV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="95" height="32"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="95" height="45"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="tintColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <state key="normal" title="6 Months">
+                                                            <state key="normal" title="6 Month">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxg-Xo-6iD">
-                                                            <rect key="frame" x="105" y="0.0" width="95" height="32"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxg-Xo-6iD">
+                                                            <rect key="frame" x="105" y="0.0" width="95" height="45"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="tintColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <state key="normal" title="12 Months">
+                                                            <state key="normal" title="12 Month">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="Mxg-Xo-6iD" firstAttribute="centerY" secondItem="9JC-bN-QPA" secondAttribute="centerY" id="Eu5-cR-hNU"/>
                                                         <constraint firstAttribute="width" constant="200" id="QoR-sh-7Yk"/>
-                                                        <constraint firstAttribute="height" constant="35" id="Rby-dd-vUY"/>
+                                                        <constraint firstAttribute="height" constant="45" id="Rby-dd-vUY"/>
+                                                        <constraint firstItem="LOb-oo-ZHV" firstAttribute="centerY" secondItem="9JC-bN-QPA" secondAttribute="centerY" id="pbe-lF-wx3"/>
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJY-YH-9V7">
-                                                    <rect key="frame" x="161.5" y="104" width="57" height="60"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="50"/>
+                                                    <rect key="frame" x="156" y="114" width="68" height="72"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
                                                     <color key="textColor" red="0.25490196079999999" green="0.76862745099999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxa-Hi-5lK" customClass="LineChartView" customModule="Charts">
-                                                    <rect key="frame" x="10" y="174" width="360" height="278.5"/>
+                                                    <rect key="frame" x="10" y="196" width="360" height="256.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Chd-eG-wyk">
@@ -426,8 +428,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="im0-sV-kl5" kind="relationship" relationship="viewControllers" id="PGs-l5-N1t"/>
                         <segue destination="0BW-Oi-lyu" kind="relationship" relationship="viewControllers" id="SBt-XD-pup"/>
+                        <segue destination="im0-sV-kl5" kind="relationship" relationship="viewControllers" id="PGs-l5-N1t"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lvh-Oc-xyq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
