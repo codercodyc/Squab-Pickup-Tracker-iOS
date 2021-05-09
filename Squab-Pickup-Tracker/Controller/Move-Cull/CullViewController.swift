@@ -24,11 +24,18 @@ class CullViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.title = "Cull Pairs"
+        tabBarController?.title = "Potential Pairs to Cull"
 
     }
     
-
+    @IBAction func skipPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func cullPressed(_ sender: UIButton) {
+        
+    }
+    
     
 }
 

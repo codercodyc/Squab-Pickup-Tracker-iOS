@@ -11,6 +11,7 @@
 		C304489B256EF85B00176E29 /* env.swift in Sources */ = {isa = PBXBuildFile; fileRef = C304489A256EF85B00176E29 /* env.swift */; };
 		C31298F9255CDC9C00B1F246 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31298F8255CDC9C00B1F246 /* DashboardViewController.swift */; };
 		C32B309B256065D8000C9A46 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C32B3099256065D8000C9A46 /* DataModel.xcdatamodeld */; };
+		C352CF0C257C6A7C000839E1 /* LineChartView+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */; };
 		C3A2BD792560E3310084E66A /* PickupSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */; };
 		C3A5BF9A2557BC8B0085D440 /* ContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BF992557BC8B0085D440 /* ContentsCell.swift */; };
 		C3BE0EF625577D61006A8FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */; };
@@ -45,6 +46,7 @@
 		C304489A256EF85B00176E29 /* env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = env.swift; sourceTree = "<group>"; };
 		C31298F8255CDC9C00B1F246 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		C32B309A256065D8000C9A46 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineChartView+Formats.swift"; sourceTree = "<group>"; };
 		C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSessionViewController.swift; sourceTree = "<group>"; };
 		C3A5BF992557BC8B0085D440 /* ContentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCell.swift; sourceTree = "<group>"; };
 		C3BE0EF225577D61006A8FE1 /* Squab-Pickup-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Squab-Pickup-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +187,7 @@
 			children = (
 				C3EB8E33257AB520009D7B24 /* UIButton+Shadow.swift */,
 				C3EB8E37257AE3A5009D7B24 /* UIView+Shadow+Radius.swift */,
+				C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			files = (
 				C3BE0F3D2557836A006A8FE1 /* PickupPenViewController.swift in Sources */,
 				C3F4DB9F2578B5ED00084F73 /* MoveViewController.swift in Sources */,
+				C352CF0C257C6A7C000839E1 /* LineChartView+Formats.swift in Sources */,
 				C3A2BD792560E3310084E66A /* PickupSessionViewController.swift in Sources */,
 				C3EB8E34257AB520009D7B24 /* UIButton+Shadow.swift in Sources */,
 				C31298F9255CDC9C00B1F246 /* DashboardViewController.swift in Sources */,

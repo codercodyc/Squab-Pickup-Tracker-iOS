@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Charts
 
 
 class CullCollectionViewController: UICollectionViewController {
+    
 
     let cellInsetH: CGFloat = 10
     let cellInsetV: CGFloat = 15
@@ -44,6 +46,22 @@ class CullCollectionViewController: UICollectionViewController {
             safeCell.mainView.setRadius(with: 15)
             safeCell.setShadow()
             
+            var entries = [ChartDataEntry]()
+            var randomData: [Double] = []
+            for _ in 0...12 {
+                let number = Double(Int.random(in: 0...3))
+                randomData.append(number)
+
+            }
+            for i in 0..<randomData.count {
+                let value = ChartDataEntry(x: Double(i), y: randomData[i])
+                entries.append(value)
+                
+            }
+            
+            
+            safeCell.chart.plotProduction(with: entries)
+            
             cell = safeCell
         }
         
@@ -61,7 +79,6 @@ class CullCollectionViewController: UICollectionViewController {
 extension CullCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(view.frame.width)
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
    

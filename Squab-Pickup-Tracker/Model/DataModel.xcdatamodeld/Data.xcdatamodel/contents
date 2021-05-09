@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B50" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="MonthlyProduction" representedClassName="MonthlyProduction" syncable="YES" codeGenerationType="class">
+        <attribute name="productionAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="yearMonth" optional="YES" attributeType="String"/>
+        <relationship name="pair" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pair" inverseName="productionData" inverseEntity="Pair"/>
+    </entity>
     <entity name="Nest" representedClassName="Nest" syncable="YES" codeGenerationType="class">
         <attribute name="border" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="color" optional="YES" attributeType="String" defaultValueString="cellColor"/>
@@ -9,6 +14,12 @@
         <attribute name="mortCode" optional="YES" attributeType="String"/>
         <attribute name="productionAmount" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pen" inverseName="nests" inverseEntity="Pen"/>
+    </entity>
+    <entity name="Pair" representedClassName="Pair" syncable="YES" codeGenerationType="class">
+        <attribute name="pairId" attributeType="String"/>
+        <attribute name="penNest" optional="YES" attributeType="String"/>
+        <relationship name="productionData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MonthlyProduction" inverseName="pair" inverseEntity="MonthlyProduction"/>
+        <relationship name="transferEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferEvent" inverseName="pair" inverseEntity="TransferEvent"/>
     </entity>
     <entity name="Pen" representedClassName="Pen" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="String"/>
@@ -22,16 +33,18 @@
         <attribute name="wasSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="pens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pen" inverseName="parentCategory" inverseEntity="Pen"/>
     </entity>
-    <entity name="Transfer" representedClassName="Transfer" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="pairId" optional="YES" attributeType="String"/>
-        <attribute name="penNest" attributeType="String"/>
-        <attribute name="tranferType" optional="YES" attributeType="String"/>
+    <entity name="TransferEvent" representedClassName="TransferEvent" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isNewEvent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="tranferType" attributeType="String"/>
+        <relationship name="pair" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pair" inverseName="transferEvents" inverseEntity="Pair"/>
     </entity>
     <elements>
-        <element name="Nest" positionX="160.96875" positionY="-40.9296875" width="128" height="149"/>
+        <element name="Nest" positionX="135.8562622070312" positionY="-26.8409423828125" width="128" height="148"/>
         <element name="Pen" positionX="-66.984375" positionY="-25.99609375" width="128" height="88"/>
-        <element name="Session" positionX="-285.1171875" positionY="-53.8984375" width="128" height="118"/>
-        <element name="Transfer" positionX="-81" positionY="18" width="128" height="89"/>
+        <element name="Session" positionX="-253.706298828125" positionY="-86.41204833984375" width="128" height="118"/>
+        <element name="TransferEvent" positionX="111.07080078125" positionY="-237.5014953613281" width="128" height="103"/>
+        <element name="Pair" positionX="-143.3252563476562" positionY="-332.5434722900391" width="128" height="103"/>
+        <element name="MonthlyProduction" positionX="107.4345092773438" positionY="-411.5150146484375" width="128" height="88"/>
     </elements>
 </model>

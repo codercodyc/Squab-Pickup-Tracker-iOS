@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H4J-hA-zog">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H4J-hA-zog">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -144,11 +144,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJw-ug-JKM">
                                 <rect key="frame" x="10" y="648" width="394" height="150"/>
                                 <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="SHn-Um-2mb">
+                                    <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="SHn-Um-2mb">
                                         <rect key="frame" x="138" y="5" width="118" height="64.5"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="118" id="vAb-aO-bxR"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="118" id="vAb-aO-bxR"/>
                                         </constraints>
                                     </datePicker>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3BT-fI-Xdr">
@@ -167,6 +167,9 @@
                                                 <state key="normal" title="SKIP">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="skipPressed:" destination="0BW-Oi-lyu" eventType="touchUpInside" id="hfO-NU-yct"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpu-fY-tDC">
                                                 <rect key="frame" x="189.5" y="0.0" width="174.5" height="64.5"/>
@@ -174,6 +177,9 @@
                                                 <state key="normal" title="CULL">
                                                     <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="cullPressed:" destination="0BW-Oi-lyu" eventType="touchUpInside" id="Hjv-lI-lRi"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -259,6 +265,9 @@
                                                             <state key="normal" title="6 Month">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="sixMonthPressed:" destination="ZnS-Zn-rvx" eventType="touchUpInside" id="EMB-na-YEL"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxg-Xo-6iD">
                                                             <rect key="frame" x="105" y="0.0" width="95" height="45"/>
@@ -267,6 +276,9 @@
                                                             <state key="normal" title="12 Month">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="sixMonthPressed:" destination="ZnS-Zn-rvx" eventType="touchUpInside" id="F5D-iN-NUY"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
@@ -329,7 +341,13 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
+                                    <outlet property="chart" destination="rxa-Hi-5lK" id="ZgF-pJ-gie"/>
                                     <outlet property="mainView" destination="Hxp-rX-Nun" id="0qA-se-b9q"/>
+                                    <outlet property="pairIdLabel" destination="7SN-Id-Gkm" id="khf-rk-S6E"/>
+                                    <outlet property="penNestLabel" destination="Qof-8C-Ydh" id="eo4-0i-yPl"/>
+                                    <outlet property="sixMonthButton" destination="LOb-oo-ZHV" id="NLV-qY-nG4"/>
+                                    <outlet property="totalProductionLabel" destination="HJY-YH-9V7" id="Rek-1H-9sf"/>
+                                    <outlet property="twelveMonthButton" destination="Mxg-Xo-6iD" id="1RC-Du-vyW"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -449,7 +467,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="penListCell" rowHeight="50" id="gUd-Xq-8Bl" customClass="PenListCell" customModule="Squab_Pickup_Tracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="250" height="50"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="250" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gUd-Xq-8Bl" id="L6Y-aM-7cQ">
                                             <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
@@ -535,14 +553,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="sessionCell" textLabel="0pk-7w-i9F" style="IBUITableViewCellStyleDefault" id="T7S-od-L25">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="46.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="46.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T7S-od-L25" id="rPH-Cv-f5o">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0pk-7w-i9F">
-                                                    <rect key="frame" x="20" y="0.0" width="355" height="46.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="356.5" height="46.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
