@@ -66,9 +66,13 @@ class DatePickerViewController: UIViewController {
         newSession.dateCreated = date
         newSession.wasCreated = true
         
+        var pickupOrderCount = 0
+        
         for pen in K.penIDs {
             let newPen = Pen(context: context)
             newPen.id = pen
+            newPen.pickupOrderIndex = Int32(pickupOrderCount)
+            pickupOrderCount = pickupOrderCount + 1
             
             for nest in K.nestIDs {
                 let newNest = Nest(context: context)

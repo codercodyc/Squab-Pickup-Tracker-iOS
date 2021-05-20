@@ -86,8 +86,8 @@ class PickupPenViewController: UIViewController {
         super.viewDidLoad()
         
         
-        if penData.count >= 20 {
-            currentPenIndex = 20
+        if penData.count >= 1 {
+            currentPenIndex = 0
         }
         
         penLabel.text = penData[currentPenIndex].id
@@ -159,12 +159,12 @@ class PickupPenViewController: UIViewController {
 
         
         if changeDirection == "Next" {
-            direction = CGFloat(1)
-        } else if changeDirection == "Previous" {
             direction = CGFloat(-1)
+        } else if changeDirection == "Previous" {
+            direction = CGFloat(1)
         }
         
-        let animationTime: Double = 0.25
+        let animationTime: Double = 0.2
         
         
 
@@ -324,7 +324,7 @@ class PickupPenViewController: UIViewController {
     
     func loadPens(with request: NSFetchRequest<Pen> = Pen.fetchRequest(), pen: String? = nil) {
         
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "pickupOrderIndex", ascending: true)]
         
         let sessionPredicate = NSPredicate(format: "parentCategory.dateCreated == %@", selectedSesssion!.dateCreated! as CVarArg)
         
