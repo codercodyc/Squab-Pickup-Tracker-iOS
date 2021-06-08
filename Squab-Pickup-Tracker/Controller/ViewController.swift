@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pickupButton: UIButton!
     @IBOutlet weak var dashboardButton: UIButton!
     @IBOutlet weak var moveCullButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -21,11 +22,13 @@ class ViewController: UIViewController {
        
         dashboardButton.makeMainButton()
         pickupButton.makeMainButton()
+//        moveCullButton.makeMainButton()
+        settingsButton.makeMainButton()
+        
         // Temporary Code to remove cull button
         moveCullButton.removeFromSuperview()
         
-//        moveCullButton.makeMainButton()
-        
+
         
         
     }

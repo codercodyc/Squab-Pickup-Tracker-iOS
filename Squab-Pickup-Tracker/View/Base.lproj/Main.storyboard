@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="U8O-JB-vkz">
-                                <rect key="frame" x="82" y="577" width="250" height="240"/>
+                                <rect key="frame" x="82" y="482" width="250" height="335"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKM-v9-UjM">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
@@ -63,6 +63,17 @@
                                             <segue destination="s6p-cM-InV" kind="show" id="qPu-NA-KZo"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGX-pg-0P5">
+                                        <rect key="frame" x="0.0" y="285" width="250" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="8PE-Z7-krI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="30"/>
+                                        <state key="normal" title="SETTINGS"/>
+                                        <connections>
+                                            <segue destination="Uam-Ft-WuO" kind="show" id="t22-VU-NWK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pigeon Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnM-6F-k5T">
@@ -86,6 +97,7 @@
                         <outlet property="dashboardButton" destination="LKM-v9-UjM" id="nQW-De-tTg"/>
                         <outlet property="moveCullButton" destination="C8Y-df-tbO" id="4as-LY-dcm"/>
                         <outlet property="pickupButton" destination="wkO-wf-ytH" id="BAk-Oj-prh"/>
+                        <outlet property="settingsButton" destination="pGX-pg-0P5" id="YHF-Um-JPr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -520,6 +532,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnF-CX-UVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2986" y="535"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="sIA-o9-YLk">
+            <objects>
+                <viewController id="Uam-Ft-WuO" customClass="SettingsViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Ix-aZ-gsQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8h-Xm-1Za">
+                                <rect key="frame" x="20" y="118" width="374" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Live Server" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpp-HP-NRH">
+                                        <rect key="frame" x="20" y="10" width="119" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mXf-DU-Cd9">
+                                        <rect key="frame" x="315" y="9.5" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="useLiveServerChanged:" destination="Uam-Ft-WuO" eventType="valueChanged" id="DJV-OL-1Ra"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="mXf-DU-Cd9" firstAttribute="centerY" secondItem="g8h-Xm-1Za" secondAttribute="centerY" id="1z2-Ys-7tx"/>
+                                    <constraint firstAttribute="trailing" secondItem="mXf-DU-Cd9" secondAttribute="trailing" constant="10" id="9IT-jh-txf"/>
+                                    <constraint firstItem="kpp-HP-NRH" firstAttribute="leading" secondItem="g8h-Xm-1Za" secondAttribute="leading" constant="20" symbolic="YES" id="CE9-fo-e1O"/>
+                                    <constraint firstAttribute="height" constant="50" id="CIw-6E-l6P"/>
+                                    <constraint firstItem="kpp-HP-NRH" firstAttribute="centerY" secondItem="g8h-Xm-1Za" secondAttribute="centerY" id="jI9-cR-6nU"/>
+                                    <constraint firstItem="kpp-HP-NRH" firstAttribute="top" secondItem="g8h-Xm-1Za" secondAttribute="top" constant="10" id="pXf-g5-GBb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fBY-Eu-xpx"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="g8h-Xm-1Za" firstAttribute="centerX" secondItem="4Ix-aZ-gsQ" secondAttribute="centerX" id="Y64-yI-NRg"/>
+                            <constraint firstItem="g8h-Xm-1Za" firstAttribute="leading" secondItem="fBY-Eu-xpx" secondAttribute="leading" constant="20" id="a9e-Ob-wN9"/>
+                            <constraint firstItem="g8h-Xm-1Za" firstAttribute="top" secondItem="fBY-Eu-xpx" secondAttribute="top" constant="30" id="rev-Cc-gjh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="3g1-ql-3Q6"/>
+                    <connections>
+                        <outlet property="liveServerView" destination="g8h-Xm-1Za" id="LNR-Rf-f9o"/>
+                        <outlet property="useLiveServerSwitch" destination="mXf-DU-Cd9" id="t7f-3F-Z5Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2SK-WB-fd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="255" y="934"/>
         </scene>
         <!--Pickup Session View Controller-->
         <scene sceneID="RL2-3O-dgg">
@@ -1120,6 +1185,9 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

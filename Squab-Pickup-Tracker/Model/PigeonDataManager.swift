@@ -23,8 +23,37 @@ class PigeonDataManager {
 //    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
 //    let sessionPostUrl = "http://127.0.0.1:5000/api/post-new-prod-and-mort-1wk"
 //    //Live Server
-    let LastWeekProductionUrl = "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
-    let sessionPostUrl = "https://dkcpigeons.tk/api/post-new-prod-and-mort-1wk"
+//    let lastWeekProductionUrl = "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
+//    let sessionPostUrl = "https://dkcpigeons.tk/api/post-new-prod-and-mort-1wk"
+    
+    
+    var lastWeekProductionUrl: String {
+        get {
+            if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
+                print("using live production url")
+//                return "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
+
+                return "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
+            } else {
+                print("not live")
+                return "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
+            }
+        }
+    }
+    
+    var sessionPostUrl: String {
+        get {
+            if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
+                print("using live session post url")
+//                return "http://127.0.0.1:5000/api/post-new-prod-and-mort-1wk"
+
+                return "https://dkcpigeons.tk/api/post-new-prod-and-mort-1wk"
+            } else {
+                print("not live")
+                return "http://127.0.0.1:5000/api/post-new-prod-and-mort-1wk"
+            }
+        }
+    }
     
     var delegate: PigeonDataManagerDelegate?
     
@@ -44,7 +73,7 @@ class PigeonDataManager {
     
     
     func downloadData() {
-        if let url = URL(string: LastWeekProductionUrl) {
+        if let url = URL(string: lastWeekProductionUrl) {
 
             let session = URLSession(configuration: .default)
             
