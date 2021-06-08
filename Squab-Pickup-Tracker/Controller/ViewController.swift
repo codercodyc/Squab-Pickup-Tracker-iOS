@@ -21,7 +21,10 @@ class ViewController: UIViewController {
        
         dashboardButton.makeMainButton()
         pickupButton.makeMainButton()
-        moveCullButton.makeMainButton()
+        // Temporary Code to remove cull button
+        moveCullButton.removeFromSuperview()
+        
+//        moveCullButton.makeMainButton()
         
         
         

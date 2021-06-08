@@ -20,8 +20,8 @@ class CullCollectionViewCell: UICollectionViewCell {
     
     
     @IBAction func monthPressed(_ sender: UIButton) {
-        deselectMonths()
-        sender.isSelected = true
+//        deselectMonths()
+//        sender.isSelected = true
     }
     
     func deselectMonths() {

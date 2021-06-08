@@ -265,9 +265,6 @@
                                                             <state key="normal" title="6 Month">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="sixMonthPressed:" destination="ZnS-Zn-rvx" eventType="touchUpInside" id="EMB-na-YEL"/>
-                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxg-Xo-6iD">
                                                             <rect key="frame" x="105" y="0.0" width="95" height="45"/>
@@ -345,7 +342,6 @@
                                     <outlet property="mainView" destination="Hxp-rX-Nun" id="0qA-se-b9q"/>
                                     <outlet property="pairIdLabel" destination="7SN-Id-Gkm" id="khf-rk-S6E"/>
                                     <outlet property="penNestLabel" destination="Qof-8C-Ydh" id="eo4-0i-yPl"/>
-                                    <outlet property="sixMonthButton" destination="LOb-oo-ZHV" id="NLV-qY-nG4"/>
                                     <outlet property="totalProductionLabel" destination="HJY-YH-9V7" id="Rek-1H-9sf"/>
                                     <outlet property="twelveMonthButton" destination="Mxg-Xo-6iD" id="1RC-Du-vyW"/>
                                 </connections>
