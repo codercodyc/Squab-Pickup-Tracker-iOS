@@ -31,7 +31,7 @@ class PigeonDataManager {
         get {
             if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
                 print("using live production url")
-//                return "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
+                return "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
 
                 return "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
             } else {
