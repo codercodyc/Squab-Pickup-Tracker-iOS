@@ -41,7 +41,7 @@ class PickupSessionViewController: UIViewController {
         
         navigationItem.title = "Pickup Session"
         
-        pickupSessionButton.makeMainButton()
+        pickupSessionButton.makeMainButton(fontSize: 20)
         
         
         print(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask))
@@ -212,17 +212,22 @@ extension PickupSessionViewController: UITableViewDataSource {
         let dateString = dateFormatter.string(from: date)
         
         
+        
         var cell = UITableViewCell()
         if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.sessionCell) {
             safeCell.textLabel?.text = dateString
+            safeCell.textLabel?.font.withSize(15)
+            safeCell.textLabel?.adjustsFontSizeToFitWidth = true
             if sessions[indexPath.row].wasSubmitted && sessions[indexPath.row].wasCreated == false {
                 safeCell.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
             } else if sessions[indexPath.row].wasSubmitted {
-                safeCell.backgroundColor = #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)
+                safeCell.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
             } else if sessions[indexPath.row].wasCreated == false {
-                safeCell.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+                safeCell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
             } else {
-                safeCell.backgroundColor = .clear
+                safeCell.backgroundColor = UIColor(named: "sessionCell")
+                safeCell.textLabel?.textColor = .label
+                
             }
             cell = safeCell
         }
@@ -238,6 +243,7 @@ extension PickupSessionViewController: UITableViewDataSource {
 
 extension PickupSessionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         let titleText = sessionTableView.cellForRow(at: indexPath)?.textLabel?.text
         
@@ -262,6 +268,10 @@ extension PickupSessionViewController: UITableViewDelegate {
         present(alert, animated: true, completion: nil)
         
         
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
     }
 }
 
