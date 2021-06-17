@@ -9,21 +9,54 @@ import UIKit
 
 class TransfersViewController: UIViewController {
 
+    @IBOutlet weak var newPairButton: UIButton!
+    @IBOutlet weak var movePairButton: UIButton!
+    @IBOutlet weak var cullPairButton: UIButton!
+    @IBOutlet weak var transfersTableView: UITableView!
+    
+    private let buttonFontSize: CGFloat = 20
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        newPairButton.makeMainButton(fontSize: buttonFontSize)
+        movePairButton.makeMainButton(fontSize: buttonFontSize)
+        cullPairButton.makeMainButton(fontSize: buttonFontSize)
+        
+        transfersTableView.delegate = self
+        transfersTableView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
     }
-    */
+    
+    @IBAction func newPairPessed(_ sender: UIButton) {
+    }
+    
+    @IBAction func movePairPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func cullPairPressed(_ sender: UIButton) {
+    }
+}
 
+
+extension TransfersViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        
+        let safeCell = transfersTableView.dequeueReusableCell(withIdentifier: "TransferCell", for: indexPath)
+            safeCell.textLabel?.text = "\(indexPath.row)"
+            cell = safeCell
+        
+        
+        return cell
+    }
+    
+    
 }
