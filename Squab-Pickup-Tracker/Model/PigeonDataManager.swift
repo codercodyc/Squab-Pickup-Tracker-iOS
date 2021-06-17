@@ -27,29 +27,34 @@ class PigeonDataManager {
 //    let sessionPostUrl = "https://dkcpigeons.tk/api/post-new-prod-and-mort-1wk"
     
     
+    // Download Last Weeks Production Data URL
     var lastWeekProductionUrl: String {
         get {
             if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
-                print("using live production url")
+//                print("using live production url")
                 return "https://dkcpigeons.tk/api/get-prod-and-mort-1wk"
             } else {
-                print("not live")
+//                print("not live")
                 return "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
             }
         }
     }
     
+    // Post Production and Inventory Data to Database
     var sessionPostUrl: String {
         get {
             if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
-                print("using live session post url")
+//                print("using live session post url")
                 return "https://dkcpigeons.tk/api/post-new-prod-and-mort-1wk"
             } else {
-                print("not live")
+//                print("not live")
                 return "http://127.0.0.1:5000/api/post-new-prod-and-mort-1wk"
             }
         }
     }
+    
+   
+    
     
     var delegate: PigeonDataManagerDelegate?
     

@@ -622,7 +622,7 @@
                                 <rect key="frame" x="20" y="118" width="374" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Live Server" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpp-HP-NRH">
-                                        <rect key="frame" x="20" y="10" width="119" height="30"/>
+                                        <rect key="frame" x="20" y="10" width="285" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -640,6 +640,7 @@
                                     <constraint firstAttribute="trailing" secondItem="mXf-DU-Cd9" secondAttribute="trailing" constant="10" id="9IT-jh-txf"/>
                                     <constraint firstItem="kpp-HP-NRH" firstAttribute="leading" secondItem="g8h-Xm-1Za" secondAttribute="leading" constant="20" symbolic="YES" id="CE9-fo-e1O"/>
                                     <constraint firstAttribute="height" constant="50" id="CIw-6E-l6P"/>
+                                    <constraint firstItem="mXf-DU-Cd9" firstAttribute="leading" secondItem="kpp-HP-NRH" secondAttribute="trailing" constant="10" id="XL9-ax-u14"/>
                                     <constraint firstItem="kpp-HP-NRH" firstAttribute="centerY" secondItem="g8h-Xm-1Za" secondAttribute="centerY" id="jI9-cR-6nU"/>
                                     <constraint firstItem="kpp-HP-NRH" firstAttribute="top" secondItem="g8h-Xm-1Za" secondAttribute="top" constant="10" id="pXf-g5-GBb"/>
                                 </constraints>
