@@ -17,6 +17,7 @@ struct K {
     static let ProductionCellNibName = "ProductionByPairTableViewCell"
     static let ProductionCullCell = "ProductionCullCell"
     static let cullCellIdentifier = "cullCell"
+    static let transferDataCell = "TranferDataCell"
     
     static let liveServerStatusKey = "liveServerStatus"
     
@@ -114,6 +115,11 @@ struct K {
         static let squabColor = "squabColor"
         static let highlightColor = "highlightColor"
         static let mainButton = "mainButtonColor"
+        static let move = "transfer"
+        static let outTransfer = "outTransfer"
+        static let inTransfer = "inTransfer"
+        static let newPair = "newPair"
+        static let cull = "cull"
     }
     
     

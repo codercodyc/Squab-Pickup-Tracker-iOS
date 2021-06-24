@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="MonthlyProduction" representedClassName="MonthlyProduction" syncable="YES" codeGenerationType="class">
         <attribute name="productionAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="yearMonth" optional="YES" attributeType="String"/>
@@ -20,6 +20,15 @@
         <attribute name="penNest" optional="YES" attributeType="String"/>
         <relationship name="productionData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MonthlyProduction" inverseName="pair" inverseEntity="MonthlyProduction"/>
         <relationship name="transferEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferEvent" inverseName="pair" inverseEntity="TransferEvent"/>
+    </entity>
+    <entity name="PairLocationChange" representedClassName="PairLocationChange" syncable="YES" codeGenerationType="class">
+        <attribute name="eventDate" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="inOut" attributeType="String"/>
+        <attribute name="nest" attributeType="String"/>
+        <attribute name="pairId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pen" attributeType="String"/>
+        <attribute name="transferType" attributeType="String"/>
     </entity>
     <entity name="Pen" representedClassName="Pen" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="String"/>
@@ -44,6 +53,7 @@
         <element name="MonthlyProduction" positionX="107.4345092773438" positionY="-411.5150146484375" width="128" height="88"/>
         <element name="Nest" positionX="135.8562622070312" positionY="-26.8409423828125" width="128" height="148"/>
         <element name="Pair" positionX="-143.3252563476562" positionY="-332.5434722900391" width="128" height="103"/>
+        <element name="PairLocationChange" positionX="-696.27978515625" positionY="-223.2331848144531" width="128" height="134"/>
         <element name="Pen" positionX="-49.1201171875" positionY="-40.74618530273438" width="128" height="103"/>
         <element name="Session" positionX="-253.706298828125" positionY="-86.41204833984375" width="128" height="118"/>
         <element name="TransferEvent" positionX="111.07080078125" positionY="-237.5014953613281" width="128" height="103"/>

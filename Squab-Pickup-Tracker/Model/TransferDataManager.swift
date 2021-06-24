@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwiftyJSON
 
 protocol TransferDataManagerDelegate {
     func didFailWithError(error: Error)
@@ -17,7 +18,7 @@ class TransferDataManager {
     
     private let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    private var delegate: TransferDataManagerDelegate?
+    var delegate: TransferDataManagerDelegate?
     
     // GET Transfer Data URL
     var getTransferDataUrl: String {
@@ -57,6 +58,20 @@ class TransferDataManager {
         
     }
     
+    func loadTranferData() -> [PairLocationChange]{
+        let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
+        
+        return [PairLocationChange]()
+        
+    }
+    
     
     
     // MARK: - GET Tranfer Data
@@ -74,14 +89,56 @@ class TransferDataManager {
                     return
                 }
                 
-                if let safeData = data {
-                    
+                DispatchQueue.main.async {
+                    do {
+                            let json = try JSON(data: data!)
+                        print(json["pairLocationChanges"][0])
+                        let pairLocationChangeData = json["pairLocationChanges"]
+                        self.deleteTransferData()
+                        self.updateTranferData(with: pairLocationChangeData)
+                        
+                    } catch {
+                        print("Error parsing JSON \(error)")
+                    }
                 }
+                
             }
+            task.resume()
         }
     }
     
     
-//    func parseTransferData(_ data: Data) ->
+//MARK: -  Update Tranfer Table in Database
+    func updateTranferData(with data: JSON) {
+        
+        // Add all data to database
+        for i in 0..<data.count {
+            let newPairLocationChangeEntry = PairLocationChange(context: context)
+            
+            newPairLocationChangeEntry.id = data[i]["id"].int16Value
+            newPairLocationChangeEntry.pen = data[i]["pen"].string
+            newPairLocationChangeEntry.pairId = data[i]["pairId"].int16Value
+            newPairLocationChangeEntry.inOut = data[i]["inOut"].string
+            newPairLocationChangeEntry.transferType = data[i]["transferType"].string
+            newPairLocationChangeEntry.nest = data[i]["nest"].string
+            newPairLocationChangeEntry.eventDate = data[i]["eventDate"].doubleValue
+            
+            saveData()
+            
+        }
+    }
+    
+    
+    //MARK: - Delete Data
+    func deleteTransferData() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "PairLocationChange")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+        } catch {
+            print("Error deleting Transfer data \(error)")
+        }
+    }
 
 }
