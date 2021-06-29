@@ -23,7 +23,7 @@ class TransferCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        view.layer.cornerRadius = 15
+        layer.cornerRadius = 15
         
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 3)

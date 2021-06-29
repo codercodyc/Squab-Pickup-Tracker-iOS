@@ -114,6 +114,11 @@ class TransferHistoryViewController: UIViewController, UICollectionViewDataSourc
 extension TransferHistoryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         print("resized cell")
-        return CGSize(width: view.frame.width - view.safeAreaInsets.right - view.safeAreaInsets.left - 30, height: 240)
+        return CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width, height: 150)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return view.safeAreaInsets
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }
