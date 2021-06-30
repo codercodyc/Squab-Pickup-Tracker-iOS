@@ -113,7 +113,6 @@ class TransferHistoryViewController: UIViewController, UICollectionViewDataSourc
 
 extension TransferHistoryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("resized cell")
         return CGSize(width: view.layoutMarginsGuide.layoutFrame.width / 2, height: 125)
     }
     
