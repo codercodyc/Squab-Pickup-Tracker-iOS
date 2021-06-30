@@ -11,7 +11,7 @@ class TransferCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var transferTypeImage: UIImageView!
-    @IBOutlet weak var transferTypeLabel: UILabel!
+//    @IBOutlet weak var transferTypeLabel: UILabel!
     @IBOutlet weak var pairIdLabel: UILabel!
     @IBOutlet weak var transferDateLabel: UILabel!
     @IBOutlet weak var penNestLabel: UILabel!

@@ -35,7 +35,7 @@ class TransferHistoryViewController: UIViewController, UICollectionViewDataSourc
         transfersCollectionView.dataSource = self
         transfersCollectionView.delegate = self
         
-        transfers = transferDataManager.loadTranferData()
+        transfers = transferDataManager.loadTranferData() 
         
         // Register Nib
 
@@ -59,17 +59,17 @@ class TransferHistoryViewController: UIViewController, UICollectionViewDataSourc
             if transfers[indexPath.row].transferType == "Move In" || transfers[indexPath.row].transferType == "Move Out" {
                 safeCell.transferTypeImage.image = UIImage(systemName: "arrow.left.arrow.right.square.fill" )
                 safeCell.transferTypeImage.tintColor = UIColor(named: K.color.move)
-                safeCell.transferTypeLabel.text = "MOVE"
+//                safeCell.transferTypeLabel.text = "MOVE"
                 
             } else if transfers[indexPath.row].transferType == "New Pair" {
                 safeCell.transferTypeImage.image = UIImage(systemName: "plus.square.fill" )
                 safeCell.transferTypeImage.tintColor = UIColor(named: K.color.newPair)
-                safeCell.transferTypeLabel.text = "NEW"
+//                safeCell.transferTypeLabel.text = "NEW"
 
             } else if transfers[indexPath.row].transferType == "Cull" {
                 safeCell.transferTypeImage.image = UIImage(systemName: "minus.square.fill" )
                 safeCell.transferTypeImage.tintColor = UIColor(named: K.color.cull)
-                safeCell.transferTypeLabel.text = "CULL"
+//                safeCell.transferTypeLabel.text = "CULL"
 
             }
             
@@ -114,7 +114,7 @@ class TransferHistoryViewController: UIViewController, UICollectionViewDataSourc
 extension TransferHistoryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         print("resized cell")
-        return CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width, height: 150)
+        return CGSize(width: view.layoutMarginsGuide.layoutFrame.width / 2, height: 125)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
