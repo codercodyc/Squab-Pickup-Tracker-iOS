@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-Squab-Pickup-Tracker/Pods-Squab-Pickup-Tracker-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
