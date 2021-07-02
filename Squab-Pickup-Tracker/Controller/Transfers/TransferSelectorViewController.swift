@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class TransfersViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class TransferSelectorViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, TransferDataManagerDelegate {
 
     @IBOutlet weak var newPairButton: UIButton!
     @IBOutlet weak var movePairButton: UIButton!
@@ -29,45 +29,59 @@ class TransfersViewController: UIViewController, UICollectionViewDataSource, UIC
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        transferDataManager.delegate = self
+        
         newPairButton.makeMainButton(fontSize: buttonFontSize)
         movePairButton.makeMainButton(fontSize: buttonFontSize)
         cullPairButton.makeMainButton(fontSize: buttonFontSize)
        
-        transfers = transferDataManager.loadTranferData()
-
+        downloadTransfers()
+      
+        
 //        refreshTransferData()
         // Do any additional setup after loading the view.
     }
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
-        DispatchQueue.global(qos: .userInitiated).async {
+        
+        downloadTransfers()
+        
+    }
+    
+    func didDownloadTransfers() {
+        transfers = transferDataManager.loadTranferData()
+        collectionView.reloadData()
+        print("reloaded")
+    }
+    
+    func didFailWithError(error: Error) {
+        let ac = UIAlertController(title: "Unable to get transfers", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(ac, animated: true, completion: nil)
+    }
+    
+    
+    @objc func downloadTransfers() {
+        
+        DispatchQueue.global().async {
             self.transferDataManager.getTranferData()
         }
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
-        
-        
         
     }
     
-    @IBAction func newPairPessed(_ sender: UIButton) {
-    }
-    
-    @IBAction func movePairPressed(_ sender: UIButton) {
-    }
-    
-    @IBAction func cullPairPressed(_ sender: UIButton) {
-    }
-    
-    //MARK: - Refresh Data
-    private func refreshTransferData() {
-        DispatchQueue.main.async {
-            self.transfers = self.transferDataManager.loadTranferData()
-        }
+    @IBAction func newTransfer(_ sender: UIButton) {
+        print("transfer")
         collectionView.reloadData()
-        
     }
+    
+    
+    
+//    //MARK: - Refresh Data
+//    private func refreshTransferData() {
+//        DispatchQueue.main.async {
+//            self.transfers = self.transferDataManager.loadTranferData()
+//        }
+//    }
     
     // MARK: - Collection View Data Source
     

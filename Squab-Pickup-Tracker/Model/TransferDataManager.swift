@@ -11,12 +11,15 @@ import SwiftyJSON
 
 protocol TransferDataManagerDelegate {
     func didFailWithError(error: Error)
+    func didDownloadTransfers()
+//    func didLoadTransfers()
     
 }
 
 class TransferDataManager {
     
     private let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let backgroundContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
     
     var delegate: TransferDataManagerDelegate?
     
@@ -53,14 +56,14 @@ class TransferDataManager {
         do {
             try context.save()
         } catch {
-            print("Error saving context")
+            print("Error saving context \(error)")
         }
         
     }
     
     func loadTranferData() -> [PairLocationChange]{
         let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "pairId", ascending: true)]
         
         do {
             return try context.fetch(request)
@@ -89,18 +92,22 @@ class TransferDataManager {
                     return
                 }
                 
-                DispatchQueue.main.async {
                     do {
                             let json = try JSON(data: data!)
                         print(json["pairLocationChanges"][0])
                         let pairLocationChangeData = json["pairLocationChanges"]
-                        self.deleteTransferData()
-                        self.updateTranferData(with: pairLocationChangeData)
+                        DispatchQueue.global().sync {
+                            self.deleteTransferData()
+                            self.updateTranferData(with: pairLocationChangeData)
+                            DispatchQueue.main.async {
+                                self.delegate?.didDownloadTransfers()
+                            }
+                        }
                         
                     } catch {
                         print("Error parsing JSON \(error)")
                     }
-                }
+            
                 
             }
             task.resume()
@@ -123,8 +130,13 @@ class TransferDataManager {
             newPairLocationChangeEntry.nest = data[i]["nest"].string
             newPairLocationChangeEntry.eventDate = data[i]["eventDate"].doubleValue
             
-            saveData()
+//          saveData()
             
+            do {
+                try backgroundContext.save()
+            } catch {
+                print("Error saving context")
+            }
         }
     }
     
@@ -135,7 +147,7 @@ class TransferDataManager {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do {
-            try context.execute(deleteRequest)
+            try backgroundContext.execute(deleteRequest)
         } catch {
             print("Error deleting Transfer data \(error)")
         }
