@@ -13,7 +13,7 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
     @IBOutlet weak var newPairButton: UIButton!
     @IBOutlet weak var movePairButton: UIButton!
     @IBOutlet weak var cullPairButton: UIButton!
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private let buttonFontSize: CGFloat = 20
     
@@ -35,23 +35,32 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
         movePairButton.makeMainButton(fontSize: buttonFontSize)
         cullPairButton.makeMainButton(fontSize: buttonFontSize)
        
-        downloadTransfers()
-      
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(downloadTransfers), for: .valueChanged)
+        collectionView.refreshControl = refresher
+
+        transfers = transferDataManager.loadTranferData()
+        collectionView.reloadData()
+//        downloadTransfers()
+        
         
 //        refreshTransferData()
         // Do any additional setup after loading the view.
     }
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
-        
-        downloadTransfers()
+        transfers = transferDataManager.loadTranferData()
+        collectionView.reloadData()
+//        downloadTransfers()
         
     }
     
     func didDownloadTransfers() {
         transfers = transferDataManager.loadTranferData()
         collectionView.reloadData()
-        print("reloaded")
+        collectionView.refreshControl?.endRefreshing()
+        
+//        print("reloaded")
     }
     
     func didFailWithError(error: Error) {
@@ -62,7 +71,7 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
     
     
     @objc func downloadTransfers() {
-        
+        collectionView.refreshControl?.beginRefreshing()
         DispatchQueue.global().async {
             self.transferDataManager.getTranferData()
         }
@@ -70,18 +79,23 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
     }
     
     @IBAction func newTransfer(_ sender: UIButton) {
-        print("transfer")
-        collectionView.reloadData()
+        performSegue(withIdentifier: K.segue.transfer, sender: self)
+//        let vc = TransferViewController()
+//        vc.transferType = sender.titleLabel?.text
+//        vc.show(vc, sender: self)
+    }
+        
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let sender = sender as? UIButton else {return}
+        guard let vc = segue.destination as? TransferViewController else {return}
+        vc.transferType = sender.titleLabel?.text
+
     }
     
     
-    
-//    //MARK: - Refresh Data
-//    private func refreshTransferData() {
-//        DispatchQueue.main.async {
-//            self.transfers = self.transferDataManager.loadTranferData()
-//        }
-//    }
+ 
     
     // MARK: - Collection View Data Source
     
@@ -98,7 +112,7 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
             
             safeCell.transferDateLabel.text = formateDate(date: transfers[indexPath.row].eventDate)
             
-            if transfers[indexPath.row].transferType == "Move In" || transfers[indexPath.row].transferType == "Move Out" {
+            if transfers[indexPath.row].transferType == "Move_In" || transfers[indexPath.row].transferType == "Move_Out" {
                 safeCell.transferTypeImage.image = UIImage(systemName: "arrow.left.arrow.right.square.fill" )
                 safeCell.transferTypeImage.tintColor = UIColor(named: K.color.move)
 //                safeCell.transferTypeLabel.text = "MOVE"
@@ -160,6 +174,7 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
 //        return view.safeAreaInsets
         return UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
     }
+    
     
 }
 

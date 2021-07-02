@@ -375,21 +375,21 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="d3M-0g-j9r"/>
                                 </constraints>
-                                <state key="normal" title="New Pair"/>
+                                <state key="normal" title="New"/>
                                 <connections>
                                     <action selector="newTransfer:" destination="rDn-BS-wav" eventType="touchUpInside" id="1Y2-A3-0eM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEK-0d-W5d">
                                 <rect key="frame" x="75" y="183" width="264" height="45"/>
-                                <state key="normal" title="Move Pair"/>
+                                <state key="normal" title="Move"/>
                                 <connections>
                                     <action selector="newTransfer:" destination="rDn-BS-wav" eventType="touchDragInside" id="boW-XC-dnV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LQ-HY-mps">
                                 <rect key="frame" x="75" y="253" width="264" height="45"/>
-                                <state key="normal" title="Cull Pair"/>
+                                <state key="normal" title="Cull"/>
                                 <connections>
                                     <action selector="newTransfer:" destination="rDn-BS-wav" eventType="touchUpInside" id="WVV-aQ-ewx"/>
                                 </connections>
@@ -454,7 +454,7 @@
             </objects>
             <point key="canvasLocation" x="1721.7391304347827" y="-597.32142857142856"/>
         </scene>
-        <!--Transfer View Controller-->
+        <!--Transfer-->
         <scene sceneID="zxX-0r-bm7">
             <objects>
                 <viewController id="5GI-VC-AU5" customClass="TransferViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -486,7 +486,7 @@
                                     <constraint firstAttribute="height" constant="50" id="Z9L-dZ-vdO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYw-r3-SuI">
                                 <rect key="frame" x="20" y="347" width="69" height="35"/>
@@ -500,7 +500,7 @@
                                     <constraint firstAttribute="height" constant="50" id="o5q-uN-0Vj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s0e-cD-Xht">
                                 <rect key="frame" x="168" y="424.5" width="226" height="50"/>
@@ -508,7 +508,7 @@
                                     <constraint firstAttribute="height" constant="50" id="SsG-Ju-5p4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wb4-uU-cKg">
                                 <rect key="frame" x="75" y="797" width="264" height="45"/>
@@ -516,6 +516,9 @@
                                     <constraint firstAttribute="height" constant="45" id="fg8-9f-4xQ"/>
                                 </constraints>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitPressed:" destination="5GI-VC-AU5" eventType="touchUpInside" id="60c-8k-8gN"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPb-lv-oH8">
                                 <rect key="frame" x="20" y="432" width="30" height="35"/>
@@ -552,7 +555,14 @@
                             <constraint firstItem="gPb-lv-oH8" firstAttribute="top" secondItem="qYw-r3-SuI" secondAttribute="bottom" constant="50" id="xY4-YU-fXz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rSP-ge-AHm"/>
+                    <navigationItem key="navigationItem" title="Transfer" id="rSP-ge-AHm"/>
+                    <connections>
+                        <outlet property="datePicker" destination="jF9-0I-Xua" id="Qlz-ja-r7U"/>
+                        <outlet property="fromTextField" destination="6bd-8l-fy3" id="ZYp-jL-Guy"/>
+                        <outlet property="pairIdTextField" destination="bcP-s2-GJ9" id="7mx-5k-XCL"/>
+                        <outlet property="submitButton" destination="Wb4-uU-cKg" id="6Qq-R9-Chm"/>
+                        <outlet property="toTextField" destination="s0e-cD-Xht" id="1ny-3l-LXy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLN-n9-Hxn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

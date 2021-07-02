@@ -53,17 +53,19 @@ class TransferDataManager {
     // MARK: - Data Manipulation Methods
 
     func saveData() {
+            
         do {
-            try context.save()
+            try self.context.save()
         } catch {
             print("Error saving context \(error)")
         }
+        
         
     }
     
     func loadTranferData() -> [PairLocationChange]{
         let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "pairId", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
         
         do {
             return try context.fetch(request)
@@ -120,7 +122,7 @@ class TransferDataManager {
         
         // Add all data to database
         for i in 0..<data.count {
-            let newPairLocationChangeEntry = PairLocationChange(context: context)
+            let newPairLocationChangeEntry = PairLocationChange(context: backgroundContext)
             
             newPairLocationChangeEntry.id = data[i]["id"].int16Value
             newPairLocationChangeEntry.pen = data[i]["pen"].string
@@ -137,7 +139,9 @@ class TransferDataManager {
             } catch {
                 print("Error saving context")
             }
+//            saveData()
         }
+        print("updated")
     }
     
     
@@ -146,11 +150,17 @@ class TransferDataManager {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "PairLocationChange")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
-        do {
-            try backgroundContext.execute(deleteRequest)
-        } catch {
-            print("Error deleting Transfer data \(error)")
-        }
+//        DispatchQueue.main.sync {
+            do {
+                    try backgroundContext.execute(deleteRequest)
+                    self.saveData()
+                print("deleted")
+            } catch {
+                print("Error deleting Transfer data \(error)")
+            }
+//        }
+        
+        
     }
 
 }

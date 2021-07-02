@@ -25,9 +25,8 @@ class ViewController: UIViewController {
         transfersButton.makeMainButton(fontSize: 30)
         settingsButton.makeMainButton(fontSize: 30)
         
-        // Temporary Code to remove cull button
-//        transfersButton.removeFromSuperview()
         
+        getCoreDataDBPath()
 
         
         
@@ -43,7 +42,17 @@ class ViewController: UIViewController {
     
     
    
-   
+    func getCoreDataDBPath() {
+            let path = FileManager
+                .default
+                .urls(for: .applicationSupportDirectory, in: .userDomainMask)
+                .last?
+                .absoluteString
+                .replacingOccurrences(of: "file://", with: "")
+                .removingPercentEncoding
+
+            print("Core Data DB Path :: \(path ?? "Not found")")
+        }
   
     
     
