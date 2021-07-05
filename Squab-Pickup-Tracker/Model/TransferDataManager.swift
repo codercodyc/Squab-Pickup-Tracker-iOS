@@ -63,6 +63,8 @@ class TransferDataManager {
         
     }
     
+    /// - Tag: Loads all transfers, sorted by most recent
+    
     func loadTranferData() -> [PairLocationChange]{
         let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
@@ -77,6 +79,43 @@ class TransferDataManager {
         
     }
     
+    
+    /// - Tag: Loads all transfers for pair ID
+    
+    func loadPairHistory(pairId: String) -> [PairLocationChange]{
+        let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
+        request.predicate = NSPredicate(format: "pairId == %@ ", pairId)
+        request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
+        
+        return [PairLocationChange]()
+        
+    }
+    
+    
+    /// - Tag: Gets current nest for pair
+    
+    func currentNest(pairHistory: [PairLocationChange]) -> String? {
+        // expects pair history to be sorted with newest first
+        guard let date = pairHistory.first?.eventDate else {return nil}
+        let recentTransactions = pairHistory.filter { transaction in
+            return transaction.eventDate == date
+        }
+        
+        for transaction in recentTransactions {
+            if transaction.transferType != "Cull" {
+                if transaction.inOut == "In" {
+                    return transaction.pen! + "-" + transaction.nest!
+                }
+            }
+        }
+        return nil
+    }
     
     
     // MARK: - GET Tranfer Data
@@ -96,7 +135,7 @@ class TransferDataManager {
                 
                     do {
                             let json = try JSON(data: data!)
-                        print(json["pairLocationChanges"][0])
+//                        print(json["pairLocationChanges"][0])
                         let pairLocationChangeData = json["pairLocationChanges"]
                         DispatchQueue.global().sync {
                             self.deleteTransferData()

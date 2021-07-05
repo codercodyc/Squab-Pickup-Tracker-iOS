@@ -10,17 +10,20 @@ import CoreData
 
 class TransferSelectorViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, TransferDataManagerDelegate {
 
-    @IBOutlet weak var newPairButton: UIButton!
-    @IBOutlet weak var movePairButton: UIButton!
-    @IBOutlet weak var cullPairButton: UIButton!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var newPairButton: UIButton!
+    @IBOutlet var movePairButton: UIButton!
+    @IBOutlet var cullPairButton: UIButton!
+    @IBOutlet var collectionView: UICollectionView!
     
     private let buttonFontSize: CGFloat = 20
+    
+    private var selectedTransfer: String?
     
     // Create Instance of TransferDataManager
     private let transferDataManager = TransferDataManager()
     
     private var transfers = [PairLocationChange]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +42,10 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
         refresher.addTarget(self, action: #selector(downloadTransfers), for: .valueChanged)
         collectionView.refreshControl = refresher
 
-        transfers = transferDataManager.loadTranferData()
-        collectionView.reloadData()
-//        downloadTransfers()
+        downloadTransfers()
         
         
-//        refreshTransferData()
-        // Do any additional setup after loading the view.
+
     }
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
@@ -79,6 +79,7 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
     }
     
     @IBAction func newTransfer(_ sender: UIButton) {
+        selectedTransfer = sender.currentTitle
         performSegue(withIdentifier: K.segue.transfer, sender: self)
 //        let vc = TransferViewController()
 //        vc.transferType = sender.titleLabel?.text
@@ -86,11 +87,14 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
     }
         
     
+    // MARK: - Prepare for Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let sender = sender as? UIButton else {return}
-        guard let vc = segue.destination as? TransferViewController else {return}
-        vc.transferType = sender.titleLabel?.text
+//        guard let button = sender as? UIButton else {return}
+        let vc = segue.destination as! TransferViewController
+        vc.transferType = selectedTransfer
+        print("segued")
 
     }
     
