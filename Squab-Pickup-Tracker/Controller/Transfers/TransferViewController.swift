@@ -14,17 +14,55 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var pairIdLabel: UILabel!
     @IBOutlet weak var pairIdTextField: UITextField!
+    @IBOutlet weak var pairIdStatusImage: UIImageView!
     
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var fromVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fromStatusImage: UIImageView!
     
     @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var toVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toStatusImage: UIImageView!
     
     @IBOutlet weak var submitButton: UIButton!
-    @IBOutlet weak var transferTypeLabel: UILabel!
+    
+    private var pairIdValid: Bool = false {
+        didSet {
+            if pairIdValid {
+                pairIdStatusImage.image = UIImage(systemName: "checkmark.circle")
+                pairIdStatusImage.tintColor = UIColor(named: K.color.newPair)
+            } else {
+                pairIdStatusImage.image = UIImage(systemName: "exclamationmark.circle")
+                pairIdStatusImage.tintColor = UIColor(named: K.color.cull)
+            }
+        }
+    }
+    
+    private var fromValid: Bool = false {
+        didSet {
+            if pairIdValid {
+                fromStatusImage.image = UIImage(systemName: "checkmark.circle")
+                fromStatusImage.tintColor = UIColor(named: K.color.newPair)
+            } else {
+                fromStatusImage.image = UIImage(systemName: "exclamationmark.circle")
+                fromStatusImage.tintColor = UIColor(named: K.color.cull)
+            }
+        }
+    }
+    
+    private var toValid: Bool = false {
+        didSet {
+            if pairIdValid {
+                toStatusImage.image = UIImage(systemName: "checkmark.circle")
+                toStatusImage.tintColor = UIColor(named: K.color.newPair)
+            } else {
+                toStatusImage.image = UIImage(systemName: "exclamationmark.circle")
+                toStatusImage.tintColor = UIColor(named: K.color.cull)
+            }
+        }
+    }
     
     private let transferDataManager = TransferDataManager()
     
@@ -42,7 +80,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         submitButton.makeMainButton(fontSize: 25)
-        transferTypeLabel.text = transferType
+        
         
         pairIdTextField.delegate = self
         toTextField.delegate = self
@@ -60,7 +98,44 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBAction func submitPressed(_ sender: UIButton) {
-//        navigationController?.popViewController(animated: true)
+        
+        let previousDate = datePicker.date.addingTimeInterval(-86400) // seconds in a day
+        guard let outDate = dateToDoubleWithoutTime(with: previousDate) else {return}
+        guard let currentDate = dateToDoubleWithoutTime(with: datePicker.date) else {return}
+
+        if transferType == "New" {
+            // generate new pair id
+            let newPairId = transferDataManager.getNewPairId()
+            guard let toPenNest = toTextField.text else {return}
+            
+            let transfer = Transfer(pairId: newPairId, penNest: toPenNest, transferType: "New Pair", inOut: "In", eventDate: currentDate)
+            transferDataManager.postTransfer(with: TransferData(pairLocationChanges: [transfer]))
+        }
+        
+        if transferType == "Move" {
+            
+            guard let pairId = pairIdTextField.text else {return}
+            guard let fromPenNest = fromTextField.text else {return}
+            guard let toPenNest = toTextField.text else {return}
+
+            let outTransfer = Transfer(pairId: pairId, penNest: fromPenNest, transferType: "Move_Out", inOut: "Out", eventDate: outDate)
+            let inTransfer = Transfer(pairId: pairId, penNest: toPenNest, transferType: "Move_In", inOut: "In", eventDate: currentDate)
+//            let transfersToPost = TransferData(pairLocationChanges: [outTransfer, inTransfer])
+            
+            transferDataManager.postTransfer(with: TransferData(pairLocationChanges: [outTransfer, inTransfer]))
+        }
+        
+        if transferType == "Cull" {
+            guard let pairId = pairIdTextField.text else {return}
+            guard let fromPenNest = fromTextField.text else {return}
+
+            let transfer = Transfer(pairId: pairId, penNest: fromPenNest, transferType: "Cull", inOut: "Out", eventDate: currentDate)
+            transferDataManager.postTransfer(with: TransferData(pairLocationChanges: [transfer]))
+        }
+
+
+        navigationController?.popViewController(animated: true)
+        
         
         
     }
@@ -71,37 +146,64 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
         case "New":
             pairIdLabel.removeFromSuperview()
             pairIdTextField.removeFromSuperview()
+            pairIdStatusImage.removeFromSuperview()
+            
             fromLabel.removeFromSuperview()
             fromTextField.removeFromSuperview()
+            fromStatusImage.removeFromSuperview()
+            
             toVerticalConstraint.constant = 50
             return
         case "Cull":
             toLabel.removeFromSuperview()
             toTextField.removeFromSuperview()
+            toStatusImage.removeFromSuperview()
             return
         default:
             return
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
         if textField == pairIdTextField {
             guard let pairId = textField.text else {return}
             transferHistory = transferDataManager.loadPairHistory(pairId: pairId)
-            
-            fromTextField.text = transferDataManager.currentNest(pairHistory: transferHistory)
-        
+            if let penNest = transferDataManager.currentNest(pairHistory: transferHistory).currentNest {
+                fromTextField.text = penNest
+                pairIdValid = true
+                fromValid = true
+
+                return
+            } else {
+                pairIdValid = false
+                fromValid = false
+                
+
+            }
         }
+//        } else if textField == fromTextField {
+//            guard let penNest = textField.text else {return}
+//            if penNest = tran
+//        }
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
+    
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        guard let pairIdTextField = pairIdTextField else {return}
-//
-//        pairIdTextField.resignFirstResponder()
-//        toTextField.resignFirstResponder()
-//        fromTextField.resignFirstResponder()
+        if transferType == "New" || transferType == "Move" {
+            toTextField.resignFirstResponder()
+        }
+        if transferType == "Cull" || transferType == "Move" {
+            pairIdTextField.resignFirstResponder()
+            fromTextField.resignFirstResponder()
+        }
+        
     }
+    
     
 
 }

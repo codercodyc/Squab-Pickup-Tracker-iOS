@@ -125,3 +125,16 @@ struct K {
     
     
 }
+
+
+enum TransferType: String {
+    case Move_In
+    case Move_Out
+    case New = "New Pair"
+    case Cull
+}
+
+enum InOut {
+    case In
+    case Out
+}

@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct TransferData: Codable {
+    let pairLocationChanges: [Transfer]
+}
+
+struct Transfer: Codable {
+    let pairId: String
+    let penNest: String
+    let transferType: String
+    let inOut: String
+    let eventDate: Double
+}

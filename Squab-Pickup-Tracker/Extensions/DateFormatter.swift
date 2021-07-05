@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+
+func dateToDoubleWithoutTime(with date: Date) -> Double? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US")
+    dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
+    let dateString = dateFormatter.string(from: date)
+    let newDate = dateFormatter.date(from: dateString)
+    return newDate?.timeIntervalSince1970
+}

@@ -17,6 +17,8 @@
 		C38AF1342679841F00DFBA6E /* TransferSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38AF1332679841F00DFBA6E /* TransferSelectorViewController.swift */; };
 		C3A2BD792560E3310084E66A /* PickupSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */; };
 		C3A5BF9A2557BC8B0085D440 /* ContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BF992557BC8B0085D440 /* ContentsCell.swift */; };
+		C3B0591226938B6700832590 /* TransferData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B0591126938B6700832590 /* TransferData.swift */; };
+		C3B059142693914B00832590 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B059132693914B00832590 /* DateFormatter.swift */; };
 		C3BE0EF625577D61006A8FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */; };
 		C3BE0EF825577D61006A8FE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0EF725577D61006A8FE1 /* SceneDelegate.swift */; };
 		C3BE0EFA25577D61006A8FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE0EF925577D61006A8FE1 /* ViewController.swift */; };
@@ -59,6 +61,8 @@
 		C38AF1332679841F00DFBA6E /* TransferSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSelectorViewController.swift; sourceTree = "<group>"; };
 		C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSessionViewController.swift; sourceTree = "<group>"; };
 		C3A5BF992557BC8B0085D440 /* ContentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCell.swift; sourceTree = "<group>"; };
+		C3B0591126938B6700832590 /* TransferData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferData.swift; sourceTree = "<group>"; };
+		C3B059132693914B00832590 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		C3BE0EF225577D61006A8FE1 /* Squab-Pickup-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Squab-Pickup-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3BE0EF725577D61006A8FE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 				C32B3099256065D8000C9A46 /* DataModel.xcdatamodeld */,
 				C3E8D5A92563A3FF00440448 /* PigeonDataManager.swift */,
 				C348A31B267AD08300CE0990 /* TransferDataManager.swift */,
+				C3B0591126938B6700832590 /* TransferData.swift */,
 				C3E8D5AC2563A9B600440448 /* PigeonData.swift */,
 			);
 			path = Model;
@@ -225,6 +230,7 @@
 				C3EB8E33257AB520009D7B24 /* UIButton+Shadow.swift */,
 				C3EB8E37257AE3A5009D7B24 /* UIView+Shadow+Radius.swift */,
 				C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */,
+				C3B059132693914B00832590 /* DateFormatter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -400,6 +406,8 @@
 				C3BE0F35255780B4006A8FE1 /* nestCell.swift in Sources */,
 				C38AF1342679841F00DFBA6E /* TransferSelectorViewController.swift in Sources */,
 				C3F4DBA22578B5FA00084F73 /* CullViewController.swift in Sources */,
+				C3B059142693914B00832590 /* DateFormatter.swift in Sources */,
+				C3B0591226938B6700832590 /* TransferData.swift in Sources */,
 				C3044897256EE26200176E29 /* DatePickerViewController.swift in Sources */,
 				C3E6563D255A648A0066E36C /* PenListCell.swift in Sources */,
 				C3E8D5B92565FD0500440448 /* PickupSettingsViewController.swift in Sources */,

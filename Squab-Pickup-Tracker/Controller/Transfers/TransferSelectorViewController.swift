@@ -19,6 +19,8 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
     
     private var selectedTransfer: String?
     
+    private var downloaded = false
+    
     // Create Instance of TransferDataManager
     private let transferDataManager = TransferDataManager()
     
@@ -59,18 +61,25 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
         transfers = transferDataManager.loadTranferData()
         collectionView.reloadData()
         collectionView.refreshControl?.endRefreshing()
+        downloaded = true
         
 //        print("reloaded")
     }
     
     func didFailWithError(error: Error) {
+        downloaded = false
         let ac = UIAlertController(title: "Unable to get transfers", message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(ac, animated: true, completion: nil)
     }
     
     
+    func didSubmitTransfers() {
+        downloadTransfers()
+    }
+    
     @objc func downloadTransfers() {
+        downloaded = false
         collectionView.refreshControl?.beginRefreshing()
         DispatchQueue.global().async {
             self.transferDataManager.getTranferData()
@@ -79,8 +88,10 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
     }
     
     @IBAction func newTransfer(_ sender: UIButton) {
-        selectedTransfer = sender.currentTitle
-        performSegue(withIdentifier: K.segue.transfer, sender: self)
+        if downloaded == true {
+            selectedTransfer = sender.currentTitle
+            performSegue(withIdentifier: K.segue.transfer, sender: self)
+        }
 //        let vc = TransferViewController()
 //        vc.transferType = sender.titleLabel?.text
 //        vc.show(vc, sender: self)

@@ -212,22 +212,24 @@ class PigeonDataManager {
             
         }
         
+        let sessionDate = session.dateCreated!
+        let newDateDouble = dateToDoubleWithoutTime(with: sessionDate)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
-//        dateFormatter.timeZone = TimeZone(abbreviation: "PT")
-        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
-        let date = session.dateCreated
-        let dateString = dateFormatter.string(from: date!)
-        
-//        let newFormatter = DateFormatter()
-//        newFormatter.locale = Locale(identifier: "en_US")
-//        newFormatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy'T'HH:mm:ssZ")
-        
-        let newDate = dateFormatter.date(from: dateString)
-        let newDateDouble = newDate?.timeIntervalSince1970
-//        print(dateString)
-//        print(newDateDouble)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US")
+////        dateFormatter.timeZone = TimeZone(abbreviation: "PT")
+//        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
+//        let date = session.dateCreated
+//        let dateString = dateFormatter.string(from: date!)
+//
+////        let newFormatter = DateFormatter()
+////        newFormatter.locale = Locale(identifier: "en_US")
+////        newFormatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy'T'HH:mm:ssZ")
+//
+//        let newDate = dateFormatter.date(from: dateString)
+//        let newDateDouble = newDate?.timeIntervalSince1970
+////        print(dateString)
+////        print(newDateDouble)
         
         
         let sessionData = SessionData(date: newDateDouble, pens: penData)
@@ -237,6 +239,8 @@ class PigeonDataManager {
         
         return pigeonData
     }
+    
+    
     
     
     //MARK: - Encode Data and send out

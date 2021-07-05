@@ -12,7 +12,7 @@ import SwiftyJSON
 protocol TransferDataManagerDelegate {
     func didFailWithError(error: Error)
     func didDownloadTransfers()
-//    func didLoadTransfers()
+    func didSubmitTransfers()
     
 }
 
@@ -24,7 +24,7 @@ class TransferDataManager {
     var delegate: TransferDataManagerDelegate?
     
     // GET Transfer Data URL
-    var getTransferDataUrl: String {
+    private var getTransferDataUrl: String {
         get {
             if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
                 print("using live database")
@@ -37,7 +37,7 @@ class TransferDataManager {
     }
     
     // POST Transfer Data URL
-    var postTransferDataUrl: String {
+    private var postTransferDataUrl: String {
         get {
             if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
                 print("using live database")
@@ -67,7 +67,7 @@ class TransferDataManager {
     
     func loadTranferData() -> [PairLocationChange]{
         let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         
         do {
             return try context.fetch(request)
@@ -84,7 +84,7 @@ class TransferDataManager {
     
     func loadPairHistory(pairId: String) -> [PairLocationChange]{
         let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
-        request.predicate = NSPredicate(format: "pairId == %@ ", pairId)
+        request.predicate = NSPredicate(format: "pairId == %@", pairId)
         request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
         
         do {
@@ -100,9 +100,9 @@ class TransferDataManager {
     
     /// - Tag: Gets current nest for pair
     
-    func currentNest(pairHistory: [PairLocationChange]) -> String? {
+    func currentNest(pairHistory: [PairLocationChange]) -> (currentNest: String?, isValid: Bool) {
         // expects pair history to be sorted with newest first
-        guard let date = pairHistory.first?.eventDate else {return nil}
+        guard let date = pairHistory.first?.eventDate else {return (nil, false)}
         let recentTransactions = pairHistory.filter { transaction in
             return transaction.eventDate == date
         }
@@ -110,12 +110,30 @@ class TransferDataManager {
         for transaction in recentTransactions {
             if transaction.transferType != "Cull" {
                 if transaction.inOut == "In" {
-                    return transaction.pen! + "-" + transaction.nest!
+                    return (transaction.pen! + "-" + transaction.nest!, true)
                 }
             }
         }
-        return nil
+        return (nil, false)
     }
+    
+    
+//    func loadNestHistory(penNest: String) {
+//        let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
+//        request.predicate = NSPredicate(format: "pen == %@", pairId)
+//        request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
+//
+//        do {
+//            return try context.fetch(request)
+//        } catch {
+//            print("Error fetching context \(error)")
+//        }
+//
+//        return [PairLocationChange]()
+//    }
+//    func pairIdForNest(penNest: String) -> String? {
+//
+//    }
     
     
     // MARK: - GET Tranfer Data
@@ -135,7 +153,7 @@ class TransferDataManager {
                 
                     do {
                             let json = try JSON(data: data!)
-//                        print(json["pairLocationChanges"][0])
+//                        print(json)
                         let pairLocationChangeData = json["pairLocationChanges"]
                         DispatchQueue.global().sync {
                             self.deleteTransferData()
@@ -153,6 +171,54 @@ class TransferDataManager {
             }
             task.resume()
         }
+    }
+    
+    
+    // MARK: - Post Transfer Data
+    func postTransfer(with transfer: TransferData) {
+        
+        guard let jsonData = encodeTransfer(with: transfer) else {return}
+        print(jsonData)
+        
+        if let url = URL(string: postTransferDataUrl) {
+            let session = URLSession(configuration: .default)
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let task = session.dataTask(with: request) { data, response, error in
+                if error != nil {
+                    self.delegate?.didFailWithError(error: error!)
+                    return
+                }
+                
+                if let responseData = response as? HTTPURLResponse {
+                    if responseData.statusCode == 200 {
+                        // good
+                        self.delegate?.didSubmitTransfers()
+                    } else {
+                        print(responseData.statusCode)
+                    }
+                }
+                
+            }
+            
+            task.resume()
+        }
+    }
+    
+    func encodeTransfer(with transfer: TransferData) -> Data? {
+        let encoder = JSONEncoder()
+        
+        do {
+            return try encoder.encode(transfer)
+        } catch {
+            delegate?.didFailWithError(error: error)
+        }
+        
+        return nil
     }
     
     
@@ -201,5 +267,28 @@ class TransferDataManager {
         
         
     }
+    
+    
+    // MARK: - Get next Pair Id
+    
+    func getNewPairId() -> String {
+        let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
+        request.fetchLimit = 1
+        request.sortDescriptors = [NSSortDescriptor(key: "pairId", ascending: false)]
+        
+        do {
+            let transfer = try context.fetch(request)
+            let newPairIdInt = Int(transfer[0].pairId) + 1
+            return String(newPairIdInt)
+        } catch {
+            print("Error fetching context \(error)")
+            delegate?.didFailWithError(error: error)
+        }
+        
+        return "bad pair id"
+        
+    }
+    
+
 
 }
