@@ -511,7 +511,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wb4-uU-cKg">
-                                <rect key="frame" x="75" y="797" width="264" height="45"/>
+                                <rect key="frame" x="75" y="787" width="264" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="fg8-9f-4xQ"/>
                                 </constraints>
@@ -571,7 +571,7 @@
                             <constraint firstItem="qYw-r3-SuI" firstAttribute="leading" secondItem="Rbg-ll-5Wy" secondAttribute="leading" id="UYd-y8-Mme"/>
                             <constraint firstItem="VAh-a4-p0w" firstAttribute="top" secondItem="Rbg-ll-5Wy" secondAttribute="bottom" constant="50" id="Uk9-Wd-0nP"/>
                             <constraint firstItem="bcP-s2-GJ9" firstAttribute="centerY" secondItem="VAh-a4-p0w" secondAttribute="centerY" id="Ybv-Oo-XGb"/>
-                            <constraint firstItem="zRY-Lt-49i" firstAttribute="bottom" secondItem="Wb4-uU-cKg" secondAttribute="bottom" constant="20" id="ZZu-40-2Xb"/>
+                            <constraint firstItem="zRY-Lt-49i" firstAttribute="bottom" secondItem="Wb4-uU-cKg" secondAttribute="bottom" constant="30" id="ZZu-40-2Xb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jF9-0I-Xua" secondAttribute="trailing" id="ZrA-Cd-R2e"/>
                             <constraint firstItem="BJY-x3-nSb" firstAttribute="centerY" secondItem="VAh-a4-p0w" secondAttribute="centerY" id="e4D-lU-psP"/>
                             <constraint firstItem="jF9-0I-Xua" firstAttribute="centerY" secondItem="Rbg-ll-5Wy" secondAttribute="centerY" id="f2t-Mk-w5T"/>

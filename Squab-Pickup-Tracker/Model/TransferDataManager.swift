@@ -100,9 +100,9 @@ class TransferDataManager {
     
     /// - Tag: Gets current nest for pair
     
-    func currentNest(pairHistory: [PairLocationChange]) -> (currentNest: String?, isValid: Bool) {
+    func currentNest(pairHistory: [PairLocationChange]) -> String? {
         // expects pair history to be sorted with newest first
-        guard let date = pairHistory.first?.eventDate else {return (nil, false)}
+        guard let date = pairHistory.first?.eventDate else {return nil}
         let recentTransactions = pairHistory.filter { transaction in
             return transaction.eventDate == date
         }
@@ -110,30 +110,57 @@ class TransferDataManager {
         for transaction in recentTransactions {
             if transaction.transferType != "Cull" {
                 if transaction.inOut == "In" {
-                    return (transaction.pen! + "-" + transaction.nest!, true)
+                    return transaction.penNest
                 }
             }
         }
-        return (nil, false)
+        return nil
     }
     
     
-//    func loadNestHistory(penNest: String) {
-//        let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
-//        request.predicate = NSPredicate(format: "pen == %@", pairId)
-//        request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
-//
-//        do {
-//            return try context.fetch(request)
-//        } catch {
-//            print("Error fetching context \(error)")
-//        }
-//
-//        return [PairLocationChange]()
-//    }
-//    func pairIdForNest(penNest: String) -> String? {
-//
-//    }
+    func loadNestHistory(penNest: String) -> [PairLocationChange]? {
+        let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
+        request.predicate = NSPredicate(format: "penNest == %@", penNest)
+//        request.fetchLimit = 1
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
+
+        return nil
+    }
+    
+    func pairIdForNest(penNest: String) -> String? {
+        guard let transfers = loadNestHistory(penNest: penNest) else {return nil}
+        guard let transfer = transfers.first else {return nil}
+        print(transfer)
+        if transfer.transferType == "New Pair" || transfer.transferType == "Move_In" {
+            return String(transfer.pairId)
+        }
+        return nil
+    }
+    
+    
+    func isValidOpenNest(penNest: String) -> Bool {
+        // first check if it is a valid nest at all
+        let pen = penNest.components(separatedBy: "-")
+//        print(pen)
+        if pen.count == 2 {
+            if K.penIDs.contains(pen[0]) && K.nestIDs.contains(pen[1]) {
+                
+            let pairId = pairIdForNest(penNest: penNest)
+                if pairId == nil {
+                    return true
+                }
+            }
+        }
+        
+        
+        return false
+    }
     
     
     // MARK: - GET Tranfer Data
@@ -236,6 +263,7 @@ class TransferDataManager {
             newPairLocationChangeEntry.transferType = data[i]["transferType"].string
             newPairLocationChangeEntry.nest = data[i]["nest"].string
             newPairLocationChangeEntry.eventDate = data[i]["eventDate"].doubleValue
+            newPairLocationChangeEntry.penNest = data[i]["penNest"].stringValue
             
 //          saveData()
             
@@ -278,7 +306,7 @@ class TransferDataManager {
         
         do {
             let transfer = try context.fetch(request)
-            let newPairIdInt = Int(transfer[0].pairId) + 1
+            let newPairIdInt = transfer[0].pairId + 1
             return String(newPairIdInt)
         } catch {
             print("Error fetching context \(error)")

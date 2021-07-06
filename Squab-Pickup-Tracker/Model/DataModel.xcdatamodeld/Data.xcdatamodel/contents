@@ -28,6 +28,7 @@
         <attribute name="nest" attributeType="String"/>
         <attribute name="pairId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="pen" attributeType="String"/>
+        <attribute name="penNest" optional="YES" attributeType="String"/>
         <attribute name="transferType" attributeType="String"/>
     </entity>
     <entity name="Pen" representedClassName="Pen" syncable="YES" codeGenerationType="class">
@@ -53,7 +54,7 @@
         <element name="MonthlyProduction" positionX="107.4345092773438" positionY="-411.5150146484375" width="128" height="88"/>
         <element name="Nest" positionX="135.8562622070312" positionY="-26.8409423828125" width="128" height="148"/>
         <element name="Pair" positionX="-143.3252563476562" positionY="-332.5434722900391" width="128" height="103"/>
-        <element name="PairLocationChange" positionX="-696.27978515625" positionY="-223.2331848144531" width="128" height="134"/>
+        <element name="PairLocationChange" positionX="-696.27978515625" positionY="-223.2331848144531" width="128" height="149"/>
         <element name="Pen" positionX="-49.1201171875" positionY="-40.74618530273438" width="128" height="103"/>
         <element name="Session" positionX="-253.706298828125" positionY="-86.41204833984375" width="128" height="118"/>
         <element name="TransferEvent" positionX="111.07080078125" positionY="-237.5014953613281" width="128" height="103"/>

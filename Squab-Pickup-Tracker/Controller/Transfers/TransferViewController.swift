@@ -8,7 +8,13 @@
 import UIKit
 import CoreData
 
+protocol TransferViewControllerDelegate {
+    func didFinishSubmitting()
+}
+
 class TransferViewController: UIViewController, UITextFieldDelegate {
+    
+    var delegate: TransferViewControllerDelegate?
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -42,7 +48,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
     
     private var fromValid: Bool = false {
         didSet {
-            if pairIdValid {
+            if fromValid {
                 fromStatusImage.image = UIImage(systemName: "checkmark.circle")
                 fromStatusImage.tintColor = UIColor(named: K.color.newPair)
             } else {
@@ -54,7 +60,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
     
     private var toValid: Bool = false {
         didSet {
-            if pairIdValid {
+            if toValid {
                 toStatusImage.image = UIImage(systemName: "checkmark.circle")
                 toStatusImage.tintColor = UIColor(named: K.color.newPair)
             } else {
@@ -99,6 +105,18 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func submitPressed(_ sender: UIButton) {
         
+        
+        if transferType == "New" || transferType == "Move" {
+            if !toValid {
+                return
+            }
+        }
+        if transferType == "Cull" || transferType == "Move" {
+            if !pairIdValid || !fromValid {
+                return
+            }
+        }
+        
         let previousDate = datePicker.date.addingTimeInterval(-86400) // seconds in a day
         guard let outDate = dateToDoubleWithoutTime(with: previousDate) else {return}
         guard let currentDate = dateToDoubleWithoutTime(with: datePicker.date) else {return}
@@ -133,8 +151,10 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
             transferDataManager.postTransfer(with: TransferData(pairLocationChanges: [transfer]))
         }
 
-
-        navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.delegate?.didFinishSubmitting()
+            self.navigationController?.popViewController(animated: true)
+        }
         
         
         
@@ -164,33 +184,52 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if textField == pairIdTextField {
             guard let pairId = textField.text else {return}
             transferHistory = transferDataManager.loadPairHistory(pairId: pairId)
-            if let penNest = transferDataManager.currentNest(pairHistory: transferHistory).currentNest {
+            if let penNest = transferDataManager.currentNest(pairHistory: transferHistory){
                 fromTextField.text = penNest
                 pairIdValid = true
                 fromValid = true
 
                 return
             } else {
+                fromTextField.text = nil
                 pairIdValid = false
                 fromValid = false
                 
 
             }
+        } else if textField == fromTextField {
+            guard let penNest = textField.text else {return}
+            if let pairId = transferDataManager.pairIdForNest(penNest: penNest) {
+                pairIdTextField.text = pairId
+                pairIdValid = true
+                fromValid = true
+            } else {
+                pairIdTextField.text = nil
+                pairIdValid = false
+                fromValid = false
+            }
         }
-//        } else if textField == fromTextField {
-//            guard let penNest = textField.text else {return}
-//            if penNest = tran
-//        }
+        if textField == toTextField {
+            guard let penNest = textField.text else {
+                toValid = false
+                return
+            }
+            if transferDataManager.isValidOpenNest(penNest: penNest) {
+                toValid = true
+            } else {
+                toValid = false
+            }
+            
+            
+        }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-    }
-    
+  
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

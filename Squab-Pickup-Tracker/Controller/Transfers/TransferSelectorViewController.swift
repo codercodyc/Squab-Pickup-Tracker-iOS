@@ -34,6 +34,7 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        
         transferDataManager.delegate = self
         
         newPairButton.makeMainButton(fontSize: buttonFontSize)
@@ -105,6 +106,7 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
 //        guard let button = sender as? UIButton else {return}
         let vc = segue.destination as! TransferViewController
         vc.transferType = selectedTransfer
+        vc.delegate = self
         print("segued")
 
     }
@@ -193,6 +195,13 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
     
 }
 
+
+
+extension TransferSelectorViewController: TransferViewControllerDelegate {
+    func didFinishSubmitting() {
+        downloadTransfers()
+    }
+}
 
 
     
