@@ -12,7 +12,7 @@ protocol TransferViewControllerDelegate {
     func didFinishSubmitting()
 }
 
-class TransferViewController: UIViewController, UITextFieldDelegate {
+class TransferViewController: UIViewController, UITextFieldDelegate, TransferDataManagerDelegate {
     
     var delegate: TransferViewControllerDelegate?
     
@@ -21,16 +21,19 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pairIdLabel: UILabel!
     @IBOutlet weak var pairIdTextField: UITextField!
     @IBOutlet weak var pairIdStatusImage: UIImageView!
+    @IBOutlet weak var pairIdErrorLabel: UILabel!
     
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var fromVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var fromStatusImage: UIImageView!
+    @IBOutlet weak var fromErrorLabel: UILabel!
     
     @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var toVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var toStatusImage: UIImageView!
+    @IBOutlet weak var toErrorLabel: UILabel!
     
     @IBOutlet weak var submitButton: UIButton!
     
@@ -81,16 +84,23 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         submitButton.makeMainButton(fontSize: 25)
         
+        transferDataManager.delegate = self
         
         pairIdTextField.delegate = self
         toTextField.delegate = self
         fromTextField.delegate = self
+        
+        pairIdErrorLabel.text = nil
+        fromErrorLabel.text = nil
+        toErrorLabel.text = nil
         
         configureViews(transferType: transferType)
         
@@ -98,9 +108,12 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
         fromTextField.formatField()
         toTextField.formatField()
         
-        pairIdTextField.returnKeyType = .continue
         
     }
+    
+    
+  
+    
     
 
     @IBAction func submitPressed(_ sender: UIButton) {
@@ -228,9 +241,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
-    
-  
-    
+ 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if transferType == "New" || transferType == "Move" {
@@ -241,11 +252,40 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
             fromTextField.resignFirstResponder()
         }
         
+        
+        
+    }
+    
+    func didFailWithError(error: Error) {
+        print("error")
+    }
+    
+    func didSubmitTransfers() {
+    }
+    
+    func didDownloadTransfers() {
+    }
+    
+    func displayTransferInputError(error: String?, inputField: InputFields) {
+        switch inputField {
+        case .pairId:
+            return
+        case .from:
+            return
+        case .to:
+            toErrorLabel.text = error
+            return
+        default:
+            return
+        }
     }
     
     
 
 }
+
+
+
 
 extension UITextField {
     

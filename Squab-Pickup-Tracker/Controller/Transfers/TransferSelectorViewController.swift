@@ -69,9 +69,12 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
     
     func didFailWithError(error: Error) {
         downloaded = false
-        let ac = UIAlertController(title: "Unable to get transfers", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: "Unable to download transfers", message: "Check that you are using the live server", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(ac, animated: true, completion: nil)
+        present(ac, animated: true) {
+            self.collectionView.refreshControl?.endRefreshing()
+        }
+    
     }
     
     
@@ -200,6 +203,9 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
 extension TransferSelectorViewController: TransferViewControllerDelegate {
     func didFinishSubmitting() {
         downloadTransfers()
+    }
+    
+    func displayTransferInputError(error: String?, inputField: InputFields) {
     }
 }
 

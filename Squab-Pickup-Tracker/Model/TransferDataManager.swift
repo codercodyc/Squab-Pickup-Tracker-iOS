@@ -14,7 +14,16 @@ protocol TransferDataManagerDelegate {
     func didDownloadTransfers()
     func didSubmitTransfers()
     
+    func displayTransferInputError(error: String?, inputField: InputFields)
+    
 }
+
+enum InputFields: String {
+    case pairId
+    case to
+    case from
+}
+
 
 class TransferDataManager {
     
@@ -85,11 +94,12 @@ class TransferDataManager {
     func loadPairHistory(pairId: String) -> [PairLocationChange]{
         let request: NSFetchRequest<PairLocationChange> = PairLocationChange.fetchRequest()
         request.predicate = NSPredicate(format: "pairId == %@", pairId)
-        request.sortDescriptors = [NSSortDescriptor(key: "eventDate", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         
         do {
             return try context.fetch(request)
         } catch {
+            delegate?.didFailWithError(error: error)
             print("Error fetching context \(error)")
         }
         
@@ -147,19 +157,30 @@ class TransferDataManager {
     func isValidOpenNest(penNest: String) -> Bool {
         // first check if it is a valid nest at all
         let pen = penNest.components(separatedBy: "-")
-//        print(pen)
-        if pen.count == 2 {
-            if K.penIDs.contains(pen[0]) && K.nestIDs.contains(pen[1]) {
-                
-            let pairId = pairIdForNest(penNest: penNest)
-                if pairId == nil {
-                    return true
-                }
-            }
+        if pen.count != 2 {
+            delegate?.displayTransferInputError(error: "Enter pen-nest: i.e 503-2A", inputField: .to)
+            return false
         }
         
+        // Check that pen and nest are contained in constants list
+        if !K.penIDs.contains(pen[0]) {
+            delegate?.displayTransferInputError(error: "Not a valid pen", inputField: .to)
+            return false
+        }
         
-        return false
+        if !K.nestIDs.contains(pen[1]) {
+            delegate?.displayTransferInputError(error: "Not a valid nest", inputField: .to)
+            return false
+        }
+        
+        // check that nest is not already taken
+        if pairIdForNest(penNest: penNest) != nil {
+            delegate?.displayTransferInputError(error: "Nest already filled", inputField: .to)
+            return false
+        }
+        // clear error message when valid input
+        delegate?.displayTransferInputError(error: nil, inputField: .to)
+        return true
     }
     
     
@@ -174,13 +195,17 @@ class TransferDataManager {
             
             let task = session.dataTask(with: request) { data, response, error in
                 if error != nil {
-                    self.delegate?.didFailWithError(error: error!)
+                    DispatchQueue.main.async {
+                        self.delegate?.didFailWithError(error: error!)
+                    }
                     return
                 }
                 
+                if let safeData = data {
+                    
                     do {
-                            let json = try JSON(data: data!)
-//                        print(json)
+                        let json = try JSON(data: safeData)
+                        // print(json)
                         let pairLocationChangeData = json["pairLocationChanges"]
                         DispatchQueue.global().sync {
                             self.deleteTransferData()
@@ -194,6 +219,7 @@ class TransferDataManager {
                         print("Error parsing JSON \(error)")
                     }
             
+                }
                 
             }
             task.resume()
