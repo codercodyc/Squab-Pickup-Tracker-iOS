@@ -51,12 +51,7 @@ class TransferSelectorViewController: UIViewController, UICollectionViewDataSour
 
     }
     
-    @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
-        transfers = transferDataManager.loadTranferData()
-        collectionView.reloadData()
-//        downloadTransfers()
-        
-    }
+ 
     
     func didDownloadTransfers() {
         transfers = transferDataManager.loadTranferData()

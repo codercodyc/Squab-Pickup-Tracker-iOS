@@ -120,6 +120,7 @@ class TransferDataManager {
         for transaction in recentTransactions {
             if transaction.transferType != "Cull" {
                 if transaction.inOut == "In" {
+                    delegate?.displayTransferInputError(error: nil, inputField: .from)
                     return transaction.penNest
                 }
             }
@@ -143,22 +144,54 @@ class TransferDataManager {
         return nil
     }
     
+    func isValidFilledNest(penNest: String) -> String? {
+        let pen = penNest.components(separatedBy: "-")
+        if pen.count != 2 {
+            delegate?.displayTransferInputError(error: "Enter pen-nest (503-2A)", inputField: .from)
+            return nil
+        }
+        
+        // Check that pen and nest are contained in constants list
+        if !K.penIDs.contains(pen[0]) {
+            delegate?.displayTransferInputError(error: "Not a valid pen", inputField: .from)
+            return nil
+        }
+        
+        if !K.nestIDs.contains(pen[1]) {
+            delegate?.displayTransferInputError(error: "Not a valid nest", inputField: .from)
+            return nil
+        }
+        
+        guard let pairId = pairIdForNest(penNest: penNest) else {
+            delegate?.displayTransferInputError(error: "Empty Nest", inputField: .from)
+            return nil
+        }
+        
+        delegate?.displayTransferInputError(error: nil, inputField: .from)
+        return pairId
+    }
+    
     func pairIdForNest(penNest: String) -> String? {
+  
         guard let transfers = loadNestHistory(penNest: penNest) else {return nil}
         guard let transfer = transfers.first else {return nil}
-        print(transfer)
-        if transfer.transferType == "New Pair" || transfer.transferType == "Move_In" {
-            return String(transfer.pairId)
+        
+        if transfer.transferType != "New Pair" && transfer.transferType != "Move_In" {
+            return nil
         }
-        return nil
+        
+        delegate?.displayTransferInputError(error: nil, inputField: .from)
+        return String(transfer.pairId)
     }
     
     
     func isValidOpenNest(penNest: String) -> Bool {
+        
+        
         // first check if it is a valid nest at all
         let pen = penNest.components(separatedBy: "-")
         if pen.count != 2 {
-            delegate?.displayTransferInputError(error: "Enter pen-nest: i.e 503-2A", inputField: .to)
+            delegate?.displayTransferInputError(error: "Enter pen-nest (503-2A)", inputField: .to)
             return false
         }
         

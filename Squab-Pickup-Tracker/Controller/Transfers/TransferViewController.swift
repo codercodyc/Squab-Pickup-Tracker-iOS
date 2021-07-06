@@ -112,10 +112,6 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
     }
     
     
-  
-    
-    
-
     @IBAction func submitPressed(_ sender: UIButton) {
         
         
@@ -180,10 +176,12 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
             pairIdLabel.removeFromSuperview()
             pairIdTextField.removeFromSuperview()
             pairIdStatusImage.removeFromSuperview()
+//            pairIdErrorLabel.removeFromSuperview()
             
             fromLabel.removeFromSuperview()
             fromTextField.removeFromSuperview()
             fromStatusImage.removeFromSuperview()
+//            fromErrorLabel.removeFromSuperview()
             
             toVerticalConstraint.constant = 50
             return
@@ -191,6 +189,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
             toLabel.removeFromSuperview()
             toTextField.removeFromSuperview()
             toStatusImage.removeFromSuperview()
+//            toErrorLabel.removeFromSuperview()
             return
         default:
             return
@@ -217,7 +216,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
             }
         } else if textField == fromTextField {
             guard let penNest = textField.text else {return}
-            if let pairId = transferDataManager.pairIdForNest(penNest: penNest) {
+            if let pairId = transferDataManager.isValidFilledNest(penNest: penNest) {
                 pairIdTextField.text = pairId
                 pairIdValid = true
                 fromValid = true
@@ -267,16 +266,17 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
     }
     
     func displayTransferInputError(error: String?, inputField: InputFields) {
-        switch inputField {
-        case .pairId:
-            return
-        case .from:
-            return
-        case .to:
-            toErrorLabel.text = error
-            return
-        default:
-            return
+        DispatchQueue.main.async {
+            switch inputField {
+            case .pairId:
+                return
+            case .from:
+                self.fromErrorLabel.text = error
+                return
+            case .to:
+                self.toErrorLabel.text = error
+                return
+            }
         }
     }
     
@@ -290,7 +290,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
 extension UITextField {
     
     func formatField() {
-        layer.cornerRadius = 15
+        layer.cornerRadius = 10
         layer.masksToBounds = false
         borderStyle = .none
         backgroundColor = .white
