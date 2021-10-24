@@ -14,7 +14,7 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
-    let urlString = "https://dkcpigeons.tk/dashapp/"
+    let urlString = "https://dkcpigeons.com/dashapp/"
     
     
     

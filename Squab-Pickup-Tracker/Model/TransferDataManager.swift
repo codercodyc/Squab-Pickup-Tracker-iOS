@@ -37,7 +37,7 @@ class TransferDataManager {
         get {
             if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
                 print("using live database")
-                return "https://dkcpigeons.tk/api/get-pair-location-changes"
+                return "https://dkcpigeons.com/api/get-pair-location-changes"
             } else {
                 print("using local database")
                 return "http://127.0.0.1:5000/api/get-pair-location-changes"
@@ -50,7 +50,7 @@ class TransferDataManager {
         get {
             if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
                 print("using live database")
-                return "https://dkcpigeons.tk/api/post-pair-location-changes"
+                return "https://dkcpigeons.com/api/post-pair-location-changes"
             } else {
                 print("using local database")
                 return "http://127.0.0.1:5000/api/post-pair-location-changes"
