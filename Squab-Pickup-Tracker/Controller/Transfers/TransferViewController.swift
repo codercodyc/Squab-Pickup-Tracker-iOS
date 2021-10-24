@@ -80,7 +80,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
     var transferType: String? {
         didSet {
             navigationItem.title = transferType! + " Pair"
-           
+//            submitButton.setTitle(transferType, for: .normal)
         }
     }
     
@@ -117,11 +117,13 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
         
         if transferType == "New" || transferType == "Move" {
             if !toValid {
+//                showSubmitError()
                 return
             }
         }
         if transferType == "Cull" || transferType == "Move" {
             if !pairIdValid || !fromValid {
+//                showSubmitError()
                 return
             }
         }
@@ -161,12 +163,35 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
         }
 
         DispatchQueue.main.async {
-            self.delegate?.didFinishSubmitting()
-            self.navigationController?.popViewController(animated: true)
+            
+            
+            self.uploadingAlert()
+
+//            self.delegate?.didFinishSubmitting()
+//            self.navigationController?.popViewController(animated: true)
         }
         
         
         
+    }
+    
+    func uploadingAlert() {
+        
+        let alert = UIAlertController(title: "Submitting ...", message: nil, preferredStyle: .alert)
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.isUserInteractionEnabled = false
+        activityIndicator.startAnimating()
+                
+        alert.view.addSubview(activityIndicator)
+        alert.view.heightAnchor.constraint(equalToConstant: 95).isActive = true
+                
+        activityIndicator.centerXAnchor.constraint(equalTo: alert.view.centerXAnchor, constant: 0).isActive = true
+        activityIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -20).isActive = true
+                
+        present(alert, animated: true)
+        
+//        self.didSubmitTransfers()
     }
     
     
@@ -260,6 +285,10 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
     }
     
     func didSubmitTransfers() {
+        dismiss(animated: true) {
+            self.navigationController?.popViewController(animated: true)
+            self.delegate?.didFinishSubmitting()
+        }
     }
     
     func didDownloadTransfers() {
@@ -280,6 +309,17 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
         }
     }
     
+    
+//    func showSubmitError() {
+//        let vc = UIViewController()
+//        let label = UILabel()
+//        label.text = "Enter Valid Infor to Submit"
+//        label.sizeToFit()
+//        vc.view.addSubview(label)
+//        label.center = view.center
+//        vc.preferredContentSize = label.frame.size
+//
+//    }
     
 
 }

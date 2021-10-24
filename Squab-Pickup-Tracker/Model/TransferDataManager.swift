@@ -283,7 +283,9 @@ class TransferDataManager {
                 if let responseData = response as? HTTPURLResponse {
                     if responseData.statusCode == 200 {
                         // good
-                        self.delegate?.didSubmitTransfers()
+                        DispatchQueue.main.async {
+                            self.delegate?.didSubmitTransfers()                            
+                        }
                     } else {
                         print(responseData.statusCode)
                     }
