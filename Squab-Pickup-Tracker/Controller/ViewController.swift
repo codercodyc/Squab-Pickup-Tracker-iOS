@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var dashboardButton: UIButton!
     @IBOutlet weak var transfersButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var feedButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -24,6 +25,7 @@ class ViewController: UIViewController {
         pickupButton.makeMainButton(fontSize: 30)
         transfersButton.makeMainButton(fontSize: 30)
         settingsButton.makeMainButton(fontSize: 30)
+        feedButton.makeMainButton(fontSize: 30)
         
         
         getCoreDataDBPath()

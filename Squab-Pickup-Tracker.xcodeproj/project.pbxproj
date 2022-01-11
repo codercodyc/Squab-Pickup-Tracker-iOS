@@ -10,6 +10,8 @@
 		C3044897256EE26200176E29 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3044896256EE26200176E29 /* DatePickerViewController.swift */; };
 		C304489B256EF85B00176E29 /* env.swift in Sources */ = {isa = PBXBuildFile; fileRef = C304489A256EF85B00176E29 /* env.swift */; };
 		C31298F9255CDC9C00B1F246 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31298F8255CDC9C00B1F246 /* DashboardViewController.swift */; };
+		C32207B6278D23D6006FB08C /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C32207B5278D23D6006FB08C /* Feed.storyboard */; };
+		C32207BB278D2542006FB08C /* FeedSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32207BA278D2542006FB08C /* FeedSessionViewController.swift */; };
 		C32B309B256065D8000C9A46 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C32B3099256065D8000C9A46 /* DataModel.xcdatamodeld */; };
 		C348A31C267AD08300CE0990 /* TransferDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348A31B267AD08300CE0990 /* TransferDataManager.swift */; };
 		C352CF0C257C6A7C000839E1 /* LineChartView+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */; };
@@ -55,6 +57,8 @@
 		C3044896256EE26200176E29 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		C304489A256EF85B00176E29 /* env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = env.swift; sourceTree = "<group>"; };
 		C31298F8255CDC9C00B1F246 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		C32207B5278D23D6006FB08C /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
+		C32207BA278D2542006FB08C /* FeedSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSessionViewController.swift; sourceTree = "<group>"; };
 		C32B309A256065D8000C9A46 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		C348A31B267AD08300CE0990 /* TransferDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDataManager.swift; sourceTree = "<group>"; };
 		C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineChartView+Formats.swift"; sourceTree = "<group>"; };
@@ -123,6 +127,14 @@
 				8ADFCED0502E15131B7B0AE5 /* Pods-Squab-Pickup-Tracker.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C32207B9278D2506006FB08C /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				C32207BA278D2542006FB08C /* FeedSessionViewController.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		C3559BD5266F0E57002F21A3 /* Settings */ = {
@@ -208,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				C3BE0EFB25577D61006A8FE1 /* Main.storyboard */,
+				C32207B5278D23D6006FB08C /* Feed.storyboard */,
 				C357BFF62579B07400CFE814 /* Cells */,
 			);
 			path = View;
@@ -222,6 +235,7 @@
 				C3F4DB9B2578B5AE00084F73 /* Pickup */,
 				C3559BD5266F0E57002F21A3 /* Settings */,
 				C38AF1352679843E00DFBA6E /* Transfers */,
+				C32207B9278D2506006FB08C /* Feed */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -329,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C32207B6278D23D6006FB08C /* Feed.storyboard in Resources */,
 				C3BE0F0225577D61006A8FE1 /* LaunchScreen.storyboard in Resources */,
 				C3BE0EFF25577D61006A8FE1 /* Assets.xcassets in Resources */,
 				C3BE0EFD25577D61006A8FE1 /* Main.storyboard in Resources */,
@@ -390,6 +405,7 @@
 				C352CF0C257C6A7C000839E1 /* LineChartView+Formats.swift in Sources */,
 				C3A2BD792560E3310084E66A /* PickupSessionViewController.swift in Sources */,
 				C3EB8E34257AB520009D7B24 /* UIButton+Shadow.swift in Sources */,
+				C32207BB278D2542006FB08C /* FeedSessionViewController.swift in Sources */,
 				C348A31C267AD08300CE0990 /* TransferDataManager.swift in Sources */,
 				C31298F9255CDC9C00B1F246 /* DashboardViewController.swift in Sources */,
 				C3E8D5AA2563A3FF00440448 /* PigeonDataManager.swift in Sources */,
