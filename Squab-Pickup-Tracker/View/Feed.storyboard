@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OOo-Co-uTD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ftk-4o-mpG">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,21 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="p8K-Do-0m8">
-            <objects>
-                <viewController id="OOo-Co-uTD" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nMS-hT-XS0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="2xM-Mg-Znd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="akR-Y6-iRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-132" y="108"/>
-        </scene>
         <!--Feed Session View Controller-->
         <scene sceneID="moD-jr-oi4">
             <objects>
@@ -38,13 +23,10 @@
                                     <constraint firstAttribute="height" constant="50" id="ocr-IK-Ctj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="20"/>
-                                <state key="normal" title="NEW PICKUP SESSSION"/>
-                                <connections>
-                                    <action selector="pickupSessionPressed:" destination="Ftk-4o-mpG" eventType="touchUpInside" id="OVQ-yt-Y9q"/>
-                                </connections>
+                                <state key="normal" title="NEW FEED SESSSION"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Cb4-vQ-HxX">
-                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="579"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="sessionCell" textLabel="Zyy-sd-QZf" style="IBUITableViewCellStyleDefault" id="syP-Ip-c7A">
@@ -82,27 +64,36 @@
                     </view>
                     <navigationItem key="navigationItem" id="uvn-Me-j8L">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="guV-Iv-ME0">
-                                <connections>
-                                    <action selector="refreshPressed:" destination="Ftk-4o-mpG" id="tpi-Um-Hxl"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="trash" id="9In-Yp-DCj">
-                                <connections>
-                                    <action selector="trashButtonPressed:" destination="Ftk-4o-mpG" id="SUS-DA-7L1"/>
-                                </connections>
-                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="guV-Iv-ME0"/>
+                            <barButtonItem systemItem="trash" id="9In-Yp-DCj"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="pickupSessionButton" destination="kux-rY-fHQ" id="mip-jH-jIJ"/>
-                        <outlet property="refreshDataButton" destination="guV-Iv-ME0" id="IAo-4F-akp"/>
-                        <outlet property="sessionTableView" destination="Cb4-vQ-HxX" id="0K8-c1-Uh7"/>
+                        <outlet property="feedSessionButton" destination="kux-rY-fHQ" id="tpo-M3-08g"/>
+                        <outlet property="sessionTableView" destination="Cb4-vQ-HxX" id="px9-xv-pXv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fX1-cA-evm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="893" y="117"/>
+            <point key="canvasLocation" x="1584.057971014493" y="107.8125"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="t57-UR-Kf9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vFG-b6-ZZ2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="abB-al-O9g">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ftk-4o-mpG" kind="relationship" relationship="rootViewController" id="Xha-8t-svJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Cf-ps-gmv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="673.91304347826087" y="107.8125"/>
         </scene>
     </scenes>
     <resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G314" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="MonthlyProduction" representedClassName="MonthlyProduction" syncable="YES" codeGenerationType="class">
         <attribute name="productionAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="yearMonth" optional="YES" attributeType="String"/>
@@ -32,7 +32,10 @@
         <attribute name="transferType" attributeType="String"/>
     </entity>
     <entity name="Pen" representedClassName="Pen" syncable="YES" codeGenerationType="class">
+        <attribute name="cornScoops" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="feedOrderIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="pelletScoops" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="pickupOrderIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="nests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Nest" inverseName="parentCategory" inverseEntity="Nest"/>
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="pens" inverseEntity="Session"/>
@@ -40,6 +43,7 @@
     <entity name="Session" representedClassName="Session" syncable="YES" codeGenerationType="class">
         <attribute name="baseWeek" optional="YES" attributeType="String"/>
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="type" attributeType="String"/>
         <attribute name="wasCreated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="wasSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="pens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pen" inverseName="parentCategory" inverseEntity="Pen"/>
@@ -55,8 +59,8 @@
         <element name="Nest" positionX="135.8562622070312" positionY="-26.8409423828125" width="128" height="148"/>
         <element name="Pair" positionX="-143.3252563476562" positionY="-332.5434722900391" width="128" height="103"/>
         <element name="PairLocationChange" positionX="-696.27978515625" positionY="-223.2331848144531" width="128" height="149"/>
-        <element name="Pen" positionX="-49.1201171875" positionY="-40.74618530273438" width="128" height="103"/>
-        <element name="Session" positionX="-253.706298828125" positionY="-86.41204833984375" width="128" height="118"/>
+        <element name="Pen" positionX="-49.1201171875" positionY="-40.74618530273438" width="128" height="148"/>
+        <element name="Session" positionX="-253.706298828125" positionY="-86.41204833984375" width="128" height="133"/>
         <element name="TransferEvent" positionX="111.07080078125" positionY="-237.5014953613281" width="128" height="103"/>
     </elements>
 </model>
