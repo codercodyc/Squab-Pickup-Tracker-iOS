@@ -15,6 +15,7 @@ class DatePickerViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var selectedSession: Session?
+    var sessionType: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +31,18 @@ class DatePickerViewController: UIViewController {
     @IBAction func createPressed(_ sender: UIButton) {
         let date = datePicker.date
         print(date)
-        addBlankSession(with: date)
         
-        performSegue(withIdentifier: K.segue.pickupPens, sender: self)
+        if sessionType == "Feed" {
+            addBlankFeedSession(with: date)
+            performSegue(withIdentifier: K.segue.feedPens, sender: self)
+        } else if sessionType == "Pickup" {
+            addBlankPickupSession(with: date)
+            performSegue(withIdentifier: K.segue.pickupPens, sender: self)
+        }
+        
+        
+        
+        
         
         
     }
@@ -41,8 +51,15 @@ class DatePickerViewController: UIViewController {
     //MARK: - Prepare for Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! PickupPenViewController
-        destinationVC.selectedSesssion = selectedSession
+        
+        if segue.identifier == K.segue.pickupPens {
+            let destinationVC = segue.destination as! PickupPenViewController
+            destinationVC.selectedSesssion = selectedSession
+        }
+        if segue.identifier == K.segue.feedPens {
+            let destinationVC = segue.destination as! FeedInputViewController
+            destinationVC.selectedSession = selectedSession
+        }
     }
     
     
@@ -57,14 +74,15 @@ class DatePickerViewController: UIViewController {
         
     }
     
-    //MARK: - AddBlankSession
+    //MARK: - AddBlankPickupSession
     
     
-    func addBlankSession(with date: Date) {
+    func addBlankPickupSession(with date: Date) {
         
         let newSession: Session = Session(context: context)
         newSession.dateCreated = date
         newSession.wasCreated = true
+        newSession.type = "Pickup"
         
         var pickupOrderCount = 0
         
@@ -79,6 +97,46 @@ class DatePickerViewController: UIViewController {
                 newNest.id = nest
                 newPen.addToNests(newNest)
             }
+            
+            newSession.addToPens(newPen)
+            
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-w"
+//        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-w")
+        newSession.baseWeek = dateFormatter.string(from: newSession.dateCreated!)
+//        print(newSession.baseWeek!)
+        
+        
+        selectedSession = newSession
+        
+        saveSessions()
+        
+    }
+    
+    
+    //MARK: - AddBlankFeedSession
+    
+    
+    func addBlankFeedSession(with date: Date) {
+        
+        let newSession: Session = Session(context: context)
+        newSession.dateCreated = date
+        newSession.wasCreated = true
+        newSession.type = "Feed"
+        
+        var feedOrderCount = 0
+        
+        for pen in K.penIDs {
+            let newPen = Pen(context: context)
+            newPen.id = pen
+            newPen.cornScoops = 0
+            newPen.pelletScoops = 0
+            
+            newPen.feedOrderIndex = Int32(feedOrderCount)
+            feedOrderCount = feedOrderCount + 1
             
             newSession.addToPens(newPen)
             

@@ -32,32 +32,43 @@ class FeedSessionViewController: UIViewController {
         
     }
     @IBAction func NewFeedSessionPressed(_ sender: UIButton) {
-        addBlankFeedSession()
+//        addBlankFeedSession()
+        performSegue(withIdentifier: K.segue.datePicker, sender: self)
     }
     
-    func addBlankFeedSession() {
-        let newSession: Session = Session(context: context)
-        newSession.dateCreated = Date()
-        newSession.wasCreated = true
-        newSession.type = "Feed"
-        
-        for pen in K.penIDs {
-            let newPen = Pen(context: context)
-            newPen.id = pen
-            
-            newSession.addToPens(newPen)
-            
+//    func addBlankFeedSession() {
+//        let newSession: Session = Session(context: context)
+//        newSession.dateCreated = Date()
+//        newSession.wasCreated = true
+//        newSession.type = "Feed"
+//
+//        for pen in K.penIDs {
+//            let newPen = Pen(context: context)
+//            newPen.id = pen
+//
+//            newSession.addToPens(newPen)
+//
+//        }
+//
+//        print(newSession)
+//
+//        sessions.insert(newSession, at: 0)
+//        //selectedSession = pickupSessions.last
+//        saveSessions()
+////        print("Added Session")
+//        selectedSession = sessions[0]
+//    }
+
+    
+    //MARK: - Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.segue.datePicker {
+            let destinationVC = segue.destination as! DatePickerViewController
+            destinationVC.sessionType = "Feed"
+            //print(pickupSessions.last?.dateCreated)
         }
-        
-        print(newSession)
-
-        sessions.insert(newSession, at: 0)
-        //selectedSession = pickupSessions.last
-        saveSessions()
-//        print("Added Session")
-        selectedSession = sessions[0]
     }
-
 
 
     //MARK: - Data manipulation methods

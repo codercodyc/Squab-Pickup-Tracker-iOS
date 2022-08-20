@@ -43,7 +43,7 @@
     <entity name="Session" representedClassName="Session" syncable="YES" codeGenerationType="class">
         <attribute name="baseWeek" optional="YES" attributeType="String"/>
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="type" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="wasCreated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="wasSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="pens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pen" inverseName="parentCategory" inverseEntity="Pen"/>

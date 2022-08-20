@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class FeedInputViewController: UIViewController {
 
+    
+    var selectedSession: Session?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

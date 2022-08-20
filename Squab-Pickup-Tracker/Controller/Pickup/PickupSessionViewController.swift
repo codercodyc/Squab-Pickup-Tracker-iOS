@@ -61,7 +61,8 @@ class PickupSessionViewController: UIViewController {
         let newSession: Session = Session(context: context)
         newSession.dateCreated = Date()
         newSession.wasCreated = true
-        //print(newSession.dateCreated!)
+        newSession.type = "Pickup"
+        print(newSession.dateCreated!)
         
         for pen in K.penIDs {
             let newPen = Pen(context: context)
@@ -95,11 +96,7 @@ class PickupSessionViewController: UIViewController {
 
     @IBAction func pickupSessionPressed(_ sender: UIButton) {
        
-        //            self.addBlankSession()
-        //
-        //            self.performSegue(withIdentifier: K.segue.pickupPens, sender: self)
-        
-//        datePickerContainerView.isHidden = false
+        performSegue(withIdentifier: K.segue.datePicker, sender: self)
         
     }
     
@@ -164,6 +161,10 @@ class PickupSessionViewController: UIViewController {
             let destinationVC = segue.destination as! PickupPenViewController
             destinationVC.selectedSesssion = selectedSession
             //print(pickupSessions.last?.dateCreated)
+        }
+        if segue.identifier == K.segue.datePicker {
+            let destinationVC = segue.destination as! DatePickerViewController
+            destinationVC.sessionType = "Pickup"
         }
     }
     

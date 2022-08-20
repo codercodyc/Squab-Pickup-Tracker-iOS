@@ -74,22 +74,35 @@
                     <connections>
                         <outlet property="feedSessionButton" destination="kux-rY-fHQ" id="tpo-M3-08g"/>
                         <outlet property="sessionTableView" destination="Cb4-vQ-HxX" id="px9-xv-pXv"/>
+                        <segue destination="jmb-hh-pgB" kind="show" identifier="toDatePicker" id="DW6-bT-iGs"/>
+                        <segue destination="A6Q-Bb-hGV" kind="show" identifier="toFeedPens" id="fbY-GT-0ti"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fX1-cA-evm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1588" y="108"/>
         </scene>
+        <!--DatePickerStoryboard-->
+        <scene sceneID="b8J-pY-geT">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Main.Storyboard" storyboardName="Main" referencedIdentifier="DatePickerStoryboard" id="jmb-hh-pgB" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="8mY-xC-yGg"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dnF-dI-dOy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2286" y="-297"/>
+        </scene>
         <!--Feed Input View Controller-->
         <scene sceneID="FYO-bJ-cnd">
             <objects>
-                <viewController id="A6Q-Bb-hGV" customClass="FeedInputViewController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s38-oB-4TA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="FeedInputStoryboard" id="A6Q-Bb-hGV" customClass="FeedInputViewController" customModule="Squab_Pickup_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="azW-n5-fO1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xzA-aJ-jMy" customClass="FeedInputTableView">
-                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <rect key="frame" x="20" y="88" width="374" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="A9X-6M-HDL">
@@ -114,9 +127,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="w21-ZL-iVb"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s38-oB-4TA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2764" y="108"/>
+            <point key="canvasLocation" x="2749" y="130"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="t57-UR-Kf9">
