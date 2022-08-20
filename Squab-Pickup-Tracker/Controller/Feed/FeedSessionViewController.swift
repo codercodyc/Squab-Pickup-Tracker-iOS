@@ -31,7 +31,59 @@ class FeedSessionViewController: UIViewController {
 
         
     }
+    @IBAction func NewFeedSessionPressed(_ sender: UIButton) {
+        addBlankFeedSession()
+    }
     
+    func addBlankFeedSession() {
+        let newSession: Session = Session(context: context)
+        newSession.dateCreated = Date()
+        newSession.wasCreated = true
+        newSession.type = "Feed"
+        
+        for pen in K.penIDs {
+            let newPen = Pen(context: context)
+            newPen.id = pen
+            
+            newSession.addToPens(newPen)
+            
+        }
+        
+        print(newSession)
+
+        sessions.insert(newSession, at: 0)
+        //selectedSession = pickupSessions.last
+        saveSessions()
+//        print("Added Session")
+        selectedSession = sessions[0]
+    }
+
+
+
+    //MARK: - Data manipulation methods
+
+    func saveSessions() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context")
+        }
+        
+    }
+
+    func loadSessions() {
+        let sortDescending = NSSortDescriptor(key: "dateCreated", ascending: false)
+        
+        let request: NSFetchRequest<Session> = Session.fetchRequest()
+        request.sortDescriptors = [sortDescending]
+        
+        do {
+            sessions = try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
+        sessionTableView.reloadData()
+    }
 
 
 }
@@ -89,7 +141,7 @@ extension FeedSessionViewController: UITableViewDelegate {
         
         let titleText = sessionTableView.cellForRow(at: indexPath)?.textLabel?.text
         
-        let alert = UIAlertController(title: titleText, message: "Are you sure you want to load this pickup session?", preferredStyle: .alert)
+        let alert = UIAlertController(title: titleText, message: "Are you sure you want to load this feed session?", preferredStyle: .alert)
         
         let continueAction = UIAlertAction(title: "Continue", style: .default) { (action) in
             self.selectedSession = self.sessions[indexPath.row]

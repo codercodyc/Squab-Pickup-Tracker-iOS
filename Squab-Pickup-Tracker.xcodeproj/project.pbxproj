@@ -16,6 +16,7 @@
 		C348A31C267AD08300CE0990 /* TransferDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348A31B267AD08300CE0990 /* TransferDataManager.swift */; };
 		C352CF0C257C6A7C000839E1 /* LineChartView+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */; };
 		C3559BD9266F1205002F21A3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3559BD8266F1205002F21A3 /* SettingsViewController.swift */; };
+		C3736BB928B1582B000B34F2 /* FeedInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3736BB828B1582B000B34F2 /* FeedInputViewController.swift */; };
 		C38AF1342679841F00DFBA6E /* TransferSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38AF1332679841F00DFBA6E /* TransferSelectorViewController.swift */; };
 		C3A2BD792560E3310084E66A /* PickupSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */; };
 		C3A5BF9A2557BC8B0085D440 /* ContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BF992557BC8B0085D440 /* ContentsCell.swift */; };
@@ -63,6 +64,7 @@
 		C348A31B267AD08300CE0990 /* TransferDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDataManager.swift; sourceTree = "<group>"; };
 		C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineChartView+Formats.swift"; sourceTree = "<group>"; };
 		C3559BD8266F1205002F21A3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C3736BB828B1582B000B34F2 /* FeedInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInputViewController.swift; sourceTree = "<group>"; };
 		C38AF1332679841F00DFBA6E /* TransferSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSelectorViewController.swift; sourceTree = "<group>"; };
 		C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSessionViewController.swift; sourceTree = "<group>"; };
 		C3A5BF992557BC8B0085D440 /* ContentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCell.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				C32207BA278D2542006FB08C /* FeedSessionViewController.swift */,
+				C3736BB828B1582B000B34F2 /* FeedInputViewController.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				C3B05938269549A600832590 /* LodingAlert.swift in Sources */,
 				C3EB8E38257AE3A5009D7B24 /* UIView+Shadow+Radius.swift in Sources */,
 				C3559BD9266F1205002F21A3 /* SettingsViewController.swift in Sources */,
+				C3736BB928B1582B000B34F2 /* FeedInputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
