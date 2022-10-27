@@ -125,7 +125,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlQ-BZ-mm2">
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlQ-BZ-mm2">
                                                             <rect key="frame" x="145" y="5.5" width="72" height="71"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="qlQ-BZ-mm2" secondAttribute="height" id="w7L-rU-ge3"/>
@@ -135,6 +135,7 @@
                                                                 <color key="titleColor" name="outTransfer"/>
                                                             </state>
                                                             <connections>
+                                                                <action selector="buttonPressed:" destination="A6Q-Bb-hGV" eventType="touchUpInside" id="CA5-Vn-bEE"/>
                                                                 <action selector="buttonPressed:" destination="Nhh-qq-3Lz" eventType="touchUpInside" id="Qga-3B-CPJ"/>
                                                             </connections>
                                                         </button>
@@ -156,6 +157,7 @@
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" backgroundImage="plus.circle.fill" catalog="system"/>
                                                             <connections>
+                                                                <action selector="buttonPressed:" destination="A6Q-Bb-hGV" eventType="touchUpInside" id="XIc-Fc-odn"/>
                                                                 <action selector="buttonPressed:" destination="Nhh-qq-3Lz" eventType="touchUpInside" id="cyJ-9z-kuS"/>
                                                             </connections>
                                                         </button>

@@ -70,6 +70,11 @@ class FeedSessionViewController: UIViewController {
             destinationVC.selectedSession = selectedSession
             //print(pickupSessions.last?.dateCreated)
         }
+        if segue.identifier == K.segue.feedPens {
+            let destinationVC = segue.destination as! FeedInputViewController
+            destinationVC.selectedSession = selectedSession
+            //print(pickupSessions.last?.dateCreated)
+        }
     }
 
 
@@ -84,19 +89,6 @@ class FeedSessionViewController: UIViewController {
         
     }
 
-//    func loadSessions() {
-//        let sortDescending = NSSortDescriptor(key: "dateCreated", ascending: false)
-//
-//        let request: NSFetchRequest<Session> = Session.fetchRequest()
-//        request.sortDescriptors = [sortDescending]
-//
-//        do {
-//            sessions = try context.fetch(request)
-//        } catch {
-//            print("Error fetching context \(error)")
-//        }
-//        sessionTableView.reloadData()
-//    }
     func loadSessions() {
         let sortDescending = NSSortDescriptor(key: "dateCreated", ascending: false)
         let sessionPredicate = NSPredicate(format: "type == %@", "Feed")
@@ -176,7 +168,7 @@ extension FeedSessionViewController: UITableViewDelegate {
         
         let continueAction = UIAlertAction(title: "Continue", style: .default) { (action) in
             self.selectedSession = self.sessions[indexPath.row]
-            self.performSegue(withIdentifier: K.segue.pickupPens, sender: self)
+            self.performSegue(withIdentifier: K.segue.feedPens, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
         }
         

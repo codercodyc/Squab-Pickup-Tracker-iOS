@@ -46,6 +46,41 @@ class FeedInputViewController: UIViewController {
         feedInputTableView.dataSource = self
         
     }
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        var superview = sender.superview?.superview
+        while let view = superview, !(view is UITableViewCell) {
+            superview = view.superview
+        }
+        guard let cell = superview as? UITableViewCell else {
+            print("error")
+            return
+        }
+        guard let index = feedInputTableView.indexPath(for: cell)?.row else {
+            print("error")
+            return
+        }
+        
+        if feedTypeSelector.selectedSegmentIndex == 0 { // Corn
+            if sender.tag == 0 { //Plus
+                penData[index].cornScoops += 1
+            } else if sender.tag == 1 { //Minus
+                if(penData[index].cornScoops == 0) {
+                    return
+                } else {
+                    penData[index].cornScoops -= 1
+                }
+            }
+        } else { // Pellets
+            if sender.tag == 0 { //Plus
+                penData[index].pelletScoops += 1
+            } else if sender.tag == 1 { //Minus
+                if (penData[index].pelletScoops == 0) {
+                    penData[index].pelletScoops -= 1
+                }
+            }
+        }
+        saveData()	
+    }
     
 
     //MARK: - Save and Load Methods
@@ -61,7 +96,7 @@ class FeedInputViewController: UIViewController {
 
     func loadPens(with request: NSFetchRequest<Pen> = Pen.fetchRequest(), pen: String? = nil) {
         
-        request.sortDescriptors = [NSSortDescriptor(key: "pickupOrderIndex", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         
         let sessionPredicate = NSPredicate(format: "parentCategory.dateCreated == %@", selectedSession!.dateCreated! as CVarArg)
         
