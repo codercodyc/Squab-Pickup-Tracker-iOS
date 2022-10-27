@@ -181,9 +181,12 @@ class PickupSessionViewController: UIViewController {
     
     func loadSessions() {
         let sortDescending = NSSortDescriptor(key: "dateCreated", ascending: false)
+        let sessionPredicate = NSPredicate(format: "type == %@", "Pickup")
+        
         
         let request: NSFetchRequest<Session> = Session.fetchRequest()
         request.sortDescriptors = [sortDescending]
+        request.predicate = sessionPredicate
         
         do {
             sessions = try context.fetch(request)

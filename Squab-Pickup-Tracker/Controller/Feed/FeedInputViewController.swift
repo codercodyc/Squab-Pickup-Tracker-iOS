@@ -11,11 +11,27 @@ import CoreData
 class FeedInputViewController: UIViewController {
 
     
+    @IBOutlet weak var feedTypeSelector: UISegmentedControl!
+    
+    var penData = [Pen]()
+    
     var selectedSession: Session? {
         didSet {
-            
+            loadPens()
         }
     }
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    @IBAction func feedTypeChanged(_ sender: UISegmentedControl) {
+        if feedTypeSelector.selectedSegmentIndex == 0 {
+            feedTypeSelector.selectedSegmentTintColor = UIColor(named: "Corn")
+        } else {
+            feedTypeSelector.selectedSegmentTintColor = UIColor(named: "Pellets")
+        }
+        feedInputTableView.reloadData()
+    }
+    
     
     
     
@@ -29,21 +45,37 @@ class FeedInputViewController: UIViewController {
         feedInputTableView.delegate = self
         feedInputTableView.dataSource = self
         
-//        feedInputTableView.estimatedRowHeight = 60
-//        feedInputTableView.rowHeight = UITableView.automaticDimension
-        // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
+    //MARK: - Save and Load Methods
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func saveData() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+        feedInputTableView.reloadData()
     }
-    */
+
+    func loadPens(with request: NSFetchRequest<Pen> = Pen.fetchRequest(), pen: String? = nil) {
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "pickupOrderIndex", ascending: true)]
+        
+        let sessionPredicate = NSPredicate(format: "parentCategory.dateCreated == %@", selectedSession!.dateCreated! as CVarArg)
+        
+        
+        request.predicate = sessionPredicate
+        
+        
+        do {
+            penData =  try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
+        
+    }
 
 }
 
@@ -52,7 +84,7 @@ class FeedInputViewController: UIViewController {
 extension FeedInputViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = selectedSession?.pens?.count ?? nil {
-         return 5
+         return count
         } else {
             return 5
         }
@@ -62,7 +94,18 @@ extension FeedInputViewController: UITableViewDataSource {
         
         var cell = UITableViewCell()
         if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.penFeedCell) as? FeedInputTableViewCell {
-//            safeCell.penLabel = "305"
+
+            if feedTypeSelector.selectedSegmentIndex == 0 {
+                safeCell.plusButton.tintColor = UIColor(named: "Corn")
+                safeCell.minusButton.tintColor = UIColor(named: "Corn")
+                safeCell.penLabel.text = penData[indexPath.row].id
+                safeCell.scoopsLabel.text = String(penData[indexPath.row].cornScoops)
+            } else {
+                safeCell.plusButton.tintColor = UIColor(named: "Pellets")
+                safeCell.minusButton.tintColor = UIColor(named: "Pellets")
+                safeCell.penLabel.text = penData[indexPath.row].id
+                safeCell.scoopsLabel.text = String(penData[indexPath.row].pelletScoops)
+            }
          
             
             cell = safeCell
@@ -73,7 +116,7 @@ extension FeedInputViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(80)
+        return CGFloat(60)
     }
     
     
@@ -85,3 +128,7 @@ extension FeedInputViewController: UITableViewDataSource {
 extension FeedInputViewController: UITableViewDelegate {
     
 }
+
+
+
+

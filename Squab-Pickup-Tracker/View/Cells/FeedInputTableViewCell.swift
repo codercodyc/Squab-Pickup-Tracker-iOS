@@ -21,7 +21,12 @@ class FeedInputTableViewCell: UITableViewCell {
     }
     
     @IBOutlet weak var penLabel: UILabel!
+    @IBOutlet weak var scoopsLabel: UILabel!
+    @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var plusButton: UIButton!
     
-    @IBOutlet weak var feedStackView: UIStackView!
+
+    @IBAction func buttonPressed(_ sender: UIButton) {
+    }
     
 }
