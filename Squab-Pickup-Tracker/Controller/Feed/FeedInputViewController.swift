@@ -28,6 +28,9 @@ class FeedInputViewController: UIViewController {
         
         feedInputTableView.delegate = self
         feedInputTableView.dataSource = self
+        
+//        feedInputTableView.estimatedRowHeight = 60
+//        feedInputTableView.rowHeight = UITableView.automaticDimension
         // Do any additional setup after loading the view.
     }
     
@@ -49,7 +52,7 @@ class FeedInputViewController: UIViewController {
 extension FeedInputViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = selectedSession?.pens?.count ?? nil {
-         return count
+         return 5
         } else {
             return 5
         }
@@ -70,7 +73,7 @@ extension FeedInputViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(60)
+        return CGFloat(80)
     }
     
     
