@@ -14,12 +14,15 @@ class FeedInputViewController: UIViewController {
     @IBOutlet weak var feedTypeSelector: UISegmentedControl!
     
     var penData = [Pen]()
+    var feedManager = FeedDataManager()
     
     var selectedSession: Session? {
         didSet {
             loadPens()
         }
     }
+    
+    
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -33,17 +36,74 @@ class FeedInputViewController: UIViewController {
     }
     
     
+    @IBAction func gearPressed(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let submit = UIAlertAction(title: "Submit Feed Session", style: .default) { (action) in
+            self.submitSession()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let exit = UIAlertAction(title: "Exit to Menu", style: .destructive) { action in
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        alert.addAction(submit)
+        alert.addAction(exit)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func submitSession() {
+        let alert = UIAlertController(title: "Submit Feed Session", message: "Are you sure you want to submit this feed session?", preferredStyle: .alert)
+        let submit = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.postFeedData()
+        }
+        let cancel = UIAlertAction(title: "No", style: .destructive, handler: nil)
+        alert.addAction(submit)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: - Post Feed Data
+    
+    func postFeedData() {
+        if selectedSession?.wasSubmitted == true {
+            let alert = UIAlertController(title: "Session has already been submitted", message: "", preferredStyle: .alert)
+            
+            let submit = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+                
+            }
+            
+            
+            alert.addAction(submit)
+            
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            if let currentSession = selectedSession {
+                DispatchQueue.main.async {
+                    self.feedManager.encodeCurrentSession(with: currentSession)
+                    
+                }
+            }
+        
+        }
+    }
     
     
-   
+   //MARK: - Table View Methods
     @IBOutlet weak var feedInputTableView: UITableView!
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.hidesBackButton = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         feedInputTableView.delegate = self
         feedInputTableView.dataSource = self
+        
+        feedManager.delegate = self
         
     }
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -75,8 +135,9 @@ class FeedInputViewController: UIViewController {
                 penData[index].pelletScoops += 1
             } else if sender.tag == 1 { //Minus
                 if (penData[index].pelletScoops == 0) {
-                    penData[index].pelletScoops -= 1
+                    return
                 }
+                penData[index].pelletScoops -= 1
             }
         }
         saveData()	
@@ -134,12 +195,27 @@ extension FeedInputViewController: UITableViewDataSource {
                 safeCell.plusButton.tintColor = UIColor(named: "Corn")
                 safeCell.minusButton.tintColor = UIColor(named: "Corn")
                 safeCell.penLabel.text = penData[indexPath.row].id
-                safeCell.scoopsLabel.text = String(penData[indexPath.row].cornScoops)
+                let scoops = penData[indexPath.row].cornScoops
+                if scoops == 0 {
+                    safeCell.scoopsLabel.text = "-"
+                    safeCell.scoopsLabel.textColor = .lightGray
+                } else {
+                    safeCell.scoopsLabel.textColor = .label
+
+                    safeCell.scoopsLabel.text = String(scoops)
+                }
             } else {
                 safeCell.plusButton.tintColor = UIColor(named: "Pellets")
                 safeCell.minusButton.tintColor = UIColor(named: "Pellets")
                 safeCell.penLabel.text = penData[indexPath.row].id
-                safeCell.scoopsLabel.text = String(penData[indexPath.row].pelletScoops)
+                let scoops = penData[indexPath.row].pelletScoops
+                if scoops == 0 {
+                    safeCell.scoopsLabel.text = "-"
+                    safeCell.scoopsLabel.textColor = .lightGray
+                } else {
+                    safeCell.scoopsLabel.textColor = .label
+                    safeCell.scoopsLabel.text = String(scoops)
+                }
             }
          
             
@@ -161,6 +237,43 @@ extension FeedInputViewController: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 
 extension FeedInputViewController: UITableViewDelegate {
+    
+}
+
+//MARK: - FeedDataManager Delegate
+extension FeedInputViewController: FeedDataManagerDelegate {
+    func didFailWithError(error: Error) {
+        print("Error")
+    }
+    
+    func didSubmitSession() {
+        DispatchQueue.main.async {
+            
+            
+            // update session submission
+            self.selectedSession?.wasSubmitted = true
+            self.saveData()
+            
+            let alert = UIAlertController(title: "Session Submitted", message: "", preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                
+                
+                self.dismiss(animated: true, completion: nil)
+                
+                self.navigationController?.popToRootViewController(animated: true)
+                
+            }
+            
+            
+            
+            
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     
 }
 

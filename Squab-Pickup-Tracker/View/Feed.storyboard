@@ -117,11 +117,11 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="301" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqs-HP-bMO">
-                                                            <rect key="frame" x="10" y="0.0" width="50" height="82"/>
+                                                            <rect key="frame" x="30" y="0.0" width="70" height="82"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="oyR-vb-Pv2"/>
+                                                                <constraint firstAttribute="width" constant="70" id="oyR-vb-Pv2"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -144,7 +144,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="fn4-AQ-iFZ"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -172,7 +172,7 @@
                                                         <constraint firstItem="qlQ-BZ-mm2" firstAttribute="centerY" secondItem="umv-gN-VE2" secondAttribute="centerY" id="UvJ-Qj-b7C"/>
                                                         <constraint firstItem="V1l-wi-mNt" firstAttribute="top" secondItem="umv-gN-VE2" secondAttribute="top" constant="5" id="XGw-7b-HR5"/>
                                                         <constraint firstItem="V1l-wi-mNt" firstAttribute="centerY" secondItem="umv-gN-VE2" secondAttribute="centerY" id="bcU-ar-inC"/>
-                                                        <constraint firstItem="tqs-HP-bMO" firstAttribute="leading" secondItem="umv-gN-VE2" secondAttribute="leading" constant="10" id="jYw-UB-x1v"/>
+                                                        <constraint firstItem="tqs-HP-bMO" firstAttribute="leading" secondItem="umv-gN-VE2" secondAttribute="leading" constant="30" id="jYw-UB-x1v"/>
                                                         <constraint firstItem="HFh-S7-r3k" firstAttribute="top" secondItem="umv-gN-VE2" secondAttribute="top" id="ri6-eN-ZWE"/>
                                                         <constraint firstItem="qlQ-BZ-mm2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tqs-HP-bMO" secondAttribute="trailing" constant="10" id="rks-BW-hqk"/>
                                                         <constraint firstItem="tqs-HP-bMO" firstAttribute="top" secondItem="umv-gN-VE2" secondAttribute="top" id="wdm-XG-uin"/>
@@ -230,6 +230,11 @@
                                 <action selector="feedTypeChanged:" destination="A6Q-Bb-hGV" eventType="valueChanged" id="Y29-4q-2DG"/>
                             </connections>
                         </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="gear" catalog="system" id="t9i-kn-7fL">
+                            <connections>
+                                <action selector="gearPressed:" destination="A6Q-Bb-hGV" id="dmO-6j-fvI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="feedInputTableView" destination="uhY-gF-In1" id="M28-zT-gny"/>
@@ -260,10 +265,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="minus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="Corn">
-            <color red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="outTransfer">
             <color red="0.85100001096725464" green="0.33700001239776611" blue="0.33700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

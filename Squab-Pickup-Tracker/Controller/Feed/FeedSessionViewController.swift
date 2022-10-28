@@ -33,7 +33,7 @@ class FeedSessionViewController: UIViewController {
         
     }
     @IBAction func NewFeedSessionPressed(_ sender: UIButton) {
-        addBlankFeedSession()
+//        addBlankFeedSession() 
         performSegue(withIdentifier: K.segue.datePicker, sender: self)
     }
     
