@@ -243,7 +243,20 @@ extension FeedInputViewController: UITableViewDelegate {
 //MARK: - FeedDataManager Delegate
 extension FeedInputViewController: FeedDataManagerDelegate {
     func didFailWithError(error: Error) {
-        print("Error")
+        DispatchQueue.main.async {
+            
+            
+            let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                
+                
+            }
+            
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func didSubmitSession() {
