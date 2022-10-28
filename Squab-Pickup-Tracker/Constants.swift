@@ -19,6 +19,8 @@ struct K {
     static let cullCellIdentifier = "cullCell"
     static let transferDataCell = "TranferDataCell"
     static let penFeedCell = "penFeedCell"
+    static let settingToggleCell = "settingsToggleCell"
+    static let settingsCell = "settingsCell"
     
     
     static let liveServerStatusKey = "liveServerStatus"

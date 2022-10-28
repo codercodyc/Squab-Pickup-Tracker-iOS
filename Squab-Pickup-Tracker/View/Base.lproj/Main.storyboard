@@ -542,22 +542,90 @@
                                     <constraint firstItem="kpp-HP-NRH" firstAttribute="top" secondItem="g8h-Xm-1Za" secondAttribute="top" constant="10" id="pXf-g5-GBb"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iuH-WF-FwE">
+                                <rect key="frame" x="0.0" y="183" width="414" height="679"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsToggleCell" id="HHZ-bn-D3i" customClass="SettingsToggleTableViewCell" customModule="Squab_Pickup_Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HHZ-bn-D3i" id="big-EL-IRu">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Live Server" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ks8-If-8lr">
+                                                    <rect key="frame" x="30" y="11.5" width="119" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kMM-up-geR">
+                                                    <rect key="frame" x="305" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="switchChanged:" destination="HHZ-bn-D3i" eventType="valueChanged" id="mpR-p7-NLa"/>
+                                                        <action selector="toggle:" destination="JEs-08-rZN" eventType="valueChanged" id="gJN-gQ-kUS"/>
+                                                        <action selector="toggleChanged:" destination="JEs-08-rZN" eventType="valueChanged" id="zhG-fj-NOs"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ks8-If-8lr" firstAttribute="centerY" secondItem="big-EL-IRu" secondAttribute="centerY" id="Ag3-4l-pRd"/>
+                                                <constraint firstItem="kMM-up-geR" firstAttribute="centerY" secondItem="big-EL-IRu" secondAttribute="centerY" id="LGb-Xh-28d"/>
+                                                <constraint firstAttribute="trailing" secondItem="kMM-up-geR" secondAttribute="trailing" constant="20" id="QyK-Ep-pcQ"/>
+                                                <constraint firstItem="Ks8-If-8lr" firstAttribute="leading" secondItem="big-EL-IRu" secondAttribute="leadingMargin" constant="10" id="i6K-Lp-b5c"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingsLabel" destination="Ks8-If-8lr" id="T7K-Ns-Foy"/>
+                                            <outlet property="switchStatus" destination="kMM-up-geR" id="NUV-VS-EIi"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settingsCell" id="usQ-0b-Zn2" customClass="SettingsTableViewCell" customModule="Squab_Pickup_Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="93" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="usQ-0b-Zn2" id="XBm-3j-dol">
+                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pickup Pen Order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-IT-Kxh">
+                                                    <rect key="frame" x="30" y="11.5" width="133" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="l6n-IT-Kxh" firstAttribute="centerY" secondItem="XBm-3j-dol" secondAttribute="centerY" id="k0z-jE-Zw4"/>
+                                                <constraint firstItem="l6n-IT-Kxh" firstAttribute="leading" secondItem="XBm-3j-dol" secondAttribute="leadingMargin" constant="10" id="l71-01-YGJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingsLabel" destination="l6n-IT-Kxh" id="6cS-Ri-Usk"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fBY-Eu-xpx"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
+                            <constraint firstItem="fBY-Eu-xpx" firstAttribute="trailing" secondItem="iuH-WF-FwE" secondAttribute="trailing" id="Pj2-YV-tTu"/>
                             <constraint firstItem="g8h-Xm-1Za" firstAttribute="centerX" secondItem="4Ix-aZ-gsQ" secondAttribute="centerX" id="Y64-yI-NRg"/>
                             <constraint firstItem="g8h-Xm-1Za" firstAttribute="leading" secondItem="fBY-Eu-xpx" secondAttribute="leading" constant="20" id="a9e-Ob-wN9"/>
+                            <constraint firstItem="fBY-Eu-xpx" firstAttribute="bottom" secondItem="iuH-WF-FwE" secondAttribute="bottom" id="f7Q-58-GZt"/>
+                            <constraint firstItem="iuH-WF-FwE" firstAttribute="top" secondItem="g8h-Xm-1Za" secondAttribute="bottom" constant="15" id="oXM-sj-4Ol"/>
                             <constraint firstItem="g8h-Xm-1Za" firstAttribute="top" secondItem="fBY-Eu-xpx" secondAttribute="top" constant="30" id="rev-Cc-gjh"/>
+                            <constraint firstItem="iuH-WF-FwE" firstAttribute="leading" secondItem="fBY-Eu-xpx" secondAttribute="leading" id="tGx-tb-O4l"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="3g1-ql-3Q6"/>
                     <connections>
                         <outlet property="liveServerView" destination="g8h-Xm-1Za" id="LNR-Rf-f9o"/>
+                        <outlet property="tableView" destination="iuH-WF-FwE" id="l81-uB-88i"/>
                         <outlet property="useLiveServerSwitch" destination="mXf-DU-Cd9" id="t7f-3F-Z5Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SK-WB-fd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="JEs-08-rZN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="255" y="934"/>
         </scene>

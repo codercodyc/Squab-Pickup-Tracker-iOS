@@ -11,6 +11,10 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var useLiveServerSwitch: UISwitch!
     @IBOutlet weak var liveServerView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    
+//    let toggleSettingsArray = ["Use Live Server"]
+    let settingsArray = [["Use Live Server"],["Pickup Pen Order", "Feed Pen Order"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +23,8 @@ class SettingsViewController: UIViewController {
         useLiveServerSwitch.isOn = status
         
         liveServerView.layer.cornerRadius = 10
+        tableView.dataSource = self
+        tableView.delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -47,4 +53,46 @@ class SettingsViewController: UIViewController {
     func getServerStatus() -> Bool {
         return UserDefaults.standard.bool(forKey: K.liveServerStatusKey)
     }
+}
+
+extension SettingsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return settingsArray[section].count
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return settingsArray.count
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Settings"
+        } else if section == 1 {
+            return "Pen Order Settings"
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        
+        if indexPath.section == 0 {
+            if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.settingToggleCell, for: indexPath) as? SettingsToggleTableViewCell {
+                safeCell.settingsLabel.text = settingsArray[indexPath.section][indexPath.row]
+                cell = safeCell
+            }
+        } else if indexPath.section == 1 {
+            if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.settingsCell, for: indexPath) as? SettingsTableViewCell {
+                safeCell.settingsLabel.text = settingsArray[indexPath.section][indexPath.row]
+                cell = safeCell
+            }
+        }
+        
+        return cell
+    }
+    
+    
+}
+
+extension SettingsViewController: UITableViewDelegate {
+    
 }
