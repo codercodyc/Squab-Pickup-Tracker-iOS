@@ -9,10 +9,14 @@ import UIKit
 
 class PenOrderViewController: UIViewController {
 
+//MARK: - Outlets
+    
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var editButton: UIBarButtonItem!
+
+//MARK: - Parameters
     
     var penOrder: [String] = []
+    let editButton = UIBarButtonItem()
     
     var penOrderType: String = "" {
         didSet {
@@ -24,6 +28,7 @@ class PenOrderViewController: UIViewController {
             }
         }
     }
+//MARK: - App Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = penOrderType
@@ -31,12 +36,32 @@ class PenOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupEditButton()
         tableView.delegate = self
         tableView.dataSource = self
     }
+
+//MARK: - Functions
+    func setupEditButton() {
+        editButton.style = .plain
+        editButton.action = #selector(editPressed)
+        editButton.title = "Edit"
+        editButton.target = self
+        navigationItem.rightBarButtonItem = editButton
+    }
     
-    @IBAction func editPressed(_ sender: UIBarButtonItem) {
+    @objc func editPressed() {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        editButton.title = tableView.isEditing ? "Done" : "Edit"
+    }
+    
+    func saveOrder() {
+        if penOrderType == "Pickup Pen Order" {
+            UserDefaults.standard.setValue(penOrder, forKey: K.pickupPenOrderKey)
+        } else if penOrderType == "Feed Pen Order" {
+            UserDefaults.standard.setValue(penOrder, forKey: K.feedPenOrderKey)
+        }
+        tableView.reloadData()
     }
     
     
@@ -53,13 +78,24 @@ extension PenOrderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.penOrderCell, for: indexPath)
 
-        cell.textLabel?.text = penOrder[indexPath.row]
+        cell.textLabel?.text = "Pen \(penOrder[indexPath.row])"
         return cell
     }
     
 }
 
+//MARK: - Table View Delegate Methods
 
 extension PenOrderViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let cellToMove = penOrder[sourceIndexPath.row]
+        penOrder.remove(at: sourceIndexPath.row)
+        penOrder.insert(cellToMove, at: destinationIndexPath.row)
+        saveOrder()
+    }
 }

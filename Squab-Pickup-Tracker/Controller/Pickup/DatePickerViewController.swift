@@ -11,15 +11,24 @@ import CoreData
 class DatePickerViewController: UIViewController {
 
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var sessionTitle: UILabel!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var selectedSession: Session?
     var sessionType: String?
     
+    let pickupPens = UserDefaults.standard.stringArray(forKey: K.pickupPenOrderKey) ?? []
+    let feedPens = UserDefaults.standard.stringArray(forKey: K.feedPenOrderKey) ?? []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if sessionType == "Pickup" {
+            sessionTitle.text = "New Pickup Session"
+        } else if sessionType == "Feed" {
+            sessionTitle.text = "New Feed Session"
+        }
 
     }
     
@@ -86,34 +95,35 @@ class DatePickerViewController: UIViewController {
         
         var pickupOrderCount = 0
         
-        for pen in K.penIDs {
-            let newPen = Pen(context: context)
-            newPen.id = pen
-            newPen.pickupOrderIndex = Int32(pickupOrderCount)
-            pickupOrderCount = pickupOrderCount + 1
-            
-            for nest in K.nestIDs {
-                let newNest = Nest(context: context)
-                newNest.id = nest
-                newPen.addToNests(newNest)
+        
+        
+            for pen in pickupPens {
+                let newPen = Pen(context: context)
+                newPen.id = pen
+                newPen.pickupOrderIndex = Int32(pickupOrderCount)
+                pickupOrderCount = pickupOrderCount + 1
+                
+                for nest in K.nestIDs {
+                    let newNest = Nest(context: context)
+                    newNest.id = nest
+                    newPen.addToNests(newNest)
+                }
+                
+                newSession.addToPens(newPen)
+                
             }
             
-            newSession.addToPens(newPen)
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "yyyy-w"
+    //        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-w")
+            newSession.baseWeek = dateFormatter.string(from: newSession.dateCreated!)
+    //        print(newSession.baseWeek!)
             
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-w"
-//        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-w")
-        newSession.baseWeek = dateFormatter.string(from: newSession.dateCreated!)
-//        print(newSession.baseWeek!)
-        
-        
-        selectedSession = newSession
-        
-        saveSessions()
-        
+            
+            selectedSession = newSession
+            
+            saveSessions()
     }
     
     
@@ -129,30 +139,33 @@ class DatePickerViewController: UIViewController {
         
         var feedOrderCount = 0
         
-        for pen in K.penIDs {
-            let newPen = Pen(context: context)
-            newPen.id = pen
-            newPen.cornScoops = 0
-            newPen.pelletScoops = 0
+        
             
-            newPen.feedOrderIndex = Int32(feedOrderCount)
-            feedOrderCount = feedOrderCount + 1
+            for pen in feedPens {
+                print(pen)
+                let newPen = Pen(context: context)
+                newPen.id = pen
+                newPen.cornScoops = 0
+                newPen.pelletScoops = 0
+                
+                newPen.feedOrderIndex = Int32(feedOrderCount)
+                feedOrderCount = feedOrderCount + 1
+                
+                newSession.addToPens(newPen)
+                
+            }
             
-            newSession.addToPens(newPen)
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "yyyy-w"
+    //        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-w")
+            newSession.baseWeek = dateFormatter.string(from: newSession.dateCreated!)
+    //        print(newSession.baseWeek!)
             
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-w"
-//        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-w")
-        newSession.baseWeek = dateFormatter.string(from: newSession.dateCreated!)
-//        print(newSession.baseWeek!)
-        
-        
-        selectedSession = newSession
-        
-        saveSessions()
+            
+            selectedSession = newSession
+            
+            saveSessions()
         
     }
     

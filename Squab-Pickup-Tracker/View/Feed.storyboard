@@ -230,7 +230,7 @@
                                 <action selector="feedTypeChanged:" destination="A6Q-Bb-hGV" eventType="valueChanged" id="Y29-4q-2DG"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="gear" catalog="system" id="t9i-kn-7fL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="t9i-kn-7fL">
                             <connections>
                                 <action selector="gearPressed:" destination="A6Q-Bb-hGV" id="dmO-6j-fvI"/>
                             </connections>
@@ -265,11 +265,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="minus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="Corn">
-            <color red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.5899999737739563" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="outTransfer">
             <color red="0.85100001096725464" green="0.33700001239776611" blue="0.33700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

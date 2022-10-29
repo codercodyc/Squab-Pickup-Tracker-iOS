@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // register Default Array of Pens
-        UserDefaults.standard.register(defaults: [K.pickupPenOrderKey: K.penIDs, K.feedPenOrderKey: K.penIDs])
+        let pens = K.penIDs
+        UserDefaults.standard.register(defaults: [K.pickupPenOrderKey: pens, K.feedPenOrderKey: pens])
         return true
     }
 

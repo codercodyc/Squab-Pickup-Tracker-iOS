@@ -648,16 +648,16 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="penOrderCell" textLabel="fSX-Qr-2RF" style="IBUITableViewCellStyleDefault" id="vKZ-W8-vph">
-                                        <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="49.5" width="374" height="47.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vKZ-W8-vph" id="Efi-ES-O5L">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSX-Qr-2RF">
-                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSX-Qr-2RF">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="47.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -676,15 +676,8 @@
                             <constraint firstItem="fxQ-6Z-pKT" firstAttribute="top" secondItem="ldU-gB-kKm" secondAttribute="top" id="sne-bJ-7Vb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2zl-QC-567">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="TxB-Ud-kWu">
-                            <connections>
-                                <action selector="editPressed:" destination="ccY-rs-KdS" id="e1C-rh-UbZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="2zl-QC-567"/>
                     <connections>
-                        <outlet property="editButton" destination="TxB-Ud-kWu" id="gKg-WM-gaC"/>
                         <outlet property="tableView" destination="fxQ-6Z-pKT" id="kOv-Uv-R01"/>
                     </connections>
                 </viewController>
@@ -1254,6 +1247,7 @@
                     <navigationItem key="navigationItem" id="Efp-z2-Kxn"/>
                     <connections>
                         <outlet property="datePicker" destination="7zv-Vl-5od" id="7KY-CG-5BV"/>
+                        <outlet property="sessionTitle" destination="gsB-hi-fxi" id="vyk-Ba-Va6"/>
                         <segue destination="8Oa-ts-I5e" kind="show" identifier="toPickupPens" id="9Bt-y9-aeE"/>
                         <segue destination="ImF-1h-F67" kind="show" identifier="toFeedPens" id="DYA-2F-p6m"/>
                     </connections>
@@ -1274,7 +1268,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1xV-7S-por"/>
+        <segue reference="9Bt-y9-aeE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.left.circle.fill" catalog="system" width="128" height="121"/>
