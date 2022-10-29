@@ -98,4 +98,12 @@ extension PenOrderViewController: UITableViewDelegate {
         penOrder.insert(cellToMove, at: destinationIndexPath.row)
         saveOrder()
     }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
 }

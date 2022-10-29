@@ -24,7 +24,7 @@ class FeedDataManager {
                 return "https://dkcpigeons.com/api/post-new-feed-1wk"
             } else {
                 //not live
-                return "https://dev.dkcpigeons.com/api/post-new-feed-1wk"
+                return "https://127.0.0.1:5000/api/post-new-feed-1wk"
             }
         }
     }
@@ -58,12 +58,12 @@ class FeedDataManager {
         
         var penData = [FeedPenData]()
         
-//        let submittedDateDouble = dateToDoubleWithoutTime(with: Date())
+        let submittedDateDouble = dateToDoubleWithoutTime(with: Date())
         let sessionDate = session.dateCreated!
         let newDateDouble = dateToDoubleWithoutTime(with: sessionDate)
         
         for pen in session.pens?.allObjects as! [Pen] {
-            let currentPen = FeedPenData(penName: pen.id, cornScoops: Int(pen.cornScoops), pelletScoops: Int(pen.pelletScoops), feedEntryTime: newDateDouble)
+            let currentPen = FeedPenData(penName: pen.id, cornScoops: Int(pen.cornScoops), pelletScoops: Int(pen.pelletScoops), feedEntryTime: submittedDateDouble)
             penData.append(currentPen)
 //            nestData = []
             
