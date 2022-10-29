@@ -78,7 +78,7 @@ extension PenOrderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.penOrderCell, for: indexPath)
 
-        cell.textLabel?.text = "Pen \(penOrder[indexPath.row])"
+        cell.textLabel?.text = penOrder[indexPath.row]
         return cell
     }
     
