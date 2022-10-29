@@ -31,10 +31,10 @@ class SettingsToggleTableViewCell: UITableViewCell {
         if settingsLabel.text == "Use Live Server" {
             if sender.isOn {
                 UserDefaults.standard.setValue(true, forKey: K.liveServerStatusKey)
-                print("Set True")
+//                print("Set True")
             } else {
                 UserDefaults.standard.setValue(false, forKey: K.liveServerStatusKey)
-                print("Set False")
+//                print("Set False")
             }
         }
     }

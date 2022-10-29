@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // register Default Array of Pens
+        UserDefaults.standard.register(defaults: [K.pickupPenOrderKey: K.penIDs, K.feedPenOrderKey: K.penIDs])
         return true
     }
 

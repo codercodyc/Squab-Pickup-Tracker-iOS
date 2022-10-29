@@ -9,50 +9,35 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-    @IBOutlet weak var useLiveServerSwitch: UISwitch!
-    @IBOutlet weak var liveServerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-//    let toggleSettingsArray = ["Use Live Server"]
+    var selectedPenSettingText: String?
+    
     let settingsArray = [["Use Live Server"],["Pickup Pen Order", "Feed Pen Order"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let status = getServerStatus()
-        useLiveServerSwitch.isOn = status
-        
-        liveServerView.layer.cornerRadius = 10
+ 
         tableView.dataSource = self
         tableView.delegate = self
+//        tableView.backgroundColor = .none
         
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    @IBAction func useLiveServerChanged(_ sender: UISwitch) {
-        if sender.isOn {
-            UserDefaults.standard.setValue(true, forKey: K.liveServerStatusKey)
-            print("Set True")
-        } else {
-            UserDefaults.standard.setValue(false, forKey: K.liveServerStatusKey)
-            print("Set False")
+        if segue.identifier == K.segue.penOrder {
+            let destinationVC = segue.destination as! PenOrderViewController
+            if let orderType = selectedPenSettingText {
+                destinationVC.penOrderType = orderType
+            }
         }
     }
+        
     
-    
-    func getServerStatus() -> Bool {
-        return UserDefaults.standard.bool(forKey: K.liveServerStatusKey)
-    }
+
+   
 }
 
 extension SettingsViewController: UITableViewDataSource {
@@ -64,12 +49,16 @@ extension SettingsViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Settings"
+            return "Connection Settings"
         } else if section == 1 {
             return "Pen Order Settings"
         } else {
             return nil
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,9 +79,21 @@ extension SettingsViewController: UITableViewDataSource {
         return cell
     }
     
+
     
 }
 
 extension SettingsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // only apply for section 2
+        if indexPath.section == 1 {
+            if let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell {
+                selectedPenSettingText = cell.settingsLabel.text
+                cell.isSelected = false
+                performSegue(withIdentifier: K.segue.penOrder, sender: self)
+            }
+        }
+    }
     
 }

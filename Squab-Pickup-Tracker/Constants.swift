@@ -21,9 +21,12 @@ struct K {
     static let penFeedCell = "penFeedCell"
     static let settingToggleCell = "settingsToggleCell"
     static let settingsCell = "settingsCell"
+    static let penOrderCell = "penOrderCell"
     
     
     static let liveServerStatusKey = "liveServerStatus"
+    static let pickupPenOrderKey = "pickupPenOrder"
+    static let feedPenOrderKey = "feedPenOrder"
     
     static let nestIDs = ["1A", "1B", "1C","2A","2B","2C","3A","3B","3C","4A","4B","4C","5A","5B","5C","6A","6B","6C","6D","7A","7B","7C","7D"]
     static let penIDs = [
@@ -110,6 +113,7 @@ struct K {
         static let datePicker = "toDatePicker"
         static let transfer = "toTransfer"
         static let feedPens = "toFeedPens"
+        static let penOrder = "toPenOrder"
     }
     
     
@@ -143,3 +147,6 @@ enum InOut {
     case In
     case Out
 }
+
+
+
