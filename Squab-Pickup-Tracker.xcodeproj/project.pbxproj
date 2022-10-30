@@ -106,6 +106,7 @@
 		C3EB8E33257AB520009D7B24 /* UIButton+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Shadow.swift"; sourceTree = "<group>"; };
 		C3EB8E37257AE3A5009D7B24 /* UIView+Shadow+Radius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow+Radius.swift"; sourceTree = "<group>"; };
 		C3EB8E3D257AEE38009D7B24 /* CullCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CullCollectionViewController.swift; sourceTree = "<group>"; };
+		C3F0951A290F24C8009ECFF1 /* Squab-Pickup-Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Squab-Pickup-Tracker.entitlements"; sourceTree = "<group>"; };
 		C3F18A782682C9B0003FDCD2 /* TransferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3F18A792682C9B0003FDCD2 /* TransferCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferCollectionViewCell.xib; sourceTree = "<group>"; };
 		C3F18A7C2682DC4E003FDCD2 /* TransferHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferHistoryViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		C3BE0EF425577D61006A8FE1 /* Squab-Pickup-Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				C3F0951A290F24C8009ECFF1 /* Squab-Pickup-Tracker.entitlements */,
 				C3BE0EF525577D61006A8FE1 /* AppDelegate.swift */,
 				C3BE0EF725577D61006A8FE1 /* SceneDelegate.swift */,
 				C3BE0F2B25577D83006A8FE1 /* Model */,
@@ -615,6 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Squab-Pickup-Tracker/Squab-Pickup-Tracker.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46BJFDCKMQ;
@@ -638,6 +641,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Squab-Pickup-Tracker/Squab-Pickup-Tracker.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46BJFDCKMQ;
