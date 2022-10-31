@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController {
     
     var selectedPenSettingText: String?
     
-    let settingsArray = [["Use Live Server"],["Pickup Pen Order", "Feed Pen Order"]]
+    let settingsArray = [["Use Live Server", "Pickup Notifications", "Feed Notifications"],["Pickup Pen Order", "Feed Pen Order"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +67,7 @@ extension SettingsViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.settingToggleCell, for: indexPath) as? SettingsToggleTableViewCell {
                 safeCell.settingsLabel.text = settingsArray[indexPath.section][indexPath.row]
+                safeCell.switchStatus.isOn = safeCell.getServerStatus()
                 cell = safeCell
             }
         } else if indexPath.section == 1 {

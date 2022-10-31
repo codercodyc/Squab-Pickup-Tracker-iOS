@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // register Default Array of Pens
         let pens = K.penIDs
-        UserDefaults.standard.register(defaults: [K.pickupPenOrderKey: pens, K.feedPenOrderKey: pens])
+        UserDefaults.standard.register(defaults: [K.pickupPenOrderKey: pens, K.feedPenOrderKey: pens, K.pickupNotificationsKey: false, K.feedNotificationsKey: false])
+        registerForPushNotifications()
+        
+        // check if launched from notification
+        let notificationOption = launchOptions?[.remoteNotification]
+//        print(notificationOption)
+        
+        if let notification = notificationOption as? [String: AnyObject],
+           let aps = notification["aps"] as? [String: AnyObject] {
+            // Do something here.
+//            (window?.rootViewController as? UIViewController).performSegue(withIdentifier: K.segue.dashboard, sender: self)
+            print("opened from Notification")
+            print(aps)
+        }
+        
         return true
     }
 
@@ -72,5 +87,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+//MARK: - Push Notification Setup
+    func registerForPushNotifications() {
+        //1
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
+            print("Permission granted \(granted)")
+            guard granted else {return}
+            self?.getNotificationSettings()
+        }
+    }
+    
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification settings: \(settings)")
+            
+            guard settings.authorizationStatus == .authorized else {return}
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map {
+            data in String(format: "%02.2hhx", data)
+        }
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("received remote notification")
+        guard let aps = userInfo["aps"] as? [String: AnyObject] else {
+            completionHandler(.failed)
+            return
+        }
+        // do something here
+        print(aps)
+    }
+    
+    
+    
 }
 
+////MARK: - UNUserNotificationCenterDelegate
+//
+//extension AppDelegate: UNUserNotificationCenterDelegate {
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//        <#code#>
+//    }
+//}
+//

@@ -9,17 +9,19 @@ import UIKit
 
 class SettingsToggleTableViewCell: UITableViewCell {
 
+//MARK: - Parameters
+    
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var switchStatus: UISwitch!
     
+// MARK: - Lifecycyle
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        if settingsLabel.text == "Use Live Server" {
-            let status = getServerStatus()
-            switchStatus.isOn = status
-        }
+        
     }
+    
+//MARK: - Functions
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -28,20 +30,45 @@ class SettingsToggleTableViewCell: UITableViewCell {
     }
 
     @IBAction func switchChanged(_ sender: UISwitch) {
-        if settingsLabel.text == "Use Live Server" {
+        switch settingsLabel.text {
+        case "Use Live Server":
             if sender.isOn {
                 UserDefaults.standard.setValue(true, forKey: K.liveServerStatusKey)
-//                print("Set True")
             } else {
                 UserDefaults.standard.setValue(false, forKey: K.liveServerStatusKey)
-//                print("Set False")
             }
+        case "Pickup Notifications":
+            if sender.isOn {
+                UserDefaults.standard.setValue(true, forKey: K.pickupNotificationsKey)
+            } else {
+                UserDefaults.standard.setValue(false, forKey: K.pickupNotificationsKey)
+            }
+        case "Feed Notifications":
+            if sender.isOn {
+                UserDefaults.standard.setValue(true, forKey: K.feedNotificationsKey)
+            } else {
+                UserDefaults.standard.setValue(false, forKey: K.feedNotificationsKey)
+            }
+        default:
+            break
         }
+       
     }
     
     
     func getServerStatus() -> Bool {
-        return UserDefaults.standard.bool(forKey: K.liveServerStatusKey)
+        switch settingsLabel.text {
+        case "Use Live Server":
+            return UserDefaults.standard.bool(forKey: K.liveServerStatusKey)
+        case "Pickup Notifications":
+            return UserDefaults.standard.bool(forKey: K.pickupNotificationsKey)
+        case "Feed Notifications":
+            return UserDefaults.standard.bool(forKey: K.feedNotificationsKey)
+        default:
+            return false
+            
+        }
+        
     }
     
     
