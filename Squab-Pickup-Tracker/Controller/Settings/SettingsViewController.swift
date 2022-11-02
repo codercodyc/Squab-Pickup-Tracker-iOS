@@ -13,8 +13,10 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var selectedPenSettingText: String?
+    let notificationManager = NotificationManager()
     
     let settingsArray = [["Use Live Server", "Pickup Notifications", "Feed Notifications"],["Pickup Pen Order", "Feed Pen Order"]]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,11 @@ class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
 //        tableView.backgroundColor = .none
+        
+        notificationManager.delegate = self
+        DispatchQueue.main.async {
+            self.notificationManager.getUserInfo()
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -126,4 +133,46 @@ extension SettingsViewController: SettingsToggleTableViewCellDelegate {
     func refreshSettings() {
         tableView.reloadData()
     }
+}
+
+
+extension SettingsViewController: NotificationManagerDelegate {
+    func didSubmitUserInfo() {
+        return
+    }
+    
+    func didFailWithError(error: Error) {
+        let alert = UIAlertController(title: "Error", message: "Unable to get notification setting from database.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .default) { UIAlertAction in
+            // Navigate to settings?
+        }
+        alert.addAction(ok)
+        present(alert, animated: true)
+    }
+    
+    func didGetUserInfo(info: UserInfo) {
+//        print(info)
+        let deviceSettings = notificationManager.getDeviceSettings()
+        
+        if deviceSettings[K.pickupNotificationsKey] != info.pickupNotificationsEnabled {
+            UserDefaults.standard.setValue(info.pickupNotificationsEnabled, forKey: K.pickupNotificationsKey)
+            settingDifferenceUpdated()
+        }
+        if deviceSettings[K.feedNotificationsKey] != info.feedNotificationsEnabled {
+            UserDefaults.standard.setValue(info.feedNotificationsEnabled, forKey: K.feedNotificationsKey)
+            settingDifferenceUpdated()
+        }
+        tableView.reloadData()
+    }
+    
+    func settingDifferenceUpdated() {
+        let alert = UIAlertController(title: "Updated Settings", message: "Your notification settings were out of date, and were updated from the database.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .default) { UIAlertAction in
+            // Navigate to settings?
+        }
+        alert.addAction(ok)
+        present(alert, animated: true)
+    }
+    
+    
 }

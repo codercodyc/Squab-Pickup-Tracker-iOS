@@ -8,6 +8,7 @@
 import Foundation
 
 struct UserInfo: Codable {
+    let deviceId: String
     let deviceName: String
     let deviceToken: String
     let pickupNotificationsEnabled: Bool

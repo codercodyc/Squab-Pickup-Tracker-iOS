@@ -22,6 +22,8 @@ class SettingsToggleTableViewCell: UITableViewCell {
     
     var delegate: SettingsToggleTableViewCellDelegate?
     
+    var notificationManager = NotificationManager()
+    
     
 // MARK: - Lifecycyle
     override func awakeFromNib() {
@@ -52,17 +54,18 @@ class SettingsToggleTableViewCell: UITableViewCell {
                 UNUserNotificationCenter.current().getNotificationSettings { settings in
                     if settings.authorizationStatus == .authorized {
                         UserDefaults.standard.setValue(true, forKey: K.pickupNotificationsKey)
+                        self.notificationManager.encodeUserInfo()
                     } else {
                         UserDefaults.standard.setValue(false, forKey: K.pickupNotificationsKey)
+                        self.notificationManager.encodeUserInfo()
                         DispatchQueue.main.async {
                             self.delegate?.displayAlert()
                         }
                     }
                 }
-
-
             } else {
                 UserDefaults.standard.setValue(false, forKey: K.pickupNotificationsKey)
+                self.notificationManager.encodeUserInfo()
             }
         case "Feed Notifications":
             if sender.isOn {
@@ -70,8 +73,10 @@ class SettingsToggleTableViewCell: UITableViewCell {
                 UNUserNotificationCenter.current().getNotificationSettings { settings in
                     if settings.authorizationStatus == .authorized {
                         UserDefaults.standard.setValue(true, forKey: K.feedNotificationsKey)
+                        self.notificationManager.encodeUserInfo()
                     } else {
                         UserDefaults.standard.setValue(false, forKey: K.feedNotificationsKey)
+                        self.notificationManager.encodeUserInfo()
                         DispatchQueue.main.async {
                             self.delegate?.displayAlert()
                         }
@@ -79,11 +84,11 @@ class SettingsToggleTableViewCell: UITableViewCell {
                 }
             } else {
                 UserDefaults.standard.setValue(false, forKey: K.feedNotificationsKey)
+                self.notificationManager.encodeUserInfo()
             }
         default:
             break
         }
-       
     }
     
     
