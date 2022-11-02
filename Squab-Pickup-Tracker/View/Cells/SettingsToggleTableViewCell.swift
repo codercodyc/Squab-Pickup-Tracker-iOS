@@ -6,6 +6,12 @@
 //
 
 import UIKit
+import UserNotifications
+
+protocol SettingsToggleTableViewCellDelegate {
+    func displayAlert()
+    func refreshSettings()
+}
 
 class SettingsToggleTableViewCell: UITableViewCell {
 
@@ -13,6 +19,9 @@ class SettingsToggleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var switchStatus: UISwitch!
+    
+    var delegate: SettingsToggleTableViewCellDelegate?
+    
     
 // MARK: - Lifecycyle
     override func awakeFromNib() {
@@ -39,13 +48,35 @@ class SettingsToggleTableViewCell: UITableViewCell {
             }
         case "Pickup Notifications":
             if sender.isOn {
-                UserDefaults.standard.setValue(true, forKey: K.pickupNotificationsKey)
+                
+                UNUserNotificationCenter.current().getNotificationSettings { settings in
+                    if settings.authorizationStatus == .authorized {
+                        UserDefaults.standard.setValue(true, forKey: K.pickupNotificationsKey)
+                    } else {
+                        UserDefaults.standard.setValue(false, forKey: K.pickupNotificationsKey)
+                        DispatchQueue.main.async {
+                            self.delegate?.displayAlert()
+                        }
+                    }
+                }
+
+
             } else {
                 UserDefaults.standard.setValue(false, forKey: K.pickupNotificationsKey)
             }
         case "Feed Notifications":
             if sender.isOn {
-                UserDefaults.standard.setValue(true, forKey: K.feedNotificationsKey)
+
+                UNUserNotificationCenter.current().getNotificationSettings { settings in
+                    if settings.authorizationStatus == .authorized {
+                        UserDefaults.standard.setValue(true, forKey: K.feedNotificationsKey)
+                    } else {
+                        UserDefaults.standard.setValue(false, forKey: K.feedNotificationsKey)
+                        DispatchQueue.main.async {
+                            self.delegate?.displayAlert()
+                        }
+                    }
+                }
             } else {
                 UserDefaults.standard.setValue(false, forKey: K.feedNotificationsKey)
             }
@@ -71,5 +102,9 @@ class SettingsToggleTableViewCell: UITableViewCell {
         
     }
     
+
+    
+    
     
 }
+

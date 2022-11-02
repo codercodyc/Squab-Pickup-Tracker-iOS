@@ -32,7 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            (window?.rootViewController as? UIViewController).performSegue(withIdentifier: K.segue.dashboard, sender: self)
             print("opened from Notification")
             print(aps)
+            
         }
+        
         
         return true
     }
@@ -91,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func registerForPushNotifications() {
         //1
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
-            print("Permission granted \(granted)")
+            print("Permission granted \(granted) for push notifications")
             guard granted else {return}
             self?.getNotificationSettings()
         }
@@ -112,8 +114,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tokenParts = deviceToken.map {
             data in String(format: "%02.2hhx", data)
         }
-        let token = tokenParts.joined()
-        print("Device Token: \(token)")
+        let deviceToken = tokenParts.joined()
+        
+        print("Device Token: \(deviceToken)")
+        
+        // Create notification Manager item to Post Token and User ID
+        let notificationManager = NotificationManager()
+        notificationManager.deviceToken = deviceToken
+        notificationManager.encodeUserInfo()
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class SettingsViewController: UIViewController {
 
@@ -25,6 +26,7 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
 //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.segue.penOrder {
@@ -39,6 +41,8 @@ class SettingsViewController: UIViewController {
 
    
 }
+
+//MARK: - UI Table View Data Source
 
 extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,6 +72,7 @@ extension SettingsViewController: UITableViewDataSource {
             if let safeCell = tableView.dequeueReusableCell(withIdentifier: K.settingToggleCell, for: indexPath) as? SettingsToggleTableViewCell {
                 safeCell.settingsLabel.text = settingsArray[indexPath.section][indexPath.row]
                 safeCell.switchStatus.isOn = safeCell.getServerStatus()
+                safeCell.delegate = self
                 cell = safeCell
             }
         } else if indexPath.section == 1 {
@@ -84,6 +89,8 @@ extension SettingsViewController: UITableViewDataSource {
     
 }
 
+//MARK: - UI Table View Delegate
+
 extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -97,4 +104,26 @@ extension SettingsViewController: UITableViewDelegate {
         }
     }
     
+}
+
+
+//MARK: SettingsToggleTableViewCellDelegate Methods
+
+extension SettingsViewController: SettingsToggleTableViewCellDelegate {
+    func displayAlert() {
+        let alert = UIAlertController(title: "Notifications Disabled", message: "Notifications are disabled in your system settings, please enable if you want to receive notifications.", preferredStyle: .alert)
+        let settings = UIAlertAction(title: "Go to Settings", style: .default) { UIAlertAction in
+            // Navigate to settings?
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(settings)
+        alert.addAction(cancel)
+        present(alert, animated: true) {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func refreshSettings() {
+        tableView.reloadData()
+    }
 }

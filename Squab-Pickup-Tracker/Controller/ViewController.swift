@@ -29,6 +29,9 @@ class ViewController: UIViewController {
         
         
         getCoreDataDBPath()
+        
+        print(UIDevice.current.model)
+        print(UIDevice.current.identifierForVendor)
 
         
         
@@ -53,7 +56,7 @@ class ViewController: UIViewController {
                 .replacingOccurrences(of: "file://", with: "")
                 .removingPercentEncoding
 
-            print("Core Data DB Path :: \(path ?? "Not found")")
+//            print("Core Data DB Path :: \(path ?? "Not found")")
         }
   
     
