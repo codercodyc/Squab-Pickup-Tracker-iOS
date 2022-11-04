@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController {
     
     var selectedPenSettingText: String?
     let notificationManager = NotificationManager()
+    var lastDeviceSettings: [String: Bool] = NotificationManager().getDeviceSettings()
     
     let settingsArray = [["Use Live Server", "Pickup Notifications", "Feed Notifications"],["Pickup Pen Order", "Feed Pen Order"]]
     
@@ -40,6 +41,8 @@ class SettingsViewController: UIViewController {
         DispatchQueue.main.async {
             self.notificationManager.getUserInfo()
         }
+        lastDeviceSettings = notificationManager.getDeviceSettings()
+//        print(lastDeviceSettings)
         tableView.reloadData()
         
         // Do any additional setup after loading the view.
@@ -114,6 +117,20 @@ extension SettingsViewController: UITableViewDataSource {
 extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            if let cell = tableView.cellForRow(at: indexPath) as? SettingsToggleTableViewCell {
+                if cell.settingsLabel.text == "Use Live Server" {
+                    cell.isSelected = false
+//                    print("yay")
+                    DispatchQueue.main.async {
+                        self.notificationManager.getUserInfo()
+                    }
+                    tableView.reloadData()
+                }
+            }
+            
+        }
+        
         // only apply for section 2
         if indexPath.section == 1 {
             if let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell {
@@ -123,8 +140,10 @@ extension SettingsViewController: UITableViewDelegate {
             }
         }
     }
-    
+
 }
+
+
 
 
 //MARK: SettingsToggleTableViewCellDelegate Methods
@@ -146,23 +165,42 @@ extension SettingsViewController: SettingsToggleTableViewCellDelegate {
     func refreshSettings() {
         tableView.reloadData()
     }
+    
+    func didChangeServer() {
+        DispatchQueue.main.async {
+            self.notificationManager.getUserInfo()
+        }
+    }
+    
+    func updateLastDeviceSettings(settings: [String : Bool]) {
+        lastDeviceSettings = settings
+    }
 }
 
 
 extension SettingsViewController: NotificationManagerDelegate {
     func didSubmitUserInfo() {
+        lastDeviceSettings = notificationManager.getDeviceSettings()
+//        print("didsubmit last devicesettings \(lastDeviceSettings)")
         return
     }
     
     func didFailWithError(error: Error) {
-        let alert = UIAlertController(title: "Error", message: "Unable to get notification setting from database.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error syncing notification settings", message: error.localizedDescription, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .default) { UIAlertAction in
             // Navigate to settings?
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
-            self.present(alert, animated: true)            
+            self.present(alert, animated: true)
         }
+//        print(self.lastDeviceSettings)
+        DispatchQueue.main.sync {
+            UserDefaults.standard.setValue(self.lastDeviceSettings[K.pickupNotificationsKey], forKey: K.pickupNotificationsKey)
+            UserDefaults.standard.setValue(self.lastDeviceSettings[K.feedNotificationsKey], forKey: K.feedNotificationsKey)
+            self.tableView.reloadData()
+        }
+        
     }
     
     func didGetUserInfo(info: UserInfo) {
@@ -177,6 +215,7 @@ extension SettingsViewController: NotificationManagerDelegate {
             UserDefaults.standard.setValue(info.feedNotificationsEnabled, forKey: K.feedNotificationsKey)
             settingDifferenceUpdated()
         }
+//        print("didgetuserinfo")
         tableView.reloadData()
     }
     

@@ -8,15 +8,15 @@
 import Foundation
 
     
-    enum Api_Urls : String {
-        case post_device_user_info = "post-device-user-info"
-        case get_device_user_info = "get-device-user-info"
-        case get_prod_and_mort_1wk = "get-prod-and-mort-1wk"
-        case post_new_prod_and_mort_1wk = "post-new-prod-and-mort-1wk"
-        case get_pair_location_changesl = "get-pair-location-changes"
-        case post_pair_location_changes = "post-pair-location-changes"
-        case post_new_feed_1wk = "post-new-feed-1wk"
-    }
+enum Api_Urls : String {
+    case post_device_user_info = "post-device-user-info"
+    case get_device_user_info = "get-device-user-info"
+    case get_prod_and_mort_1wk = "get-prod-and-mort-1wk"
+    case post_new_prod_and_mort_1wk = "post-new-prod-and-mort-1wk"
+    case get_pair_location_changesl = "get-pair-location-changes"
+    case post_pair_location_changes = "post-pair-location-changes"
+    case post_new_feed_1wk = "post-new-feed-1wk"
+}
 
 class UrlManager {
     
@@ -28,11 +28,11 @@ class UrlManager {
     func urlFor(_ api : Api_Urls) -> String {
         if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
             // live server enabled
-            print(live_base + api.rawValue)
+//            print(live_base + api.rawValue)
             return live_base + api.rawValue
         } else {
             // not live server
-            print(dev_base + api.rawValue)
+//            print(dev_base + api.rawValue)
             return dev_base + api.rawValue
         }
     }

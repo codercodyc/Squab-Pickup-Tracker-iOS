@@ -77,8 +77,8 @@ class NotificationManager {
         let pickupStatus = UserDefaults.standard.bool(forKey: K.pickupNotificationsKey)
         let feedStatus = UserDefaults.standard.bool(forKey: K.feedNotificationsKey)
 
-        print("pickup: \(pickupStatus)")
-        print("feed: \(feedStatus)")
+//        print("pickup: \(pickupStatus)")
+//        print("feed: \(feedStatus)")
         let userInfo = UserInfo(deviceId: deviceId, deviceName: deviceName, deviceToken: deviceToken, pickupNotificationsEnabled: pickupStatus, feedNotificationsEnabled: feedStatus)
         
         let encoder = JSONEncoder()

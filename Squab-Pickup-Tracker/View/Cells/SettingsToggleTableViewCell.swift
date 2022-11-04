@@ -11,6 +11,8 @@ import UserNotifications
 protocol SettingsToggleTableViewCellDelegate {
     func displayAlert()
     func refreshSettings()
+    func didChangeServer()
+    func updateLastDeviceSettings(settings: [String: Bool])
 }
 
 class SettingsToggleTableViewCell: UITableViewCell {
@@ -41,8 +43,11 @@ class SettingsToggleTableViewCell: UITableViewCell {
     }
 
     @IBAction func switchChanged(_ sender: UISwitch) {
+        
+        delegate?.updateLastDeviceSettings(settings: notificationManager.getDeviceSettings())
         switch settingsLabel.text {
         case "Use Live Server":
+            notificationManager.getUserInfo()
             if sender.isOn {
                 UserDefaults.standard.setValue(true, forKey: K.liveServerStatusKey)
             } else {
@@ -75,7 +80,7 @@ class SettingsToggleTableViewCell: UITableViewCell {
                         UserDefaults.standard.setValue(true, forKey: K.feedNotificationsKey)
                         self.notificationManager.encodeUserInfo()
                     } else {
-                        UserDefaults.standard.setValue(false, forKey: K.feedNotificationsKey)
+//                        UserDefaults.standard.setValue(false, forKey: K.feedNotificationsKey)
                         self.notificationManager.encodeUserInfo()
                         DispatchQueue.main.async {
                             self.delegate?.displayAlert()
