@@ -82,7 +82,7 @@ struct K {
         "511",
     ]
     
-    static let nestContents = [" " ,"Clear", "E", "EE", "A", "AA", "B", "BB", "C", "CC", "D", "DD", "X", "XX", "Y", "YY", "1 Squab", "2 Squab"]
+    static let nestContents = [" " ,"Clear", "X", "XX", "Y", "YY", "A", "AA", "1 Squab", "2 Squab"]
     
     static let nestContentColors: [String: String] = [
         "E" : K.color.inventoryColor,

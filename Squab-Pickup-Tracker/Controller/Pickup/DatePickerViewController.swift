@@ -39,7 +39,7 @@ class DatePickerViewController: UIViewController {
     
     @IBAction func createPressed(_ sender: UIButton) {
         let date = datePicker.date
-        print(date)
+//        print(date)
         
         if sessionType == "Feed" {
             addBlankFeedSession(with: date)
@@ -142,7 +142,7 @@ class DatePickerViewController: UIViewController {
         
             
             for pen in feedPens {
-                print(pen)
+//                print(pen)
                 let newPen = Pen(context: context)
                 newPen.id = pen
                 newPen.cornScoops = 0

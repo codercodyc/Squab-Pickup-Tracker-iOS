@@ -16,45 +16,7 @@ protocol PigeonDataManagerDelegate {
 
 
 class PigeonDataManager {
-    //Phone
-//    let LastWeekProductionUrl = "http://169.254.16:5000/api/get-prod-and-mort-1wk"
-//    let sessionPostUrl = "http://169.254.16:5000/api/post-new-prod-and-mort-1wk"
-    //Simulator
-//    let LastWeekProductionUrl = "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
-//    let sessionPostUrl = "http://127.0.0.1:5000/api/post-new-prod-and-mort-1wk"
-//    //Live Server
-//    let lastWeekProductionUrl = "https://dkcpigeons.com/api/get-prod-and-mort-1wk"
-//    let sessionPostUrl = "https://dkcpigeons.com/api/post-new-prod-and-mort-1wk"
-    
-    
-    // Download Last Weeks Production Data URL
-    var lastWeekProductionUrl: String {
-        get {
-            if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
-//                print("using live production url")
-                return "https://dkcpigeons.com/api/get-prod-and-mort-1wk"
-            } else {
-//                print("not live")
-                return "http://127.0.0.1:5000/api/get-prod-and-mort-1wk"
-            }
-        }
-    }
-    
-    // Post Production and Inventory Data to Database
-    var sessionPostUrl: String {
-        get {
-            if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
-//                print("using live session post url")
-                return "https://dkcpigeons.com/api/post-new-prod-and-mort-1wk"
-            } else {
-//                print("not live")
-                return "http://127.0.0.1:5000/api/post-new-prod-and-mort-1wk"
-            }
-        }
-    }
-    
-   
-    
+
     
     var delegate: PigeonDataManagerDelegate?
     
@@ -74,7 +36,7 @@ class PigeonDataManager {
     
     
     func downloadData() {
-        if let url = URL(string: lastWeekProductionUrl) {
+        if let url = URL(string: UrlManager().urlFor(Api_Urls.get_prod_and_mort_1wk)) {
 
             let session = URLSession(configuration: .default)
             
@@ -270,7 +232,7 @@ class PigeonDataManager {
 
 //MARK: - Post Session
     func postSesion(jsonData: Data) {
-        if let url = URL(string: sessionPostUrl) {
+        if let url = URL(string: UrlManager().urlFor(Api_Urls.post_new_prod_and_mort_1wk)) {
             let session = URLSession.shared
             
             

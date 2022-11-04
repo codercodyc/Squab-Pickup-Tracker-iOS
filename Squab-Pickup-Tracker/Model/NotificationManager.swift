@@ -22,40 +22,11 @@ class NotificationManager {
     
     var delegate: NotificationManagerDelegate?
 
-// MARK: - API URLS
-    
-//    init(deviceToken: String) {
-//        self.deviceToken = deviceToken
-//    }
-    
-    var userInfoPostURL: String {
-        get {
-            if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
-                //live
-                return "https://dev.dkcpigeons.com/api/post-device-user-info"  // Update
-            } else {
-                //not live
-                return "https://dev.dkcpigeons.com/api/post-device-user-info"   // Update
-            }
-        }
-    }
-    
-    var userInfoGetURL: String {
-        get {
-            if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
-                //live
-                return "https://dev.dkcpigeons.com/api/get-device-user-info"  // Update
-            } else {
-                //not live
-                return "https://dev.dkcpigeons.com/api/get-device-user-info"   // Update
-            }
-        }
-    }
     
 //MARK: - Post User Info
     
     func postUserInfo(jsonData: Data) {
-        if let url = URL(string: userInfoPostURL) {
+        if let url = URL(string: UrlManager().urlFor(Api_Urls.post_device_user_info)) {
             let session = URLSession.shared
 
 
@@ -97,10 +68,10 @@ class NotificationManager {
     
     
     func encodeUserInfo() {
-        print("encoding")
+//        print("encoding")
         let deviceName = UIDevice.current.name
         guard let deviceId = UIDevice.current.identifierForVendor?.uuidString else {return}
-        let deviceToken = deviceToken ?? "unchanged"
+        let deviceToken = deviceToken ?? ""
 //        enableNotifications()
         
         let pickupStatus = UserDefaults.standard.bool(forKey: K.pickupNotificationsKey)
@@ -122,15 +93,15 @@ class NotificationManager {
         
     }
     
-//    func enableNotifications() {
-//        UserDefaults.standard.setValue(true, forKey: K.pickupNotificationsKey)
-//        UserDefaults.standard.setValue(true, forKey: K.feedNotificationsKey)
-//    }
-//
-//    func disableNotifications() {
-//        UserDefaults.standard.setValue(false, forKey: K.pickupNotificationsKey)
-//        UserDefaults.standard.setValue(false, forKey: K.feedNotificationsKey)
-//    }
+    func enableNotifications() {
+        UserDefaults.standard.setValue(true, forKey: K.pickupNotificationsKey)
+        UserDefaults.standard.setValue(true, forKey: K.feedNotificationsKey)
+    }
+
+    func disableNotifications() {
+        UserDefaults.standard.setValue(false, forKey: K.pickupNotificationsKey)
+        UserDefaults.standard.setValue(false, forKey: K.feedNotificationsKey)
+    }
     
     
 //MARK: - Get User Info
@@ -140,7 +111,7 @@ class NotificationManager {
             return
         }
         let queryParam = "?device_id=" + deviceId
-        let fullUrl = userInfoGetURL + queryParam
+        let fullUrl = UrlManager().urlFor(Api_Urls.get_device_user_info) + queryParam
         
         if let url = URL(string: fullUrl) {
             let session = URLSession.shared

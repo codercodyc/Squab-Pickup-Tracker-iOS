@@ -114,6 +114,19 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
     
     @IBAction func submitPressed(_ sender: UIButton) {
         
+        let alert = UIAlertController(title: "Is Date Correct?", message: nil, preferredStyle: .alert)
+                        
+                let submit = UIAlertAction(title: "Yes", style: .default) { submit in
+                    self.submit()
+                }
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alert.addAction(submit)
+                alert.addAction(cancel)
+                        
+                present(alert, animated: true)
+    }
+    
+    func submit() {
         
         if transferType == "New" || transferType == "Move" {
             if !toValid {
@@ -170,8 +183,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate, TransferDat
 //            self.delegate?.didFinishSubmitting()
 //            self.navigationController?.popViewController(animated: true)
         }
-        
-        
+
         
     }
     

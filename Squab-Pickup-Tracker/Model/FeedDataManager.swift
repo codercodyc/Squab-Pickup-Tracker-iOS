@@ -16,18 +16,6 @@ protocol FeedDataManagerDelegate {
 class FeedDataManager {
     
     
-    // Post Feed Data to Database
-    var sessionPostUrl: String {
-        get {
-            if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
-                //live
-                return "https://dkcpigeons.com/api/post-new-feed-1wk"
-            } else {
-                //not live
-                return "https://127.0.0.1:5000/api/post-new-feed-1wk"
-            }
-        }
-    }
     
     var delegate: FeedDataManagerDelegate?
     
@@ -106,7 +94,7 @@ class FeedDataManager {
     
     //MARK: - Post Session
         func postFeedSesion(jsonData: Data) {
-            if let url = URL(string: sessionPostUrl) {
+            if let url = URL(string: UrlManager().urlFor(Api_Urls.post_new_feed_1wk)) {
                 let session = URLSession.shared
 
 

@@ -41,7 +41,7 @@ class SelectionViewController: UIViewController {
         return (contentsCollectionView.frame.width - cellPaddingW) / 2
     }
     var cellHeight: CGFloat {
-        return (contentsCollectionView.frame.height - cellPaddingH * 8) / 9
+        return (contentsCollectionView.frame.height - cellPaddingH * 5) / 5
     }
 
     
@@ -56,11 +56,15 @@ class SelectionViewController: UIViewController {
         
         contentsCollectionView.delegate = self
         contentsCollectionView.dataSource = self
-        contentsCollectionView.layer.backgroundColor = .none
+        contentsCollectionView.backgroundColor = .none
         
         contentsCollectionView.reloadData()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        contentsCollectionView.backgroundColor = .none
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {

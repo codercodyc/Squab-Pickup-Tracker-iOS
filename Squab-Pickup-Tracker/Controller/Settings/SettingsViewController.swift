@@ -26,9 +26,21 @@ class SettingsViewController: UIViewController {
 //        tableView.backgroundColor = .none
         
         notificationManager.delegate = self
+        
+        DispatchQueue.main.async {
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                if settings.authorizationStatus != .authorized {
+                    self.notificationManager.disableNotifications()
+                        self.notificationManager.encodeUserInfo()
+                }
+            }
+        }
+        
+            
         DispatchQueue.main.async {
             self.notificationManager.getUserInfo()
         }
+        tableView.reloadData()
         
         // Do any additional setup after loading the view.
     }
@@ -80,6 +92,7 @@ extension SettingsViewController: UITableViewDataSource {
                 safeCell.settingsLabel.text = settingsArray[indexPath.section][indexPath.row]
                 safeCell.switchStatus.isOn = safeCell.getServerStatus()
                 safeCell.delegate = self
+                safeCell.notificationManager.delegate = self
                 cell = safeCell
             }
         } else if indexPath.section == 1 {
@@ -147,7 +160,9 @@ extension SettingsViewController: NotificationManagerDelegate {
             // Navigate to settings?
         }
         alert.addAction(ok)
-        present(alert, animated: true)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)            
+        }
     }
     
     func didGetUserInfo(info: UserInfo) {

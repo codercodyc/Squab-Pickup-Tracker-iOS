@@ -32,31 +32,6 @@ class TransferDataManager {
     
     var delegate: TransferDataManagerDelegate?
     
-    // GET Transfer Data URL
-    private var getTransferDataUrl: String {
-        get {
-            if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
-                print("using live database")
-                return "https://dkcpigeons.com/api/get-pair-location-changes"
-            } else {
-                print("using local database")
-                return "http://127.0.0.1:5000/api/get-pair-location-changes"
-            }
-        }
-    }
-    
-    // POST Transfer Data URL
-    private var postTransferDataUrl: String {
-        get {
-            if UserDefaults.standard.bool(forKey: K.liveServerStatusKey) {
-                print("using live database")
-                return "https://dkcpigeons.com/api/post-pair-location-changes"
-            } else {
-                print("using local database")
-                return "http://127.0.0.1:5000/api/post-pair-location-changes"
-            }
-        }
-    }
 
 
     // MARK: - Data Manipulation Methods
@@ -219,7 +194,7 @@ class TransferDataManager {
     
     // MARK: - GET Tranfer Data
     func getTranferData() {
-        if let url = URL(string: getTransferDataUrl) {
+        if let url = URL(string: UrlManager().urlFor(Api_Urls.get_pair_location_changesl)) {
             let session = URLSession(configuration: .default)
             
             var request = URLRequest(url: url)
@@ -266,7 +241,7 @@ class TransferDataManager {
         guard let jsonData = encodeTransfer(with: transfer) else {return}
         print(jsonData)
         
-        if let url = URL(string: postTransferDataUrl) {
+        if let url = URL(string: UrlManager().urlFor(Api_Urls.post_pair_location_changes)) {
             let session = URLSession(configuration: .default)
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
