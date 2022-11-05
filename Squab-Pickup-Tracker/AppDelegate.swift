@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            let aps = notification["aps"] as? [String: AnyObject] {
             // Do something here.
 //            (window?.rootViewController as? UIViewController).performSegue(withIdentifier: K.segue.dashboard, sender: self)
-            print("opened from Notification")
-            print(aps)
+//            print("opened from Notification")
+//            print(aps)
             
         }
         
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func registerForPushNotifications() {
         //1
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
-            print("Permission granted \(granted) for push notifications")
+//            print("Permission granted \(granted) for push notifications")
             guard granted else {return}
             self?.getNotificationSettings()
         }
@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
-            print("Notification settings: \(settings)")
+//            print("Notification settings: \(settings)")
             
             guard settings.authorizationStatus == .authorized else {return}
             DispatchQueue.main.async {
@@ -126,11 +126,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register: \(error)")
+//        print("Failed to register: \(error)")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("received remote notification")
+//        print("received remote notification")
         guard let aps = userInfo["aps"] as? [String: AnyObject] else {
             completionHandler(.failed)
             return

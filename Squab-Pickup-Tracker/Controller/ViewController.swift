@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         
         getCoreDataDBPath()
         
-        print(UIDevice.current.model)
-        print(UIDevice.current.identifierForVendor)
+//        print(UIDevice.current.model)
+//        print(UIDevice.current.identifierForVendor?.uuidString)
 
         
         

@@ -48,7 +48,7 @@ class SettingsToggleTableViewCell: UITableViewCell {
         switch settingsLabel.text {
         case "Use Live Server":
             DispatchQueue.main.async {
-//                self.notificationManager.getUserInfo()
+                self.notificationManager.getUserInfo()
             }
             if sender.isOn {
                 UserDefaults.standard.setValue(true, forKey: K.liveServerStatusKey)

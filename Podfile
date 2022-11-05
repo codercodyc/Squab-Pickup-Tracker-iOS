@@ -8,6 +8,6 @@ target 'Squab-Pickup-Tracker' do
   # Pods for Squab-Pickup-Tracker
 
 #pod 'Charts'
-pod 'SwiftyJSON', '~> 4.0'
+pod 'SwiftyJSON'
 
 end
