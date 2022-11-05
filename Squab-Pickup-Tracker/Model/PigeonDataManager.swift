@@ -21,6 +21,7 @@ class PigeonDataManager {
     var delegate: PigeonDataManagerDelegate?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let urlManager = UrlManager()
 
     var currentSession: Session? {
         didSet {
@@ -36,13 +37,13 @@ class PigeonDataManager {
     
     
     func downloadData() {
-        if let url = URL(string: UrlManager().urlFor(Api_Urls.get_prod_and_mort_1wk)) {
+        if let url = URL(string: urlManager.urlFor(Api_Urls.get_prod_and_mort_1wk)) {
 
             let session = URLSession(configuration: .default)
             
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
             
             let task = session.dataTask(with: request) { (data, response, error) in
                 if error != nil {
@@ -232,14 +233,14 @@ class PigeonDataManager {
 
 //MARK: - Post Session
     func postSesion(jsonData: Data) {
-        if let url = URL(string: UrlManager().urlFor(Api_Urls.post_new_prod_and_mort_1wk)) {
+        if let url = URL(string: urlManager.urlFor(Api_Urls.post_new_prod_and_mort_1wk)) {
             let session = URLSession.shared
             
             
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
             request.httpBody = jsonData
            
             

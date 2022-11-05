@@ -20,6 +20,8 @@ class FeedDataManager {
     var delegate: FeedDataManagerDelegate?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let urlManager = UrlManager()
 
     var currentSession: Session? {
         didSet {
@@ -94,14 +96,14 @@ class FeedDataManager {
     
     //MARK: - Post Session
         func postFeedSesion(jsonData: Data) {
-            if let url = URL(string: UrlManager().urlFor(Api_Urls.post_new_feed_1wk)) {
+            if let url = URL(string: urlManager.urlFor(Api_Urls.post_new_feed_1wk)) {
                 let session = URLSession.shared
 
 
                 var request = URLRequest(url: url)
                 request.httpMethod = "POST"
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
+                request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
                 request.httpBody = jsonData
 
 

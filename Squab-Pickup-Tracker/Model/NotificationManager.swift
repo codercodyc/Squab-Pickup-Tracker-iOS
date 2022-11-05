@@ -21,19 +21,21 @@ class NotificationManager {
     var deviceToken: String?
     
     var delegate: NotificationManagerDelegate?
+    
+    let urlManager = UrlManager()
 
     
 //MARK: - Post User Info
     
     func postUserInfo(jsonData: Data) {
-        if let url = URL(string: UrlManager().urlFor(Api_Urls.post_device_user_info)) {
+        if let url = URL(string: urlManager.urlFor(Api_Urls.post_device_user_info)) {
             let session = URLSession.shared
 
 
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
             request.httpBody = jsonData
 
 
@@ -111,16 +113,15 @@ class NotificationManager {
             return
         }
         let queryParam = "?device_id=" + deviceId
-        let fullUrl = UrlManager().urlFor(Api_Urls.get_device_user_info) + queryParam
+        let fullUrl = urlManager.urlFor(Api_Urls.get_device_user_info) + queryParam
         
         if let url = URL(string: fullUrl) {
             let session = URLSession.shared
 
-
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
 //            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
 //            request.httpBody = jsonData
 
 

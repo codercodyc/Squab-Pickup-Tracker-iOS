@@ -32,6 +32,8 @@ class TransferDataManager {
     
     var delegate: TransferDataManagerDelegate?
     
+    let urlManager = UrlManager()
+    
 
 
     // MARK: - Data Manipulation Methods
@@ -194,12 +196,12 @@ class TransferDataManager {
     
     // MARK: - GET Tranfer Data
     func getTranferData() {
-        if let url = URL(string: UrlManager().urlFor(Api_Urls.get_pair_location_changesl)) {
+        if let url = URL(string: urlManager.urlFor(Api_Urls.get_pair_location_changesl)) {
             let session = URLSession(configuration: .default)
             
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
             
             let task = session.dataTask(with: request) { data, response, error in
                 if error != nil {
@@ -241,11 +243,11 @@ class TransferDataManager {
         guard let jsonData = encodeTransfer(with: transfer) else {return}
         print(jsonData)
         
-        if let url = URL(string: UrlManager().urlFor(Api_Urls.post_pair_location_changes)) {
+        if let url = URL(string: urlManager.urlFor(Api_Urls.post_pair_location_changes)) {
             let session = URLSession(configuration: .default)
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            request.addValue(Keys.developmentKey, forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             
