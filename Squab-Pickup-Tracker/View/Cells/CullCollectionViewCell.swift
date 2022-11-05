@@ -15,7 +15,7 @@ class CullCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var sixMonthButton: UIButton!
     @IBOutlet weak var twelveMonthButton: UIButton!
     @IBOutlet weak var totalProductionLabel: UILabel!
-    @IBOutlet weak var chart: LineChartView!
+//    @IBOutlet weak var chart: LineChartView!
     @IBOutlet weak var pairIdLabel: UILabel!
     
     

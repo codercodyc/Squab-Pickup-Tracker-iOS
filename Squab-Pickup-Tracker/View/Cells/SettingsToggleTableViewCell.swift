@@ -44,10 +44,12 @@ class SettingsToggleTableViewCell: UITableViewCell {
 
     @IBAction func switchChanged(_ sender: UISwitch) {
         
-        delegate?.updateLastDeviceSettings(settings: notificationManager.getDeviceSettings())
+        self.delegate?.updateLastDeviceSettings(settings: self.notificationManager.getDeviceSettings())
         switch settingsLabel.text {
         case "Use Live Server":
-            notificationManager.getUserInfo()
+            DispatchQueue.main.async {
+//                self.notificationManager.getUserInfo()
+            }
             if sender.isOn {
                 UserDefaults.standard.setValue(true, forKey: K.liveServerStatusKey)
             } else {

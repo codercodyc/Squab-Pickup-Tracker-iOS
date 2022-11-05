@@ -108,6 +108,10 @@ extension SettingsViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 43.5
+    }
+    
 
     
 }
@@ -187,19 +191,18 @@ extension SettingsViewController: NotificationManagerDelegate {
     
     func didFailWithError(error: Error) {
         let alert = UIAlertController(title: "Error syncing notification settings", message: error.localizedDescription, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Ok", style: .default) { UIAlertAction in
-            // Navigate to settings?
-        }
+        let ok = UIAlertAction(title: "Ok", style: .default)
         alert.addAction(ok)
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
 //        print(self.lastDeviceSettings)
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             UserDefaults.standard.setValue(self.lastDeviceSettings[K.pickupNotificationsKey], forKey: K.pickupNotificationsKey)
             UserDefaults.standard.setValue(self.lastDeviceSettings[K.feedNotificationsKey], forKey: K.feedNotificationsKey)
             self.tableView.reloadData()
         }
+        
         
     }
     
@@ -216,7 +219,9 @@ extension SettingsViewController: NotificationManagerDelegate {
             settingDifferenceUpdated()
         }
 //        print("didgetuserinfo")
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()            
+        }
     }
     
     func settingDifferenceUpdated() {

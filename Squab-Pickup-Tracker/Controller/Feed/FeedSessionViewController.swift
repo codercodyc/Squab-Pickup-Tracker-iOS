@@ -139,11 +139,15 @@ extension FeedSessionViewController: UITableViewDataSource {
                 safeCell.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
             } else if sessions[indexPath.row].wasSubmitted {
                 safeCell.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+                safeCell.detailTextLabel?.text = "Posted to Database"
             } else if sessions[indexPath.row].wasCreated == false {
                 safeCell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+                safeCell.detailTextLabel?.text = "Downloaded to Database"
             } else {
                 safeCell.backgroundColor = UIColor(named: "sessionCell")
                 safeCell.textLabel?.textColor = .label
+                safeCell.detailTextLabel?.text = "In Progress"
+
                 
             }
             cell = safeCell
