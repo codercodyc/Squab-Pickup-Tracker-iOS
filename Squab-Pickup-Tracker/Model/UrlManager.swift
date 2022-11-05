@@ -39,7 +39,7 @@ class UrlManager {
     
     /// Returns the development key from the environment variables
     func developmentKey() -> String {
-        let key = ProcessInfo.processInfo.environment["developmentKey"]!
+        guard let key = ProcessInfo.processInfo.environment["API_KEY"] else {return ""}
 //        print(key)
         return key
         
