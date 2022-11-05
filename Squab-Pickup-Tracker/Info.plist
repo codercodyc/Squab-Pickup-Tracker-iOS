@@ -66,9 +66,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>remote</key>
-	<string></string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>API_KEY</key>
+	<string>kfjfhr7843982323kjhskfyg3487298eusdzjkczxgk3472568qwoa</string>
 </dict>
 </plist>

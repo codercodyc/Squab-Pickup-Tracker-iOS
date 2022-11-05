@@ -35,7 +35,7 @@ class NotificationManager {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.getApiKey(), forHTTPHeaderField: "ApiKey")
             request.httpBody = jsonData
 
 
@@ -121,7 +121,7 @@ class NotificationManager {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
 //            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.getApiKey(), forHTTPHeaderField: "ApiKey")
 //            request.httpBody = jsonData
 
 

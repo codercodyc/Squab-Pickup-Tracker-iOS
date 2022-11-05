@@ -43,7 +43,7 @@ class PigeonDataManager {
             
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.getApiKey(), forHTTPHeaderField: "ApiKey")
             
             let task = session.dataTask(with: request) { (data, response, error) in
                 if error != nil {
@@ -240,7 +240,7 @@ class PigeonDataManager {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue(urlManager.developmentKey(), forHTTPHeaderField: "ApiKey")
+            request.addValue(urlManager.getApiKey(), forHTTPHeaderField: "ApiKey")
             request.httpBody = jsonData
            
             

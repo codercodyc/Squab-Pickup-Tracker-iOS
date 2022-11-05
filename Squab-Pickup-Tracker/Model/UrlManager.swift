@@ -38,11 +38,14 @@ class UrlManager {
     }
     
     /// Returns the development key from the environment variables
-    func developmentKey() -> String {
-        guard let key = ProcessInfo.processInfo.environment["API_KEY"] else {return ""}
+    func getApiKey() -> String {
+//        guard let key = ProcessInfo.processInfo.environment["API_KEY"] else {return ""}
 //        print(key)
-        return key
+        guard let key = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String else {
+            return "could not access key from info.plist"
+        }
         
+        return key
     }
     
     
