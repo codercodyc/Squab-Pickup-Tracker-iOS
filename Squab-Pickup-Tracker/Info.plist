@@ -68,5 +68,7 @@
 	</array>
 	<key>remote</key>
 	<string></string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
