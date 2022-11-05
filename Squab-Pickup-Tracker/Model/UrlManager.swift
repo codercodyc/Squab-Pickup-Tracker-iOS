@@ -20,9 +20,9 @@ enum Api_Urls : String {
 
 class UrlManager {
     
-    private let live_base = "https://dkcpigeons.com/api/"
-    private let dev_base = "https://pigeondash.ddctech.net/api/"
-    private let local_base = "http://127.0.0.1:5000/api/"
+    let live_base = "https://dkcpigeons.com/api/"
+    let dev_base = "https://pigeondash.ddctech.net/api/"
+    let local_base = "http://127.0.0.1:5000/api/"
     
     /// Will return the string url for selected api route, directed to live or development server, based on current device settings.
     func urlFor(_ api : Api_Urls) -> String {
