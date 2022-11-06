@@ -20,6 +20,7 @@
 		C348A31C267AD08300CE0990 /* TransferDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348A31B267AD08300CE0990 /* TransferDataManager.swift */; };
 		C352CF0C257C6A7C000839E1 /* LineChartView+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */; };
 		C3559BD9266F1205002F21A3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3559BD8266F1205002F21A3 /* SettingsViewController.swift */; };
+		C372145229177E7B003E10D4 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C372145129177E7B003E10D4 /* ErrorManager.swift */; };
 		C3736BBB28B17280000B34F2 /* FeedInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3736BBA28B17280000B34F2 /* FeedInputViewController.swift */; };
 		C37614E12909FC4200FBA272 /* FeedInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37614E02909FC4200FBA272 /* FeedInputTableViewCell.swift */; };
 		C38AF1342679841F00DFBA6E /* TransferSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38AF1332679841F00DFBA6E /* TransferSelectorViewController.swift */; };
@@ -77,6 +78,7 @@
 		C348A31B267AD08300CE0990 /* TransferDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDataManager.swift; sourceTree = "<group>"; };
 		C352CF0B257C6A7C000839E1 /* LineChartView+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineChartView+Formats.swift"; sourceTree = "<group>"; };
 		C3559BD8266F1205002F21A3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C372145129177E7B003E10D4 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		C3736BBA28B17280000B34F2 /* FeedInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInputViewController.swift; sourceTree = "<group>"; };
 		C37614E02909FC4200FBA272 /* FeedInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInputTableViewCell.swift; sourceTree = "<group>"; };
 		C38AF1332679841F00DFBA6E /* TransferSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSelectorViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				C338BF7E290B53AE002AE807 /* FeedDataManager.swift */,
 				C338BF80290B5C90002AE807 /* FeedData.swift */,
 				C3F0951B290F8BFA009ECFF1 /* NotificationManager.swift */,
+				C372145129177E7B003E10D4 /* ErrorManager.swift */,
 				C3F0951D290F9230009ECFF1 /* UserInfo.swift */,
 			);
 			path = Model;
@@ -432,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C372145229177E7B003E10D4 /* ErrorManager.swift in Sources */,
 				C3BE0F3D2557836A006A8FE1 /* PickupPenViewController.swift in Sources */,
 				C3F4DB9F2578B5ED00084F73 /* MoveViewController.swift in Sources */,
 				C352CF0C257C6A7C000839E1 /* LineChartView+Formats.swift in Sources */,

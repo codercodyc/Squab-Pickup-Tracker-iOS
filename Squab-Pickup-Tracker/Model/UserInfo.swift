@@ -14,3 +14,9 @@ struct UserInfo: Codable {
     let pickupNotificationsEnabled: Bool
     let feedNotificationsEnabled: Bool
 }
+
+struct ServerInfo: Codable {
+    let deviceId: String
+    let active: Bool?
+    let buildEnvironment: String
+}

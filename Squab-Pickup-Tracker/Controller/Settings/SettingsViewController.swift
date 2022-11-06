@@ -16,7 +16,7 @@ class SettingsViewController: UIViewController {
     let notificationManager = NotificationManager()
     var lastDeviceSettings: [String: Bool] = NotificationManager().getDeviceSettings()
     
-    let settingsArray = [["Use Live Server", "Pickup Notifications", "Feed Notifications"],["Pickup Pen Order", "Feed Pen Order"]]
+    var settingsArray = [["Use Live Server", "Pickup Notifications", "Feed Notifications"],["Pickup Pen Order", "Feed Pen Order"]]
     
     
     override func viewDidLoad() {
@@ -34,6 +34,15 @@ class SettingsViewController: UIViewController {
                     self.notificationManager.disableNotifications()
                         self.notificationManager.encodeUserInfo()
                 }
+            }
+            
+        if ProcessInfo.processInfo.environment["DEBUG"] == "true" {
+                print(K.environments.development)
+            self.settingsArray[0].append(K.environments.development)
+            } else {
+                print(K.environments.production)
+                self.settingsArray[0].append(K.environments.production)
+
             }
         }
         

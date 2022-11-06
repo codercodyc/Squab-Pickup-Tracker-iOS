@@ -55,7 +55,13 @@ class NotificationManager {
 
                         self.delegate?.didSubmitUserInfo()
                     } else {
-                        print(responseData.statusCode)
+                        if responseData.statusCode == 404 {
+                            self.delegate?.didFailWithError(error: ErrorManager.error404)
+                        } else {
+                            self.delegate?.didFailWithError(error: ErrorManager.unexpected)
+                        }
+                        
+//                        print(responseData.statusCode)
                     }
                 }
 

@@ -123,7 +123,11 @@ class FeedDataManager {
 
                             self.delegate?.didSubmitSession()
                         } else {
-                            print(responseData.statusCode)
+                            if responseData.statusCode == 404 {
+                                self.delegate?.didFailWithError(error: ErrorManager.error404)
+                            } else {
+                                self.delegate?.didFailWithError(error: ErrorManager.unexpected)
+                            }
                         }
                     }
 

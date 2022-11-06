@@ -134,6 +134,11 @@ struct K {
         static let cull = "cull"
     }
     
+    struct environments {
+        static let production = "production"
+        static let development = "development"
+    }
+    
     
 }
 
