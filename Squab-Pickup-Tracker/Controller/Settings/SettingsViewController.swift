@@ -38,10 +38,10 @@ class SettingsViewController: UIViewController {
             
         if ProcessInfo.processInfo.environment["DEBUG"] == "true" {
                 print(K.environments.development)
-            self.settingsArray[0].append(K.environments.development)
+//            self.settingsArray[0].append(K.environments.development)
             } else {
                 print(K.environments.production)
-                self.settingsArray[0].append(K.environments.production)
+//                self.settingsArray[0].append(K.environments.production)
 
             }
         }
