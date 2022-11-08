@@ -33,7 +33,7 @@ class SelectionViewController: UIViewController {
     @IBOutlet weak var multipleInputsButton: UIButton!
     
     
-    let cellPaddingW = CGFloat(20)
+    let cellPaddingW = CGFloat(10)
     let cellPaddingH = CGFloat(10)
 
     
