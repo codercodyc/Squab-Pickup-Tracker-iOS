@@ -12,6 +12,8 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var firstLaunch = false
+    let notificationManager = NotificationManager()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -120,9 +122,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Device Token: \(deviceToken)")
         
         // Create notification Manager item to Post Token and User ID
-        let notificationManager = NotificationManager()
+//        let notificationManager = NotificationManager()
+        notificationManager.delegate = self
         notificationManager.deviceToken = deviceToken
         notificationManager.encodeUserInfo()
+        
+        // Check other server settings, if not code 200, send status.
+        let live = UserDefaults.standard.bool(forKey: K.liveServerStatusKey)
+        UserDefaults.standard.setValue(!live, forKey: K.liveServerStatusKey)
+        DispatchQueue.main.async {
+            self.notificationManager.getUserInfo()
+        }
+//        print("firstLaunch: \(firstLaunch)")
+        
+        
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -151,3 +164,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
 //}
 //
+
+
+//MARK: - Notification Manager Delegate
+extension AppDelegate: NotificationManagerDelegate {
+    func didSubmitUserInfo() {
+        return
+    }
+    
+    func didFailWithError(error: Error) {
+        firstLaunch = true
+        print("updated first launch")
+        let live = UserDefaults.standard.bool(forKey: K.liveServerStatusKey)
+        UserDefaults.standard.setValue(!live, forKey: K.liveServerStatusKey)
+        DispatchQueue.main.async {
+            if self.firstLaunch {
+                self.notificationManager.encodeUserInfo()
+                print("encoded second time")
+            }
+        }
+        UserDefaults.standard.setValue(!live, forKey: K.liveServerStatusKey)
+    }
+    
+    func didGetUserInfo(info: UserInfo) {
+        // reset live server selection, user info is already in database.
+        let live = UserDefaults.standard.bool(forKey: K.liveServerStatusKey)
+        UserDefaults.standard.setValue(!live, forKey: K.liveServerStatusKey)
+    }
+    
+    
+}
