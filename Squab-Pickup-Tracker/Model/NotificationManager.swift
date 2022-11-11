@@ -85,9 +85,15 @@ class NotificationManager {
         let pickupStatus = UserDefaults.standard.bool(forKey: K.pickupNotificationsKey)
         let feedStatus = UserDefaults.standard.bool(forKey: K.feedNotificationsKey)
 
-//        print("pickup: \(pickupStatus)")
-//        print("feed: \(feedStatus)")
-        let userInfo = UserInfo(deviceId: deviceId, deviceName: deviceName, deviceToken: deviceToken, pickupNotificationsEnabled: pickupStatus, feedNotificationsEnabled: feedStatus)
+        var productionEnvironment = false
+        if ProcessInfo.processInfo.environment["DEBUG"] == "true" {
+            productionEnvironment = false
+        } else {
+            productionEnvironment = true
+        }
+        print("production environment: \(productionEnvironment)")
+
+        let userInfo = UserInfo(deviceId: deviceId, deviceName: deviceName, deviceToken: deviceToken, pickupNotificationsEnabled: pickupStatus, feedNotificationsEnabled: feedStatus, productionEnvironment: productionEnvironment)
         
         let encoder = JSONEncoder()
         do {

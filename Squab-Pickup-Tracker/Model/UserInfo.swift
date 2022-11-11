@@ -13,10 +13,11 @@ struct UserInfo: Codable {
     let deviceToken: String
     let pickupNotificationsEnabled: Bool
     let feedNotificationsEnabled: Bool
+    let productionEnvironment: Bool
 }
 
-struct ServerInfo: Codable {
-    let deviceId: String
-    let active: Bool?
-    let buildEnvironment: String
-}
+//struct ServerInfo: Codable {
+//    let deviceId: String
+//    let activeServer: Bool?
+//    let buildEnvironment: String
+//}
