@@ -23,6 +23,7 @@
 		C372145229177E7B003E10D4 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C372145129177E7B003E10D4 /* ErrorManager.swift */; };
 		C3736BBB28B17280000B34F2 /* FeedInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3736BBA28B17280000B34F2 /* FeedInputViewController.swift */; };
 		C37614E12909FC4200FBA272 /* FeedInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37614E02909FC4200FBA272 /* FeedInputTableViewCell.swift */; };
+		C381D5C829215217006C3937 /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381D5C729215217006C3937 /* ProcessingView.swift */; };
 		C38AF1342679841F00DFBA6E /* TransferSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38AF1332679841F00DFBA6E /* TransferSelectorViewController.swift */; };
 		C3A2BD792560E3310084E66A /* PickupSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */; };
 		C3A5BF9A2557BC8B0085D440 /* ContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5BF992557BC8B0085D440 /* ContentsCell.swift */; };
@@ -81,6 +82,7 @@
 		C372145129177E7B003E10D4 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		C3736BBA28B17280000B34F2 /* FeedInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInputViewController.swift; sourceTree = "<group>"; };
 		C37614E02909FC4200FBA272 /* FeedInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInputTableViewCell.swift; sourceTree = "<group>"; };
+		C381D5C729215217006C3937 /* ProcessingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
 		C38AF1332679841F00DFBA6E /* TransferSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSelectorViewController.swift; sourceTree = "<group>"; };
 		C3A2BD782560E3310084E66A /* PickupSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSessionViewController.swift; sourceTree = "<group>"; };
 		C3A5BF992557BC8B0085D440 /* ContentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCell.swift; sourceTree = "<group>"; };
@@ -187,6 +189,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		C381D5C92921521F006C3937 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C381D5C729215217006C3937 /* ProcessingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C38AF1352679843E00DFBA6E /* Transfers */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +266,7 @@
 			children = (
 				C3BE0EFB25577D61006A8FE1 /* Main.storyboard */,
 				C32207B5278D23D6006FB08C /* Feed.storyboard */,
+				C381D5C92921521F006C3937 /* Views */,
 				C357BFF62579B07400CFE814 /* Cells */,
 			);
 			path = View;
@@ -442,6 +453,7 @@
 				C3A2BD792560E3310084E66A /* PickupSessionViewController.swift in Sources */,
 				C3EB8E34257AB520009D7B24 /* UIButton+Shadow.swift in Sources */,
 				C32207BB278D2542006FB08C /* FeedSessionViewController.swift in Sources */,
+				C381D5C829215217006C3937 /* ProcessingView.swift in Sources */,
 				C348A31C267AD08300CE0990 /* TransferDataManager.swift in Sources */,
 				C31298F9255CDC9C00B1F246 /* DashboardViewController.swift in Sources */,
 				C3E8D5AA2563A3FF00440448 /* PigeonDataManager.swift in Sources */,

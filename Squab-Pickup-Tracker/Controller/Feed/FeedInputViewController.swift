@@ -40,6 +40,7 @@ class FeedInputViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let submit = UIAlertAction(title: "Submit Feed Session", style: .default) { (action) in
             self.submitSession()
+            
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let exit = UIAlertAction(title: "Exit to Menu", style: .destructive) { action in
@@ -56,10 +57,23 @@ class FeedInputViewController: UIViewController {
         let alert = UIAlertController(title: "Submit Feed Session", message: "Are you sure you want to submit this feed session?", preferredStyle: .alert)
         let submit = UIAlertAction(title: "Yes", style: .default) { (action) in
             self.postFeedData()
+            // Add processing view.
+            let processingView = ProcessingView(frame: .zero)
+            processingView.submittingLabel.text = "Feeding the Server"
+            processingView.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(processingView)
+            
+            let constraints = [
+                processingView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                processingView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+                processingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                processingView.topAnchor.constraint(equalTo: self.view.topAnchor)
+            ]
+            NSLayoutConstraint.activate(constraints)
         }
         let cancel = UIAlertAction(title: "No", style: .destructive, handler: nil)
-        alert.addAction(submit)
         alert.addAction(cancel)
+        alert.addAction(submit)
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -249,7 +263,8 @@ extension FeedInputViewController: FeedDataManagerDelegate {
             let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
             
             let action = UIAlertAction(title: "Ok", style: .default) { (action) in
-                
+                guard let processingView = self.view.viewWithTag(150) else {return}
+                processingView.removeFromSuperview()
                 
             }
             
