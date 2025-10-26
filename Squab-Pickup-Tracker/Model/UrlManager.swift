@@ -20,8 +20,8 @@ enum Api_Urls : String {
 
 class UrlManager {
     
-    let live_base = "https://dkcpigeons.com/api/"
-    let dev_base = "https://pigeondash.ddctech.net/api/"
+    let live_base = "https://pigeon-dash.service.ddctech.net/api/"
+    let dev_base = "https://dev.pigeon-dash.service.ddctech.net/api/"
     let local_base = "http://127.0.0.1:5000/api/"
     
     /// Will return the string url for selected api route, directed to live or development server, based on current device settings.

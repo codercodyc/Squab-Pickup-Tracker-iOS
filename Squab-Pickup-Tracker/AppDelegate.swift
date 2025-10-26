@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // register Default Array of Pens
         let pens = K.penIDs
         UserDefaults.standard.register(defaults: [K.pickupPenOrderKey: pens, K.feedPenOrderKey: pens, K.pickupNotificationsKey: false, K.feedNotificationsKey: false])
-        registerForPushNotifications()
+//        registerForPushNotifications()
         
         // check if launched from notification
         let notificationOption = launchOptions?[.remoteNotification]

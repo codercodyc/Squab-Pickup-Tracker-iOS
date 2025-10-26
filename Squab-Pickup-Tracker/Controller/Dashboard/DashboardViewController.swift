@@ -14,7 +14,7 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
-    let urlString = "https://dkcpigeons.com/dashapp/?forceStaticGraphs=true"
+    let urlString = "https://pigeon-dash.service.ddctech.net/dashapp/?forceStaticGraphs=true"
     
     
     
