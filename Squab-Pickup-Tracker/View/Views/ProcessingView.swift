@@ -19,7 +19,7 @@ class ProcessingView: UIView {
 //        layer.borderWidth = 2
 //        self.layer.cornerRadius = 5
         self.backgroundColor = .clear
-        self.tag = 150
+        self.tag = K.tags.processingView
         let blurEffect = UIBlurEffect(style: .regular)
         
         let blurView = UIVisualEffectView(effect: blurEffect)

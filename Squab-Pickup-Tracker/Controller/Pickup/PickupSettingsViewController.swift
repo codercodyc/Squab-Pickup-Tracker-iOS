@@ -48,7 +48,17 @@ class PickupSettingsViewController: UIViewController {
             let submit = UIAlertAction(title: "Ok", style: .cancel) { (action) in
                 
             }
+            // Adding temporary functionality
+            let submit_to_database = UIAlertAction(title: "Submit Anyway", style: .default) { (action) in
+                DispatchQueue.main.async {
+                    self.pigeonManager.encodeCurrentSession(with: self.currentSession!)
+                    
+                }
+            }
             
+            alert.addAction(submit_to_database)
+            
+            // end temporary functionality
             
             alert.addAction(submit)
             

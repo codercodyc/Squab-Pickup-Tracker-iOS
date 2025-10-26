@@ -81,6 +81,23 @@ class PigeonDataManager {
         }
     }
     
+//MARK: - Decode Post Response
+    
+    struct ResponseData: Codable {
+        let message: String
+    }
+    
+    func parsePostResponseData(_ data: Data) -> ResponseData? {
+        let decoder = JSONDecoder()
+        do {
+            let decodedResponse = try decoder.decode(ResponseData.self, from: data)
+            return decodedResponse
+        } catch {
+            delegate?.didFailWithError(error: error)
+            return nil
+        }
+    }
+    
     //MARK: - Data Manipulation Methods
     func saveData() {
         do {
@@ -254,11 +271,26 @@ class PigeonDataManager {
                     return
                 }
                 if let responseData = response as? HTTPURLResponse {
+//                    print(responseData)
+//                    print(data)
                     if responseData.statusCode == 200 {
-//                        self.currentSession?.wasSubmitted = true
-//                        self.saveData()
                         
-                        self.delegate?.didSubmitSession()
+
+                        //parse response data to check message
+                        if let safeData = data {
+                            if let responseData = self.parsePostResponseData(safeData) {
+                                print(responseData)
+                                if responseData.message == "Successfully inserted 1 weeks values" {
+                                    self.delegate?.didSubmitSession()
+                                }
+                                else {
+                                    self.delegate?.didFailWithError(error: ErrorManager.error404)
+                                }
+                            }
+                        }
+                        // end check data
+                        
+               
                     } else {
                         if responseData.statusCode == 404 {
                             self.delegate?.didFailWithError(error: ErrorManager.error404)

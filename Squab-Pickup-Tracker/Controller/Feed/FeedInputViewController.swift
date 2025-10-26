@@ -57,19 +57,7 @@ class FeedInputViewController: UIViewController {
         let alert = UIAlertController(title: "Submit Feed Session", message: "Are you sure you want to submit this feed session?", preferredStyle: .alert)
         let submit = UIAlertAction(title: "Yes", style: .default) { (action) in
             self.postFeedData()
-            // Add processing view.
-            let processingView = ProcessingView(frame: .zero)
-            processingView.submittingLabel.text = "Feeding the Server"
-            processingView.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview(processingView)
-            
-            let constraints = [
-                processingView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                processingView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-                processingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                processingView.topAnchor.constraint(equalTo: self.view.topAnchor)
-            ]
-            NSLayoutConstraint.activate(constraints)
+            addProcessingView(to: self.view, label: "Feeding the Server")
         }
         let cancel = UIAlertAction(title: "No", style: .destructive, handler: nil)
         alert.addAction(cancel)
@@ -86,9 +74,18 @@ class FeedInputViewController: UIViewController {
             let submit = UIAlertAction(title: "Ok", style: .cancel) { (action) in
                 
             }
+            let submit_anyway = UIAlertAction(title: "Submit Anyway", style: .default) { (action) in
+                if let currentSession = self.selectedSession {
+                    DispatchQueue.main.async {
+                        self.feedManager.encodeCurrentSession(with: currentSession)
+                        
+                    }
+                }
+            }
             
             
             alert.addAction(submit)
+            alert.addAction(submit_anyway)
             
             self.present(alert, animated: true, completion: nil)
         } else {
@@ -263,7 +260,7 @@ extension FeedInputViewController: FeedDataManagerDelegate {
             let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
             
             let action = UIAlertAction(title: "Ok", style: .default) { (action) in
-                guard let processingView = self.view.viewWithTag(150) else {return}
+                guard let processingView = self.view.viewWithTag(K.tags.processingView) else {return}
                 processingView.removeFromSuperview()
                 
             }
